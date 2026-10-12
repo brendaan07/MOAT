@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStoreProvider } from './src/hooks/useAppStore';
-import { TrackStoreProvider } from './src/hooks/useTrackStore';
+import { TrackStoreProvider } from './src/hooks/useTrackStore_updated';
 import RootNavigator from './src/navigation/RootNavigator';
 import { C } from './src/utils/theme';
 
