@@ -1,7 +1,9 @@
-// Mirrors the Swift models (CourseModels.swift, UserProgress.swift, TrackData_updated.swift).
+// The data types: saved progress, lessons and project tracks. Field names match the saved JSON, so changing one needs a migration.
 
 export type RobotForm = 'blob' | 'builder' | 'rover' | 'gardener' | 'orb' | 'cat';
+/** Every robot form, in the order they unlock. */
 export const ROBOT_FORMS: RobotForm[] = ['blob', 'builder', 'rover', 'gardener', 'orb', 'cat'];
+/** The name shown for each robot form. */
 export const ROBOT_NAMES: Record<RobotForm, string> = {
   blob: 'Blob',
   builder: 'Builder Bot',
@@ -73,6 +75,7 @@ export interface UserProgress {
   currentForm: RobotForm;
 }
 
+/** A new learner: nothing done, the Blob robot, a goal of three lessons a day. */
 export const defaultProgress = (): UserProgress => ({
   hasOnboarded: false,
   name: '',
@@ -91,7 +94,7 @@ export const defaultProgress = (): UserProgress => ({
   currentForm: 'blob',
 });
 
-// ---------- Biology research track (track_bio_r_updated.json) ----------
+// ---------- Biology research track (track_bio_r.json) ----------
 export type TrackKind = 'fill' | 'predict' | 'bug' | 'build' | 'order';
 export type CheckpointStyle = 'plan' | 'code' | 'predict' | 'debug' | 'build';
 
@@ -186,6 +189,7 @@ export interface TrackProgress {
   secondsByDay: Record<string, number>;
 }
 
+/** Track progress with nothing finished. */
 export const defaultTrackProgress = (): TrackProgress => ({ finished: [], bestStars: {}, paid: [], secondsByDay: {} });
 
 export interface RunResult {
@@ -197,10 +201,13 @@ export interface RunResult {
   firstAttempt: boolean;
   missedIndexes: number[];
 }
+/** True when every question was right on the first try. */
 export const isPerfect = (r: RunResult) => r.stars === r.total;
 
-// Helpers that mirror TrackQuestion's Swift computed values
+// Reading a question's right answer and the label for an option id
 export const correctOne = (q: TrackQuestion) => (typeof q.correct === 'string' ? q.correct : undefined);
+/** The right answer of a question that needs several pieces, in order (empty for single-answer questions). */
 export const correctMany = (q: TrackQuestion) => (Array.isArray(q.correct) ? q.correct : []);
+/** The text for an option, line or step id. */
 export const labelOf = (q: TrackQuestion, id: string) =>
   q.opts?.find((o) => o.id === id)?.label ?? q.lines?.find((o) => o.id === id)?.label ?? q.steps?.[id] ?? '';

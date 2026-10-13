@@ -1,9 +1,10 @@
+// Building blocks for the loop and stage games: coloured code tokens and panels, the run console, the feedback sheet and the step player.
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Text, View } from 'react-native';
 import { BORDER, C, body, code, heading } from '../utils/theme';
 import { BundleImage, Card, ChunkyButton } from './ui';
 
-// ---------- Code tokens (GameKit.swift) ----------
+// ---------- Code tokens ----------
 export type TokKind = 'plain' | 'keyword' | 'number' | 'string' | 'input';
 export interface CodeToken {
   text: string;
@@ -15,11 +16,12 @@ export interface CodeLine {
   indent: number;
   tokens: CodeToken[];
 }
+/** Shorthand for a code token: its text, the space before it, and how it is coloured. */
 export const tk = (text: string, pre = ' ', kind: TokKind = 'plain', hl?: string): CodeToken => ({ text, pre, kind, hl });
-export const lineLength = (l: CodeLine) => l.tokens.reduce((n, t) => n + t.pre.length + t.text.length, 0);
+const lineLength = (l: CodeLine) => l.tokens.reduce((n, t) => n + t.pre.length + t.text.length, 0);
 const tokColor = (k: TokKind) => (k === 'keyword' ? C.codeKeyword : k === 'number' || k === 'input' ? C.codeNumber : k === 'string' ? C.codeString : C.navy);
 
-export function KaraokeLine({ line, fontSize = 14, active, rowHighlight = false, dimmed = false, input }: { line: CodeLine; fontSize?: number; active?: number | null; rowHighlight?: boolean; dimmed?: boolean; input?: (size: number) => React.ReactNode }) {
+function KaraokeLine({ line, fontSize = 14, active, rowHighlight = false, dimmed = false, input }: { line: CodeLine; fontSize?: number; active?: number | null; rowHighlight?: boolean; dimmed?: boolean; input?: (size: number) => React.ReactNode }) {
   const fill = (i: number) => (active == null ? 'transparent' : i === active ? C.lime : i < active ? C.successSheet : 'transparent');
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', minHeight: 26, paddingLeft: line.indent * 14 + 4, borderRadius: 8, backgroundColor: rowHighlight ? '#F3EBD3' : 'transparent', opacity: dimmed ? 0.35 : 1 }}>
@@ -59,6 +61,7 @@ export function CodePanel({ lines, activeLine, activeTok = -1, dimmed, input }: 
   );
 }
 
+/** The green-on-navy output box that shows what the program printed. */
 export function RunConsole({ lines }: { lines: string[] }) {
   return (
     <View style={{ minHeight: 74, borderRadius: 12, backgroundColor: C.navy, paddingHorizontal: 12, paddingVertical: 8, gap: 2 }} accessible>
@@ -73,13 +76,16 @@ export function RunConsole({ lines }: { lines: string[] }) {
   );
 }
 
-export function GameFeedbackSheet({ correct, title, message, buttonTitle, robotName, action }: { correct: boolean; title: string; message: string; buttonTitle: string; robotName?: string | null; action: () => void }) {
+/** The result sheet under a general-path question or game step. `answerLine` shows the right answer in code type; `children` add rows under the message. */
+export function GameFeedbackSheet({ correct, title, message, answerLine, buttonTitle, robotName, action, children }: { correct: boolean; title: string; message: string; answerLine?: string; buttonTitle: string; robotName?: string | null; action: () => void; children?: React.ReactNode }) {
   return (
     <View style={{ padding: 20, gap: 12, backgroundColor: correct ? C.successSheet : C.missSheet, borderTopWidth: BORDER, borderTopColor: C.navy }}>
       <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
         <View style={{ flex: 1, gap: 6 }}>
           <Text style={heading(26)}>{title}</Text>
+          {answerLine ? <Text style={code(15)}>{answerLine}</Text> : null}
           <Text style={body(16)}>{message}</Text>
+          {children}
         </View>
         {robotName ? <BundleImage name={robotName} style={{ width: 72, height: 84 }} /> : null}
       </View>
@@ -88,7 +94,7 @@ export function GameFeedbackSheet({ correct, title, message, buttonTitle, robotN
   );
 }
 
-/** Draws art at a fixed design size and scales it down to fit the width (FittedArt). */
+/** Draws art at a fixed design size and scales it down to fit the width. */
 export function FittedArt({ width = 345, height = 199, children }: { width?: number; height?: number; children: React.ReactNode }) {
   const [avail, setAvail] = useState(width);
   const scale = Math.min(1, avail / width);
@@ -99,7 +105,7 @@ export function FittedArt({ width = 345, height = 199, children }: { width?: num
   );
 }
 
-// ---------- Timed steps (StepPlayer) ----------
+// ---------- Timed steps ----------
 export interface RunStep {
   line?: number;
   tok?: number;
@@ -115,6 +121,7 @@ export interface RunStep {
   finish?: boolean;
 }
 
+/** Plays timed steps one after another; calling play again or unmounting cancels the pending step. */
 export function useStepPlayer() {
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const cancel = useCallback(() => {

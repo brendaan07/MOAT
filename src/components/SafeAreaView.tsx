@@ -1,3 +1,4 @@
+// A SafeAreaView that pads with the root provider's insets, because the native one reports zero inside full-screen modals.
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Edge, useSafeAreaInsets } from 'react-native-safe-area-context';

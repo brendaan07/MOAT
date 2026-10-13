@@ -1,6 +1,7 @@
+// Colours, the border width and the text styles every screen uses. They match the design canvas.
 import { Platform, TextStyle } from 'react-native';
 
-/** Colours from Theme.swift and TrackKit_updated.swift (they match the design canvas). */
+/** The colour palette. */
 export const C = {
   cream: '#FBF4E4',
   card: '#FFFDF6',
@@ -18,6 +19,8 @@ export const C = {
   hintBlue: '#DCEEFF',
   premiumBand: '#2E3A9E',
   premiumText: '#B8C4FF',
+  /** Dims a locked phase on the path and the area behind the paywall. */
+  lockedOverlay: 'rgba(27,36,114,0.55)',
   wrongChip: '#FFD3B0',
   // Track kit
   navyDeep: '#141A5C',
@@ -36,12 +39,13 @@ export const C = {
   number: '#FFA866',
   fn: '#7CC4FF',
   keyword: '#FF9B63',
-  // Game code colours (GameKit.swift)
+  // Colours for code in the loop and stage games
   codeKeyword: '#3B4BD8',
   codeNumber: '#B5471B',
   codeString: '#1F7A4D',
 };
 
+/** The thick navy outline used on cards, buttons and chips. */
 export const BORDER = 2.5;
 
 const mono = Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' });
@@ -57,8 +61,8 @@ export const FONTS = {
 export const heading = (size: number): TextStyle => ({ fontSize: size, fontFamily: FONTS.heading, color: C.navy });
 /** Body text: Atkinson Hyperlegible, regular or bold. */
 export const body = (size: number, bold = false): TextStyle => ({ fontSize: size, fontFamily: bold ? FONTS.bodyBold : FONTS.body, color: C.navy });
-/** Theme.code (semibold monospaced) and TK.mono (bold monospaced). */
+/** Monospaced text: semibold for code, bold for small labels. */
 export const code = (size: number): TextStyle => ({ fontSize: size, fontFamily: mono, fontWeight: '600', color: C.navy });
 export const monoBold = (size: number): TextStyle => ({ fontSize: size, fontFamily: mono, fontWeight: '700', color: C.navy });
-/** The MOAT wordmark font, registered as "Horizon-Bold" like FontLoader in the Swift app. */
+/** The MOAT wordmark font, registered as "Horizon-Bold" in App.tsx. */
 export const wordmark = (size: number): TextStyle => ({ fontSize: size, fontFamily: 'Horizon-Bold' });

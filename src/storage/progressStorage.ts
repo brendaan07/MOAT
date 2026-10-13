@@ -1,8 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+// Saved progress (name, age, field, bolts, streak, unlocked robots). The key and JSON shape never change, so existing installs keep their data.
 import { defaultProgress, ROBOT_FORMS, RobotForm, UserProgress } from '../types/models';
 import { canonicalArea } from '../utils/studyAreas';
+import { jsonStorage } from './jsonStorage';
 
-// Same key and the same JSON shape as UserDefaults in the Swift app.
 const KEY = 'moat.progress.v1';
 
 /** Reads saved data field by field, so a new field in a later version never wipes progress. */
@@ -34,20 +34,5 @@ function decode(raw: unknown): UserProgress {
   };
 }
 
-export const ProgressStorage = {
-  async load(): Promise<UserProgress> {
-    try {
-      const json = await AsyncStorage.getItem(KEY);
-      return decode(json ? JSON.parse(json) : null);
-    } catch {
-      return defaultProgress();
-    }
-  },
-  async save(progress: UserProgress) {
-    try {
-      await AsyncStorage.setItem(KEY, JSON.stringify(progress));
-    } catch {
-      // Saving is best effort, as in the Swift app.
-    }
-  },
-};
+/** Loads and saves the learner's progress. */
+export const ProgressStorage = jsonStorage(KEY, decode, defaultProgress);

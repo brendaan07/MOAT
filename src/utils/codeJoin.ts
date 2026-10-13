@@ -1,4 +1,5 @@
-/** Joins pieces like ["print", "(", "\"Hi\"", ")"] into print("Hi") (CodeJoin in Theme.swift). */
+// Small formatters shared by the lessons and games: joining code pieces and writing money.
+/** Joins pieces like ["print", "(", "\"Hi\"", ")"] into print("Hi"). */
 export function codeJoin(pieces: string[]): string {
   let result = '';
   for (const piece of pieces) {
@@ -9,5 +10,5 @@ export function codeJoin(pieces: string[]): string {
   return result;
 }
 
-/** "$1,000" style money, as LoopGameConfig.money does with an en_US number formatter. */
+/** "$1,000" style money, rounded to whole dollars. */
 export const money = (value: number) => '$' + Math.round(value).toLocaleString('en-US');

@@ -1,3 +1,4 @@
+// The stage lab: a short program with blanks to fill, run step by step, over several parts.
 import React, { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useAppStore } from '../../hooks/useAppStore';
@@ -49,7 +50,7 @@ interface StageSpec {
 const blankPart = (kind: StagePart['kind'], name: string, prompt: string): StagePart => ({ kind, name, prompt, seq: '', reveal: [], code: [], options: [], answer: '', why: {}, pieces: [], trayOrder: [], hint: '', ok: '', okTitle: 'Nice!' });
 const opts = (texts: string[]) => texts.map((t, i) => ({ id: 'abcd'[i], text: t }));
 
-/** StageSpec.build() in StageGames.swift. */
+/** Expands a compact stage description into the full config the game plays. */
 function build(s: StageSpec): StageConfig {
   const countTokens: CodeToken[] = [tk(s.countVar, ''), tk('=')];
   s.counts.forEach((ch, i) => {
@@ -94,7 +95,7 @@ function build(s: StageSpec): StageConfig {
   return { title: s.title, legend: s.legend, readoutLabel: s.readoutLabel, fn: s.fn, itemWord: s.itemWord, countVar: s.countVar, seqs: s.seqs, targets: s.counts, tileHeights: s.tileHeights ?? {}, program, printSplit: 3, parts: [p1, p2, p3, p4, p5] };
 }
 
-/** StageCatalog in StageGames.swift. */
+/** Every stage lab by game id. */
 export const STAGES: Record<string, StageConfig> = {
   stage_gc: build({
     title: 'GC content lab', legend: 'G and C are the letters we count', readoutLabel: 'GC content', fn: 'gc_content', param: 'sequence', countVar: 'gc', list: 'sequences', itemWord: 'strand',
@@ -160,6 +161,7 @@ function runSteps(c: StageConfig): RunStep[] {
   return steps;
 }
 
+/** Reports progress (0 to 1) and bolts upward; calls onDone after the last part. */
 export function StageGame({ game, onProgress, onBolts, onDone }: { game: string; onProgress: (p: number) => void; onBolts: (n: number) => void; onDone: () => void }) {
   const config = STAGES[game];
   const store = useAppStore();

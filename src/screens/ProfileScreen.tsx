@@ -1,16 +1,19 @@
+// The Profile tab: streak, stats, badges and the settings (name, edit answers, reset).
 import React, { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
 import { useAppStore } from '../hooks/useAppStore';
-import { DAILY_GOAL_MINUTES, useTrackStore } from '../hooks/useTrackStore_updated';
+import { useTrackStore } from '../hooks/useTrackStore';
+import { DAILY_GOAL_MINUTES } from '../utils/rewards';
 import { BundleImage, Card, ChunkyButton, DottedBackground } from '../components/ui';
-import { FlameIcon, WeekStrip } from '../components/trackKit';
+import { FlameIcon } from '../components/icons';
+import { WeekStrip } from '../components/track/WeekStrip';
 import { C, body, heading } from '../utils/theme';
 import { moodImage } from '../types/models';
 import { DayKey } from '../utils/dayKey';
 
-/** Profile v2 (ProfileView_updated.swift): streak hero, stats row, 3 by 3 badges, then every setting from the old Profile. */
+/** Streak hero, stats row, 3 by 3 badges, then the settings. */
 export default function ProfileScreen() {
   const store = useAppStore();
   const track = useTrackStore();

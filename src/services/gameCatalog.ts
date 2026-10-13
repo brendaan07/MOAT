@@ -1,9 +1,10 @@
+// Adds the loop game and the stage lab to the general-path course for fields that have them (Healthcare, Engineering, Business).
 import { Course, Lesson } from '../types/models';
 import { canonicalArea } from '../utils/studyAreas';
 
 type Field = 'health' | 'engineering' | 'business';
 
-/** Fix: the Swift catalog still checked the old names "Health sciences" and "Business" after they were renamed. */
+/** Which games a study area gets. Goes through canonicalArea so names saved by older versions still match. */
 function fieldFor(studyArea: string): Field | null {
   switch (canonicalArea(studyArea)) {
     case 'Healthcare':
@@ -17,7 +18,7 @@ function fieldFor(studyArea: string): Field | null {
   }
 }
 
-/** Adds the loop game to phase 2 and a Stage phase at the end (GameCatalog.swift). */
+/** Adds the loop game to phase 2 and a Stage phase at the end. */
 export function addingGames(course: Course, studyArea: string): Course {
   const field = fieldFor(studyArea);
   if (!field) return course;
