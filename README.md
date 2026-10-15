@@ -15,6 +15,31 @@ The project targets Expo SDK 57. If your Expo Go app supports a different SDK, r
 
 More notes are in `docs/`: the codebase handover PDF and the Playwright testing notes.
 
+## Web version
+
+The same app runs in the browser through `react-native-web`, and is deployed to Vercel as a static site.
+
+**While coding**, use the dev server. It builds in memory in development mode (readable code, `__DEV__` true, React warnings) and reloads on every save:
+
+```bash
+npm run web              # same as npx expo start --web
+```
+
+**Before pushing anything that Vercel will deploy**, build and serve the production version. This is what Vercel hosts, so it catches problems the dev server hides:
+
+```bash
+npm run build:web        # expo export -p web: writes the minified app to dist/
+npx serve dist --single  # serves dist/ like Vercel does; --single sends every URL to index.html
+```
+
+Open `http://localhost:3000` and check:
+
+- The app gets past the splash screen and the browser console has no red errors.
+- Opening a lesson changes the URL, refreshing keeps you on it, and the browser back button goes back a screen.
+- Images and fonts load.
+
+Problems that only show up in the production build: code behind `__DEV__` (the RevenueCat wrapper only logs in development, so failures there are silent), minification, missing assets, and refreshing on a deep link. `dist/` is in `.gitignore`; Vercel runs the same build itself on every push.
+
 ## Project structure
 
 | Folder | What it holds |

@@ -34,6 +34,8 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
   const track = useTrackStore();
   const phase = track.track?.phases.find((p) => p.number === route.params.phase);
   const startLesson = phase?.lessons.find((l) => l.id === route.params.lessonId) ?? null;
+  // Checked once on open, since finishing a lesson here changes what is unlocked. A typed URL to a locked or unknown item closes the screen.
+  const [allowed] = useState(() => !!phase && (startLesson ? track.lessonUnlocked(startLesson, phase) : !route.params.lessonId && track.checkpointUnlocked(phase)));
   const lessonStep = (lesson: TrackLesson): Step => (v2Lesson(lesson.id) ? { kind: 'introV2', lesson } : { kind: 'lesson', lesson });
   const [step, setStep] = useState<Step>(startLesson ? lessonStep(startLesson) : { kind: 'checkpointIntro' });
   // Part of each player's React key: bumping it on every start or replay mounts a fresh player, so no answers carry over.
@@ -43,7 +45,7 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
     if (s.kind === 'lesson' || s.kind === 'lessonV2' || s.kind === 'checkpoint') setRunID((r) => r + 1);
     setStep(s);
   };
-  if (!phase) {
+  if (!phase || !allowed) {
     close();
     return <View />;
   }

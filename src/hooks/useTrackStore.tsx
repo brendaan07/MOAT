@@ -10,6 +10,8 @@ import { TRACK_BOLTS_PER_QUESTION, TRACK_PERFECT_BONUS } from '../utils/rewards'
 interface TrackStoreValue {
   track: Track | null;
   progress: TrackProgress;
+  /** True once saved progress has loaded, so lock checks never run against empty progress. */
+  hydrated: boolean;
   isFinished: (id: string) => boolean;
   stars: (id: string) => number;
   phaseComplete: (phase: TrackPhase) => boolean;
@@ -35,6 +37,7 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
   /** Biology research, Engineering (Python) and Healthcare (Python or R) each have their own track. */
   const track = useMemo(() => loadTrack(studyArea, language), [studyArea, language]);
   const [progress, setState] = useState<TrackProgress>(defaultTrackProgress());
+  const [hydrated, setHydrated] = useState(false);
   const ref = useRef(progress);
   const set = useCallback((p: TrackProgress) => {
     ref.current = p;
@@ -45,6 +48,7 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
     TrackStorage.load().then((p) => {
       ref.current = p;
       setState(p);
+      setHydrated(true);
     });
   }, []);
 
@@ -120,6 +124,7 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
   const value: TrackStoreValue = {
     track,
     progress,
+    hydrated,
     isFinished,
     stars,
     phaseComplete,

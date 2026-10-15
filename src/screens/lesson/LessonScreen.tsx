@@ -28,8 +28,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Lesson'>;
 /** Bolts: a few per question right on the first try, plus a bonus for finishing. A wrong answer comes back once at the end. */
 export default function LessonScreen({ route, navigation }: Props) {
   const store = useAppStore();
-  // Looked up once: the lesson must not change under the learner if the course reloads mid-lesson.
-  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId), []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Looked up once: the lesson must not change under the learner if the course reloads mid-lesson. A locked lesson (from a typed URL) counts as missing.
+  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId && store.isUnlocked(l)), []); // eslint-disable-line react-hooks/exhaustive-deps
   // A wrong answer is queued once more at the end, so `queue` can be longer than the lesson.
   const [queue, setQueue] = useState<Question[]>(lesson?.questions ?? []);
   const [position, setPosition] = useState(0);
