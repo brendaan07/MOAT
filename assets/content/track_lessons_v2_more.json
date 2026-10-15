@@ -1,0 +1,7367 @@
+{
+ "version": 2,
+ "lessons": [
+  {
+   "id": "EngP1L1",
+   "domain": "eng",
+   "lang": "py",
+   "phase": 1,
+   "part": 1,
+   "title": "Label the circuit",
+   "project": "Circuit calculator",
+   "person": "Lab technician",
+   "intro": "Before anyone powers a board, it needs a label: its name and its supply voltage.",
+   "start": "Label the circuit",
+   "doneTitle": "Circuit labelled",
+   "doneSub": "Name, voltage and a clean label line, ready for the bench.",
+   "file": "circuit.py",
+   "notebook": [
+    [
+     "Name",
+     "Circuit A"
+    ],
+    [
+     "Supply",
+     "12 V"
+    ],
+    [
+     "Label",
+     "Circuit A at 12 V"
+    ],
+    [
+     "Technician's script",
+     "fixed"
+    ],
+    [
+     "Panel label",
+     "Circuit A: 12 V"
+    ]
+   ],
+   "script": [
+    "name = \"Circuit A\"",
+    "print(name)",
+    "print(\"name\")",
+    "volts = 12",
+    "print(volts * 2)",
+    "label = name + \" at \" + str(volts)",
+    "print(label + \" V\")",
+    "print(f\"{name}: {volts} V\")"
+   ],
+   "questions": [
+    {
+     "id": "EngP1L1_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does Python print?",
+     "hint": "Look at which name has quote marks around it.",
+     "ok": "name without quotes is the stored text; \"name\" in quotes is the word itself. Python prints text without its quote marks.",
+     "fb": {
+      "b": "Python leaves out the quote marks when it prints text.",
+      "c": "In quotes, \"name\" is a word, not the variable."
+     },
+     "bridge": "store the board's supply voltage.",
+     "entry": "Name: Circuit A",
+     "label": "Circuit A: a battery, one resistor and an ammeter.",
+     "science": {
+      "title": "Why label a circuit?",
+      "text": "Labs share benches and boards. A name and supply voltage on every board stops someone connecting 12 V to a board built for 5 V."
+     },
+     "codeNote": {
+      "title": "Text and names",
+      "text": "Quote marks make text. A name without them refers to a stored value."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "circuit",
+       "args": [
+        12,
+        [
+         4
+        ]
+       ],
+       "kw": {}
+      },
+      {
+       "type": "readout",
+       "label": "Board name:",
+       "value": "Circuit A",
+       "known": true
+      }
+     ],
+     "eq": [
+      {
+       "t": "name",
+       "c": "#FFC93C"
+      },
+      "is",
+      {
+       "t": "Circuit A",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "Circuit A\nname"
+      },
+      {
+       "id": "b",
+       "label": "\"Circuit A\"\n\"name\""
+      },
+      {
+       "id": "c",
+       "label": "Circuit A\nCircuit A"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "name = \"Circuit A\"",
+      "print(name)",
+      "print(\"name\")"
+     ]
+    },
+    {
+     "id": "EngP1L1_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Store the supply voltage as a number",
+     "hint": "Think about what * would do to each option.",
+     "ok": "12 is a number, so volts * 2 is 24. In quotes, \"12\" is text, and text times 2 repeats it: 1212.",
+     "fb": {
+      "b": "\"12\" is text, and text times 2 repeats it: 1212.",
+      "c": "twelve is not defined, so Python stops with a NameError.",
+      "d": "12V is not valid Python; it stops with a SyntaxError."
+     },
+     "bridge": "make one label from the name and the voltage.",
+     "entry": "Supply: 12 V",
+     "label": "The battery of Circuit A, with its voltage still to be stored.",
+     "science": {
+      "title": "Why voltage is a number",
+      "text": "Every later calculation, current, power, safe limits, needs the voltage as a number. Stored as text, the maths silently goes wrong."
+     },
+     "codeNote": {
+      "title": "Numbers and text",
+      "text": "Python stores numbers and text as different types, and each type behaves differently."
+     },
+     "carry": [
+      "name = \"Circuit A\"",
+      1
+     ],
+     "pics": [
+      {
+       "type": "circuit",
+       "args": [
+        12,
+        [
+         4
+        ]
+       ],
+       "kw": {}
+      },
+      {
+       "type": "readout",
+       "label": "volts * 2 =",
+       "value": "24",
+       "known": false
+      }
+     ],
+     "eq": [
+      {
+       "t": "12",
+       "c": "#FFFDF6"
+      },
+      "× 2 =",
+      {
+       "t": "24",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "24"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "12"
+      },
+      {
+       "id": "b",
+       "label": "\"12\""
+      },
+      {
+       "id": "c",
+       "label": "twelve"
+      },
+      {
+       "id": "d",
+       "label": "12V"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "volts = ___",
+      "print(volts * 2)"
+     ]
+    },
+    {
+     "id": "EngP1L1_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does the label line print?",
+     "hint": "Look at where the spaces sit.",
+     "ok": "str(volts) turns 12 into \"12\", and + joins the pieces with their spaces: Circuit A at 12 V.",
+     "fb": {
+      "b": "Without quotes, volts means its value, 12.",
+      "c": "The spaces are inside the quoted pieces, so they stay."
+     },
+     "bridge": "the technician's script stops with an error.",
+     "entry": "Label: Circuit A at 12 V",
+     "label": "A label tag waiting to be written for Circuit A.",
+     "science": {
+      "title": "Labels that read like a sentence",
+      "text": "A label such as \"Circuit A at 12 V\" can be read at a glance on a crowded bench, which is what safety labels are for."
+     },
+     "codeNote": {
+      "title": "Joining text",
+      "text": "`+` can join pieces of text into one."
+     },
+     "carry": [
+      "volts = 12",
+      2
+     ],
+     "pics": [
+      {
+       "type": "rows",
+       "items": [
+        [
+         "name",
+         "Circuit A",
+         false
+        ],
+        [
+         "volts",
+         "12",
+         false
+        ],
+        [
+         "label + \" V\"",
+         "Circuit A at 12 V",
+         true
+        ]
+       ]
+      }
+     ],
+     "eq": [
+      {
+       "t": "\"Circuit A\"",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "\" at \"",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "\"12\"",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "\" V\"",
+       "c": "#FFFDF6"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "opts": [
+      {
+       "id": "a",
+       "label": "Circuit A at 12 V"
+      },
+      {
+       "id": "b",
+       "label": "Circuit A at volts V"
+      },
+      {
+       "id": "c",
+       "label": "Circuit Aat12V"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "label = name + \" at \" + str(volts)",
+      "print(label + \" V\")"
+     ]
+    },
+    {
+     "id": "EngP1L1_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The technician's script stops. Which line?",
+     "hint": "Look for a line that mixes two different types.",
+     "ok": "volts is a number, and + cannot join text to a number, so Python stops. str(volts) fixes it.",
+     "fb": {
+      "a": "Storing the name is fine.",
+      "b": "Storing the voltage as a number is right.",
+      "d": "print() is fine; Python never reaches it."
+     },
+     "bridge": "write the label for the panel.",
+     "entry": "Technician's script: fixed",
+     "label": "The technician's script stops with a TypeError.",
+     "science": {
+      "title": "Why scripts should fail loudly",
+      "text": "A script that stops with a clear error is safer than one that prints a wrong label onto a live board."
+     },
+     "codeNote": {
+      "title": "Types in one line",
+      "text": "Every value has a type, such as text or a number. Some operations need both sides to match."
+     },
+     "carry": [
+      "label line",
+      3
+     ],
+     "pics": [
+      {
+       "type": "msg",
+       "who": "Lab technician",
+       "text": "My label script stops. Python says: can only concatenate str (not \"int\") to str."
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-7: from earlier questions",
+     "start": 8,
+     "lines": [
+      {
+       "id": "a",
+       "label": "name = \"Circuit A\""
+      },
+      {
+       "id": "b",
+       "label": "volts = 12"
+      },
+      {
+       "id": "c",
+       "label": "label = name + \" at \" + volts + \" V\""
+      },
+      {
+       "id": "d",
+       "label": "print(label)"
+      }
+     ],
+     "correct": "c",
+     "file": "technician's script",
+     "after": "After the fix: Circuit A at 12 V",
+     "code": []
+    },
+    {
+     "id": "EngP1L1_q5",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Write the panel label in one line",
+     "hint": "One letter in front of the quotes changes what the braces do.",
+     "ok": "An f-string fills each {name} with its value, so no str() is needed: Circuit A: 12 V.",
+     "fb": {
+      "b": "r means raw text, so the braces print as they are: {name}: {volts} V.",
+      "c": "b makes bytes, so Python prints b'{name}: {volts} V'.",
+      "d": "s is not a string prefix; Python stops with a SyntaxError."
+     },
+     "bridge": "see your finished label.",
+     "entry": "Panel label: Circuit A: 12 V",
+     "label": "The control panel label for Circuit A.",
+     "science": {
+      "title": "Panel labels",
+      "text": "Control panels carry short, standard labels so an engineer can check every circuit's supply without opening the case."
+     },
+     "codeNote": {
+      "title": "String prefixes",
+      "text": "A letter placed before a quote mark changes how Python reads that text."
+     },
+     "carry": [
+      "volts = 12",
+      2
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Panel label:",
+       "value": "Circuit A: 12 V",
+       "known": false
+      }
+     ],
+     "eq": [
+      {
+       "t": "f\"{name}: {volts} V\"",
+       "c": "#FFC93C"
+      },
+      "gives",
+      {
+       "t": "Circuit A: 12 V",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "Circuit A: 12 V"
+     ],
+     "earlier": "lines 1-7: from earlier questions",
+     "start": 8,
+     "opts": [
+      {
+       "id": "a",
+       "label": "f"
+      },
+      {
+       "id": "b",
+       "label": "r"
+      },
+      {
+       "id": "c",
+       "label": "b"
+      },
+      {
+       "id": "d",
+       "label": "s"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(___\"{name}: {volts} V\")"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "EngP1L2",
+   "domain": "eng",
+   "lang": "py",
+   "phase": 1,
+   "part": 2,
+   "title": "Ohm's law",
+   "project": "Circuit calculator",
+   "person": "Lab partner",
+   "intro": "Our 12 V supply drives a 4 Ω resistor. Can you check the current and power before we switch on?",
+   "start": "Work out the current",
+   "doneTitle": "Circuit checked",
+   "doneSub": "The current, the power and a safe rating, all from one script.",
+   "file": "ohms_law.py",
+   "notebook": [
+    [
+     "Current",
+     "3.0 A"
+    ],
+    [
+     "Power",
+     "36.0 W"
+    ],
+    [
+     "With 7 Ω in series",
+     "1.71 A"
+    ],
+    [
+     "Partner's 39 W",
+     "explained"
+    ],
+    [
+     "Under 25 W rating",
+     "True"
+    ]
+   ],
+   "script": [
+    "V = 12",
+    "R = 4",
+    "print(V / R)",
+    "I = V / R",
+    "P = V * I",
+    "print(P)",
+    "R_total = 4 + 3",
+    "I = V / R_total",
+    "print(round(I, 2))",
+    "P = V ** 2 / R_total",
+    "safe = P < 25",
+    "print(safe)"
+   ],
+   "questions": [
+    {
+     "id": "EngP1L2_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What current does Python print?",
+     "hint": "Think about whether Python keeps decimals when it divides.",
+     "ok": "I = V / R = 12 / 4. Python's / always gives a decimal number, a float, so it prints 3.0. // would give 3.",
+     "fb": {
+      "b": "/ always gives a float in Python; 12 // 4 would give 3.",
+      "c": "That multiplies instead of dividing."
+     },
+     "bridge": "work out the power.",
+     "entry": "Current: 3.0 A",
+     "label": "A 12 volt battery driving a 4 ohm resistor; the current is unknown.",
+     "science": {
+      "title": "Ohm's law",
+      "text": "The current through a resistor is the voltage across it divided by its resistance: I = V / R. It is the first check before powering anything."
+     },
+     "codeNote": {
+      "title": "Division",
+      "text": "Python has more than one division operator, and they give different kinds of number."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "circuit",
+       "args": [
+        12,
+        [
+         4
+        ]
+       ],
+       "kw": {}
+      },
+      {
+       "type": "readout",
+       "label": "current I:",
+       "value": "3.0 A",
+       "known": false
+      }
+     ],
+     "eq": [
+      {
+       "t": "12",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "4",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "3.0",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "3.0"
+      },
+      {
+       "id": "b",
+       "label": "3"
+      },
+      {
+       "id": "c",
+       "label": "48"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "V = 12",
+      "R = 4",
+      "print(V / R)"
+     ]
+    },
+    {
+     "id": "EngP1L2_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Work out the power",
+     "hint": "Which operation turns volts and amps into watts?",
+     "ok": "P = V × I = 12 × 3.0 = 36.0 W. ** would raise 12 to a power instead.",
+     "fb": {
+      "b": "12 / 3.0 is 4.0, the resistance again.",
+      "c": "** is a power in the maths sense: 12 ** 3.0 is 1728.0.",
+      "d": "12 + 3.0 is 15.0; power multiplies."
+     },
+     "bridge": "add a second resistor in series.",
+     "entry": "Power: 36.0 W",
+     "label": "The same circuit; the power it uses is the blank.",
+     "science": {
+      "title": "Electrical power",
+      "text": "Power, P = V × I, is how fast a part turns electrical energy into heat or work. Resistors and supplies have a maximum power they can handle."
+     },
+     "codeNote": {
+      "title": "Arithmetic operators",
+      "text": "Python uses symbols such as `+`, `-`, `*`, `/` and `**` for maths."
+     },
+     "carry": [
+      "I = 3.0",
+      1
+     ],
+     "pics": [
+      {
+       "type": "circuit",
+       "args": [
+        12,
+        [
+         4
+        ]
+       ],
+       "kw": {}
+      },
+      {
+       "type": "readout",
+       "label": "power P:",
+       "value": "36.0 W",
+       "known": false
+      }
+     ],
+     "eq": [
+      {
+       "t": "12",
+       "c": "#FFFDF6"
+      },
+      "×",
+      {
+       "t": "3.0",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "36.0",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "36.0"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "*"
+      },
+      {
+       "id": "b",
+       "label": "/"
+      },
+      {
+       "id": "c",
+       "label": "**"
+      },
+      {
+       "id": "d",
+       "label": "+"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "I = V / R",
+      "P = V ___ I",
+      "print(P)"
+     ]
+    },
+    {
+     "id": "EngP1L2_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "Add 3 Ω in series. What is the current now?",
+     "hint": "Combine the two resistors first.",
+     "ok": "4 Ω + 3 Ω in series is 7 Ω, so I = 12 / 7 = 1.714..., and round(I, 2) gives 1.71.",
+     "fb": {
+      "b": "That is before rounding.",
+      "c": "That was the current with 4 Ω alone."
+     },
+     "bridge": "your partner's power reading looks too high.",
+     "entry": "With 7 Ω in series: 1.71 A",
+     "label": "Two resistors in series, 4 and 3 ohms; the new current is unknown.",
+     "science": {
+      "title": "Resistors in series",
+      "text": "Resistors in a line add up: 4 Ω and 3 Ω behave like one 7 Ω resistor, so the same voltage pushes less current."
+     },
+     "codeNote": {
+      "title": "Rounding",
+      "text": "`round()` controls how many decimal places you see."
+     },
+     "carry": [
+      "P = 36.0 W",
+      2
+     ],
+     "pics": [
+      {
+       "type": "circuit",
+       "args": [
+        12,
+        [
+         4,
+         3
+        ]
+       ],
+       "kw": {}
+      },
+      {
+       "type": "readout",
+       "label": "current I:",
+       "value": "1.71 A",
+       "known": false
+      }
+     ],
+     "eq": [
+      {
+       "t": "12",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "7",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "1.71",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "opts": [
+      {
+       "id": "a",
+       "label": "1.71"
+      },
+      {
+       "id": "b",
+       "label": "1.7142857142857142"
+      },
+      {
+       "id": "c",
+       "label": "3.0"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "R_total = 4 + 3",
+      "I = V / R_total",
+      "print(round(I, 2))"
+     ]
+    },
+    {
+     "id": "EngP1L2_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "Partner's script says 39 W. Which line?",
+     "hint": "Look at which numbers each operation applies to.",
+     "ok": "Python works out V ** 2 / 4 first, then adds 3: 36 + 3 = 39.0. It should divide by R_total.",
+     "fb": {
+      "a": "The supply is 12 V.",
+      "b": "The series resistance is 7 Ω.",
+      "d": "print() shows what P holds."
+     },
+     "bridge": "check the power against the resistor's rating.",
+     "entry": "Partner's 39 W: explained",
+     "label": "Your lab partner's script says the power is 39 watts.",
+     "science": {
+      "title": "Checking before buying parts",
+      "text": "A wrong power figure leads to buying oversized parts, or worse, undersized ones that overheat. Recheck the formula before changing the design."
+     },
+     "codeNote": {
+      "title": "Order of operations",
+      "text": "Python follows maths order when a line has several operations."
+     },
+     "carry": [
+      "I = 1.71 A",
+      3
+     ],
+     "pics": [
+      {
+       "type": "msg",
+       "who": "Lab partner",
+       "text": "My script says 39 W, and the resistor is only rated 25 W. Do we need a bigger one?"
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-9: from earlier questions",
+     "start": 10,
+     "lines": [
+      {
+       "id": "a",
+       "label": "V = 12"
+      },
+      {
+       "id": "b",
+       "label": "R_total = 4 + 3"
+      },
+      {
+       "id": "c",
+       "label": "P = V ** 2 / 4 + 3"
+      },
+      {
+       "id": "d",
+       "label": "print(P)"
+      }
+     ],
+     "correct": "c",
+     "file": "lab partner's script",
+     "after": "After the fix: 20.571428571428573",
+     "code": []
+    },
+    {
+     "id": "EngP1L2_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Is the power under the 25 W rating?",
+     "hint": "Compare the power with the rating.",
+     "ok": "P is 144 / 7, about 20.6 W, so P < 25 is True: the resistor stays within its rating.",
+     "fb": {},
+     "bridge": "see your finished circuit check.",
+     "entry": "Under 25 W rating: True",
+     "label": "A resistor rated 25 watts; whether it is safe is unknown.",
+     "science": {
+      "title": "Power ratings",
+      "text": "Every resistor has a power rating. Running it above that rating overheats it, so engineers keep a safety margin below the limit."
+     },
+     "codeNote": {
+      "title": "Comparisons",
+      "text": "Symbols such as `<` and `>` compare two values."
+     },
+     "carry": [
+      "R_total = 7",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Resistor rating:",
+       "value": "25 W",
+       "known": true
+      },
+      {
+       "type": "readout",
+       "label": "safe?",
+       "value": "True",
+       "known": false
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "True"
+     ],
+     "earlier": "lines 1-9: from earlier questions",
+     "start": 10,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "safe"
+      },
+      {
+       "id": "t1",
+       "label": "="
+      },
+      {
+       "id": "t2",
+       "label": "P"
+      },
+      {
+       "id": "t3",
+       "label": "<"
+      },
+      {
+       "id": "t4",
+       "label": "25"
+      },
+      {
+       "id": "t5",
+       "label": ">"
+      },
+      {
+       "id": "t6",
+       "label": "=="
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+     ],
+     "wrongBuild": "The line is safe = P < 25: a comparison gives True or False, stored in safe.",
+     "code": [
+      "P = V ** 2 / R_total",
+      "___",
+      "print(safe)"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "EngP3L1",
+   "domain": "eng",
+   "lang": "py",
+   "phase": 3,
+   "part": 1,
+   "title": "Sort the fruit",
+   "project": "Fruit sorting conveyor",
+   "person": "Internship mentor",
+   "intro": "The colour sensor reads how much of each fruit is covered in dark spots. Over 30% is spoilt, and the pusher sends it to the bin.",
+   "start": "Start the conveyor",
+   "doneTitle": "Sorter working",
+   "doneSub": "Spoilt fruit goes to the bin, the rest stays on the belt.",
+   "file": "sorter.py",
+   "notebook": [
+    [
+     "45% spots",
+     "push to bin"
+    ],
+    [
+     "12% spots",
+     "keep on belt"
+    ],
+    [
+     "20% spots",
+     "juice line"
+    ],
+    [
+     "Mentor's pusher bug",
+     "fixed"
+    ],
+    [
+     "Soft fruit",
+     "push to bin"
+    ]
+   ],
+   "script": [
+    "spots = 45",
+    "if spots > 30:",
+    "    print(\"push to bin\")",
+    "spots = 12",
+    "if spots > 30:",
+    "    print(\"push to bin\")",
+    "else:",
+    "    print(\"keep on belt\")",
+    "spots = 20",
+    "if spots > 30:",
+    "    print(\"push to bin\")",
+    "elif spots > 15:",
+    "    print(\"juice line\")",
+    "else:",
+    "    print(\"keep on belt\")",
+    "spots = 12",
+    "firm = 1",
+    "if spots > 30 or firm < 2:",
+    "    print(\"push to bin\")"
+   ],
+   "questions": [
+    {
+     "id": "EngP3L1_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "The sensor reads 45%. What happens?",
+     "hint": "Compare the reading with the limit in the code.",
+     "ok": "45 > 30 is True, so the pusher bins the spotted orange. The clean apple has no instruction yet, so it rolls off the end.",
+     "fb": {
+      "b": "The condition is True here, so the indented line runs.",
+      "c": "if uses True or False to decide; it does not print it."
+     },
+     "bridge": "decide what happens to good fruit.",
+     "entry": "45% spots: push to bin",
+     "label": "A spotted orange under the colour sensor, with a clean apple behind it. Only the spoilt case has a rule so far.",
+     "science": {
+      "title": "Sensors and actuators",
+      "text": "A sorting line pairs a sensor, here a colour camera, with an actuator, the pusher. The code in between decides."
+     },
+     "codeNote": {
+      "title": "Decisions with `if`",
+      "text": "`if` checks a condition. The indented lines below it belong to it."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "belt",
+       "args": [
+        [
+         [
+          "spoilt_orange",
+          "bin",
+          "45%"
+         ],
+         [
+          "clean_apple",
+          "floor",
+          null
+         ]
+        ]
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "45 > 30",
+       "c": "#FFFDF6"
+      },
+      "is",
+      {
+       "t": "True",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "push to bin"
+      },
+      {
+       "id": "b",
+       "label": "Nothing prints"
+      },
+      {
+       "id": "c",
+       "label": "True"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "spots = 45",
+      "if spots > 30:",
+      "    print(\"push to bin\")"
+     ]
+    },
+    {
+     "id": "EngP3L1_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Good fruit should stay on the belt",
+     "hint": "What should the line do when the check fails?",
+     "ok": "else runs whenever the if check is False: 12 > 30 is False, so the pear stays on the belt. Now every fruit has a place to go.",
+     "fb": {
+      "b": "elif needs a condition after it; on its own Python stops with a SyntaxError.",
+      "c": "if needs a condition; if: on its own is a SyntaxError.",
+      "d": "Python has no \"else if\"; it is a SyntaxError. The word is elif."
+     },
+     "bridge": "add a third path for nearly-ripe fruit.",
+     "entry": "12% spots: keep on belt",
+     "label": "A clean pear under the sensor, 12% spots, with a spoilt strawberry behind it.",
+     "science": {
+      "title": "Every item needs a route",
+      "text": "On a production line, every item has to end up somewhere planned. An item with no route is a jam or a loss."
+     },
+     "codeNote": {
+      "title": "Another path",
+      "text": "An `if` can be followed by a block that runs in the other case."
+     },
+     "carry": [
+      "45%: push to bin",
+      1
+     ],
+     "pics": [
+      {
+       "type": "belt",
+       "args": [
+        [
+         [
+          "clean_pear",
+          "stay",
+          "12%"
+         ],
+         [
+          "spoilt_strawberry",
+          "bin",
+          null
+         ]
+        ]
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "12 > 30",
+       "c": "#FFFDF6"
+      },
+      "is False, so",
+      {
+       "t": "keep on belt",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "keep on belt"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "else"
+      },
+      {
+       "id": "b",
+       "label": "elif"
+      },
+      {
+       "id": "c",
+       "label": "if"
+      },
+      {
+       "id": "d",
+       "label": "else if"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "spots = 12",
+      "if spots > 30:",
+      "    print(\"push to bin\")",
+      "___:",
+      "    print(\"keep on belt\")"
+     ]
+    },
+    {
+     "id": "EngP3L1_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "The sensor reads 20%. Where does it go?",
+     "hint": "Python reads the checks from the top.",
+     "ok": "20 > 30 is False, then 20 > 15 is True, so the peach goes to the juice line and Python skips the rest.",
+     "fb": {
+      "b": "Only fruit over 30% goes to the bin.",
+      "c": "else only runs when every condition above it is False."
+     },
+     "bridge": "your mentor's pusher is binning good fruit.",
+     "entry": "20% spots: juice line",
+     "label": "Three fruits: a lightly marked peach, a clean apple and a spoilt lemon, with three places to go.",
+     "science": {
+      "title": "Grading, not only sorting",
+      "text": "Real lines grade produce: perfect fruit for shops, marked fruit for juice, spoilt fruit to waste."
+     },
+     "codeNote": {
+      "title": "More than two paths",
+      "text": "A decision can have several checks in a row."
+     },
+     "carry": [
+      "12%: keep on belt",
+      2
+     ],
+     "pics": [
+      {
+       "type": "belt",
+       "args": [
+        [
+         [
+          "clean_peach",
+          "juice",
+          "20%"
+         ],
+         [
+          "clean_apple",
+          "stay",
+          "5%"
+         ],
+         [
+          "spoilt_lemon",
+          "bin",
+          "60%"
+         ]
+        ]
+       ],
+       "kw": {
+        "juice": true,
+        "zoom": 0.85
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "20 > 30",
+       "c": "#FFE3CF"
+      },
+      "no,",
+      {
+       "t": "20 > 15",
+       "c": "#B5E04A"
+      },
+      "yes:",
+      {
+       "t": "juice line",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-8: from earlier questions",
+     "start": 9,
+     "opts": [
+      {
+       "id": "a",
+       "label": "juice line"
+      },
+      {
+       "id": "b",
+       "label": "push to bin"
+      },
+      {
+       "id": "c",
+       "label": "keep on belt"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "spots = 20",
+      "if spots > 30:",
+      "    print(\"push to bin\")",
+      "elif spots > 15:",
+      "    print(\"juice line\")",
+      "else:",
+      "    print(\"keep on belt\")"
+     ]
+    },
+    {
+     "id": "EngP3L1_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The pusher bins good fruit. Which line?",
+     "hint": "Read the condition aloud and compare it with the rule.",
+     "ok": "< 30 is True for clean fruit, so the pusher fired on good fruit. Spoilt means more than 30: spots > 30.",
+     "fb": {
+      "a": "The reading is 12%.",
+      "c": "The message is right; it runs for the wrong fruit."
+     },
+     "bridge": "catch soft fruit as well.",
+     "entry": "Mentor's pusher bug: fixed",
+     "label": "The sorter as your mentor sees it: clean fruit keeps being pushed into the bin.",
+     "science": {
+      "title": "Failing the wrong way",
+      "text": "A flipped threshold makes a machine do the opposite of its job at full speed. Engineers test each branch with known items."
+     },
+     "codeNote": {
+      "title": "Comparison direction",
+      "text": "`>` and `<` point in opposite directions."
+     },
+     "carry": [
+      "20%: juice line",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Mentor's report:",
+       "value": "clean fruit in the bin",
+       "known": true
+      },
+      {
+       "type": "belt",
+       "args": [
+        [
+         [
+          "clean_greenapple",
+          "stay",
+          "12%"
+         ],
+         [
+          "spoilt_banana",
+          "bin",
+          "50%"
+         ]
+        ]
+       ],
+       "kw": {
+        "bug_idle": true
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-15: from earlier questions",
+     "start": 16,
+     "lines": [
+      {
+       "id": "a",
+       "label": "spots = 12"
+      },
+      {
+       "id": "b",
+       "label": "if spots < 30:"
+      },
+      {
+       "id": "c",
+       "label": "    print(\"push to bin\")"
+      }
+     ],
+     "correct": "b",
+     "file": "mentor's sorter",
+     "after": "After the fix: nothing prints for 12%",
+     "code": []
+    },
+    {
+     "id": "EngP3L1_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Bin fruit that is spotted or soft",
+     "hint": "Re-read the question: does the fruit need both problems?",
+     "ok": "or needs only one condition to be True: 12 > 30 is False, but firm < 2 is True, so the soft pear goes to the bin. and would need both.",
+     "fb": {},
+     "bridge": "see your finished sorter.",
+     "entry": "Soft fruit: push to bin",
+     "label": "A pear with few spots that the firmness sensor reads as soft.",
+     "science": {
+      "title": "Two sensors, one decision",
+      "text": "Spots show on the surface, but rot can start inside. A second sensor for firmness catches fruit the camera misses."
+     },
+     "codeNote": {
+      "title": "Combining checks",
+      "text": "Python can join two conditions into one with a word between them."
+     },
+     "carry": [
+      "spots > 30",
+      4
+     ],
+     "pics": [
+      {
+       "type": "belt",
+       "args": [
+        [
+         [
+          "clean_pear",
+          "bin",
+          "soft"
+         ]
+        ]
+       ],
+       "kw": {
+        "zoom": 0.8
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "push to bin"
+     ],
+     "earlier": "lines 1-15: from earlier questions",
+     "start": 16,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "if"
+      },
+      {
+       "id": "t1",
+       "label": "spots"
+      },
+      {
+       "id": "t2",
+       "label": ">"
+      },
+      {
+       "id": "t3",
+       "label": "30"
+      },
+      {
+       "id": "t4",
+       "label": "or"
+      },
+      {
+       "id": "t5",
+       "label": "firm"
+      },
+      {
+       "id": "t6",
+       "label": "<"
+      },
+      {
+       "id": "t7",
+       "label": "2"
+      },
+      {
+       "id": "t8",
+       "label": ":"
+      },
+      {
+       "id": "t9",
+       "label": "and"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8"
+     ],
+     "wrongBuild": "The line is if spots > 30 or firm < 2:: either problem is enough, so use or.",
+     "code": [
+      "spots = 12",
+      "firm = 1",
+      "___",
+      "    print(\"push to bin\")"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HpyP1L1",
+   "domain": "health",
+   "lang": "py",
+   "phase": 1,
+   "part": 1,
+   "title": "Dose by weight",
+   "project": "Dose calculator",
+   "person": "Ward pharmacist",
+   "intro": "Training example: Drug X is dosed at 10 mg per kg of body weight, up to 500 mg. Check each dose in code before it reaches the ward.",
+   "start": "Check the dose",
+   "doneTitle": "Dose checked",
+   "doneSub": "The right dose, capped at the maximum, and the volume to draw up.",
+   "file": "dose_calc.py",
+   "notebook": [
+    [
+     "Dose for 42 kg",
+     "420 mg"
+    ],
+    [
+     "Typed weight",
+     "converted"
+    ],
+    [
+     "Dose for 63 kg",
+     "capped at 500 mg"
+    ],
+    [
+     "Pharmacist's script",
+     "fixed"
+    ],
+    [
+     "Volume to draw up",
+     "8.4 mL"
+    ]
+   ],
+   "script": [
+    "weight = 42",
+    "dose = weight * 10",
+    "print(dose)",
+    "weight_text = \"42\"",
+    "weight = int(weight_text)",
+    "print(weight * 10)",
+    "weight = 63",
+    "dose = min(weight * 10, 500)",
+    "print(dose)",
+    "dose = 420",
+    "ml = dose / 50",
+    "print(ml)"
+   ],
+   "questions": [
+    {
+     "id": "HpyP1L1_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What dose does Python print?",
+     "hint": "Read the dose rule in the goal screen again.",
+     "ok": "42 kg × 10 mg per kg = 420 mg.",
+     "fb": {
+      "b": "That adds 10 instead of multiplying.",
+      "c": "That divides by 10 instead of multiplying."
+     },
+     "bridge": "read a weight typed into a form.",
+     "entry": "Dose for 42 kg: 420 mg",
+     "label": "A 42 kg patient and an empty syringe; the dose is unknown until you answer.",
+     "science": {
+      "title": "Weight-based dosing",
+      "text": "Many medicines, especially for children, are dosed per kilogram, so the same drug gives different doses to different patients."
+     },
+     "codeNote": {
+      "title": "Variables",
+      "text": "A name such as `weight` stores a value you can use in later lines."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Patient weight:",
+       "value": "42 kg",
+       "known": true
+      },
+      {
+       "type": "syringe",
+       "args": [
+        420,
+        600,
+        "mg",
+        [
+         [
+          0,
+          "0"
+         ],
+         [
+          300,
+          "300"
+         ],
+         [
+          600,
+          "600 mg"
+         ]
+        ]
+       ],
+       "kw": {
+        "cap": 500,
+        "label": "A syringe scaled to 600 mg",
+        "result": "420 mg"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "42",
+       "c": "#FFFDF6"
+      },
+      "×",
+      {
+       "t": "10",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "420",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "420"
+      },
+      {
+       "id": "b",
+       "label": "52"
+      },
+      {
+       "id": "c",
+       "label": "4.2"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "weight = 42",
+      "dose = weight * 10",
+      "print(dose)"
+     ]
+    },
+    {
+     "id": "HpyP1L1_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "The weight arrives from a form as text",
+     "hint": "The form gives you text. What does the maths need?",
+     "ok": "int() turns the text \"42\" into the number 42, so the maths works: 420. Without it, \"42\" * 10 repeats the text ten times.",
+     "fb": {
+      "b": "str() keeps it as text, and text times 10 repeats it: 42424242424242424242.",
+      "c": "len() gives the number of characters, 2, so it prints 20.",
+      "d": "print() shows the text and returns None, and None * 10 stops with a TypeError."
+     },
+     "bridge": "cap the dose for a heavier patient.",
+     "entry": "Typed weight: converted",
+     "label": "A form field holding the weight as text, \"42\".",
+     "science": {
+      "title": "Data from forms",
+      "text": "Electronic prescribing systems read weights from typed forms. Converting and checking every input is a basic safety step."
+     },
+     "codeNote": {
+      "title": "Types of value",
+      "text": "Text and numbers are different types. Python can convert between them."
+     },
+     "carry": [
+      "dose = 420",
+      1
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Form field:",
+       "value": "\"42\" (text)",
+       "known": true
+      },
+      {
+       "type": "syringe",
+       "args": [
+        420,
+        500,
+        "mg",
+        [
+         [
+          0,
+          "0"
+         ],
+         [
+          250,
+          "250"
+         ],
+         [
+          500,
+          "500 mg"
+         ]
+        ]
+       ],
+       "kw": {
+        "label": "A syringe that fills to the dose once the weight is a number",
+        "result": "420 mg"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "int(\"42\")",
+       "c": "#FFC93C"
+      },
+      "=",
+      {
+       "t": "42",
+       "c": "#FFFDF6"
+      },
+      "× 10 =",
+      {
+       "t": "420",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "420"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "int"
+      },
+      {
+       "id": "b",
+       "label": "str"
+      },
+      {
+       "id": "c",
+       "label": "len"
+      },
+      {
+       "id": "d",
+       "label": "print"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "weight_text = \"42\"",
+      "weight = ___(weight_text)",
+      "print(weight * 10)"
+     ]
+    },
+    {
+     "id": "HpyP1L1_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "A 63 kg patient. What dose does Python print?",
+     "hint": "Look at what min() is given.",
+     "ok": "63 × 10 is 630, but min() keeps the smaller of 630 and 500, so the dose stops at the 500 mg maximum.",
+     "fb": {
+      "b": "That is before the maximum is applied.",
+      "c": "min() compares the two values; it does not add them."
+     },
+     "bridge": "the pharmacist's script gives everyone 500 mg.",
+     "entry": "Dose for 63 kg: capped at 500 mg",
+     "label": "A 63 kg patient; the syringe has a maximum line at 500 mg.",
+     "science": {
+      "title": "Maximum doses",
+      "text": "Weight-based doses usually have a ceiling, so a heavy patient never receives more than the safe maximum."
+     },
+     "codeNote": {
+      "title": "Smaller of two",
+      "text": "`min()` gives back the smallest of the values you pass it."
+     },
+     "carry": [
+      "weight = int(text)",
+      2
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Patient weight:",
+       "value": "63 kg",
+       "known": true
+      },
+      {
+       "type": "syringe",
+       "args": [
+        500,
+        700,
+        "mg",
+        [
+         [
+          0,
+          "0"
+         ],
+         [
+          350,
+          "350"
+         ],
+         [
+          700,
+          "700 mg"
+         ]
+        ]
+       ],
+       "kw": {
+        "cap": 500,
+        "label": "A syringe with a 500 mg maximum line",
+        "result": "capped at 500 mg"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "min(630, 500)",
+       "c": "#FFC93C"
+      },
+      "=",
+      {
+       "t": "500",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "opts": [
+      {
+       "id": "a",
+       "label": "500"
+      },
+      {
+       "id": "b",
+       "label": "630"
+      },
+      {
+       "id": "c",
+       "label": "563"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "weight = 63",
+      "dose = min(weight * 10, 500)",
+      "print(dose)"
+     ]
+    },
+    {
+     "id": "HpyP1L1_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "Everyone gets 500 mg. Which line is wrong?",
+     "hint": "Compare what this line does with the dose rule.",
+     "ok": "max() keeps the larger value, so every patient gets at least 500 mg. min() caps the dose instead: 420 mg here.",
+     "fb": {
+      "a": "The weight is right.",
+      "c": "print() shows what dose holds."
+     },
+     "bridge": "work out the volume to draw up.",
+     "entry": "Pharmacist's script: fixed",
+     "label": "Before Check the syringe keeps filling to 500 mg for a 42 kg patient, which is too much.",
+     "science": {
+      "title": "Why dose errors matter",
+      "text": "Dosing errors are one of the most common medication errors in hospitals, which is why pharmacists double-check calculations."
+     },
+     "codeNote": {
+      "title": "Functions with similar names",
+      "text": "Some built-in functions come in pairs that do opposite jobs."
+     },
+     "carry": [
+      "min caps at 500",
+      3
+     ],
+     "pics": [
+      {
+       "type": "syringe",
+       "args": [
+        420,
+        600,
+        "mg",
+        [
+         [
+          0,
+          "0"
+         ],
+         [
+          420,
+          "420"
+         ],
+         [
+          600,
+          "600 mg"
+         ]
+        ]
+       ],
+       "kw": {
+        "cap": 500,
+        "idle_to": 500,
+        "label": "The syringe filling past the right dose",
+        "result": "420 mg"
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-9: from earlier questions",
+     "start": 10,
+     "lines": [
+      {
+       "id": "a",
+       "label": "weight = 42"
+      },
+      {
+       "id": "b",
+       "label": "dose = max(weight * 10, 500)"
+      },
+      {
+       "id": "c",
+       "label": "print(dose)"
+      }
+     ],
+     "correct": "b",
+     "file": "pharmacist's script",
+     "after": "After the fix: 420",
+     "code": []
+    },
+    {
+     "id": "HpyP1L1_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "How many mL to draw up at 50 mg per mL?",
+     "hint": "Think about the units: mg divided by mg per mL.",
+     "ok": "420 mg ÷ 50 mg per mL = 8.4 mL. // would drop the .4 and under-dose.",
+     "fb": {},
+     "bridge": "see your finished dose check.",
+     "entry": "Volume to draw up: 8.4 mL",
+     "label": "A 10 mL syringe; the volume to draw up is unknown.",
+     "science": {
+      "title": "From dose to volume",
+      "text": "Nurses give medicine by volume, so the dose in mg is turned into mL using the stock strength printed on the vial."
+     },
+     "codeNote": {
+      "title": "Building an expression",
+      "text": "An expression combines names, numbers and operators into one value."
+     },
+     "carry": [
+      "dose = 420",
+      1
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Stock strength:",
+       "value": "50 mg per mL",
+       "known": true
+      },
+      {
+       "type": "syringe",
+       "args": [
+        8.4,
+        10,
+        "mL",
+        [
+         [
+          0,
+          "0"
+         ],
+         [
+          5,
+          "5"
+         ],
+         [
+          10,
+          "10 mL"
+         ]
+        ]
+       ],
+       "kw": {
+        "label": "A 10 mL syringe",
+        "result": "8.4 mL"
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "8.4"
+     ],
+     "earlier": "lines 1-9: from earlier questions",
+     "start": 10,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "ml"
+      },
+      {
+       "id": "t1",
+       "label": "="
+      },
+      {
+       "id": "t2",
+       "label": "dose"
+      },
+      {
+       "id": "t3",
+       "label": "/"
+      },
+      {
+       "id": "t4",
+       "label": "50"
+      },
+      {
+       "id": "t5",
+       "label": "*"
+      },
+      {
+       "id": "t6",
+       "label": "//"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+     ],
+     "wrongBuild": "The line is ml = dose / 50: dividing mg by mg per mL gives mL.",
+     "code": [
+      "dose = 420",
+      "___",
+      "print(ml)"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HpyP3L1",
+   "domain": "health",
+   "lang": "py",
+   "phase": 3,
+   "part": 1,
+   "title": "Early warning alert",
+   "project": "Early warning alert",
+   "person": "Night-shift nurse",
+   "intro": "NEWS2 scores each vital sign. For pulse: 51 to 90 scores 0, 91 to 110 scores 1, 111 to 130 scores 2, 131 or more scores 3.",
+   "start": "Start the shift",
+   "doneTitle": "Alert working",
+   "doneSub": "Pulse bands scored in the right order, and the doctor alerted when it matters.",
+   "file": "news2_pulse.py",
+   "notebook": [
+    [
+     "Pulse 135",
+     "score 3"
+    ],
+    [
+     "elif keeps",
+     "score 3"
+    ],
+    [
+     "Pulse 104",
+     "score 1"
+    ],
+    [
+     "Nurse's band order",
+     "fixed"
+    ],
+    [
+     "Single 3",
+     "alert the doctor"
+    ]
+   ],
+   "script": [
+    "pulse = 135",
+    "if pulse >= 131:",
+    "    print(\"score 3: call the doctor\")",
+    "pulse = 135",
+    "if pulse >= 131:",
+    "    score = 3",
+    "elif pulse >= 111:",
+    "    score = 2",
+    "print(score)",
+    "pulse = 104",
+    "if pulse >= 131: score = 3",
+    "elif pulse >= 111: score = 2",
+    "elif pulse >= 91: score = 1",
+    "else: score = 0",
+    "print(score)",
+    "score = 3",
+    "total = 4",
+    "if score == 3 or total >= 5:",
+    "    print(\"alert the doctor\")"
+   ],
+   "questions": [
+    {
+     "id": "HpyP3L1_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "The pulse is 135. What prints?",
+     "hint": "Compare the reading with the band in the code.",
+     "ok": "135 >= 131 is True, so the indented line runs: a pulse that high scores 3 in NEWS2.",
+     "fb": {
+      "b": "The condition is True here, so the indented line runs.",
+      "c": "if uses True or False to decide; it does not print it."
+     },
+     "bridge": "score the pulse with two bands.",
+     "entry": "Pulse 135: score 3",
+     "label": "A bedside monitor showing a pulse of 135.",
+     "science": {
+      "title": "What NEWS2 is",
+      "text": "NEWS2 is the National Early Warning Score used across NHS hospitals. Each vital sign earns points, and higher totals call for faster review."
+     },
+     "codeNote": {
+      "title": "Decisions with `if`",
+      "text": "`if` checks a condition. The indented lines below it belong to it."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "monitor",
+       "args": [
+        135,
+        true,
+        "A bedside monitor showing a pulse of 135 beats per minute"
+       ],
+       "kw": {
+        "score": "score 3"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "135 >= 131",
+       "c": "#FFFDF6"
+      },
+      "is",
+      {
+       "t": "True",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "score 3: call the doctor"
+      },
+      {
+       "id": "b",
+       "label": "Nothing prints"
+      },
+      {
+       "id": "c",
+       "label": "True"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "pulse = 135",
+      "if pulse >= 131:",
+      "    print(\"score 3: call the doctor\")"
+     ]
+    },
+    {
+     "id": "HpyP3L1_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Score a pulse of 135 with two bands",
+     "hint": "The second band should only be checked when the first one fails.",
+     "ok": "elif is only checked when the if above it is False. 135 >= 131 is True, so score stays 3. A second if would also run and overwrite it with 2.",
+     "fb": {
+      "b": "A second if also runs, because 135 >= 111 is True, so score is overwritten with 2.",
+      "c": "else takes no condition; with pulse >= 111 after it, Python stops with a SyntaxError.",
+      "d": "or cannot start a line; Python stops with a SyntaxError."
+     },
+     "bridge": "add every pulse band.",
+     "entry": "elif keeps: score 3",
+     "label": "The monitor still shows 135; which band applies is the blank.",
+     "science": {
+      "title": "Bands, not single cut-offs",
+      "text": "NEWS2 splits each vital sign into bands, so the score grows with how far a reading is from normal."
+     },
+     "codeNote": {
+      "title": "Checks that depend on each other",
+      "text": "Some checks should only run when the one before them failed."
+     },
+     "carry": [
+      "pulse 135: score 3",
+      1
+     ],
+     "pics": [
+      {
+       "type": "monitor",
+       "args": [
+        135,
+        true,
+        "A bedside monitor showing a pulse of 135"
+       ],
+       "kw": {
+        "score": "score 3"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "135 >= 131",
+       "c": "#B5E04A"
+      },
+      "so",
+      {
+       "t": "3",
+       "c": "#B5E04A"
+      },
+      "and the rest is skipped"
+     ],
+     "goal": [
+      "3"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "elif"
+      },
+      {
+       "id": "b",
+       "label": "if"
+      },
+      {
+       "id": "c",
+       "label": "else"
+      },
+      {
+       "id": "d",
+       "label": "or"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "pulse = 135",
+      "if pulse >= 131:",
+      "    score = 3",
+      "___ pulse >= 111:",
+      "    score = 2",
+      "print(score)"
+     ]
+    },
+    {
+     "id": "HpyP3L1_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "The pulse is 104. What score prints?",
+     "hint": "Python reads the checks from the top and stops at the first True one.",
+     "ok": "104 is not 131 or more, nor 111 or more, but it is 91 or more, so the score is 1.",
+     "fb": {
+      "b": "104 >= 111 is False.",
+      "c": "else only runs when every check above it is False, and 104 >= 91 is True."
+     },
+     "bridge": "the nurse's script scores 135 as 1.",
+     "entry": "Pulse 104: score 1",
+     "label": "A bedside monitor showing a pulse of 104.",
+     "science": {
+      "title": "Small scores add up",
+      "text": "A score of 1 on its own is low, but NEWS2 adds the scores of all vital signs, so several small changes can still raise the alarm."
+     },
+     "codeNote": {
+      "title": "A chain of checks",
+      "text": "A decision can have several checks in a row, ending with a fallback."
+     },
+     "carry": [
+      "elif keeps 3",
+      2
+     ],
+     "pics": [
+      {
+       "type": "monitor",
+       "args": [
+        104,
+        false,
+        "A bedside monitor showing a pulse of 104"
+       ],
+       "kw": {
+        "score": "score 1"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "104 >= 91",
+       "c": "#B5E04A"
+      },
+      "gives",
+      {
+       "t": "1",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-9: from earlier questions",
+     "start": 10,
+     "opts": [
+      {
+       "id": "a",
+       "label": "1"
+      },
+      {
+       "id": "b",
+       "label": "2"
+      },
+      {
+       "id": "c",
+       "label": "0"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "pulse = 104",
+      "if pulse >= 131: score = 3",
+      "elif pulse >= 111: score = 2",
+      "elif pulse >= 91: score = 1",
+      "else: score = 0",
+      "print(score)"
+     ]
+    },
+    {
+     "id": "HpyP3L1_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "A pulse of 135 scores 1. Which line is wrong?",
+     "hint": "Python stops at the first check that is True. Which one is that here?",
+     "ok": "135 >= 91 is True, so Python stops at the first line and never reaches the higher bands. Check the highest band first.",
+     "fb": {
+      "a": "The reading is right.",
+      "c": "This line is never reached, because the first check already matched.",
+      "d": "This line is never reached either."
+     },
+     "bridge": "decide when to alert the doctor.",
+     "entry": "Nurse's band order: fixed",
+     "label": "Before Check the alert lamp stays quiet for a pulse of 135, which should be urgent.",
+     "science": {
+      "title": "Silent alarms",
+      "text": "A score that comes out too low is dangerous because nothing looks wrong. Testing each band with a known reading catches it."
+     },
+     "codeNote": {
+      "title": "Order of checks",
+      "text": "In a chain of checks, the order decides which one wins."
+     },
+     "carry": [
+      "pulse 104: score 1",
+      3
+     ],
+     "pics": [
+      {
+       "type": "monitor",
+       "args": [
+        135,
+        true,
+        "A bedside monitor showing 135 with the alert lamp quiet"
+       ],
+       "kw": {
+        "score": "score 3"
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-15: from earlier questions",
+     "start": 16,
+     "lines": [
+      {
+       "id": "a",
+       "label": "pulse = 135"
+      },
+      {
+       "id": "b",
+       "label": "if pulse >= 91: score = 1"
+      },
+      {
+       "id": "c",
+       "label": "elif pulse >= 111: score = 2"
+      },
+      {
+       "id": "d",
+       "label": "elif pulse >= 131: score = 3"
+      }
+     ],
+     "correct": "b",
+     "file": "nurse's script",
+     "after": "After reordering: score 3",
+     "code": []
+    },
+    {
+     "id": "HpyP3L1_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Alert on a single 3 or a total of 5",
+     "hint": "Re-read the rule: does the patient need both, or either?",
+     "ok": "or needs only one condition: total >= 5 is False, but score == 3 is True, so the doctor is alerted. and would need both.",
+     "fb": {},
+     "bridge": "see your finished alert.",
+     "entry": "Single 3: alert the doctor",
+     "label": "A patient with a pulse score of 3 and a total of 4.",
+     "science": {
+      "title": "When to escalate",
+      "text": "In NEWS2, a total of 5 or more, or a score of 3 in any single vital sign, should trigger an urgent review by a clinician."
+     },
+     "codeNote": {
+      "title": "Joining conditions",
+      "text": "Python can join two conditions with a word between them."
+     },
+     "carry": [
+      "score in bands",
+      4
+     ],
+     "pics": [
+      {
+       "type": "monitor",
+       "args": [
+        135,
+        true,
+        "A bedside monitor; the alert lamp is about to decide"
+       ],
+       "kw": {
+        "score": "alert sent"
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "alert the doctor"
+     ],
+     "earlier": "lines 1-15: from earlier questions",
+     "start": 16,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "if"
+      },
+      {
+       "id": "t1",
+       "label": "score"
+      },
+      {
+       "id": "t2",
+       "label": "=="
+      },
+      {
+       "id": "t3",
+       "label": "3"
+      },
+      {
+       "id": "t4",
+       "label": "or"
+      },
+      {
+       "id": "t5",
+       "label": "total"
+      },
+      {
+       "id": "t6",
+       "label": ">="
+      },
+      {
+       "id": "t7",
+       "label": "5"
+      },
+      {
+       "id": "t8",
+       "label": ":"
+      },
+      {
+       "id": "t9",
+       "label": "and"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8"
+     ],
+     "wrongBuild": "The line is if score == 3 or total >= 5: either condition alone is enough.",
+     "code": [
+      "score = 3",
+      "total = 4",
+      "___",
+      "    print(\"alert the doctor\")"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HrP1L1",
+   "domain": "health",
+   "lang": "r",
+   "phase": 1,
+   "part": 1,
+   "title": "Blood pressure log",
+   "project": "Clinic blood pressure log",
+   "person": "Clinic nurse",
+   "intro": "This week's systolic readings for one patient: 128, 140, 135 and 151. The clinic flags any reading of 140 or above for a follow-up.",
+   "start": "Open the log",
+   "doneTitle": "Log reviewed",
+   "doneSub": "Two readings flagged, at visits 2 and 4.",
+   "file": "bp_log.R",
+   "notebook": [
+    [
+     "Visit 2",
+     "140"
+    ],
+    [
+     "Mean",
+     "138.5"
+    ],
+    [
+     "Flags",
+     "F T F T"
+    ],
+    [
+     "Nurse's count",
+     "fixed"
+    ],
+    [
+     "Follow-up visits",
+     "2 and 4"
+    ]
+   ],
+   "script": [
+    "bp = c(128, 140, 135, 151)",
+    "print(bp[2])",
+    "print(mean(bp))",
+    "print(bp >= 140)",
+    "print(which(bp >= 140))"
+   ],
+   "questions": [
+    {
+     "id": "HrP1L1_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What is the second reading?",
+     "hint": "Where does R start counting?",
+     "ok": "R counts positions from 1, so bp[2] is the second reading, 140.",
+     "fb": {
+      "b": "That is bp[1].",
+      "c": "That is bp[3]; R does not count from 0."
+     },
+     "bridge": "summarise the week.",
+     "entry": "Visit 2: 140",
+     "label": "Four systolic readings as bars; the second is unknown.",
+     "science": {
+      "title": "Systolic pressure",
+      "text": "Systolic blood pressure is the top number, the pressure while the heart beats. Clinics track it over several visits."
+     },
+     "codeNote": {
+      "title": "Vectors",
+      "text": "`c()` combines several values into one vector. Square brackets pick items out."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         128,
+         140,
+         135,
+         151
+        ],
+        140
+       ],
+       "kw": {
+        "hide": [
+         1
+        ],
+        "flag": false,
+        "label": "Four blood pressure readings, the second hidden",
+        "result": "visit 2: 140"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "bp[2]",
+       "c": "#FFC93C"
+      },
+      "=",
+      {
+       "t": "140",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 140"
+      },
+      {
+       "id": "b",
+       "label": "[1] 128"
+      },
+      {
+       "id": "c",
+       "label": "[1] 135"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "bp = c(128, 140, 135, 151)",
+      "print(bp[2])"
+     ]
+    },
+    {
+     "id": "HrP1L1_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Summarise the week's readings",
+     "hint": "You want one typical value for the week.",
+     "ok": "mean() adds the four readings (554) and divides by 4: 138.5.",
+     "fb": {
+      "b": "sum() gives 554.",
+      "c": "max() gives 151.",
+      "d": "length() gives 4."
+     },
+     "bridge": "flag the high readings.",
+     "entry": "Mean: 138.5",
+     "label": "The four readings; their average is the blank.",
+     "science": {
+      "title": "One visit is not enough",
+      "text": "Blood pressure varies from visit to visit, so clinicians look at the average across several readings."
+     },
+     "codeNote": {
+      "title": "Summary functions",
+      "text": "R has functions that turn a whole vector into a single number."
+     },
+     "carry": [
+      "bp[2] = 140",
+      1
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         128,
+         140,
+         135,
+         151
+        ],
+        140
+       ],
+       "kw": {
+        "flag": false,
+        "label": "Four blood pressure readings",
+        "result": "mean 138.5"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "554",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "4",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "138.5",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "[1] 138.5"
+     ],
+     "earlier": "lines 1-2: from earlier questions",
+     "start": 3,
+     "opts": [
+      {
+       "id": "a",
+       "label": "mean"
+      },
+      {
+       "id": "b",
+       "label": "sum"
+      },
+      {
+       "id": "c",
+       "label": "max"
+      },
+      {
+       "id": "d",
+       "label": "length"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(___(bp))"
+     ]
+    },
+    {
+     "id": "HrP1L1_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "Which readings get flagged?",
+     "hint": "A comparison on a vector checks every item.",
+     "ok": "The comparison runs on every reading: 140 and 151 are 140 or above, so visits 2 and 4 are TRUE.",
+     "fb": {
+      "b": "A comparison on a vector gives one answer per reading.",
+      "c": "That is the readings themselves, not the comparison."
+     },
+     "bridge": "the nurse's count looks too low.",
+     "entry": "Flags: F T F T",
+     "label": "The readings against the 140 line.",
+     "science": {
+      "title": "Why 140?",
+      "text": "Many guidelines treat a clinic systolic reading of 140 or above as raised, which prompts a repeat check or home monitoring."
+     },
+     "codeNote": {
+      "title": "Comparing a vector",
+      "text": "Comparisons such as `>=` work on every item of a vector."
+     },
+     "carry": [
+      "mean = 138.5",
+      2
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         128,
+         140,
+         135,
+         151
+        ],
+        140
+       ],
+       "kw": {
+        "label": "Four readings against a 140 cutoff",
+        "result": "2 flagged"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "140",
+       "c": "#B5E04A"
+      },
+      "and",
+      {
+       "t": "151",
+       "c": "#B5E04A"
+      },
+      "are flagged"
+     ],
+     "goal": [],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] FALSE  TRUE FALSE  TRUE"
+      },
+      {
+       "id": "b",
+       "label": "[1] TRUE"
+      },
+      {
+       "id": "c",
+       "label": "[1] 140 151"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(bp >= 140)"
+     ]
+    },
+    {
+     "id": "HrP1L1_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The nurse's script counts 1 flag. Which line?",
+     "hint": "Read the clinic rule again: \"140 or above\".",
+     "ok": "> leaves out exactly 140, so visit 2 is missed. The rule says 140 or above, which is >=: 2 flags.",
+     "fb": {
+      "a": "The readings are right.",
+      "c": "print() shows what flags holds."
+     },
+     "bridge": "list the visits to follow up.",
+     "entry": "Nurse's count: fixed",
+     "label": "The nurse's script counts only one high reading.",
+     "science": {
+      "title": "Missed follow-ups",
+      "text": "A reading that sits exactly on a cutoff is often missed in code, and a missed follow-up can delay a diagnosis of high blood pressure."
+     },
+     "codeNote": {
+      "title": "Edge values",
+      "text": "Some comparisons include the limit itself and some do not."
+     },
+     "carry": [
+      "F T F T",
+      3
+     ],
+     "pics": [
+      {
+       "type": "msg",
+       "who": "Clinic nurse",
+       "text": "My script says only one reading needs a follow-up. That seems low."
+      },
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         128,
+         140,
+         135,
+         151
+        ],
+        140
+       ],
+       "kw": {
+        "label": "This week's readings against the 140 line",
+        "result": "2 flags",
+        "h": 34
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "lines": [
+      {
+       "id": "a",
+       "label": "bp = c(128, 140, 135, 151)"
+      },
+      {
+       "id": "b",
+       "label": "flags = sum(bp > 140)"
+      },
+      {
+       "id": "c",
+       "label": "print(flags)"
+      }
+     ],
+     "correct": "b",
+     "file": "nurse's script",
+     "after": "After the fix: [1] 2",
+     "code": []
+    },
+    {
+     "id": "HrP1L1_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Which visits need a follow-up?",
+     "hint": "You want positions, not a count.",
+     "ok": "which() gives the positions where the comparison is TRUE: visits 2 and 4.",
+     "fb": {},
+     "bridge": "see your finished log.",
+     "entry": "Follow-up visits: 2 and 4",
+     "label": "The readings, with the flagged ones about to be listed by visit.",
+     "science": {
+      "title": "Turning flags into actions",
+      "text": "A list of visit numbers can go straight into a follow-up booking list, which is how audits turn data into care."
+     },
+     "codeNote": {
+      "title": "Positions",
+      "text": "R can tell you where in a vector something is TRUE."
+     },
+     "carry": [
+      "2 flags",
+      4
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         128,
+         140,
+         135,
+         151
+        ],
+        140
+       ],
+       "kw": {
+        "label": "Four readings against a 140 cutoff",
+        "result": "visits 2 and 4",
+        "h": 50
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "[1] 2 4"
+     ],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "which"
+      },
+      {
+       "id": "t3",
+       "label": "("
+      },
+      {
+       "id": "t4",
+       "label": "bp"
+      },
+      {
+       "id": "t5",
+       "label": ">="
+      },
+      {
+       "id": "t6",
+       "label": "140"
+      },
+      {
+       "id": "t7",
+       "label": ")"
+      },
+      {
+       "id": "t8",
+       "label": ")"
+      },
+      {
+       "id": "t9",
+       "label": "sum"
+      },
+      {
+       "id": "t10",
+       "label": ">"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8"
+     ],
+     "wrongBuild": "The line is print(which(bp >= 140)): which() turns TRUE values into their positions.",
+     "code": [
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HrP4L1",
+   "domain": "health",
+   "lang": "r",
+   "phase": 4,
+   "part": 1,
+   "title": "Outbreak curve",
+   "project": "Outbreak briefing",
+   "person": "Public health officer",
+   "intro": "New cases reported each day this week: 3, 5, 9 and 14. I need the running total and the trend for this afternoon's briefing.",
+   "start": "Open the case data",
+   "doneTitle": "Briefing ready",
+   "doneSub": "The week total, the running curve and how fast cases are rising.",
+   "file": "outbreak.R",
+   "notebook": [
+    [
+     "Week total",
+     "31"
+    ],
+    [
+     "Running total",
+     "3, 8, 17, 31"
+    ],
+    [
+     "Daily increase",
+     "2, 4, 5"
+    ],
+    [
+     "Officer's loop",
+     "fixed"
+    ],
+    [
+     "Rise this week",
+     "4.7-fold"
+    ]
+   ],
+   "script": [
+    "cases = c(3, 5, 9, 14)",
+    "total = 0",
+    "for (n in cases) total = total + n",
+    "print(total)",
+    "running = c()",
+    "total = 0",
+    "for (n in cases) {",
+    "  total = total + n",
+    "  running = c(running, total)",
+    "}",
+    "print(running)",
+    "print(cases[2:4] - cases[1:3])",
+    "print(max(cases) / min(cases))"
+   ],
+   "questions": [
+    {
+     "id": "HrP4L1_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What total does R print?",
+     "hint": "n takes each day's count in turn.",
+     "ok": "The loop adds every day: 3 + 5 + 9 + 14 = 31 cases.",
+     "fb": {
+      "b": "That is only the last day.",
+      "c": "That is the number of days."
+     },
+     "bridge": "keep a running total for the chart.",
+     "entry": "Week total: 31",
+     "label": "An epidemic curve of daily cases for four days.",
+     "science": {
+      "title": "Epidemic curves",
+      "text": "Public health teams plot new cases per day to see whether an outbreak is growing, peaking or slowing."
+     },
+     "codeNote": {
+      "title": "Loops",
+      "text": "A `for` loop repeats its code once for each value in a vector."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "curve",
+       "args": [
+        [
+         3,
+         5,
+         9,
+         14
+        ],
+        "Daily new cases for four days: 3, 5, 9, 14"
+       ],
+       "kw": {
+        "result": "31 cases"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "3 + 5 + 9 + 14",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "31",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 31"
+      },
+      {
+       "id": "b",
+       "label": "[1] 14"
+      },
+      {
+       "id": "c",
+       "label": "[1] 4"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "cases = c(3, 5, 9, 14)",
+      "total = 0",
+      "for (n in cases) total = total + n",
+      "print(total)"
+     ]
+    },
+    {
+     "id": "HrP4L1_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Build the running total for the chart",
+     "hint": "Each round should add one value to the end.",
+     "ok": "c(running, total) adds the new total to the end each day: 3, 8, 17, 31.",
+     "fb": {
+      "b": "sum() adds everything into one number, so you get [1] 59.",
+      "c": "paste() glues the numbers into one piece of text instead of keeping a vector of numbers.",
+      "d": "max() keeps only the largest number: [1] 31."
+     },
+     "bridge": "see how fast cases rise each day.",
+     "entry": "Running total: 3, 8, 17, 31",
+     "label": "The daily curve, with the running total about to be drawn.",
+     "science": {
+      "title": "Cumulative cases",
+      "text": "The running total, or cumulative case count, shows the full size of an outbreak so far, which matters for planning beds and staff."
+     },
+     "codeNote": {
+      "title": "Growing a vector",
+      "text": "A vector can gain one value at a time inside a loop."
+     },
+     "carry": [
+      "total = 31",
+      1
+     ],
+     "pics": [
+      {
+       "type": "curve",
+       "args": [
+        [
+         3,
+         5,
+         9,
+         14
+        ],
+        "Daily cases with a running total line"
+       ],
+       "kw": {
+        "extra": [
+         3,
+         8,
+         17,
+         31
+        ],
+        "ymax": 34,
+        "h": 62
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "3",
+       "c": "#FFFDF6"
+      },
+      {
+       "t": "8",
+       "c": "#FFFDF6"
+      },
+      {
+       "t": "17",
+       "c": "#FFFDF6"
+      },
+      {
+       "t": "31",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "[1]  3  8 17 31"
+     ],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "opts": [
+      {
+       "id": "a",
+       "label": "c"
+      },
+      {
+       "id": "b",
+       "label": "sum"
+      },
+      {
+       "id": "c",
+       "label": "paste"
+      },
+      {
+       "id": "d",
+       "label": "max"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "running = c()",
+      "total = 0",
+      "for (n in cases) {",
+      "  total = total + n",
+      "  running = ___(running, total)",
+      "}",
+      "print(running)"
+     ]
+    },
+    {
+     "id": "HrP4L1_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "How much did cases rise each day?",
+     "hint": "Both sides are vectors of three days.",
+     "ok": "R subtracts the two vectors item by item: 5 - 3, 9 - 5, 14 - 9 = 2, 4, 5.",
+     "fb": {
+      "b": "R subtracts all three pairs, not only the last.",
+      "c": "That is cases[1:3] on its own."
+     },
+     "bridge": "the officer's loop misses a day.",
+     "entry": "Daily increase: 2, 4, 5",
+     "label": "The daily curve; the jumps between days are unknown.",
+     "science": {
+      "title": "Growing increases",
+      "text": "When the daily increase itself keeps growing, the outbreak is accelerating, which is the signal that triggers extra measures."
+     },
+     "codeNote": {
+      "title": "Vectors side by side",
+      "text": "Arithmetic between two vectors works on matching items."
+     },
+     "carry": [
+      "3, 8, 17, 31",
+      2
+     ],
+     "pics": [
+      {
+       "type": "curve",
+       "args": [
+        [
+         3,
+         5,
+         9,
+         14
+        ],
+        "Daily new cases rising"
+       ],
+       "kw": {
+        "result": "+2, +4, +5"
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "2",
+       "c": "#B5E04A"
+      },
+      {
+       "t": "4",
+       "c": "#B5E04A"
+      },
+      {
+       "t": "5",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-11: from earlier questions",
+     "start": 12,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 2 4 5"
+      },
+      {
+       "id": "b",
+       "label": "[1] 5"
+      },
+      {
+       "id": "c",
+       "label": "[1] 3 5 9"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(cases[2:4] - cases[1:3])"
+     ]
+    },
+    {
+     "id": "HrP4L1_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The officer's total is 17. Which line?",
+     "hint": "Count how many days the loop visits.",
+     "ok": "1:3 stops at day 3, so day 4's 14 cases are missed. seq_along(cases) covers every day.",
+     "fb": {
+      "a": "Starting from 0 is right.",
+      "c": "Adding cases[i] is right.",
+      "d": "The brace closes the loop."
+     },
+     "bridge": "work out how much cases rose this week.",
+     "entry": "Officer's loop: fixed",
+     "label": "The officer's script reports 17 cases for the week.",
+     "science": {
+      "title": "Undercounting",
+      "text": "A missed day of cases makes an outbreak look smaller than it is, which can delay the public health response."
+     },
+     "codeNote": {
+      "title": "Loop ranges",
+      "text": "The range in a `for` loop decides how many times it repeats."
+     },
+     "carry": [
+      "rises 2, 4, 5",
+      3
+     ],
+     "pics": [
+      {
+       "type": "msg",
+       "who": "Public health officer",
+       "text": "My script says 17 cases this week. That looks low."
+      },
+      {
+       "type": "curve",
+       "args": [
+        [
+         3,
+         5,
+         9,
+         14
+        ],
+        "Cases each day this week"
+       ],
+       "kw": {
+        "extra": [
+         3,
+         8,
+         17,
+         31
+        ],
+        "result": "31 cases",
+        "h": 24
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-12: from earlier questions",
+     "start": 13,
+     "lines": [
+      {
+       "id": "a",
+       "label": "total = 0"
+      },
+      {
+       "id": "b",
+       "label": "for (i in 1:3) {"
+      },
+      {
+       "id": "c",
+       "label": "  total = total + cases[i]"
+      },
+      {
+       "id": "d",
+       "label": "}"
+      }
+     ],
+     "correct": "b",
+     "file": "officer's script",
+     "after": "After the fix: [1] 31",
+     "code": []
+    },
+    {
+     "id": "HrP4L1_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "How many times higher is the last day than the first?",
+     "hint": "Compare the largest day with the smallest.",
+     "ok": "14 / 3 = 4.666667: cases rose about 4.7-fold in four days.",
+     "fb": {},
+     "bridge": "see your finished briefing.",
+     "entry": "Rise this week: 4.7-fold",
+     "label": "The curve from its lowest day to its highest.",
+     "science": {
+      "title": "Fold change",
+      "text": "Saying cases rose 4.7-fold in four days is a quick, clear way to brief decision-makers on how fast things are moving."
+     },
+     "codeNote": {
+      "title": "Combining functions",
+      "text": "Functions can be used inside a calculation, like any value."
+     },
+     "carry": [
+      "total = 31",
+      1
+     ],
+     "pics": [
+      {
+       "type": "curve",
+       "args": [
+        [
+         3,
+         5,
+         9,
+         14
+        ],
+        "Daily new cases from 3 up to 14"
+       ],
+       "kw": {
+        "result": "4.7-fold",
+        "h": 62
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "[1] 4.666667"
+     ],
+     "earlier": "lines 1-12: from earlier questions",
+     "start": 13,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "max"
+      },
+      {
+       "id": "t3",
+       "label": "("
+      },
+      {
+       "id": "t4",
+       "label": "cases"
+      },
+      {
+       "id": "t5",
+       "label": ")"
+      },
+      {
+       "id": "t6",
+       "label": "/"
+      },
+      {
+       "id": "t7",
+       "label": "min"
+      },
+      {
+       "id": "t8",
+       "label": "("
+      },
+      {
+       "id": "t9",
+       "label": "cases"
+      },
+      {
+       "id": "t10",
+       "label": ")"
+      },
+      {
+       "id": "t11",
+       "label": ")"
+      },
+      {
+       "id": "t12",
+       "label": "sum"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8",
+      "t9",
+      "t10",
+      "t11"
+     ],
+     "wrongBuild": "The line is print(max(cases) / min(cases)): the biggest day divided by the smallest.",
+     "code": [
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "EngP1L3",
+   "domain": "eng",
+   "lang": "py",
+   "phase": 1,
+   "part": 3,
+   "title": "Battery life",
+   "project": "Circuit calculator",
+   "person": "Robotics club member",
+   "intro": "Our robot runs on a 2000 mAh battery and draws 300 mA. How long will it last between charges?",
+   "start": "Check the battery",
+   "doneTitle": "Runtime worked out",
+   "doneSub": "6 h 40 min, rounded and read safely from user input.",
+   "file": "battery.py",
+   "notebook": [
+    [
+     "Runtime",
+     "6.67 hours"
+    ],
+    [
+     "Whole hours",
+     "6"
+    ],
+    [
+     "Runtime",
+     "6 h 40 min"
+    ],
+    [
+     "Club member's script",
+     "fixed"
+    ],
+    [
+     "Rounded",
+     "6.7 hours"
+    ]
+   ],
+   "script": [
+    "capacity = 2000",
+    "draw = 300",
+    "print(capacity / draw)",
+    "whole = capacity // draw",
+    "print(whole)",
+    "mins = capacity % draw * 60 // draw",
+    "print(f\"{whole} h {mins} min\")",
+    "hours = capacity / draw",
+    "print(round(hours, 1))"
+   ],
+   "questions": [
+    {
+     "id": "EngP1L3_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "How many hours does the battery last?",
+     "hint": "Think about what / gives in Python.",
+     "ok": "2000 / 300 is 6.666... hours. Python prints a float with all its digits.",
+     "fb": {
+      "b": "That would need //, which drops the fraction.",
+      "c": "Python does not round unless you ask it to."
+     },
+     "bridge": "find the whole hours.",
+     "entry": "Runtime: 6.67 hours",
+     "label": "A 2000 mAh battery powering a robot that draws 300 mA.",
+     "science": {
+      "title": "Battery capacity",
+      "text": "mAh means milliamp-hours: a 2000 mAh battery can supply 2000 mA for 1 hour, or less current for longer."
+     },
+     "codeNote": {
+      "title": "Division",
+      "text": "Python has more than one division operator."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "battery",
+       "args": [
+        "6.67 hours",
+        "A full battery that drains on Check"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "2000",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "300",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "6.666...",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "6.666666666666667"
+      },
+      {
+       "id": "b",
+       "label": "6"
+      },
+      {
+       "id": "c",
+       "label": "6.67"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "capacity = 2000",
+      "draw = 300",
+      "print(capacity / draw)"
+     ]
+    },
+    {
+     "id": "EngP1L3_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "How many whole hours?",
+     "hint": "You want to drop the part after the decimal point.",
+     "ok": "// is floor division: 2000 // 300 is 6 whole hours.",
+     "fb": {
+      "b": "/ keeps the fraction: 6.666666666666667.",
+      "c": "% gives the remainder, 200.",
+      "d": "** raises 2000 to the power 300, an enormous number."
+     },
+     "bridge": "turn the remainder into minutes.",
+     "entry": "Whole hours: 6",
+     "label": "The battery, with the whole hours still to count.",
+     "science": {
+      "title": "Why whole hours?",
+      "text": "Runtimes are usually quoted as hours and minutes, so a robotics team can plan charging between competition rounds."
+     },
+     "codeNote": {
+      "title": "Whole-number division",
+      "text": "`//` and `%` work with whole numbers."
+     },
+     "carry": [
+      "6.67 hours",
+      1
+     ],
+     "pics": [
+      {
+       "type": "battery",
+       "args": [
+        "6 whole hours",
+        "The battery draining for whole hours"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "2000",
+       "c": "#FFFDF6"
+      },
+      "//",
+      {
+       "t": "300",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "6",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "6"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "//"
+      },
+      {
+       "id": "b",
+       "label": "/"
+      },
+      {
+       "id": "c",
+       "label": "%"
+      },
+      {
+       "id": "d",
+       "label": "**"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "whole = capacity ___ draw",
+      "print(whole)"
+     ]
+    },
+    {
+     "id": "EngP1L3_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does the runtime line print?",
+     "hint": "Work out the remainder first, then left to right.",
+     "ok": "2000 % 300 is 200 mAh left over; 200 × 60 // 300 is 40 minutes, so it prints 6 h 40 min.",
+     "fb": {
+      "b": "20 would come from the remainder 200 divided by 10, not from minutes.",
+      "c": "The f-string fills in whole and mins, not the decimal hours."
+     },
+     "bridge": "a club member's script reads the current from the keyboard.",
+     "entry": "Runtime: 6 h 40 min",
+     "label": "The battery runtime about to be written as hours and minutes.",
+     "science": {
+      "title": "Planning charges",
+      "text": "Knowing the runtime in hours and minutes tells a team when to swap batteries before the robot slows down."
+     },
+     "codeNote": {
+      "title": "Operators of the same rank",
+      "text": "`*`, `/`, `//` and `%` share a rank, so Python works left to right."
+     },
+     "carry": [
+      "whole = 6",
+      2
+     ],
+     "pics": [
+      {
+       "type": "battery",
+       "args": [
+        "6 h 40 min",
+        "The battery draining to the full runtime"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "200 × 60",
+       "c": "#FFFDF6"
+      },
+      "//",
+      {
+       "t": "300",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "40 min",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "opts": [
+      {
+       "id": "a",
+       "label": "6 h 40 min"
+      },
+      {
+       "id": "b",
+       "label": "6 h 20 min"
+      },
+      {
+       "id": "c",
+       "label": "6.67 h"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "mins = capacity % draw * 60 // draw",
+      "print(f\"{whole} h {mins} min\")"
+     ]
+    },
+    {
+     "id": "EngP1L3_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The club member's script stops. Which line?",
+     "hint": "Think about what input() gives back.",
+     "ok": "input() always returns text, so 2000 / \"300\" fails. Wrap it: int(input(\"mA: \")).",
+     "fb": {
+      "b": "The division is right once draw is a number.",
+      "c": "print() is fine; Python never reaches it."
+     },
+     "bridge": "round the runtime for the poster.",
+     "entry": "Club member's script: fixed",
+     "label": "The club member's script stops with a TypeError.",
+     "science": {
+      "title": "Trusting user input",
+      "text": "Values typed by people always arrive as text. Converting and checking them first keeps a calculator from crashing mid-demo."
+     },
+     "codeNote": {
+      "title": "Reading input",
+      "text": "`input()` reads what the user types."
+     },
+     "carry": [
+      "6 h 40 min",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Robotics club member:",
+       "value": "\"It stops with a TypeError\"",
+       "known": true
+      },
+      {
+       "type": "battery",
+       "args": [
+        "works again",
+        "The battery reading once the input is a number"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-7: from earlier questions",
+     "start": 8,
+     "lines": [
+      {
+       "id": "a",
+       "label": "draw = input(\"mA: \")"
+      },
+      {
+       "id": "b",
+       "label": "hours = 2000 / draw"
+      },
+      {
+       "id": "c",
+       "label": "print(hours)"
+      }
+     ],
+     "correct": "a",
+     "file": "club member's script",
+     "after": "After the fix: 6.666666666666667",
+     "code": []
+    },
+    {
+     "id": "EngP1L3_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Round the runtime to 1 decimal for the poster",
+     "hint": "round() takes the number and the number of decimals.",
+     "ok": "round(hours, 1) keeps one decimal: 6.666... becomes 6.7.",
+     "fb": {},
+     "bridge": "see your finished battery check.",
+     "entry": "Rounded: 6.7 hours",
+     "label": "The poster line for the battery runtime.",
+     "science": {
+      "title": "Rounding for people",
+      "text": "Specification sheets round to a sensible precision. 6.7 hours is honest; 6.666666666666667 suggests precision nobody measured."
+     },
+     "codeNote": {
+      "title": "Rounding",
+      "text": "`round()` controls how many decimals you see."
+     },
+     "carry": [
+      "6.666... hours",
+      1
+     ],
+     "pics": [
+      {
+       "type": "battery",
+       "args": [
+        "6.7 hours",
+        "The battery drain for the poster figure"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "6.7"
+     ],
+     "earlier": "lines 1-7: from earlier questions",
+     "start": 8,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "round"
+      },
+      {
+       "id": "t3",
+       "label": "("
+      },
+      {
+       "id": "t4",
+       "label": "hours"
+      },
+      {
+       "id": "t5",
+       "label": ","
+      },
+      {
+       "id": "t6",
+       "label": "1"
+      },
+      {
+       "id": "t7",
+       "label": ")"
+      },
+      {
+       "id": "t8",
+       "label": ")"
+      },
+      {
+       "id": "t9",
+       "label": "int"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8"
+     ],
+     "wrongBuild": "The line is print(round(hours, 1)): round() takes the value, then how many decimals to keep.",
+     "code": [
+      "hours = capacity / draw",
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "EngP1L4",
+   "domain": "eng",
+   "lang": "py",
+   "phase": 1,
+   "part": 4,
+   "title": "Power budget",
+   "project": "Circuit calculator",
+   "person": "Senior engineer",
+   "intro": "Before we order a supply, add up what every part draws and check we keep 20% headroom.",
+   "start": "Check the budget",
+   "doneTitle": "Budget signed off",
+   "doneSub": "6.75 W needed, 0.5625 A drawn, and 32.5% headroom.",
+   "file": "power_budget.py",
+   "notebook": [
+    [
+     "Total power",
+     "6.75 W"
+    ],
+    [
+     "Current at 12 V",
+     "0.5625 A"
+    ],
+    [
+     "0.1 + 0.2",
+     "0.30000000000000004"
+    ],
+    [
+     "Engineer's headroom",
+     "fixed"
+    ],
+    [
+     "Enough headroom",
+     "True"
+    ]
+   ],
+   "script": [
+    "led = 0.5",
+    "motor = 6.0",
+    "sensor = 0.25",
+    "print(led + motor + sensor)",
+    "total = 6.75",
+    "I = total / 12",
+    "print(I)",
+    "print(0.1 + 0.2)",
+    "headroom = (supply - need) / supply",
+    "ok = headroom >= 0.2",
+    "print(ok)"
+   ],
+   "questions": [
+    {
+     "id": "EngP1L4_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What total power does Python print?",
+     "hint": "Add the three parts.",
+     "ok": "0.5 + 6.0 + 0.25 = 6.75 watts in total.",
+     "fb": {
+      "b": "Python does not round unless you ask.",
+      "c": "These are decimals, not whole numbers."
+     },
+     "bridge": "find the current the supply must give.",
+     "entry": "Total power: 6.75 W",
+     "label": "Three parts: an LED, a motor and a sensor, each drawing power.",
+     "science": {
+      "title": "A power budget",
+      "text": "Engineers list what every part draws before choosing a supply, so the supply is never the weakest link."
+     },
+     "codeNote": {
+      "title": "Adding floats",
+      "text": "Numbers with a decimal point are floats in Python."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         0.5,
+         6.0,
+         0.25
+        ],
+        99
+       ],
+       "kw": {
+        "label": "Power drawn by each part",
+        "flag": false,
+        "result": "6.75 W",
+        "h": 50
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "0.5",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "6.0",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "0.25",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "6.75",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "6.75"
+      },
+      {
+       "id": "b",
+       "label": "6.7"
+      },
+      {
+       "id": "c",
+       "label": "675"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "led = 0.5",
+      "motor = 6.0",
+      "sensor = 0.25",
+      "print(led + motor + sensor)"
+     ]
+    },
+    {
+     "id": "EngP1L4_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "What current does a 12 V supply give?",
+     "hint": "Power is volts times amps.",
+     "ok": "I = P / V = 6.75 / 12 = 0.5625 amps.",
+     "fb": {
+      "b": "6.75 × 12 is 81.0; that multiplies instead.",
+      "c": "// rounds down to 0.0 here.",
+      "d": "% gives the remainder, 6.75."
+     },
+     "bridge": "add two small sensors.",
+     "entry": "Current at 12 V: 0.5625 A",
+     "label": "The total power, and a 12 volt supply.",
+     "science": {
+      "title": "Current from power",
+      "text": "Supplies are rated in amps as well as volts. Knowing the current tells you which supply, wires and fuse to choose."
+     },
+     "codeNote": {
+      "title": "Rearranging a formula",
+      "text": "Code can rearrange a formula the same way you would on paper."
+     },
+     "carry": [
+      "6.75 W",
+      1
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "12 V supply, total power:",
+       "value": "6.75 W",
+       "known": true
+      },
+      {
+       "type": "readout",
+       "label": "current I:",
+       "value": "0.5625 A",
+       "known": false
+      }
+     ],
+     "eq": [
+      {
+       "t": "6.75",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "12",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "0.5625",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "0.5625"
+     ],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "opts": [
+      {
+       "id": "a",
+       "label": "/"
+      },
+      {
+       "id": "b",
+       "label": "*"
+      },
+      {
+       "id": "c",
+       "label": "//"
+      },
+      {
+       "id": "d",
+       "label": "%"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "total = 6.75",
+      "I = total ___ 12",
+      "print(I)"
+     ]
+    },
+    {
+     "id": "EngP1L4_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "Two sensors draw 0.1 W and 0.2 W. What prints?",
+     "hint": "Some decimals cannot be stored exactly in binary.",
+     "ok": "0.1 and 0.2 have no exact binary form, so the sum is a tiny bit off: 0.30000000000000004. Round before you compare or display.",
+     "fb": {
+      "b": "That is the maths answer, but Python stores floats in binary.",
+      "c": "Python does not pad decimals like that."
+     },
+     "bridge": "the senior engineer's headroom looks wrong.",
+     "entry": "0.1 + 0.2: 0.30000000000000004",
+     "label": "Two small sensors added to the power budget.",
+     "science": {
+      "title": "Why engineers round",
+      "text": "Tiny float errors do not matter in a power budget, but comparing 0.1 + 0.2 == 0.3 is False. Round, or compare with a tolerance."
+     },
+     "codeNote": {
+      "title": "Floats are approximate",
+      "text": "Computers store most decimals as close approximations."
+     },
+     "carry": [
+      "0.5625 A",
+      2
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         0.1,
+         0.2
+        ],
+        99
+       ],
+       "kw": {
+        "label": "Two sensors",
+        "flag": false,
+        "result": "0.30000000000000004",
+        "h": 40
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "0.1 + 0.2",
+       "c": "#FFE3CF"
+      },
+      "=",
+      {
+       "t": "0.30000000000000004",
+       "c": "#FFFDF6"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-7: from earlier questions",
+     "start": 8,
+     "opts": [
+      {
+       "id": "a",
+       "label": "0.30000000000000004"
+      },
+      {
+       "id": "b",
+       "label": "0.3"
+      },
+      {
+       "id": "c",
+       "label": "0.30"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(0.1 + 0.2)"
+     ]
+    },
+    {
+     "id": "EngP1L4_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "Headroom shows 9.325, not 0.325. Which line?",
+     "hint": "Look at which numbers the division applies to.",
+     "ok": "Python divides first: 10 - 0.675 = 9.325. Brackets make it (supply - need) / supply = 0.325.",
+     "fb": {
+      "a": "The supply is 10 W.",
+      "b": "The need is 6.75 W.",
+      "d": "print() shows what headroom holds."
+     },
+     "bridge": "check the headroom is at least 20%.",
+     "entry": "Engineer's headroom: fixed",
+     "label": "The senior engineer's headroom figure of 9.325 cannot be right.",
+     "science": {
+      "title": "Headroom",
+      "text": "Headroom is the spare share of the supply. Parts draw more when they start up or warm, so engineers keep a margin."
+     },
+     "codeNote": {
+      "title": "Order of operations",
+      "text": "Python follows maths order when a line has several operations."
+     },
+     "carry": [
+      "need = 6.75 W",
+      1
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Senior engineer:",
+       "value": "\"Headroom of 9.325?\"",
+       "known": true
+      },
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         10,
+         6.75
+        ],
+        99
+       ],
+       "kw": {
+        "label": "Supply against need",
+        "flag": false,
+        "result": "0.325 spare",
+        "h": 24
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-8: from earlier questions",
+     "start": 9,
+     "lines": [
+      {
+       "id": "a",
+       "label": "supply = 10"
+      },
+      {
+       "id": "b",
+       "label": "need = 6.75"
+      },
+      {
+       "id": "c",
+       "label": "headroom = supply - need / supply"
+      },
+      {
+       "id": "d",
+       "label": "print(headroom)"
+      }
+     ],
+     "correct": "c",
+     "file": "senior engineer's lines",
+     "after": "After the fix: 0.325",
+     "code": []
+    },
+    {
+     "id": "EngP1L4_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Is there at least 20% headroom?",
+     "hint": "20% as a fraction of 1.",
+     "ok": "0.325 >= 0.2 is True: the supply keeps 32.5% headroom.",
+     "fb": {},
+     "bridge": "see your finished budget.",
+     "entry": "Enough headroom: True",
+     "label": "The supply with its spare share marked.",
+     "science": {
+      "title": "Signing off a design",
+      "text": "A design review asks for evidence. A True next to \"20% headroom\" is a check anyone can rerun."
+     },
+     "codeNote": {
+      "title": "Comparisons",
+      "text": "Symbols such as `>=` compare two values and give True or False."
+     },
+     "carry": [
+      "headroom = 0.325",
+      4
+     ],
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          0,
+          0.2,
+          "#FFE3CF",
+          "too tight"
+         ],
+         [
+          0.2,
+          0.6,
+          "#E4F5B8",
+          "enough"
+         ]
+        ],
+        0,
+        0.6,
+        0.325,
+        "32.5% spare",
+        "Headroom gauge from 0 to 60 percent"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "True"
+     ],
+     "earlier": "lines 1-8: from earlier questions",
+     "start": 9,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "ok"
+      },
+      {
+       "id": "t1",
+       "label": "="
+      },
+      {
+       "id": "t2",
+       "label": "headroom"
+      },
+      {
+       "id": "t3",
+       "label": ">="
+      },
+      {
+       "id": "t4",
+       "label": "0.2"
+      },
+      {
+       "id": "t5",
+       "label": ">"
+      },
+      {
+       "id": "t6",
+       "label": "20"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+     ],
+     "wrongBuild": "The line is ok = headroom >= 0.2: 20% as a fraction is 0.2, and at least means >=.",
+     "code": [
+      "headroom = (supply - need) / supply",
+      "___",
+      "print(ok)"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HpyP1L2",
+   "domain": "health",
+   "lang": "py",
+   "phase": 1,
+   "part": 2,
+   "title": "Infusion rate",
+   "project": "Dose calculator",
+   "person": "ICU nurse",
+   "intro": "Training example: 1000 mL of fluid over 8 hours, through a giving set that delivers 20 drops per mL. Work out the rates in code.",
+   "start": "Set the infusion",
+   "doneTitle": "Infusion set",
+   "doneSub": "125 mL an hour, 42 drops a minute, and 4 bags of 250 mL.",
+   "file": "infusion.py",
+   "notebook": [
+    [
+     "Rate",
+     "125.0 mL/h"
+    ],
+    [
+     "Drops",
+     "41.67 a minute"
+    ],
+    [
+     "Rounded",
+     "42 drops/min"
+    ],
+    [
+     "Nurse's 2500",
+     "fixed"
+    ],
+    [
+     "Bags",
+     "4"
+    ]
+   ],
+   "script": [
+    "volume = 1000",
+    "hours = 8",
+    "print(volume / hours)",
+    "drops = volume * 20 / (hours * 60)",
+    "print(drops)",
+    "print(round(drops))",
+    "bags = volume // 250",
+    "print(bags)"
+   ],
+   "questions": [
+    {
+     "id": "HpyP1L2_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What hourly rate does Python print?",
+     "hint": "Think about what / gives in Python.",
+     "ok": "1000 / 8 is 125.0 mL an hour; / always gives a float.",
+     "fb": {
+      "b": "/ always gives a float in Python.",
+      "c": "That multiplies instead of dividing."
+     },
+     "bridge": "work out drops per minute.",
+     "entry": "Rate: 125.0 mL/h",
+     "label": "A 1000 mL fluid bag running over 8 hours.",
+     "science": {
+      "title": "Infusion rates",
+      "text": "Fluids are prescribed as a volume over a time. Pumps and drip sets need it as a rate: mL per hour or drops per minute."
+     },
+     "codeNote": {
+      "title": "Division",
+      "text": "Python has more than one division operator."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "drip",
+       "args": [
+        "125.0 mL/h",
+        "A drip bag with drops falling into the chamber"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "1000",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "8",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "125.0",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "125.0"
+      },
+      {
+       "id": "b",
+       "label": "125"
+      },
+      {
+       "id": "c",
+       "label": "8000"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "volume = 1000",
+      "hours = 8",
+      "print(volume / hours)"
+     ]
+    },
+    {
+     "id": "HpyP1L2_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "How many drops a minute?",
+     "hint": "Drops per mL times mL, shared over every minute.",
+     "ok": "1000 × 20 drops over 480 minutes: 20000 / 480 = 41.666... drops a minute.",
+     "fb": {
+      "b": "// drops the fraction too early: 41.",
+      "c": "% gives a remainder, 320.",
+      "d": "That multiplies instead: 9600000."
+     },
+     "bridge": "round to whole drops.",
+     "entry": "Drops: 41.67 a minute",
+     "label": "The drip chamber, where drops are counted each minute.",
+     "science": {
+      "title": "Drop factor",
+      "text": "A giving set lists its drop factor. A common adult set gives 20 drops per mL, so nurses can set a gravity drip by counting drops."
+     },
+     "codeNote": {
+      "title": "Brackets",
+      "text": "Anything inside brackets is worked out first."
+     },
+     "carry": [
+      "125.0 mL/h",
+      1
+     ],
+     "pics": [
+      {
+       "type": "drip",
+       "args": [
+        "41.67 drops/min",
+        "Drops falling at the worked-out rate"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "20000",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "480",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "41.67",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "41.666666666666664"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "/"
+      },
+      {
+       "id": "b",
+       "label": "//"
+      },
+      {
+       "id": "c",
+       "label": "%"
+      },
+      {
+       "id": "d",
+       "label": "*"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "drops = volume * 20 ___ (hours * 60)",
+      "print(drops)"
+     ]
+    },
+    {
+     "id": "HpyP1L2_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What whole number of drops prints?",
+     "hint": "round() with no second number gives a whole number.",
+     "ok": "round(41.666...) goes to the nearest whole number: 42 drops a minute.",
+     "fb": {
+      "b": "That rounds down; round() goes to the nearest.",
+      "c": "With no second number, round() gives a whole number."
+     },
+     "bridge": "a nurse's script says 2500 drops a minute.",
+     "entry": "Rounded: 42 drops/min",
+     "label": "The drip rate rounded to whole drops.",
+     "science": {
+      "title": "Countable drops",
+      "text": "Nobody can count two-thirds of a drop. Drip rates are set to whole drops a minute."
+     },
+     "codeNote": {
+      "title": "Rounding",
+      "text": "`round()` can give a whole number or keep decimals."
+     },
+     "carry": [
+      "41.67 drops/min",
+      2
+     ],
+     "pics": [
+      {
+       "type": "drip",
+       "args": [
+        "42 drops/min",
+        "Drops falling at 42 a minute"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "41.67",
+       "c": "#FFFDF6"
+      },
+      "rounds to",
+      {
+       "t": "42",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "opts": [
+      {
+       "id": "a",
+       "label": "42"
+      },
+      {
+       "id": "b",
+       "label": "41"
+      },
+      {
+       "id": "c",
+       "label": "41.7"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(round(drops))"
+     ]
+    },
+    {
+     "id": "HpyP1L2_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The script says 2500 drops a minute. Which line?",
+     "hint": "Check the units of time.",
+     "ok": "8 is hours, but drops are counted per minute. Divide by 8 * 60, not 8.",
+     "fb": {
+      "a": "The volume is right.",
+      "c": "Rounding is fine; the value is already too big."
+     },
+     "bridge": "work out how many bags to fetch.",
+     "entry": "Nurse's 2500: fixed",
+     "label": "A nurse's script gives a rate of 2500 drops a minute.",
+     "science": {
+      "title": "Rate errors",
+      "text": "A rate 60 times too fast is a serious error. Checking that an answer is physically possible is a key safety habit."
+     },
+     "codeNote": {
+      "title": "Units in code",
+      "text": "Python only sees numbers; the units are up to you."
+     },
+     "carry": [
+      "42 drops/min",
+      3
+     ],
+     "pics": [
+      {
+       "type": "msg",
+       "who": "ICU nurse",
+       "text": "2500 drops a minute? That would empty the bag in minutes."
+      },
+      {
+       "type": "readout",
+       "label": "safe rate:",
+       "value": "42 drops/min",
+       "known": false
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "lines": [
+      {
+       "id": "a",
+       "label": "volume = 1000"
+      },
+      {
+       "id": "b",
+       "label": "drops = volume * 20 / 8"
+      },
+      {
+       "id": "c",
+       "label": "print(round(drops))"
+      }
+     ],
+     "correct": "b",
+     "file": "nurse's script",
+     "after": "After the fix: 42",
+     "code": []
+    },
+    {
+     "id": "HpyP1L2_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "How many 250 mL bags make 1000 mL?",
+     "hint": "You need a whole number of bags.",
+     "ok": "1000 // 250 is 4 whole bags.",
+     "fb": {},
+     "bridge": "see your finished infusion.",
+     "entry": "Bags: 4",
+     "label": "Bags of 250 mL to make up the full volume.",
+     "science": {
+      "title": "Stock planning",
+      "text": "Fetching the right number of bags before starting saves walking back to the store room mid-infusion."
+     },
+     "codeNote": {
+      "title": "Whole-number division",
+      "text": "`//` divides and drops the remainder."
+     },
+     "carry": [
+      "volume = 1000 mL",
+      1
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         250,
+         250,
+         250,
+         250
+        ],
+        999
+       ],
+       "kw": {
+        "label": "Four 250 mL bags",
+        "flag": false,
+        "result": "4 bags",
+        "h": 40
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "4"
+     ],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "bags"
+      },
+      {
+       "id": "t1",
+       "label": "="
+      },
+      {
+       "id": "t2",
+       "label": "volume"
+      },
+      {
+       "id": "t3",
+       "label": "//"
+      },
+      {
+       "id": "t4",
+       "label": "250"
+      },
+      {
+       "id": "t5",
+       "label": "/"
+      },
+      {
+       "id": "t6",
+       "label": "%"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4"
+     ],
+     "wrongBuild": "The line is bags = volume // 250: // gives a whole number of bags.",
+     "code": [
+      "___",
+      "print(bags)"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HpyP1L3",
+   "domain": "health",
+   "lang": "py",
+   "phase": 1,
+   "part": 3,
+   "title": "BMI check",
+   "project": "Dose calculator",
+   "person": "Dietitian",
+   "intro": "Training example: a patient weighs 70 kg and is 175 cm tall. Work out their BMI, the way the clinic form does.",
+   "start": "Work out the BMI",
+   "doneTitle": "BMI worked out",
+   "doneSub": "22.9, in the healthy-weight band of 18.5 to under 25.",
+   "file": "bmi.py",
+   "notebook": [
+    [
+     "BMI",
+     "22.857..."
+    ],
+    [
+     "Height",
+     "1.75 m"
+    ],
+    [
+     "Rounded",
+     "22.9"
+    ],
+    [
+     "Form script",
+     "fixed"
+    ],
+    [
+     "Healthy band",
+     "True"
+    ]
+   ],
+   "script": [
+    "weight = 70",
+    "height = 1.75",
+    "bmi = weight / height ** 2",
+    "print(bmi)",
+    "height_cm = 175",
+    "height = height_cm / 100",
+    "print(height)",
+    "print(round(bmi, 1))",
+    "bmi = 22.9",
+    "print(18.5 <= bmi < 25)"
+   ],
+   "questions": [
+    {
+     "id": "HpyP1L3_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What BMI does Python print?",
+     "hint": "Which operation does Python do first here?",
+     "ok": "** goes first: 1.75 ** 2 is 3.0625, and 70 / 3.0625 is 22.857...",
+     "fb": {
+      "b": "That divides first and then squares: (70 / 1.75) ** 2.",
+      "c": "Python does not round unless you ask."
+     },
+     "bridge": "the form gives height in centimetres.",
+     "entry": "BMI: 22.857...",
+     "label": "A patient of 70 kg and 1.75 m on the BMI scale.",
+     "science": {
+      "title": "What BMI is",
+      "text": "BMI is weight in kg divided by height in metres squared. It is a quick screening number, not a diagnosis."
+     },
+     "codeNote": {
+      "title": "Powers",
+      "text": "`**` raises a number to a power."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          15,
+          18.5,
+          "#DCEEFF",
+          "under"
+         ],
+         [
+          18.5,
+          25,
+          "#E4F5B8",
+          "healthy"
+         ],
+         [
+          25,
+          30,
+          "#FFF1C9",
+          "over"
+         ],
+         [
+          30,
+          35,
+          "#FFE3CF",
+          "obese"
+         ]
+        ],
+        15,
+        35,
+        22.86,
+        "BMI 22.857...",
+        "BMI bands from 15 to 35"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "70",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "1.75 ** 2",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "22.857...",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "22.857142857142858"
+      },
+      {
+       "id": "b",
+       "label": "1600.0"
+      },
+      {
+       "id": "c",
+       "label": "22.86"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "weight = 70",
+      "height = 1.75",
+      "bmi = weight / height ** 2",
+      "print(bmi)"
+     ]
+    },
+    {
+     "id": "HpyP1L3_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "The form gives height in cm. Convert it",
+     "hint": "There are 100 cm in a metre.",
+     "ok": "175 / 100 is 1.75 metres.",
+     "fb": {
+      "b": "// drops the fraction: 1.",
+      "c": "% gives the remainder: 75.",
+      "d": "That multiplies: 17500."
+     },
+     "bridge": "round the BMI for the report.",
+     "entry": "Height: 1.75 m",
+     "label": "A height measure reading 175 cm.",
+     "science": {
+      "title": "Units on forms",
+      "text": "Clinic forms often collect height in centimetres, but the BMI formula needs metres. A missed conversion makes BMI 10,000 times too small."
+     },
+     "codeNote": {
+      "title": "Converting units",
+      "text": "A unit change is often a single multiplication or division."
+     },
+     "carry": [
+      "bmi = 22.857...",
+      1
+     ],
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          150,
+          175,
+          "#DCEEFF",
+          "cm"
+         ],
+         [
+          175,
+          200,
+          "#E4F5B8",
+          ""
+         ]
+        ],
+        150,
+        200,
+        175,
+        "1.75 m",
+        "A height measure from 150 to 200 cm"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "175",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "100",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "1.75",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "1.75"
+     ],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "opts": [
+      {
+       "id": "a",
+       "label": "/"
+      },
+      {
+       "id": "b",
+       "label": "//"
+      },
+      {
+       "id": "c",
+       "label": "%"
+      },
+      {
+       "id": "d",
+       "label": "*"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "height_cm = 175",
+      "height = height_cm ___ 100",
+      "print(height)"
+     ]
+    },
+    {
+     "id": "HpyP1L3_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does the rounded BMI print?",
+     "hint": "The second number is how many decimals to keep.",
+     "ok": "round(22.857..., 1) keeps one decimal: 22.9.",
+     "fb": {
+      "b": "That cuts off instead of rounding.",
+      "c": "That would be round(bmi) with no decimals."
+     },
+     "bridge": "the form's script crashes on new input.",
+     "entry": "Rounded: 22.9",
+     "label": "The BMI pointer, ready for the rounded value.",
+     "science": {
+      "title": "Reporting precision",
+      "text": "Clinics record BMI to one decimal place. More digits than that suggest a precision the scales do not have."
+     },
+     "codeNote": {
+      "title": "Rounding",
+      "text": "`round()` controls how many decimals you see."
+     },
+     "carry": [
+      "1.75 m",
+      2
+     ],
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          15,
+          18.5,
+          "#DCEEFF",
+          "under"
+         ],
+         [
+          18.5,
+          25,
+          "#E4F5B8",
+          "healthy"
+         ],
+         [
+          25,
+          30,
+          "#FFF1C9",
+          "over"
+         ],
+         [
+          30,
+          35,
+          "#FFE3CF",
+          "obese"
+         ]
+        ],
+        15,
+        35,
+        22.9,
+        "BMI 22.9",
+        "BMI bands from 15 to 35"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "22.857",
+       "c": "#FFFDF6"
+      },
+      "to",
+      {
+       "t": "22.9",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-7: from earlier questions",
+     "start": 8,
+     "opts": [
+      {
+       "id": "a",
+       "label": "22.9"
+      },
+      {
+       "id": "b",
+       "label": "22.8"
+      },
+      {
+       "id": "c",
+       "label": "23"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(round(bmi, 1))"
+     ]
+    },
+    {
+     "id": "HpyP1L3_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The form's script stops. Which line?",
+     "hint": "Think about what input() gives back.",
+     "ok": "input() returns text, and text cannot be divided. Use float(input(\"kg: \")).",
+     "fb": {
+      "b": "The formula is right once weight is a number.",
+      "c": "print() is fine; Python never reaches it."
+     },
+     "bridge": "check the healthy-weight band.",
+     "entry": "Form script: fixed",
+     "label": "The clinic form's BMI script stops with a TypeError.",
+     "science": {
+      "title": "Forms and safety",
+      "text": "Every value typed into a clinical form arrives as text. Converting it, and rejecting nonsense, keeps records accurate."
+     },
+     "codeNote": {
+      "title": "Reading input",
+      "text": "`input()` reads what the user types."
+     },
+     "carry": [
+      "BMI 22.9",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Dietitian:",
+       "value": "\"TypeError on the form\"",
+       "known": true
+      },
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          15,
+          18.5,
+          "#DCEEFF",
+          "under"
+         ],
+         [
+          18.5,
+          25,
+          "#E4F5B8",
+          "healthy"
+         ],
+         [
+          25,
+          30,
+          "#FFF1C9",
+          "over"
+         ],
+         [
+          30,
+          35,
+          "#FFE3CF",
+          "obese"
+         ]
+        ],
+        15,
+        35,
+        22.86,
+        "works again",
+        "BMI bands from 15 to 35"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-8: from earlier questions",
+     "start": 9,
+     "lines": [
+      {
+       "id": "a",
+       "label": "weight = input(\"kg: \")"
+      },
+      {
+       "id": "b",
+       "label": "bmi = weight / 1.75 ** 2"
+      },
+      {
+       "id": "c",
+       "label": "print(bmi)"
+      }
+     ],
+     "correct": "a",
+     "file": "clinic form script",
+     "after": "After the fix: 22.857142857142858",
+     "code": []
+    },
+    {
+     "id": "HpyP1L3_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Is the BMI in the 18.5 to under 25 band?",
+     "hint": "Python can check a value between two limits in one line.",
+     "ok": "Python chains comparisons: 18.5 <= 22.9 and 22.9 < 25 are both True.",
+     "fb": {},
+     "bridge": "see your finished BMI check.",
+     "entry": "Healthy band: True",
+     "label": "The BMI pointer inside the healthy band.",
+     "science": {
+      "title": "BMI bands",
+      "text": "For most adults, 18.5 to under 25 is the healthy-weight band. Bands differ for children and some ethnic groups."
+     },
+     "codeNote": {
+      "title": "Chained comparisons",
+      "text": "Python lets you write two comparisons side by side."
+     },
+     "carry": [
+      "BMI 22.9",
+      3
+     ],
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          15,
+          18.5,
+          "#DCEEFF",
+          "under"
+         ],
+         [
+          18.5,
+          25,
+          "#E4F5B8",
+          "healthy"
+         ],
+         [
+          25,
+          30,
+          "#FFF1C9",
+          "over"
+         ],
+         [
+          30,
+          35,
+          "#FFE3CF",
+          "obese"
+         ]
+        ],
+        15,
+        35,
+        22.9,
+        "healthy: True",
+        "BMI bands from 15 to 35"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "True"
+     ],
+     "earlier": "lines 1-8: from earlier questions",
+     "start": 9,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "18.5"
+      },
+      {
+       "id": "t3",
+       "label": "<="
+      },
+      {
+       "id": "t4",
+       "label": "bmi"
+      },
+      {
+       "id": "t5",
+       "label": "<"
+      },
+      {
+       "id": "t6",
+       "label": "25"
+      },
+      {
+       "id": "t7",
+       "label": ")"
+      },
+      {
+       "id": "t8",
+       "label": "and"
+      },
+      {
+       "id": "t9",
+       "label": ">"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7"
+     ],
+     "wrongBuild": "The line is print(18.5 <= bmi < 25): Python reads a chained comparison as both checks at once.",
+     "code": [
+      "bmi = 22.9",
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HpyP1L4",
+   "domain": "health",
+   "lang": "py",
+   "phase": 1,
+   "part": 4,
+   "title": "Next dose time",
+   "project": "Dose calculator",
+   "person": "Ward pharmacist",
+   "intro": "Training example: Drug X is given every 6 hours, 500 mg each time, up to 2000 mg a day. The last dose was at 22:00.",
+   "start": "Plan the doses",
+   "doneTitle": "Dose times planned",
+   "doneSub": "Next dose at 04:00, 4 doses a day, within the daily maximum.",
+   "file": "dose_times.py",
+   "notebook": [
+    [
+     "22 + 6",
+     "28 (not a time)"
+    ],
+    [
+     "Next dose",
+     "4"
+    ],
+    [
+     "Shown as",
+     "04:00"
+    ],
+    [
+     "Doses a day bug",
+     "fixed"
+    ],
+    [
+     "Within daily max",
+     "True"
+    ]
+   ],
+   "script": [
+    "last = 22",
+    "interval = 6",
+    "print(last + interval)",
+    "nxt = (last + interval) % 24",
+    "print(nxt)",
+    "print(f\"{nxt:02d}:00\")",
+    "doses = 24 // interval",
+    "print(doses * 500 <= 2000)"
+   ],
+   "questions": [
+    {
+     "id": "HpyP1L4_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "The last dose was at 22:00. What prints?",
+     "hint": "Python adds numbers; it does not know about clocks.",
+     "ok": "Python adds 22 + 6 and prints 28, which is not a time on a 24-hour clock yet.",
+     "fb": {
+      "b": "That needs the clock to wrap round past midnight.",
+      "c": "Python prints the plain sum, with no formatting."
+     },
+     "bridge": "wrap the time past midnight.",
+     "entry": "22 + 6: 28 (not a time)",
+     "label": "A 24-hour dial with the last dose at 22:00.",
+     "science": {
+      "title": "Dose intervals",
+      "text": "Many medicines are given at fixed intervals, such as every 6 hours, to keep their level in the blood steady."
+     },
+     "codeNote": {
+      "title": "Adding numbers",
+      "text": "`+` adds two numbers."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "clock24",
+       "args": [
+        22,
+        4,
+        "28?",
+        "A 24-hour dial"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "22",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "6",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "28",
+       "c": "#FFE3CF"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "28"
+      },
+      {
+       "id": "b",
+       "label": "4"
+      },
+      {
+       "id": "c",
+       "label": "04:00"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "last = 22",
+      "interval = 6",
+      "print(last + interval)"
+     ]
+    },
+    {
+     "id": "HpyP1L4_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Wrap the time past midnight",
+     "hint": "A clock starts again at 0 after 24.",
+     "ok": "% 24 gives the remainder after whole days: 28 % 24 is 4, so 04:00.",
+     "fb": {
+      "b": "// gives whole days: 1.",
+      "c": "/ gives 1.1666666666666667.",
+      "d": "28 - 24 is 4 here, but would break for times past 48 hours."
+     },
+     "bridge": "show it as a clock time.",
+     "entry": "Next dose: 4",
+     "label": "The dial hand turning past midnight.",
+     "science": {
+      "title": "Doses after midnight",
+      "text": "Night doses are often missed on paper charts. A clear next-dose time on the ward board helps the night team."
+     },
+     "codeNote": {
+      "title": "Remainders",
+      "text": "`%` gives what is left over after dividing."
+     },
+     "carry": [
+      "28 (not a time)",
+      1
+     ],
+     "pics": [
+      {
+       "type": "clock24",
+       "args": [
+        22,
+        4,
+        "04:00",
+        "A 24-hour dial"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "28",
+       "c": "#FFFDF6"
+      },
+      "% 24 =",
+      {
+       "t": "4",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "4"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "%"
+      },
+      {
+       "id": "b",
+       "label": "//"
+      },
+      {
+       "id": "c",
+       "label": "/"
+      },
+      {
+       "id": "d",
+       "label": "-"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "nxt = (last + interval) ___ 24",
+      "print(nxt)"
+     ]
+    },
+    {
+     "id": "HpyP1L4_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does the ward board show?",
+     "hint": "The part after the colon inside the braces is a format.",
+     "ok": ":02d pads the number to two digits with a leading zero: 04:00.",
+     "fb": {
+      "b": ":02d adds a leading zero.",
+      "c": "The f-string adds :00 after the hour."
+     },
+     "bridge": "a script says 4.0 doses a day.",
+     "entry": "Shown as: 04:00",
+     "label": "The ward board waiting for the next dose time.",
+     "science": {
+      "title": "Clear times",
+      "text": "Hospitals write times as 24-hour, four-digit values like 04:00, so 4 o'clock in the morning cannot be read as 4 in the afternoon."
+     },
+     "codeNote": {
+      "title": "Formatting in f-strings",
+      "text": "A colon inside the braces of an f-string sets how the value looks."
+     },
+     "carry": [
+      "nxt = 4",
+      2
+     ],
+     "pics": [
+      {
+       "type": "clock24",
+       "args": [
+        22,
+        4,
+        "04:00",
+        "A 24-hour dial"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "4",
+       "c": "#FFFDF6"
+      },
+      "as",
+      {
+       "t": "04:00",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "opts": [
+      {
+       "id": "a",
+       "label": "04:00"
+      },
+      {
+       "id": "b",
+       "label": "4:00"
+      },
+      {
+       "id": "c",
+       "label": "4"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(f\"{nxt:02d}:00\")"
+     ]
+    },
+    {
+     "id": "HpyP1L4_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The board says \"4.0 doses a day\". Which line?",
+     "hint": "Think about what / always gives.",
+     "ok": "/ always gives a float, so 24 / 6 is 4.0. Use // for a whole number of doses.",
+     "fb": {
+      "b": "The f-string shows whatever doses holds."
+     },
+     "bridge": "check the daily maximum.",
+     "entry": "Doses a day bug: fixed",
+     "label": "The ward board shows a dose count with a decimal point.",
+     "science": {
+      "title": "Labels people read",
+      "text": "Patients and families read ward boards. A stray .0 causes questions and erodes trust in the plan."
+     },
+     "codeNote": {
+      "title": "Two kinds of division",
+      "text": "`/` and `//` give different kinds of number."
+     },
+     "carry": [
+      "04:00",
+      3
+     ],
+     "pics": [
+      {
+       "type": "msg",
+       "who": "Ward pharmacist",
+       "text": "The board says 4.0 doses a day. Patients ask what 0.0 of a dose is."
+      },
+      {
+       "type": "clock24",
+       "args": [
+        0,
+        0,
+        "4 doses",
+        "A 24-hour dial"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "lines": [
+      {
+       "id": "a",
+       "label": "doses = 24 / interval"
+      },
+      {
+       "id": "b",
+       "label": "print(f\"{doses} doses a day\")"
+      }
+     ],
+     "correct": "a",
+     "file": "pharmacy script",
+     "after": "After the fix: 4 doses a day",
+     "code": []
+    },
+    {
+     "id": "HpyP1L4_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Is the day within 2000 mg?",
+     "hint": "Total for the day, compared with the maximum.",
+     "ok": "4 doses × 500 mg is 2000 mg, and 2000 <= 2000 is True: exactly at the limit, not over it.",
+     "fb": {},
+     "bridge": "see your finished dose plan.",
+     "entry": "Within daily max: True",
+     "label": "The day's total dose against the 2000 mg maximum.",
+     "science": {
+      "title": "Daily maximums",
+      "text": "Many medicines have a maximum daily dose as well as a single-dose limit. Both are checked before every dose."
+     },
+     "codeNote": {
+      "title": "Comparing a calculation",
+      "text": "Python works out the maths first, then compares."
+     },
+     "carry": [
+      "4 doses a day",
+      4
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         500,
+         1000,
+         1500,
+         2000
+        ],
+        2000
+       ],
+       "kw": {
+        "label": "Running total of the day's doses",
+        "result": "2000 mg: True",
+        "h": 28
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "True"
+     ],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "doses"
+      },
+      {
+       "id": "t3",
+       "label": "*"
+      },
+      {
+       "id": "t4",
+       "label": "500"
+      },
+      {
+       "id": "t5",
+       "label": "<="
+      },
+      {
+       "id": "t6",
+       "label": "2000"
+      },
+      {
+       "id": "t7",
+       "label": ")"
+      },
+      {
+       "id": "t8",
+       "label": "<"
+      },
+      {
+       "id": "t9",
+       "label": "4"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7"
+     ],
+     "wrongBuild": "The line is print(doses * 500 <= 2000): \"within\" includes the limit, so use <=.",
+     "code": [
+      "doses = 24 // interval",
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HrP1L2",
+   "domain": "health",
+   "lang": "r",
+   "phase": 1,
+   "part": 2,
+   "title": "Mean arterial pressure",
+   "project": "Clinic blood pressure log",
+   "person": "Clinic doctor",
+   "intro": "For this reading of 120 over 80, I need the pulse pressure and the mean arterial pressure, MAP, for the notes.",
+   "start": "Work out the MAP",
+   "doneTitle": "MAP worked out",
+   "doneSub": "Pulse pressure 40, MAP 93 mmHg, written up for the notes.",
+   "file": "map.R",
+   "notebook": [
+    [
+     "Pulse pressure",
+     "40"
+    ],
+    [
+     "MAP",
+     "93.33333"
+    ],
+    [
+     "Rounded",
+     "93"
+    ],
+    [
+     "Doctor's formula",
+     "fixed"
+    ],
+    [
+     "Notes line",
+     "MAP: 93 mmHg"
+    ]
+   ],
+   "script": [
+    "sbp = 120",
+    "dbp = 80",
+    "print(sbp - dbp)",
+    "map = dbp + (sbp - dbp) / 3",
+    "print(map)",
+    "print(round(map))",
+    "print(paste(\"MAP:\", round(map), \"mmHg\"))"
+   ],
+   "questions": [
+    {
+     "id": "HrP1L2_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What is the pulse pressure?",
+     "hint": "Systolic minus diastolic.",
+     "ok": "Pulse pressure is the systolic minus the diastolic: 120 - 80 = 40.",
+     "fb": {
+      "b": "That adds them.",
+      "c": "That subtracts the wrong way round."
+     },
+     "bridge": "work out the mean arterial pressure.",
+     "entry": "Pulse pressure: 40",
+     "label": "A blood pressure reading of 120 over 80.",
+     "science": {
+      "title": "Two numbers in a reading",
+      "text": "Systolic is the pressure as the heart beats; diastolic is the pressure between beats. Their gap is the pulse pressure."
+     },
+     "codeNote": {
+      "title": "Arithmetic in R",
+      "text": "R uses `+`, `-`, `*`, `/` and `^` for maths."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          40,
+          80,
+          "#DCEEFF",
+          "diastolic"
+         ],
+         [
+          80,
+          120,
+          "#E4F5B8",
+          "pulse pressure"
+         ],
+         [
+          120,
+          160,
+          "#FFF1C9",
+          ""
+         ]
+        ],
+        40,
+        160,
+        120,
+        "40 mmHg",
+        "A pressure scale from 40 to 160 mmHg"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "120",
+       "c": "#FFFDF6"
+      },
+      "-",
+      {
+       "t": "80",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "40",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 40"
+      },
+      {
+       "id": "b",
+       "label": "[1] 200"
+      },
+      {
+       "id": "c",
+       "label": "[1] -40"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "sbp = 120",
+      "dbp = 80",
+      "print(sbp - dbp)"
+     ]
+    },
+    {
+     "id": "HrP1L2_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Work out the mean arterial pressure",
+     "hint": "MAP is the diastolic plus a third of the pulse pressure.",
+     "ok": "MAP = 80 + 40 / 3 = 93.33333.",
+     "fb": {
+      "b": "That gives 80 + 120 = 200.",
+      "c": "That gives 80 + 37 = 117.",
+      "d": "That raises 40 to the power 3: 64080."
+     },
+     "bridge": "round it for the notes.",
+     "entry": "MAP: 93.33333",
+     "label": "The pressure scale, with the MAP still to find.",
+     "science": {
+      "title": "Why MAP?",
+      "text": "MAP estimates the average pressure pushing blood to the organs over a heartbeat, which is why intensive care tracks it closely."
+     },
+     "codeNote": {
+      "title": "Brackets",
+      "text": "Anything in brackets is worked out first."
+     },
+     "carry": [
+      "pulse pressure 40",
+      1
+     ],
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          40,
+          80,
+          "#DCEEFF",
+          ""
+         ],
+         [
+          80,
+          120,
+          "#E4F5B8",
+          ""
+         ],
+         [
+          120,
+          160,
+          "#FFF1C9",
+          ""
+         ]
+        ],
+        40,
+        160,
+        93.3,
+        "MAP 93.33",
+        "A pressure scale from 40 to 160 mmHg"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "80",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "40 / 3",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "93.33333",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "[1] 93.33333"
+     ],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "/"
+      },
+      {
+       "id": "b",
+       "label": "*"
+      },
+      {
+       "id": "c",
+       "label": "-"
+      },
+      {
+       "id": "d",
+       "label": "^"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "map = dbp + (sbp - dbp) ___ 3",
+      "print(map)"
+     ]
+    },
+    {
+     "id": "HrP1L2_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does round(map) print?",
+     "hint": "round() with no second number gives a whole number.",
+     "ok": "round(93.33333) goes to the nearest whole number: 93.",
+     "fb": {
+      "b": "With no digits argument, round() gives a whole number.",
+      "c": "That rounds up; 93.3 is nearer 93."
+     },
+     "bridge": "the doctor's old formula gives 40.",
+     "entry": "Rounded: 93",
+     "label": "The MAP pointer, ready for the rounded value.",
+     "science": {
+      "title": "Whole mmHg",
+      "text": "Blood pressures are recorded in whole millimetres of mercury; more precision is not meaningful for a cuff reading."
+     },
+     "codeNote": {
+      "title": "Rounding",
+      "text": "`round()` controls how many decimals you see."
+     },
+     "carry": [
+      "map = 93.33333",
+      2
+     ],
+     "pics": [
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          40,
+          80,
+          "#DCEEFF",
+          ""
+         ],
+         [
+          80,
+          120,
+          "#E4F5B8",
+          ""
+         ],
+         [
+          120,
+          160,
+          "#FFF1C9",
+          ""
+         ]
+        ],
+        40,
+        160,
+        93,
+        "MAP 93",
+        "A pressure scale from 40 to 160 mmHg"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "93.33",
+       "c": "#FFFDF6"
+      },
+      "to",
+      {
+       "t": "93",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 93"
+      },
+      {
+       "id": "b",
+       "label": "[1] 93.3"
+      },
+      {
+       "id": "c",
+       "label": "[1] 94"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(round(map))"
+     ]
+    },
+    {
+     "id": "HrP1L2_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The doctor's formula gives 40. Which line?",
+     "hint": "Look at what the brackets wrap.",
+     "ok": "The brackets wrap everything, so dbp cancels out: 120 / 3 = 40. Only the pulse pressure should be divided.",
+     "fb": {
+      "a": "The systolic is right.",
+      "b": "The diastolic is right.",
+      "d": "print() shows what map holds."
+     },
+     "bridge": "write the line for the notes.",
+     "entry": "Doctor's formula: fixed",
+     "label": "The doctor's old script gives a MAP of 40.",
+     "science": {
+      "title": "Implausible values",
+      "text": "A MAP of 40 would mean a patient in shock. When code gives a value that does not match the patient, check the code first."
+     },
+     "codeNote": {
+      "title": "Where brackets go",
+      "text": "Brackets decide which parts are calculated together."
+     },
+     "carry": [
+      "MAP 93",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Clinic doctor:",
+       "value": "\"A MAP of 40? Too low.\"",
+       "known": true
+      },
+      {
+       "type": "gauge",
+       "args": [
+        [
+         [
+          40,
+          65,
+          "#FFE3CF",
+          "too low"
+         ],
+         [
+          65,
+          160,
+          "#E4F5B8",
+          "usual"
+         ]
+        ],
+        40,
+        160,
+        93.3,
+        "MAP 93.33",
+        "A pressure scale from 40 to 160 mmHg"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "lines": [
+      {
+       "id": "a",
+       "label": "sbp = 120"
+      },
+      {
+       "id": "b",
+       "label": "dbp = 80"
+      },
+      {
+       "id": "c",
+       "label": "map = (dbp + sbp - dbp) / 3"
+      },
+      {
+       "id": "d",
+       "label": "print(map)"
+      }
+     ],
+     "correct": "c",
+     "file": "doctor's old lines",
+     "after": "After the fix: [1] 93.33333",
+     "code": []
+    },
+    {
+     "id": "HrP1L2_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Write the line for the notes",
+     "hint": "paste() joins pieces with spaces.",
+     "ok": "paste() joins \"MAP:\", 93 and \"mmHg\" with spaces: \"MAP: 93 mmHg\".",
+     "fb": {},
+     "bridge": "see your finished MAP check.",
+     "entry": "Notes line: MAP: 93 mmHg",
+     "label": "The notes line for the MAP.",
+     "science": {
+      "title": "Clear notes",
+      "text": "Writing the value with its name and unit stops a reader confusing MAP with systolic or diastolic pressure."
+     },
+     "codeNote": {
+      "title": "Joining text",
+      "text": "`paste()` joins pieces into one piece of text."
+     },
+     "carry": [
+      "MAP 93",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Notes line:",
+       "value": "MAP: 93 mmHg",
+       "known": false
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "[1] \"MAP: 93 mmHg\""
+     ],
+     "earlier": "lines 1-6: from earlier questions",
+     "start": 7,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "paste"
+      },
+      {
+       "id": "t3",
+       "label": "("
+      },
+      {
+       "id": "t4",
+       "label": "\"MAP:\""
+      },
+      {
+       "id": "t5",
+       "label": ","
+      },
+      {
+       "id": "t6",
+       "label": "round(map)"
+      },
+      {
+       "id": "t7",
+       "label": ","
+      },
+      {
+       "id": "t8",
+       "label": "\"mmHg\""
+      },
+      {
+       "id": "t9",
+       "label": ")"
+      },
+      {
+       "id": "t10",
+       "label": ")"
+      },
+      {
+       "id": "t11",
+       "label": "paste0"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8",
+      "t9",
+      "t10"
+     ],
+     "wrongBuild": "The line is print(paste(\"MAP:\", round(map), \"mmHg\")): paste() joins its pieces with spaces.",
+     "code": [
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HrP1L3",
+   "domain": "health",
+   "lang": "r",
+   "phase": 1,
+   "part": 3,
+   "title": "Patient ID labels",
+   "project": "Clinic blood pressure log",
+   "person": "Medical records officer",
+   "intro": "Training example: the clinic system exports IDs like s-0042 in lowercase. Wristbands need them in a standard ward format.",
+   "start": "Make the labels",
+   "doneTitle": "Labels ready",
+   "doneSub": "WARD7-S-0042 printed, and the next ID number worked out.",
+   "file": "id_labels.R",
+   "notebook": [
+    [
+     "Upper case",
+     "S-0042"
+    ],
+    [
+     "Length",
+     "6"
+    ],
+    [
+     "Wristband",
+     "WARD7-S-0042"
+    ],
+    [
+     "Officer's number",
+     "fixed"
+    ],
+    [
+     "Next number",
+     "43"
+    ]
+   ],
+   "script": [
+    "id = \"s-0042\"",
+    "print(toupper(id))",
+    "print(nchar(id))",
+    "label = paste0(\"WARD7-\", toupper(id))",
+    "print(label)",
+    "num = substr(id, 3, 6)",
+    "print(as.numeric(num) + 1)"
+   ],
+   "questions": [
+    {
+     "id": "HrP1L3_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does the wristband ID print?",
+     "hint": "toupper() changes the letters only.",
+     "ok": "toupper() turns the letters into capitals; digits and the dash stay the same.",
+     "fb": {
+      "b": "That is the original, before toupper().",
+      "c": "R keeps the quote marks when it prints text."
+     },
+     "bridge": "check the ID length.",
+     "entry": "Upper case: S-0042",
+     "label": "A blank patient wristband and the exported ID s-0042.",
+     "science": {
+      "title": "Why standard IDs?",
+      "text": "Mixed-case IDs look different to people and to scanners. A single format avoids two records for one patient."
+     },
+     "codeNote": {
+      "title": "Changing case",
+      "text": "R has functions that change the case of text."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "wristband",
+       "args": [
+        "S-0042",
+        "upper case",
+        "A wristband printing the ID"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "\"s-0042\"",
+       "c": "#FFFDF6"
+      },
+      "to",
+      {
+       "t": "\"S-0042\"",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] \"S-0042\""
+      },
+      {
+       "id": "b",
+       "label": "[1] \"s-0042\""
+      },
+      {
+       "id": "c",
+       "label": "[1] S-0042"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "id = \"s-0042\"",
+      "print(toupper(id))"
+     ]
+    },
+    {
+     "id": "HrP1L3_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "How many characters is the ID?",
+     "hint": "Count characters inside the text.",
+     "ok": "nchar() counts the characters: s, -, 0, 0, 4, 2 is 6.",
+     "fb": {
+      "b": "length(id) is 1: one piece of text.",
+      "c": "sum() cannot add text; R stops with an error.",
+      "d": "print() shows the ID; it does not count it."
+     },
+     "bridge": "add the ward prefix.",
+     "entry": "Length: 6",
+     "label": "The ID on the wristband, letter by letter.",
+     "science": {
+      "title": "Checking ID length",
+      "text": "Records systems reject IDs of the wrong length. Checking length first catches typing errors before a band is printed."
+     },
+     "codeNote": {
+      "title": "Counting text",
+      "text": "R can count characters in a piece of text."
+     },
+     "carry": [
+      "S-0042",
+      1
+     ],
+     "pics": [
+      {
+       "type": "wristband",
+       "args": [
+        "S-0042",
+        "6 characters",
+        "A wristband with the ID"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "nchar(\"s-0042\")",
+       "c": "#FFC93C"
+      },
+      "=",
+      {
+       "t": "6",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "[1] 6"
+     ],
+     "earlier": "lines 1-2: from earlier questions",
+     "start": 3,
+     "opts": [
+      {
+       "id": "a",
+       "label": "nchar"
+      },
+      {
+       "id": "b",
+       "label": "length"
+      },
+      {
+       "id": "c",
+       "label": "sum"
+      },
+      {
+       "id": "d",
+       "label": "print"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(___(id))"
+     ]
+    },
+    {
+     "id": "HrP1L3_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What does the full wristband label print?",
+     "hint": "paste0() adds nothing between pieces.",
+     "ok": "paste0() joins with no space, and toupper() runs first: \"WARD7-S-0042\".",
+     "fb": {
+      "b": "That has a space, which paste() would add, not paste0().",
+      "c": "toupper() runs on id before the join."
+     },
+     "bridge": "the officer's script cuts the number wrongly.",
+     "entry": "Wristband: WARD7-S-0042",
+     "label": "The ward prefix and the ID, about to be joined on the band.",
+     "science": {
+      "title": "Ward prefixes",
+      "text": "A ward code on the band helps staff spot a patient who has wandered or been moved without the band being updated."
+     },
+     "codeNote": {
+      "title": "Joining text",
+      "text": "R has two functions for joining text, with and without spaces."
+     },
+     "carry": [
+      "6 characters",
+      2
+     ],
+     "pics": [
+      {
+       "type": "wristband",
+       "args": [
+        "WARD7-S-0042",
+        "printed",
+        "A wristband printing the full label"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [
+      {
+       "t": "\"WARD7-\"",
+       "c": "#FFFDF6"
+      },
+      "+",
+      {
+       "t": "\"S-0042\"",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "\"WARD7-S-0042\"",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] \"WARD7-S-0042\""
+      },
+      {
+       "id": "b",
+       "label": "[1] \"WARD7- S-0042\""
+      },
+      {
+       "id": "c",
+       "label": "[1] \"WARD7-s-0042\""
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "label = paste0(\"WARD7-\", toupper(id))",
+      "print(label)"
+     ]
+    },
+    {
+     "id": "HrP1L3_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The number part comes out as \"-004\". Which line?",
+     "hint": "Count the positions of each character.",
+     "ok": "Positions 2 to 5 are \"-004\". The digits sit at positions 3 to 6: substr(id, 3, 6).",
+     "fb": {
+      "a": "The ID is right.",
+      "c": "print() shows what num holds."
+     },
+     "bridge": "work out the next ID number.",
+     "entry": "Officer's number: fixed",
+     "label": "The records script cuts the wrong part of the ID.",
+     "science": {
+      "title": "Off-by-one in records",
+      "text": "Cutting one character too early silently changes an ID. A wrong number could match a different patient."
+     },
+     "codeNote": {
+      "title": "Cutting text",
+      "text": "`substr()` takes the characters between two positions."
+     },
+     "carry": [
+      "WARD7-S-0042",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Records officer:",
+       "value": "\"It comes out as -004\"",
+       "known": true
+      },
+      {
+       "type": "wristband",
+       "args": [
+        "0042",
+        "positions 3 to 6",
+        "The number part of the ID"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "lines": [
+      {
+       "id": "a",
+       "label": "id = \"s-0042\""
+      },
+      {
+       "id": "b",
+       "label": "num = substr(id, 2, 5)"
+      },
+      {
+       "id": "c",
+       "label": "print(num)"
+      }
+     ],
+     "correct": "b",
+     "file": "records officer's lines",
+     "after": "After the fix: [1] \"0042\"",
+     "code": []
+    },
+    {
+     "id": "HrP1L3_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "What is the next ID number?",
+     "hint": "Turn the text into a number before adding.",
+     "ok": "as.numeric(\"0042\") is 42, and 42 + 1 is 43.",
+     "fb": {},
+     "bridge": "see your finished labels.",
+     "entry": "Next number: 43",
+     "label": "The next wristband in the pack.",
+     "science": {
+      "title": "Issuing IDs",
+      "text": "New IDs come from the last one used. Working with the number, not the text, keeps them in order without gaps."
+     },
+     "codeNote": {
+      "title": "Text to numbers",
+      "text": "R can turn text that looks like a number into a real number."
+     },
+     "carry": [
+      "num = \"0042\"",
+      4
+     ],
+     "pics": [
+      {
+       "type": "wristband",
+       "args": [
+        "S-0043",
+        "next ID",
+        "The next wristband"
+       ],
+       "kw": {}
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "[1] 43"
+     ],
+     "earlier": "lines 1-5: from earlier questions",
+     "start": 6,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "as.numeric"
+      },
+      {
+       "id": "t3",
+       "label": "("
+      },
+      {
+       "id": "t4",
+       "label": "num"
+      },
+      {
+       "id": "t5",
+       "label": ")"
+      },
+      {
+       "id": "t6",
+       "label": "+"
+      },
+      {
+       "id": "t7",
+       "label": "1"
+      },
+      {
+       "id": "t8",
+       "label": ")"
+      },
+      {
+       "id": "t9",
+       "label": "nchar"
+      },
+      {
+       "id": "t10",
+       "label": "paste"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8"
+     ],
+     "wrongBuild": "The line is print(as.numeric(num) + 1): text has to become a number before R can add to it.",
+     "code": [
+      "num = substr(id, 3, 6)",
+      "___"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "HrP1L4",
+   "domain": "health",
+   "lang": "r",
+   "phase": 1,
+   "part": 4,
+   "title": "Glucose log",
+   "project": "Clinic blood pressure log",
+   "person": "Diabetes educator",
+   "intro": "Training example: four blood glucose readings this week, in mmol/L. The clinic in this example flags anything above 10 or below 4.",
+   "start": "Open the log",
+   "doneTitle": "Log reviewed",
+   "doneSub": "Average 7.6, one high reading of 11.2, none low.",
+   "file": "glucose.R",
+   "notebook": [
+    [
+     "Readings",
+     "4"
+    ],
+    [
+     "Range",
+     "5.4 to 11.2"
+    ],
+    [
+     "Average",
+     "7.6"
+    ],
+    [
+     "Educator's count",
+     "fixed"
+    ],
+    [
+     "High readings",
+     "11.2"
+    ]
+   ],
+   "script": [
+    "gluc = c(5.4, 7.8, 6.0, 11.2)",
+    "print(length(gluc))",
+    "print(range(gluc))",
+    "print(mean(gluc))",
+    "print(gluc[gluc > 10])"
+   ],
+   "questions": [
+    {
+     "id": "HrP1L4_q1",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "How many readings are in the log?",
+     "hint": "length() counts items.",
+     "ok": "length() counts the items in the vector: 4 readings.",
+     "fb": {
+      "b": "That is the sum of the readings.",
+      "c": "That is the highest reading."
+     },
+     "bridge": "find the lowest and highest.",
+     "entry": "Readings: 4",
+     "label": "Four glucose readings from this week.",
+     "science": {
+      "title": "Glucose logs",
+      "text": "People with diabetes often log their blood glucose several times a day. The log, not one reading, guides treatment changes."
+     },
+     "codeNote": {
+      "title": "Vectors",
+      "text": "`c()` combines several values into one vector."
+     },
+     "carry": null,
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         5.4,
+         7.8,
+         6.0,
+         11.2
+        ],
+        99
+       ],
+       "kw": {
+        "label": "Four glucose readings",
+        "flag": false,
+        "result": "4 readings",
+        "h": 50
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "length(gluc)",
+       "c": "#FFC93C"
+      },
+      "=",
+      {
+       "t": "4",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": null,
+     "start": 1,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 4"
+      },
+      {
+       "id": "b",
+       "label": "[1] 30.4"
+      },
+      {
+       "id": "c",
+       "label": "[1] 11.2"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "gluc = c(5.4, 7.8, 6.0, 11.2)",
+      "print(length(gluc))"
+     ]
+    },
+    {
+     "id": "HrP1L4_q2",
+     "kind": "fill",
+     "word": "Fill",
+     "color": "#FFC93C",
+     "okTitle": "Correct",
+     "ask": "Show the lowest and highest together",
+     "hint": "One function gives two numbers back.",
+     "ok": "range() returns the smallest and largest values: 5.4 and 11.2.",
+     "fb": {
+      "b": "max() gives only the highest, 11.2.",
+      "c": "mean() gives the average, 7.6.",
+      "d": "sum() gives 30.4."
+     },
+     "bridge": "work out the average.",
+     "entry": "Range: 5.4 to 11.2",
+     "label": "The readings, with the extremes still to mark.",
+     "science": {
+      "title": "The spread matters",
+      "text": "Two weeks with the same average can differ a lot: one steady, one swinging between lows and highs."
+     },
+     "codeNote": {
+      "title": "Summaries of a vector",
+      "text": "R has functions that summarise a whole vector."
+     },
+     "carry": [
+      "4 readings",
+      1
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         5.4,
+         7.8,
+         6.0,
+         11.2
+        ],
+        99
+       ],
+       "kw": {
+        "label": "Four glucose readings",
+        "flag": false,
+        "result": "5.4 to 11.2",
+        "h": 50
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "range(gluc)",
+       "c": "#FFC93C"
+      },
+      "=",
+      {
+       "t": "5.4 11.2",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [
+      "[1]  5.4 11.2"
+     ],
+     "earlier": "lines 1-2: from earlier questions",
+     "start": 3,
+     "opts": [
+      {
+       "id": "a",
+       "label": "range"
+      },
+      {
+       "id": "b",
+       "label": "max"
+      },
+      {
+       "id": "c",
+       "label": "mean"
+      },
+      {
+       "id": "d",
+       "label": "sum"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(___(gluc))"
+     ]
+    },
+    {
+     "id": "HrP1L4_q3",
+     "kind": "predict",
+     "word": "Predict",
+     "color": "#B5E04A",
+     "okTitle": "Correct",
+     "ask": "What is the average reading?",
+     "hint": "mean() adds and divides by the count.",
+     "ok": "30.4 / 4 = 7.6 mmol/L on average.",
+     "fb": {
+      "b": "That is the sum, before dividing.",
+      "c": "That is the number of readings."
+     },
+     "bridge": "the educator's script counts no problem readings.",
+     "entry": "Average: 7.6",
+     "label": "The log with its average line still to draw.",
+     "science": {
+      "title": "Averages hide highs",
+      "text": "An average of 7.6 looks fine, but it hides a reading of 11.2. Clinicians always look at both."
+     },
+     "codeNote": {
+      "title": "Averages",
+      "text": "`mean()` gives the average of a vector."
+     },
+     "carry": [
+      "range 5.4 to 11.2",
+      2
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         5.4,
+         7.8,
+         6.0,
+         11.2
+        ],
+        99
+       ],
+       "kw": {
+        "label": "Four glucose readings",
+        "flag": false,
+        "result": "average 7.6",
+        "h": 50
+       }
+      }
+     ],
+     "eq": [
+      {
+       "t": "30.4",
+       "c": "#FFFDF6"
+      },
+      "/",
+      {
+       "t": "4",
+       "c": "#FFFDF6"
+      },
+      "=",
+      {
+       "t": "7.6",
+       "c": "#B5E04A"
+      }
+     ],
+     "goal": [],
+     "earlier": "lines 1-3: from earlier questions",
+     "start": 4,
+     "opts": [
+      {
+       "id": "a",
+       "label": "[1] 7.6"
+      },
+      {
+       "id": "b",
+       "label": "[1] 30.4"
+      },
+      {
+       "id": "c",
+       "label": "[1] 4"
+      }
+     ],
+     "correct": "a",
+     "code": [
+      "print(mean(gluc))"
+     ]
+    },
+    {
+     "id": "HrP1L4_q4",
+     "kind": "bug",
+     "word": "Debug",
+     "color": "#FFA866",
+     "okTitle": "Found it",
+     "ask": "The script counts 0 problem readings. Which line?",
+     "hint": "Can one reading be both high and low?",
+     "ok": "& needs both TRUE at once, which never happens. | means either: sum(high | low) is 1.",
+     "fb": {
+      "a": "The high check is right.",
+      "b": "The low check is right."
+     },
+     "bridge": "list the high readings.",
+     "entry": "Educator's count: fixed",
+     "label": "The educator's script reports no readings outside the range.",
+     "science": {
+      "title": "Missing a high",
+      "text": "A script that misses out-of-range readings gives false reassurance, which is worse than no script at all."
+     },
+     "codeNote": {
+      "title": "Combining TRUE and FALSE",
+      "text": "R has two operators for combining TRUE/FALSE vectors: one means and, one means or."
+     },
+     "carry": [
+      "average 7.6",
+      3
+     ],
+     "pics": [
+      {
+       "type": "readout",
+       "label": "Diabetes educator:",
+       "value": "\"0 outside the range?\"",
+       "known": true
+      },
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         5.4,
+         7.8,
+         6.0,
+         11.2
+        ],
+        10
+       ],
+       "kw": {
+        "label": "Readings against the high line",
+        "result": "1 flagged",
+        "h": 40
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "lines": [
+      {
+       "id": "a",
+       "label": "high = gluc > 10"
+      },
+      {
+       "id": "b",
+       "label": "low = gluc < 4"
+      },
+      {
+       "id": "c",
+       "label": "print(sum(high & low))"
+      }
+     ],
+     "correct": "c",
+     "file": "educator's lines",
+     "after": "After the fix: [1] 1",
+     "code": []
+    },
+    {
+     "id": "HrP1L4_q5",
+     "kind": "build",
+     "word": "Build",
+     "color": "#59B4FF",
+     "okTitle": "Built",
+     "ask": "Which readings were high?",
+     "hint": "Put the condition inside the square brackets.",
+     "ok": "gluc[gluc > 10] keeps the readings where the condition is TRUE: 11.2.",
+     "fb": {},
+     "bridge": "see your finished glucose review.",
+     "entry": "High readings: 11.2",
+     "label": "The readings, with the high one about to be picked out.",
+     "science": {
+      "title": "Acting on highs",
+      "text": "Listing the actual high values, with their dates, is what lets an educator ask what happened that day."
+     },
+     "codeNote": {
+      "title": "Filtering",
+      "text": "Square brackets can keep only the items that meet a condition."
+     },
+     "carry": [
+      "1 high reading",
+      4
+     ],
+     "pics": [
+      {
+       "type": "bpbars",
+       "args": [
+        [
+         5.4,
+         7.8,
+         6.0,
+         11.2
+        ],
+        10
+       ],
+       "kw": {
+        "label": "Readings against the high line",
+        "result": "11.2 mmol/L",
+        "h": 50
+       }
+      }
+     ],
+     "eq": [],
+     "goal": [
+      "[1] 11.2"
+     ],
+     "earlier": "lines 1-4: from earlier questions",
+     "start": 5,
+     "opts": [
+      {
+       "id": "t0",
+       "label": "print"
+      },
+      {
+       "id": "t1",
+       "label": "("
+      },
+      {
+       "id": "t2",
+       "label": "gluc"
+      },
+      {
+       "id": "t3",
+       "label": "["
+      },
+      {
+       "id": "t4",
+       "label": "gluc"
+      },
+      {
+       "id": "t5",
+       "label": ">"
+      },
+      {
+       "id": "t6",
+       "label": "10"
+      },
+      {
+       "id": "t7",
+       "label": "]"
+      },
+      {
+       "id": "t8",
+       "label": ")"
+      },
+      {
+       "id": "t9",
+       "label": "which"
+      },
+      {
+       "id": "t10",
+       "label": "<"
+      }
+     ],
+     "correct": [
+      "t0",
+      "t1",
+      "t2",
+      "t3",
+      "t4",
+      "t5",
+      "t6",
+      "t7",
+      "t8"
+     ],
+     "wrongBuild": "The line is print(gluc[gluc > 10]): a TRUE/FALSE vector inside [ ] keeps the TRUE items.",
+     "code": [
+      "___"
+     ]
+    }
+   ]
+  }
+ ]
+}

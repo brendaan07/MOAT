@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "MOAT",
+    "slug": "moat",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {},
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/images/robot_logo_filled.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}

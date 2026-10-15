@@ -1,0 +1,304 @@
+{
+ "id": "health_r",
+ "title": "Healthcare",
+ "language": "R",
+ "phases": [
+  {
+   "number": 1,
+   "area": "Healthcare",
+   "project": "Clinic blood pressure log",
+   "picture": "",
+   "skill": "Values, vectors and printing",
+   "parts": [
+    [
+     "Blood pressure log",
+     "Clinic blood pressure log"
+    ],
+    [
+     "Mean arterial pressure",
+     "Clinic blood pressure log"
+    ],
+    [
+     "Patient ID labels",
+     "Clinic blood pressure log"
+    ],
+    [
+     "Glucose log",
+     "Clinic blood pressure log"
+    ]
+   ],
+   "code": [
+    "gluc = c(5.4, 7.8, 6.0, 11.2)",
+    "print(length(gluc))",
+    "print(range(gluc))",
+    "print(mean(gluc))",
+    "print(gluc[gluc > 10])"
+   ],
+   "lessons": [
+    {
+     "id": "HrP1L1",
+     "part": 1,
+     "title": "Blood pressure log",
+     "questions": [
+      {
+       "id": "HrP1L1_q1",
+       "kind": "predict",
+       "prompt": "What is the second reading?",
+       "hint": "Where does R start counting?",
+       "ok": "R counts positions from 1, so bp[2] is the second reading, 140."
+      },
+      {
+       "id": "HrP1L1_q2",
+       "kind": "fill",
+       "prompt": "Summarise the week's readings",
+       "hint": "You want one typical value for the week.",
+       "ok": "mean() adds the four readings (554) and divides by 4: 138.5."
+      },
+      {
+       "id": "HrP1L1_q3",
+       "kind": "predict",
+       "prompt": "Which readings get flagged?",
+       "hint": "A comparison on a vector checks every item.",
+       "ok": "The comparison runs on every reading: 140 and 151 are 140 or above, so visits 2 and 4 are TRUE."
+      },
+      {
+       "id": "HrP1L1_q4",
+       "kind": "bug",
+       "prompt": "The nurse's script counts 1 flag. Which line?",
+       "hint": "Read the clinic rule again: \"140 or above\".",
+       "ok": "> leaves out exactly 140, so visit 2 is missed. The rule says 140 or above, which is >=: 2 flags."
+      },
+      {
+       "id": "HrP1L1_q5",
+       "kind": "build",
+       "prompt": "Which visits need a follow-up?",
+       "hint": "You want positions, not a count.",
+       "ok": "which() gives the positions where the comparison is TRUE: visits 2 and 4."
+      }
+     ]
+    },
+    {
+     "id": "HrP1L2",
+     "part": 2,
+     "title": "Mean arterial pressure",
+     "questions": [
+      {
+       "id": "HrP1L2_q1",
+       "kind": "predict",
+       "prompt": "What is the pulse pressure?",
+       "hint": "Systolic minus diastolic.",
+       "ok": "Pulse pressure is the systolic minus the diastolic: 120 - 80 = 40."
+      },
+      {
+       "id": "HrP1L2_q2",
+       "kind": "fill",
+       "prompt": "Work out the mean arterial pressure",
+       "hint": "MAP is the diastolic plus a third of the pulse pressure.",
+       "ok": "MAP = 80 + 40 / 3 = 93.33333."
+      },
+      {
+       "id": "HrP1L2_q3",
+       "kind": "predict",
+       "prompt": "What does round(map) print?",
+       "hint": "round() with no second number gives a whole number.",
+       "ok": "round(93.33333) goes to the nearest whole number: 93."
+      },
+      {
+       "id": "HrP1L2_q4",
+       "kind": "bug",
+       "prompt": "The doctor's formula gives 40. Which line?",
+       "hint": "Look at what the brackets wrap.",
+       "ok": "The brackets wrap everything, so dbp cancels out: 120 / 3 = 40. Only the pulse pressure should be divided."
+      },
+      {
+       "id": "HrP1L2_q5",
+       "kind": "build",
+       "prompt": "Write the line for the notes",
+       "hint": "paste() joins pieces with spaces.",
+       "ok": "paste() joins \"MAP:\", 93 and \"mmHg\" with spaces: \"MAP: 93 mmHg\"."
+      }
+     ]
+    },
+    {
+     "id": "HrP1L3",
+     "part": 3,
+     "title": "Patient ID labels",
+     "questions": [
+      {
+       "id": "HrP1L3_q1",
+       "kind": "predict",
+       "prompt": "What does the wristband ID print?",
+       "hint": "toupper() changes the letters only.",
+       "ok": "toupper() turns the letters into capitals; digits and the dash stay the same."
+      },
+      {
+       "id": "HrP1L3_q2",
+       "kind": "fill",
+       "prompt": "How many characters is the ID?",
+       "hint": "Count characters inside the text.",
+       "ok": "nchar() counts the characters: s, -, 0, 0, 4, 2 is 6."
+      },
+      {
+       "id": "HrP1L3_q3",
+       "kind": "predict",
+       "prompt": "What does the full wristband label print?",
+       "hint": "paste0() adds nothing between pieces.",
+       "ok": "paste0() joins with no space, and toupper() runs first: \"WARD7-S-0042\"."
+      },
+      {
+       "id": "HrP1L3_q4",
+       "kind": "bug",
+       "prompt": "The number part comes out as \"-004\". Which line?",
+       "hint": "Count the positions of each character.",
+       "ok": "Positions 2 to 5 are \"-004\". The digits sit at positions 3 to 6: substr(id, 3, 6)."
+      },
+      {
+       "id": "HrP1L3_q5",
+       "kind": "build",
+       "prompt": "What is the next ID number?",
+       "hint": "Turn the text into a number before adding.",
+       "ok": "as.numeric(\"0042\") is 42, and 42 + 1 is 43."
+      }
+     ]
+    },
+    {
+     "id": "HrP1L4",
+     "part": 4,
+     "title": "Glucose log",
+     "questions": [
+      {
+       "id": "HrP1L4_q1",
+       "kind": "predict",
+       "prompt": "How many readings are in the log?",
+       "hint": "length() counts items.",
+       "ok": "length() counts the items in the vector: 4 readings."
+      },
+      {
+       "id": "HrP1L4_q2",
+       "kind": "fill",
+       "prompt": "Show the lowest and highest together",
+       "hint": "One function gives two numbers back.",
+       "ok": "range() returns the smallest and largest values: 5.4 and 11.2."
+      },
+      {
+       "id": "HrP1L4_q3",
+       "kind": "predict",
+       "prompt": "What is the average reading?",
+       "hint": "mean() adds and divides by the count.",
+       "ok": "30.4 / 4 = 7.6 mmol/L on average."
+      },
+      {
+       "id": "HrP1L4_q4",
+       "kind": "bug",
+       "prompt": "The script counts 0 problem readings. Which line?",
+       "hint": "Can one reading be both high and low?",
+       "ok": "& needs both TRUE at once, which never happens. | means either: sum(high | low) is 1."
+      },
+      {
+       "id": "HrP1L4_q5",
+       "kind": "build",
+       "prompt": "Which readings were high?",
+       "hint": "Put the condition inside the square brackets.",
+       "ok": "gluc[gluc > 10] keeps the readings where the condition is TRUE: 11.2."
+      }
+     ]
+    }
+   ],
+   "checkpoint": {
+    "id": "health_r_cp1",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 4,
+   "area": "Healthcare",
+   "project": "Outbreak curve",
+   "picture": "",
+   "skill": "Loops",
+   "parts": [
+    [
+     "Outbreak curve",
+     "Outbreak briefing"
+    ]
+   ],
+   "code": [
+    "cases = c(3, 5, 9, 14)",
+    "total = 0",
+    "for (n in cases) total = total + n",
+    "print(total)",
+    "running = c()",
+    "total = 0",
+    "for (n in cases) {",
+    "  total = total + n",
+    "  running = c(running, total)",
+    "}",
+    "print(running)",
+    "print(cases[2:4] - cases[1:3])",
+    "print(max(cases) / min(cases))"
+   ],
+   "lessons": [
+    {
+     "id": "HrP4L1",
+     "part": 1,
+     "title": "Outbreak curve",
+     "questions": [
+      {
+       "id": "HrP4L1_q1",
+       "kind": "predict",
+       "prompt": "What total does R print?",
+       "hint": "n takes each day's count in turn.",
+       "ok": "The loop adds every day: 3 + 5 + 9 + 14 = 31 cases."
+      },
+      {
+       "id": "HrP4L1_q2",
+       "kind": "fill",
+       "prompt": "Build the running total for the chart",
+       "hint": "Each round should add one value to the end.",
+       "ok": "c(running, total) adds the new total to the end each day: 3, 8, 17, 31."
+      },
+      {
+       "id": "HrP4L1_q3",
+       "kind": "predict",
+       "prompt": "How much did cases rise each day?",
+       "hint": "Both sides are vectors of three days.",
+       "ok": "R subtracts the two vectors item by item: 5 - 3, 9 - 5, 14 - 9 = 2, 4, 5."
+      },
+      {
+       "id": "HrP4L1_q4",
+       "kind": "bug",
+       "prompt": "The officer's total is 17. Which line?",
+       "hint": "Count how many days the loop visits.",
+       "ok": "1:3 stops at day 3, so day 4's 14 cases are missed. seq_along(cases) covers every day."
+      },
+      {
+       "id": "HrP4L1_q5",
+       "kind": "build",
+       "prompt": "How many times higher is the last day than the first?",
+       "hint": "Compare the largest day with the smallest.",
+       "ok": "14 / 3 = 4.666667: cases rose about 4.7-fold in four days."
+      }
+     ]
+    }
+   ],
+   "checkpoint": {
+    "id": "health_r_cp4",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "Healthcare",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}
