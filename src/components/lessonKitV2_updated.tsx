@@ -97,10 +97,10 @@ for (const l of (RAW as unknown as { lessons: V2Lesson[] }).lessons) LESSONS[l.i
 for (const l of (MORE as unknown as { lessons: V2Lesson[] }).lessons) LESSONS[l.id] = l;
 
 /* Biology research R: every rebuilt lesson and checkpoint, converted to this player's format.
- * App ids: bio_p{phase}_l{part} for lessons (legacy lessons keep their entry above), bio_p{phase}_c{part} for checkpoints. */
+ * App ids: bio_p{phase}_l{part} for lessons (legacy lessons keep their entry above); its checkpoint is the track's phase checkpoint. */
 const WORD_COLOUR: Record<string, string> = { predict: '#B5E04A', fill: '#FFC93C', fix: '#FF8A3D' };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin'; name: string };
+type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin'; name: string; phaseCheckpoint?: boolean };
 const BIO_TRACK: V3Track = { prefix: 'bio', lang: 'r', name: 'Biology research R' };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track = BIO_TRACK): V2Lesson {
@@ -147,14 +147,19 @@ function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track = BIO_TR
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 for (const ph of (BIO_V3 as any).phases) for (const it of ph.items) if (!it.status) { const l = fromV3(it, ph.phase, ph.title); LESSONS[l.id] = l; }
 /* Healthcare (phases 1 to 5) and Finance, in the same format.
- * App ids: hx_py_p{phase}_l{part}, hx_r_..., fin_py_...; checkpoints use _c{part}. */
+ * App ids: hx_py_p{phase}_l{part}, hx_r_..., fin_py_...; checkpoints use _c{part}.
+ * Healthcare has one checkpoint per phase instead, under the track's checkpoint id (hx_py_cp{phase}). */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const addV3 = (data: any, tr: V3Track, phaseOffset = 0) => { for (const ph of data.phases) for (const it of ph.items) { const l = fromV3(it, ph.phase + phaseOffset, ph.title, tr); LESSONS[l.id] = l; } };
-addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python' });
-addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R' });
+const addV3 = (data: any, tr: V3Track, phaseOffset = 0) => { for (const ph of data.phases) for (const it of ph.items) {
+  const l = fromV3(it, ph.phase + phaseOffset, ph.title, tr);
+  if (tr.phaseCheckpoint && l.checkpoint) l.id = `${tr.prefix}_cp${l.phase}`;
+  LESSONS[l.id] = l;
+} };
+addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python', phaseCheckpoint: true });
+addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', phaseCheckpoint: true });
 addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python' });
 
-/** The checkpoint that follows an app lesson (Biology research R), or null. */
+/** The checkpoint that follows an app lesson (Finance Python), or null. */
 export function v2Checkpoint(lessonId: string): V2Lesson | null {
   return LESSONS[lessonId.replace(/_l(\d)$/, '_c$1')] ?? null;
 }
@@ -873,8 +878,10 @@ export function LessonPlayerV2({ lesson, onFinish, onQuit }: { lesson: V2Lesson;
       setOpen(null);
       return;
     }
+    const result = track.record(lesson.id, lesson.questions.map(asTrackQuestion), firstTry);
+    app.creditTrack(result.earned + result.bonus);
     track.addTime(Math.round((Date.now() - started.current) / 1000));
-    onFinish(track.record(lesson.id, lesson.questions.map(asTrackQuestion), firstTry));
+    onFinish(result);
   };
   const line = right
     ? q.ok

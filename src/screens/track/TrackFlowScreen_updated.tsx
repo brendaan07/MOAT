@@ -32,6 +32,8 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
   const startLesson = phase?.lessons.find((l) => l.id === route.params.lessonId) ?? null;
   const lessonStep = (lesson: TrackLesson): Step => (v2Lesson(lesson.id) ? { kind: 'introV2', lesson } : { kind: 'lesson', lesson });
   const [step, setStep] = useState<Step>(startLesson ? lessonStep(startLesson) : { kind: 'checkpointIntro' });
+  /** Healthcare's phase checkpoint uses the new-style player; Biology's still uses TrackPlayer. */
+  const cpV2 = phase ? v2Lesson(phase.checkpoint.id) : null;
   const [runID, setRunID] = useState(0);
   const close = () => navigation.goBack();
   const go = (s: Step) => {
@@ -76,7 +78,7 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
           onContinue={() => {
             const lastPart = lesson.part === phase.lessons.length;
             // phases whose checkpoint is not designed yet go back to Learn instead of the checkpoint
-            if (lastPart && result.firstAttempt && phase.checkpoint.questions.length > 0 && phase.lessons.every((l) => track.isFinished(l.id))) go({ kind: 'projectBuilt' });
+            if (lastPart && result.firstAttempt && phase.checkpoint.questions.length > 0 && phase.lessons.every((l) => track.isFinished(l.id))) go(phase.code.length ? { kind: 'projectBuilt' } : { kind: 'checkpointIntro' });
             else close();
           }}
           onReplay={() => go(lessonStep(lesson))}
@@ -86,8 +88,10 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
     case 'projectBuilt':
       return <ProjectBuilt phase={phase} onCheckpoint={() => go({ kind: 'checkpointIntro' })} onBack={close} />;
     case 'checkpointIntro':
+      if (cpV2) return <LessonIntroV2 lesson={cpV2} onStart={() => go({ kind: 'checkpoint' })} onClose={close} />;
       return <CheckpointIntro phase={phase} onStart={() => go({ kind: 'checkpoint' })} onClose={close} />;
     case 'checkpoint':
+      if (cpV2) return <LessonPlayerV2 key={`cp-${runID}`} lesson={cpV2} onFinish={(r) => go({ kind: 'checkpointDone', result: r })} onQuit={close} />;
       return <TrackPlayer key={`cp-${runID}`} phase={phase} lesson={null} onFinish={(r) => go({ kind: 'checkpointDone', result: r })} onQuit={close} />;
     case 'checkpointDone':
       return <CheckpointResult phase={phase} result={step.result} onReplay={() => go({ kind: 'checkpoint' })} onDone={close} />;

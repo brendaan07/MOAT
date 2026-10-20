@@ -1,4 +1,4 @@
-import { Course, Track } from '../types/models';
+import { Course, Track, TrackQuestion } from '../types/models';
 import { CONTENT } from '../utils/content_updated';
 import { canonicalArea } from '../utils/studyAreas';
 import { addingGames } from './gameCatalog';
@@ -62,7 +62,29 @@ export function loadTrack(studyArea = 'Biology research', language = 'R'): Track
   const name = trackFileFor(studyArea, language);
   const t = name ? (CONTENT[name] as Track | undefined) : undefined;
   if (!t || !Array.isArray(t.phases)) return null;
-  return name === 'track_bio_r_updated' ? withBiologyV3(t) : t;
+  if (name === 'track_bio_r_updated') return withBiologyV3(t);
+  if (name === 'track_hx_py') return withHealthcareV3(t, 'healthcare_python_v3', 'hx_py');
+  if (name === 'track_hx_r') return withHealthcareV3(t, 'healthcare_r_v3', 'hx_r');
+  return t;
+}
+
+/** Healthcare lessons and its one checkpoint per phase live in the V3 files; the track file only lists them.
+ *  Fills in their questions (same ids the lesson player records) so stars, the phase gate and the path count them. */
+function withHealthcareV3(t: Track, file: string, prefix: string): Track {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const v3: any[] = (CONTENT[file] as any)?.phases ?? [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const questions = (it: any): TrackQuestion[] => (it?.questions ?? []).map((q: any, i: number) => ({
+    id: `${it.id}_q${i + 1}`, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint_before_check ?? '', ok: [q.explanation_after_check, q.takeaway].filter(Boolean).join(' '),
+  }));
+  return { ...t, phases: t.phases.map((p) => {
+    const items = v3.find((x) => x.phase === p.number)?.items ?? [];
+    return {
+      ...p,
+      lessons: p.lessons.map((l) => ({ ...l, questions: questions(items.find((i: { type: string; part: number }) => i.type === 'lesson' && `${prefix}_p${p.number}_l${i.part}` === l.id)) })),
+      checkpoint: { ...p.checkpoint, questions: questions(items.find((i: { type: string }) => i.type === 'checkpoint')) },
+    };
+  }) };
 }
 
 /** Biology research R now has five lessons per phase, each followed by its own checkpoint (assets/content/biology_r_v3.json).
