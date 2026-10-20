@@ -913,8 +913,9 @@ export function LessonPlayerV2({ lesson, onFinish, onQuit }: { lesson: V2Lesson;
           <View style={{ flex: 1, minHeight: 68, borderRadius: 20, borderBottomLeftRadius: 6, borderWidth: BORDER, borderColor: C.navy, backgroundColor: C.card, paddingLeft: 14, paddingRight: 52, paddingVertical: 8 }}>
             <Enter key={`h${idx}`} kind="head" delay={80} style={{ alignSelf: 'flex-start' }}>
               <View>
-                <View style={{ position: 'absolute', left: 0, right: 0, bottom: 2, height: 9, backgroundColor: q.color }} />
-                <Text style={[heading(30), { lineHeight: 32, paddingHorizontal: 2 }]} accessibilityRole="header">{q.word}</Text>
+                {/* Baloo's ascenders rise ~8px above a 32px line box, which iOS Safari clips; 40 keeps them inside. */}
+                <View style={{ position: 'absolute', left: 0, right: 0, bottom: 6, height: 9, backgroundColor: q.color }} />
+                <Text style={[heading(30), { lineHeight: 40, paddingHorizontal: 2 }]} accessibilityRole="header">{q.word}</Text>
               </View>
             </Enter>
             <Text style={[body(16, true), { color: C.muted, marginTop: 2 }]}>{q.ask}</Text>

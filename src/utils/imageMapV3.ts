@@ -165,6 +165,7 @@ export const V3_IMAGES: Record<string, any> = {
   'assets/images/healthcare/icons/glucometer.png': require('../../assets/images/healthcare/icons/glucometer.png'),
   'assets/images/healthcare/icons/hospital_bed.png': require('../../assets/images/healthcare/icons/hospital_bed.png'),
   'assets/images/healthcare/icons/insulin_pen.png': require('../../assets/images/healthcare/icons/insulin_pen.png'),
+  'assets/images/healthcare/icons/oxygen_flowmeter.png': require('../../assets/images/healthcare/icons/oxygen_flowmeter.png'),
   'assets/images/healthcare/icons/iv_stand.png': require('../../assets/images/healthcare/icons/iv_stand.png'),
   'assets/images/healthcare/icons/lab_tube.png': require('../../assets/images/healthcare/icons/lab_tube.png'),
   'assets/images/healthcare/icons/patient_monitor.png': require('../../assets/images/healthcare/icons/patient_monitor.png'),

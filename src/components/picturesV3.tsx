@@ -321,6 +321,13 @@ function caption(v: any): string | null {
   return null;
 }
 const imageOf = (path?: string) => (path ? V3_IMAGES[path] : undefined);
+/** An icon for the picture types whose JSON names none, so the card never falls back to an empty box. */
+const TYPE_ICON: Record<string, string> = {
+  balance: 'iv_stand', flowmeter: 'oxygen_flowmeter', transfusion: 'blood_bag', gcs_chart: 'clipboard',
+  ward: 'hospital_bed', wards: 'hospital_bed', lamps: 'patient_monitor', dftable: 'clipboard',
+  trial: 'lab_tube', stays_pic: 'calendar', coverage: 'vaccine_syringe', grid2: 'lab_tube', ldl: 'lab_tube',
+};
+const typeIcon = (type?: string) => (type && TYPE_ICON[type] ? `assets/images/healthcare/icons/${TYPE_ICON[type]}.png` : undefined);
 
 function Caption({ text, state }: { text: string | null; state: V3State }) {
   const fade = useRef(new Animated.Value(0)).current;
@@ -377,7 +384,7 @@ function DeviceV3({ spec, state, pick }: { spec: any; state: V3State; pick: stri
  *  The canvas pages hold the full scene animation for these types (see INTEGRATION_moat4new.md). */
 function StateCardV3({ spec, state, pick }: { spec: any; state: V3State; pick: string | null }) {
   const a = spec.assets ?? {};
-  const src = imageOf(spec.icon_asset ?? a.pig ?? a.pile ?? a.note ?? a.bag?.empty ?? a.face ?? a.device?.idle_frame);
+  const src = imageOf(spec.icon_asset ?? a.pig ?? a.pile ?? a.note ?? a.bag?.empty ?? a.face ?? a.device?.idle_frame ?? typeIcon(spec.type));
   const pop = useRef(new Animated.Value(0)).current;
   const reduce = useReduceMotion();
   useEffect(() => {
