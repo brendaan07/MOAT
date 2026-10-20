@@ -19,7 +19,7 @@ export default function TrackHomeScreen() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const route = useRoute<RouteProp<RootStackParamList, 'TrackPhase'>>();
   const chosenNumber = route.params?.phase;
-  const open = (phase: TrackPhase, lesson: TrackLesson | null) => navigation.navigate('TrackFlow', { phase: phase.number, lessonId: lesson?.id ?? null });
+  const open = (phase: TrackPhase, lesson: TrackLesson | null) => navigation.navigate('TrackFlow', { phase: phase.number, lessonId: lesson?.id });
 
   const numberBadge = (n: number, locked = false) => (
     <View style={{ width: locked ? 26 : 30, height: locked ? 26 : 30, borderRadius: 15, backgroundColor: locked ? C.locked : C.sky, borderWidth: BORDER, borderColor: locked ? C.lockedEdge : C.navy, alignItems: 'center', justifyContent: 'center' }}>
@@ -129,7 +129,9 @@ export default function TrackHomeScreen() {
   );
 
   const content = (t: Track) => {
-    const current = chosenNumber !== undefined ? t.phases.find((p) => p.number === chosenNumber) ?? null : track.cycleOneComplete ? null : track.currentPhase;
+    // A locked or unknown phase number (from a typed URL) falls back to the learner's current phase.
+    const chosen = chosenNumber !== undefined ? t.phases.find((p) => p.number === chosenNumber && track.phaseUnlocked(p)) : undefined;
+    const current = chosen ?? (track.cycleOneComplete ? null : track.currentPhase);
     const currentNumber = current?.number ?? t.phases.length + 1;
     const count = currentNumber - 1;
     return (

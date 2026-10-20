@@ -57,7 +57,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Lesson'>;
 
 export default function LessonScreen({ route, navigation }: Props) {
   const store = useAppStore();
-  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId), []); // eslint-disable-line react-hooks/exhaustive-deps
+  // A locked lesson (from a typed URL) counts as missing.
+  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId && store.isUnlocked(l)), []); // eslint-disable-line react-hooks/exhaustive-deps
   const [queue, setQueue] = useState<Question[]>(lesson?.questions ?? []);
   const [position, setPosition] = useState(0);
   const [choice, setChoice] = useState<string | null>(null);

@@ -15,7 +15,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'GameLesson'>;
 /** GameLessonView.swift, with the custom quit warning instead of the system pop-up. */
 export default function GameLessonScreen({ route, navigation }: Props) {
   const store = useAppStore();
-  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId), []); // eslint-disable-line react-hooks/exhaustive-deps
+  // A locked lesson (from a typed URL) counts as missing.
+  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId && store.isUnlocked(l)), []); // eslint-disable-line react-hooks/exhaustive-deps
   const [progress, setProgress] = useState(0);
   const [bolts, setBolts] = useState(0);
   const [finished, setFinished] = useState(false);

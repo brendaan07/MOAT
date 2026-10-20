@@ -12,6 +12,33 @@ npx expo start           # scan the QR code with Expo Go
 
 The project targets Expo SDK 57. If your Expo Go app supports a different SDK, run `npx expo install expo@<sdk> --fix` first.
 
+Other ways to start Expo:
+
+```bash
+npm start                # same as npx expo start
+npm run ios              # opens the iOS simulator
+npm run android          # opens the Android emulator
+```
+
+## Web version
+
+The same app runs in the browser through `react-native-web`, and is deployed to Vercel as a static site (`vercel.json`).
+
+**While coding**, use the dev server. It reloads on every save:
+
+```bash
+npm run web              # same as npx expo start --web, opens http://localhost:8081
+```
+
+**Before pushing anything Vercel will deploy**, build and serve the production version. This is what Vercel hosts:
+
+```bash
+npm run build:web        # expo export -p web: writes the minified app to dist/
+npx serve dist --single  # serves dist/ like Vercel does, at http://localhost:3000
+```
+
+Some problems only show up in the production build: code behind `__DEV__`, minification and missing assets. `dist/` is in `.gitignore`; Vercel runs the same build itself on every push to the branch it deploys.
+
 ## Project structure
 
 | Folder | What it holds |
