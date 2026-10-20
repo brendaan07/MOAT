@@ -17,8 +17,9 @@ const LANGUAGES = [
   { name: 'MATLAB', caption: 'Engineering · physics & maths' },
   { name: 'Java', caption: 'Engineering · enterprise software' },
 ];
-/** The Biology research track is written in R, so that area always uses R. */
-const BIO = 'Biology research';
+/** For now onboarding only offers the Healthcare track in Python or R; everything else is shown but locked. */
+const HEALTH = 'Healthcare';
+const HEALTH_LANGS = ['Python', 'R'];
 
 const StepLabel = ({ text }: { text: string }) => (
   <Text style={[body(13, true), { color: C.muted, letterSpacing: 2, textAlign: 'center' }]}>{text}</Text>
@@ -87,12 +88,11 @@ export default function OnboardingScreen() {
   const [name, setName] = useState('');
   const [age, setAge] = useState(18);
   const [education, setEducation] = useState('Secondary school');
-  const [studyArea, setStudyArea] = useState(BIO);
-  const [language, setLanguage] = useState('R');
+  const [studyArea, setStudyArea] = useState(HEALTH);
+  const [language, setLanguage] = useState('Python');
   const [step, setStep] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
   const ageLabel = age >= 70 ? '70+' : String(age);
-  const isBio = studyArea === BIO;
   /** Languages with project lessons for this field, shown first and marked on step 2. */
   const trackLangs = TRACK_LANGUAGES[studyArea] ?? [];
   const ordered = [...LANGUAGES].sort((a, b) => Number(trackLangs.includes(b.name)) - Number(trackLangs.includes(a.name)));
@@ -105,13 +105,12 @@ export default function OnboardingScreen() {
     setName(p.name);
     setAge(p.age);
     setEducation(p.education);
-    setStudyArea(STUDY_AREAS.includes(p.studyArea) ? p.studyArea : BIO);
-    setLanguage(p.studyArea === BIO ? 'R' : p.language);
+    setStudyArea(HEALTH);
+    setLanguage(HEALTH_LANGS.includes(p.language) ? p.language : 'Python');
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const goToLanguages = () => {
-    if (isBio) setLanguage('R');
-    else if (trackLangs.length && !trackLangs.includes(language)) setLanguage(trackLangs[0]);
+    if (!HEALTH_LANGS.includes(language)) setLanguage(HEALTH_LANGS[0]);
     setStep(2);
   };
 
@@ -131,26 +130,20 @@ export default function OnboardingScreen() {
             <View key={l.name} style={{ flexDirection: 'row' }}>
               <Choice
                 label={l.name}
-                caption={trackLangs.includes(l.name) ? `${studyArea} · project lessons` : isBio || !trackLangs.length ? l.caption : `${l.caption} · general lessons`}
+                caption={trackLangs.includes(l.name) ? `${studyArea} · project lessons` : `${l.caption} · coming soon`}
                 selected={language === l.name}
-                disabled={isBio && l.name !== 'R'}
+                disabled={!HEALTH_LANGS.includes(l.name)}
                 onPress={() => setLanguage(l.name)}
                 minHeight={74}
               />
             </View>
           ))}
           <Text style={[body(13, true), { color: C.muted, textAlign: 'center', marginTop: 4 }]}>
-            {isBio
-              ? 'Biology research lessons are written in R. More languages are coming later.'
-              : trackLangs.includes(language)
-                ? `You'll build ${studyArea.toLowerCase()} projects in ${language}, one step at a time.`
-                : trackLangs.length
-                  ? `${language} uses the general lessons. Project lessons for ${studyArea} are in ${trackLangs.join(' and ')}.`
-                  : language !== 'Python' ? `${language} starts with Phase 1. More phases are coming soon.` : ''}
+            {`You'll build ${studyArea.toLowerCase()} projects in ${language}, one step at a time. More languages are coming soon.`}
           </Text>
         </ScrollView>
         <View style={{ paddingHorizontal: 16, paddingBottom: 12 }}>
-          <ChunkyButton title="Let's go" onPress={() => store.finishOnboarding(name, age, education, studyArea, isBio ? 'R' : language)} />
+          <ChunkyButton title="Let's go" onPress={() => store.finishOnboarding(name, age, education, HEALTH, language)} />
         </View>
       </SafeAreaView>
     );
@@ -220,12 +213,12 @@ export default function OnboardingScreen() {
             {rows.map((r) => (
               <View key={r[0]} style={{ flexDirection: 'row', gap: 10 }}>
                 {r.map((a) => (
-                  <Choice key={a} label={a} selected={studyArea === a} onPress={() => setStudyArea(a)} />
+                  <Choice key={a} label={a} selected={studyArea === a} disabled={a !== HEALTH} onPress={() => setStudyArea(a)} />
                 ))}
                 {r.length === 1 && <View style={{ flex: 1 }} />}
               </View>
             ))}
-            <Text style={[body(13), { color: C.muted, textAlign: 'center' }]}>Not sure or not specific? Pick General.</Text>
+            <Text style={[body(13), { color: C.muted, textAlign: 'center' }]}>More areas of study are coming soon.</Text>
           </View>
         </ScrollView>
         <View style={{ paddingHorizontal: 16, paddingBottom: 12 }}>
