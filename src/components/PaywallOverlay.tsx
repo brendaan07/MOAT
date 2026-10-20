@@ -1,4 +1,3 @@
-// The Premium / Expert paywall sheet: tier cards, the RevenueCat offering, purchase and restore.
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { ActivityIndicator, Animated, Dimensions, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import { BlurView } from 'expo-blur';
@@ -6,9 +5,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAppStore, PaywallTier } from '../hooks/useAppStore';
 import { BORDER, C, body, heading, wordmark } from '../utils/theme';
 import { BundleImage, ChunkyButton } from './ui';
-import { CheckIcon } from './icons';
+import { CheckIcon } from './trackKit';
 
-/** The look, price and feature list of each paywall tier. */
+/** PaywallTier.swift */
 const TIER = {
   premium: { title: 'Premium', price: '$9.90', robot: 'orb', bg: C.sky, accent: C.navy, text: C.navy, features: ['Restricted to 9 levels per day', 'Feedback on answers available', 'Pre-set explanations on answers'] },
   expert: { title: 'Expert', price: '$19.90', robot: 'cat', bg: C.logo, accent: C.lime, text: C.cream, features: ['Unlimited access to levels and phases', 'Unlimited Streak restores', 'Detailed answer analysis and AI chatbot'] },
@@ -99,7 +98,7 @@ export function PaywallOverlay() {
   return (
     <View style={[StyleSheet.absoluteFill, { zIndex: 50, alignItems: 'center', justifyContent: 'center' }]} accessibilityViewIsModal>
       <BlurView intensity={20} tint="light" style={StyleSheet.absoluteFill} />
-      <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: C.lockedOverlay }]} onPress={close} accessibilityLabel="Close" />
+      <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(27,36,114,0.55)' }]} onPress={close} accessibilityLabel="Close" />
       <Confetti />
       <Animated.View style={{ width: 320, opacity, transform: [{ scale }] }}>
         <View style={{ position: 'absolute', left: 0, right: 0, top: 7, bottom: -7, borderRadius: 32, backgroundColor: C.navy }} />

@@ -8,62 +8,23 @@ This is a migration of the MOAT SwiftUI app to React Native with Expo and TypeSc
 npm install
 npx expo install --fix   # pins every package to the Expo SDK your Expo Go supports
 npx expo start           # scan the QR code with Expo Go
-npm run typecheck        # must report 0 errors
 ```
 
-The project targets Expo SDK 57. If your Expo Go app supports a different SDK, run `npx expo install expo@<sdk> --fix` first. If the phone cannot reach your computer over Wi-Fi or a hotspot, `npx expo start --tunnel` works through `@expo/ngrok`.
-
-More notes are in `docs/`: the codebase handover PDF and the Playwright testing notes.
-
-## Web version
-
-The same app runs in the browser through `react-native-web`, and is deployed to Vercel as a static site.
-
-**While coding**, use the dev server. It builds in memory in development mode (readable code, `__DEV__` true, React warnings) and reloads on every save:
-
-```bash
-npm run web              # same as npx expo start --web
-```
-
-**Before pushing anything that Vercel will deploy**, build and serve the production version. This is what Vercel hosts, so it catches problems the dev server hides:
-
-```bash
-npm run build:web        # expo export -p web: writes the minified app to dist/
-npx serve dist --single  # serves dist/ like Vercel does; --single sends every URL to index.html
-```
-
-Open `http://localhost:3000` and check:
-
-- The app gets past the splash screen and the browser console has no red errors.
-- Opening a lesson changes the URL, refreshing keeps you on it, and the browser back button goes back a screen.
-- Images and fonts load.
-
-Problems that only show up in the production build: code behind `__DEV__` (the RevenueCat wrapper only logs in development, so failures there are silent), minification, missing assets, and refreshing on a deep link. `dist/` is in `.gitignore`; Vercel runs the same build itself on every push.
+The project targets Expo SDK 57. If your Expo Go app supports a different SDK, run `npx expo install expo@<sdk> --fix` first.
 
 ## Project structure
 
 | Folder | What it holds |
 |---|---|
-| `src/screens` | Every screen. `lesson/` is the general-path lesson player (one component per question kind), `games/` the loop and stage mini-games, `track/` the project tracks (path, phase page, players, results; `track/v2/` is the new-style lesson player, `track/questions/` and `track/results/` hold the per-kind pieces). |
-| `src/components` | Shared UI. `ui.tsx` (cards, buttons, images), `icons.tsx`, `CloseButton.tsx`, `QuitSheet.tsx`, `StatChipsRow.tsx`, `gameKit.tsx` (code playback), `PaywallOverlay.tsx`. Folders: `path/` (the climbing path), `lesson/` (top bar and finish screen), `track/` (bolt counter, project card, robot, feedback sheet, stars), `lessonV2/` (new-style lesson pieces and `pictures/`). |
+| `src/screens` | Every screen. `games/` holds the loop and stage mini-games; `track/` holds the Biology research track. |
+| `src/components` | Shared UI: `ui.tsx` (cards, buttons, images), `trackKit.tsx` (track visuals and animations), `gameKit.tsx` (code playback), `PaywallOverlay.tsx`. |
 | `src/navigation` | The root stack (modals for lessons, games, the track flow and evolution) and the bottom tabs. |
-| `src/hooks` | App state as React context (`useAppStore`, `useTrackStore`), `useFinishRun` (what finishing a track lesson does), plus small animation hooks. |
+| `src/hooks` | App state as React context (`useAppStore`, `useTrackStore`), plus `useReduceMotion`. |
 | `src/services` | The API client, the lesson loader, the game catalog and RevenueCat. |
-| `src/storage` | AsyncStorage persistence (`jsonStorage.ts` is the shared load/save helper). |
+| `src/storage` | AsyncStorage persistence. |
 | `src/types` | The data models. |
-| `src/utils` | Theme, `rewards.ts` (every bolt number), `progressRules.ts` (how finishing a lesson changes progress), day keys, code joining and colouring, study areas, and the generated image and content registries. |
-| `assets` | Robot pictures, backgrounds, the Horizon font and every lesson file. |
-
-`src/utils/images.ts` and `src/utils/content.ts` are generated lists of `require()` calls, because React Native needs a static `require` for every bundled file. When you add a picture to `assets/images` or a lesson file to `assets/content`, add its line there too.
-
-## Lesson content
-
-| File | Used for |
-|---|---|
-| `lessons_<field>.json` | General-path lessons for a field (Healthcare, Biology research and Health sciences share `lessons_life_sciences.json`). |
-| `lessons_r`, `_sql`, `_javascript`, `_matlab`, `_java` | General-path lessons for a language other than Python. |
-| `track_*.json` | Project tracks (Biology research in R, Engineering in Python, Healthcare in Python and R). |
-| `track_bio_r_lessons_v2.json`, `track_lessons_v2_more.json` | New-style lessons that replace a track lesson with the same id. |
+| `src/utils` | Theme, day keys, code joining, study areas, and the generated image and content registries. |
+| `assets` | Robot pictures, backgrounds, the Horizon font and every lesson file, copied from the Swift project. |
 
 ## Swift to React Native mapping
 
@@ -79,6 +40,7 @@ Problems that only show up in the production build: code behind `__DEV__` (the R
 | `UINotificationFeedbackGenerator`, `sensoryFeedback` | `expo-haptics` | Yes |
 | Horizon, Baloo 2 and Atkinson Hyperlegible fonts | `expo-font` (Baloo 2 and Atkinson are under the SIL Open Font License, included in `assets/fonts`) | Yes |
 | Paywall blur | `expo-blur` | Yes |
+| `Slider` | `@react-native-community/slider` | Yes |
 | SF Symbols | `@expo/vector-icons` (Ionicons) | Yes |
 | RevenueCat iOS SDK | `react-native-purchases` | Partly, see below |
 
@@ -95,38 +57,36 @@ npx expo install expo-dev-client
 eas build --profile development
 ```
 
-Stay on Expo Go for day-to-day work, and make a development build before testing payments or releasing.
+I recommend staying on Expo Go for day-to-day work, and making a development build before testing payments or releasing.
 
-## Where each feature lives
+## Feature parity checklist
 
-| Feature | Where |
-|---|---|
-| Splash: 1.5s, then onboarding or tabs | `navigation/RootNavigator.tsx` |
-| Onboarding: age slider and under-13 note, education menu, 7 areas, language step | `screens/OnboardingScreen.tsx` |
-| Learn path: zig-zag, phase banners, Premium lock, scroll to current, robot by current lesson | `screens/LearnScreen.tsx`, `components/path/` |
-| Tappable streak, bolts and minutes bubbles | `components/StatChipsRow.tsx` |
-| Lessons: choice, build, judge, bug, match | `screens/lesson/LessonScreen.tsx`, `screens/lesson/questions/` |
-| One retry per wrong question; 5 bolts per correct answer, +10 for finishing | `screens/lesson/LessonScreen.tsx`, numbers in `utils/rewards.ts` |
-| Hints always shown under 13; haptics on check | `screens/lesson/LessonScreen.tsx` |
-| Explain more (hidden by `useAIExplanations = false`) | `screens/lesson/LessonFeedback.tsx`, `services/apiClient.ts` |
-| Custom quit warning instead of the system pop-up | `components/QuitSheet.tsx` |
-| Loop games (plant, wheel, fund) with step-by-step code playback | `screens/games/LoopGame.tsx` |
-| Stage labs (GC content, duty cycle, conversion), 5 parts each | `screens/games/StageGame.tsx` |
-| Robot evolution when a phase unlocks a form | `screens/EvolutionScreen.tsx`, `utils/progressRules.ts` |
-| Workshop: forms, parts, rotated antennas | `screens/WorkshopScreen.tsx` |
-| Profile: streak, stats, 9 badges, settings, reset, subscriptions | `screens/ProfileScreen.tsx` |
-| Paywall: Premium and Expert, confetti, purchase | `components/PaywallOverlay.tsx` |
-| Project tracks: path, phase page, stars, replay | `screens/track/TrackPathScreen.tsx`, `TrackPhaseScreen.tsx` |
-| Track lessons and checkpoints (plan, code, predict, debug, build) | `screens/track/TrackPlayer.tsx`, `screens/track/questions/` |
-| New-style lessons: goal screen, five questions with pictures, recap | `screens/track/v2/`, `components/lessonV2/` |
-| Bolt counter: count-up, glow, sparks, bounce | `components/track/BoltPill.tsx` |
-| Lesson complete, project built, checkpoint results | `screens/track/results/` |
-| Star rules, +30 perfect bonus, replay payouts, minutes per day | `hooks/useTrackStore.tsx`, `utils/rewards.ts` |
+| Feature | Swift source | React Native |
+|---|---|---|
+| Splash: 1.5s, then onboarding or tabs | `MOATApp.swift` | `RootNavigator.tsx` |
+| Onboarding: age slider and under-13 note, education menu, 7 areas, language step | `OnboardingView`, `LanguageStepView` | `OnboardingScreen.tsx` |
+| Learn path: zig-zag, phase banners, Premium lock, scroll to current, robot by current lesson | `LearnView` | `LearnScreen.tsx` |
+| Tappable streak, bolts and minutes bubbles | `StatChipsRow` | `trackKit.tsx` |
+| Lessons: choice, build, judge, bug, match | `LessonView` | `LessonScreen.tsx` |
+| One retry per wrong question; 5 bolts per correct answer, +10 for finishing | `LessonView` | `LessonScreen.tsx` |
+| Hints always shown under 13; haptics on check | `LessonView` | `LessonScreen.tsx` |
+| Explain more (hidden by `useAIExplanations = false`) | `LessonView` | `LessonScreen.tsx` |
+| Custom quit warning instead of the system pop-up | `QuitSheet` | `trackKit.tsx` |
+| Loop games (plant, wheel, fund) with step-by-step code playback | `LoopGames.swift` | `games/LoopGame.tsx` |
+| Stage labs (GC content, duty cycle, conversion), 5 parts each | `StageGames.swift` | `games/StageGame.tsx` |
+| Robot evolution when a phase unlocks a form | `EvolutionView` | `EvolutionScreen.tsx` |
+| Workshop: forms, parts, rotated antennas | `WorkshopView` | `WorkshopScreen.tsx` |
+| Profile v2: streak, stats, 9 badges, settings, reset, subscriptions | `ProfileView` | `ProfileScreen.tsx` |
+| Paywall: Premium and Expert, confetti, purchase | `PaywallTier.swift` | `PaywallOverlay.tsx` |
+| Biology research track: Option A home, phase pictures, stars, Replay | `TrackScreens` | `track/TrackHomeScreen.tsx` |
+| Track lessons and checkpoints (plan, code, predict, debug, build) | `TrackPlayer` | `track/TrackPlayer.tsx` |
+| Bolt counter: count-up, glow, sparks, bounce | `TrackKit` | `trackKit.tsx` (`BoltPill`) |
+| Lesson complete, project built, checkpoint results | `TrackScreens` | `track/TrackResults.tsx` |
+| Star rules, +30 perfect bonus, replay payouts, minutes per day | `TrackData` | `useTrackStore.tsx` |
 
 ## Fixed during migration
 
 - **Mini-games for Healthcare and Business learners.** The Swift game catalog still checked the old area names ("Health sciences", "Business") after they were renamed, so these learners got no mini-games. `services/gameCatalog.ts` uses the current names.
-- **Bolts from new-style lessons.** The new-style player recorded stars but never paid the bolts into the account or updated the streak. Both track players now finish through `hooks/useFinishRun.ts`.
 
 ## Known differences from the iOS app
 
@@ -135,8 +95,27 @@ Stay on Expo Go for day-to-day work, and make a development build before testing
 - **Reset confirmation.** A native `Alert` replaces the `confirmationDialog`.
 - **Mini-game art.** The plant, wheel and fund drawings were rebuilt from the Swift drawing code. Some sizes in the Swift version came from layout modifiers, so they may differ by a few points.
 
-## Troubleshooting
+## Not verified
 
-- **"Lessons didn't load".** The learner's lesson file is empty or has no `phases` list. Check the file in `assets/content` and its line in `src/utils/content.ts`.
-- **A picture is blank.** Its line is missing from `src/utils/images.ts`, or the name passed to `BundleImage` does not match the file name without `.png`.
-- **Type errors.** Run `npm run typecheck`. It should report 0 errors.
+This code was written without network access. `npm install`, the TypeScript compiler, Metro and Expo Go could not run. Every file was checked with a TypeScript and JSX parser, and every import, export, package, route and image name was cross-checked. Expect to fix a small number of type errors on the first `npx tsc --noEmit`.
+
+## October 2026 update: Biology research R rebuilt
+
+- `assets/content/biology_r_v3.json`: every Biology research R page (5 phases × 5 lessons, each followed by its checkpoint).
+- Biology lessons run on the same player as Engineering and Healthcare (`src/components/lessonKitV2_updated.tsx`), so they
+  have the robot, the result sheet with +10 XP, worked answer, notebook entry and next step, and every entrance animation.
+  - Content is converted on load (`fromV3`); checkpoints get ids `bio_p{phase}_c{part}` and run after their lesson's recap.
+  - Fix questions: red "Bug in" paper; tap a line (given lines are green and locked), the rest fold away and that line's
+    own replacements appear; lines with nothing to change say "Line N looks right. Tap another line."
+  - Checkpoints: navy page, options in their own colours, no hint, notes or chips; recap page turns green with confetti.
+- `src/components/picturesV3.tsx`: the Biology pictures (character tiles, bars against a line, dot plot with sliding mean
+  and median, self-drawing curve, paired DNA strands, thermometer). They idle while you think, act out the option you
+  picked after Check, and shake on a wrong answer. Reduce Motion holds them still.
+- Checks run: `npx tsc --noEmit` (0 errors in `src/`), `npx expo export --platform ios` (bundles cleanly), and a data check
+  of all 46 rebuilt items (180 questions, 398 wrong-option picture states).
+- Lessons 3.1 to 3.4 keep their earlier versions until they are rebuilt.
+- The blue gear floating at the top right in Expo Go is Expo Go's developer tools button, not part of MOAT; hide it in
+  Expo Go's settings.
+
+The three files at the project root (`LearnScreen.tsx`, `TrackPathScreen.tsx`, `ui.tsx`) are older stray copies; the app
+uses the versions in `src/`.

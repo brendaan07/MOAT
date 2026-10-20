@@ -1,20 +1,29 @@
-// Saved project-track progress (finished items, best stars, paid questions, time per day), kept apart from the main progress.
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { defaultTrackProgress, TrackProgress } from '../types/models';
-import { jsonStorage } from './jsonStorage';
 
 const KEY = 'moat.track.v1';
 
-/** Reads each field on its own so a missing one falls back to empty instead of dropping the rest. */
-function decode(raw: unknown): TrackProgress {
-  if (!raw || typeof raw !== 'object') return defaultTrackProgress();
-  const r = raw as Record<string, any>;
-  return {
-    finished: Array.isArray(r.finished) ? r.finished : [],
-    bestStars: r.bestStars && typeof r.bestStars === 'object' ? r.bestStars : {},
-    paid: Array.isArray(r.paid) ? r.paid : [],
-    secondsByDay: r.secondsByDay && typeof r.secondsByDay === 'object' ? r.secondsByDay : {},
-  };
-}
-
-/** Loads and saves the project-track progress. */
-export const TrackStorage = jsonStorage(KEY, decode, defaultTrackProgress);
+export const TrackStorage = {
+  async load(): Promise<TrackProgress> {
+    try {
+      const json = await AsyncStorage.getItem(KEY);
+      if (!json) return defaultTrackProgress();
+      const r = JSON.parse(json);
+      return {
+        finished: Array.isArray(r.finished) ? r.finished : [],
+        bestStars: r.bestStars && typeof r.bestStars === 'object' ? r.bestStars : {},
+        paid: Array.isArray(r.paid) ? r.paid : [],
+        secondsByDay: r.secondsByDay && typeof r.secondsByDay === 'object' ? r.secondsByDay : {},
+      };
+    } catch {
+      return defaultTrackProgress();
+    }
+  },
+  async save(p: TrackProgress) {
+    try {
+      await AsyncStorage.setItem(KEY, JSON.stringify(p));
+    } catch {
+      // best effort
+    }
+  },
+};

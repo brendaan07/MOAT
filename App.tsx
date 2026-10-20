@@ -1,17 +1,16 @@
-// App root: loads the fonts, then wraps the navigator in the safe-area, progress and track providers.
 import React from 'react';
 import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppStoreProvider } from './src/hooks/useAppStore';
-import { TrackStoreProvider } from './src/hooks/useTrackStore';
+import { TrackStoreProvider } from './src/hooks/useTrackStore_updated';
 import RootNavigator from './src/navigation/RootNavigator';
 import { C } from './src/utils/theme';
 
 export default function App() {
-  // Horizon is the MOAT wordmark font. Baloo 2 and Atkinson Hyperlegible are the canvas fonts (both SIL Open Font License, see assets/fonts).
-  // Nothing renders until they are loaded, so text never flashes in a fallback font.
+  // The MOAT wordmark font (FontLoader.registerFonts in the Swift app).
+  // Baloo 2 and Atkinson Hyperlegible are the canvas fonts (both SIL Open Font License, see assets/fonts).
   const [fontsLoaded] = useFonts({
     'Horizon-Bold': require('./assets/fonts/Horizon.otf'),
     'Baloo2-ExtraBold': require('./assets/fonts/Baloo2-ExtraBold.ttf'),

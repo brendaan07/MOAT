@@ -1,4 +1,3 @@
-// The Workshop tab: the robot forms the learner has unlocked, with a button to equip one.
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';

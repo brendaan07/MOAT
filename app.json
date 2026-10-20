@@ -9,11 +9,6 @@
       "supportsTablet": false
     },
     "android": {},
-    "web": {
-      "bundler": "metro",
-      "output": "single",
-      "favicon": "./assets/images/robot_logo_filled.png"
-    },
     "plugins": [
       "expo-font"
     ]

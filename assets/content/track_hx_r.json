@@ -1,0 +1,364 @@
+{
+ "id": "hx_r",
+ "title": "Healthcare",
+ "language": "R",
+ "phases": [
+  {
+   "number": 1,
+   "area": "Healthcare",
+   "project": "Values and vectors",
+   "picture": "",
+   "skill": "Values and vectors",
+   "parts": [
+    [
+     "HbA1c trial",
+     "Values and vectors"
+    ],
+    [
+     "Length of stay",
+     "Values and vectors"
+    ],
+    [
+     "Vaccination coverage",
+     "Values and vectors"
+    ],
+    [
+     "Screening test",
+     "Values and vectors"
+    ],
+    [
+     "LDL on a statin",
+     "Values and vectors"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_r_p1_l1",
+     "part": 1,
+     "title": "HbA1c trial",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p1_l2",
+     "part": 2,
+     "title": "Length of stay",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p1_l3",
+     "part": 3,
+     "title": "Vaccination coverage",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p1_l4",
+     "part": 4,
+     "title": "Screening test",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p1_l5",
+     "part": 5,
+     "title": "LDL on a statin",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_r_cp1",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 2,
+   "area": "Healthcare",
+   "project": "Summaries and selection",
+   "picture": "",
+   "skill": "Summaries and selection",
+   "parts": [
+    [
+     "LDL spread",
+     "Summaries and selection"
+    ],
+    [
+     "Readmission audit",
+     "Summaries and selection"
+    ],
+    [
+     "Typical stay",
+     "Summaries and selection"
+    ],
+    [
+     "Line infection rates",
+     "Summaries and selection"
+    ],
+    [
+     "Survival after surgery",
+     "Summaries and selection"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_r_p2_l1",
+     "part": 1,
+     "title": "LDL spread",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p2_l2",
+     "part": 2,
+     "title": "Readmission audit",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p2_l3",
+     "part": 3,
+     "title": "Typical stay",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p2_l4",
+     "part": 4,
+     "title": "Line infection rates",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p2_l5",
+     "part": 5,
+     "title": "Survival after surgery",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_r_cp2",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 3,
+   "area": "Healthcare",
+   "project": "Data frames of patients",
+   "picture": "",
+   "skill": "Data frames of patients",
+   "parts": [
+    [
+     "Admissions table",
+     "Data frames of patients"
+    ],
+    [
+     "Falls risk list",
+     "Data frames of patients"
+    ],
+    [
+     "New columns",
+     "Data frames of patients"
+    ],
+    [
+     "Waiting list",
+     "Data frames of patients"
+    ],
+    [
+     "Trial as a table",
+     "Data frames of patients"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_r_p3_l1",
+     "part": 1,
+     "title": "Admissions table",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p3_l2",
+     "part": 2,
+     "title": "Falls risk list",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p3_l3",
+     "part": 3,
+     "title": "New columns",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p3_l4",
+     "part": 4,
+     "title": "Waiting list",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p3_l5",
+     "part": 5,
+     "title": "Trial as a table",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_r_cp3",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 4,
+   "area": "Healthcare",
+   "project": "Grouping, tables and dates",
+   "picture": "",
+   "skill": "Grouping, tables and dates",
+   "parts": [
+    [
+     "Infections by ward",
+     "Grouping, tables and dates"
+    ],
+    [
+     "Vaccination by age",
+     "Grouping, tables and dates"
+    ],
+    [
+     "Readmissions by ward",
+     "Grouping, tables and dates"
+    ],
+    [
+     "Screening 2×2",
+     "Grouping, tables and dates"
+    ],
+    [
+     "Monthly cases",
+     "Grouping, tables and dates"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_r_p4_l1",
+     "part": 1,
+     "title": "Infections by ward",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p4_l2",
+     "part": 2,
+     "title": "Vaccination by age",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p4_l3",
+     "part": 3,
+     "title": "Readmissions by ward",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p4_l4",
+     "part": 4,
+     "title": "Screening 2×2",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p4_l5",
+     "part": 5,
+     "title": "Monthly cases",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_r_cp4",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 5,
+   "area": "Healthcare",
+   "project": "Clinic data",
+   "picture": "",
+   "skill": "Clinic data",
+   "parts": [
+    [
+     "Blood pressure log",
+     "Clinic data"
+    ],
+    [
+     "Mean arterial pressure",
+     "Clinic data"
+    ],
+    [
+     "Patient ID labels",
+     "Clinic data"
+    ],
+    [
+     "Glucose log",
+     "Clinic data"
+    ],
+    [
+     "Outbreak curve",
+     "Clinic data"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_r_p5_l1",
+     "part": 1,
+     "title": "Blood pressure log",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p5_l2",
+     "part": 2,
+     "title": "Mean arterial pressure",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p5_l3",
+     "part": 3,
+     "title": "Patient ID labels",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p5_l4",
+     "part": 4,
+     "title": "Glucose log",
+     "questions": []
+    },
+    {
+     "id": "hx_r_p5_l5",
+     "part": 5,
+     "title": "Outbreak curve",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_r_cp5",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "Healthcare",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

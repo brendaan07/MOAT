@@ -1,11 +1,10 @@
-// The shared building blocks: Card, ChunkyButton, bundled pictures, the dotted backgrounds and the code-chip components.
 import React, { useState } from 'react';
-import { Image, ImageResizeMode, ImageStyle, Pressable, ScrollView, StyleProp, StyleSheet, Text, View, ViewStyle, useWindowDimensions } from 'react-native';
+import { Image, ImageResizeMode, ImageStyle, Pressable, ScrollView, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle, useWindowDimensions } from 'react-native';
 import Svg, { Circle, Defs, Pattern, Rect } from 'react-native-svg';
 import { BORDER, C, code, heading } from '../utils/theme';
 import { IMAGES } from '../utils/images';
 
-/** Card look: fill, navy outline, optional hard shadow 3pt below. */
+/** Card look: fill, navy outline, optional hard shadow 3pt below (CardStyle in Theme.swift). */
 export function Card({
   fill = C.card,
   radius = 16,
@@ -91,12 +90,11 @@ export function ChunkyButton({
   );
 }
 
-/** Finds a bundled picture by file name without extension. */
-function imageSource(name: string): number | undefined {
-  return IMAGES[name];
+/** Finds a bundled picture: the new "_updated" version first, then the original name (BundleImage). */
+export function imageSource(name: string): number | undefined {
+  return IMAGES[name + '_updated'] ?? IMAGES[name];
 }
 
-/** Draws a bundled picture by name; renders an empty box if the name is unknown. */
 export function BundleImage({ name, style, resizeMode = 'contain' }: { name: string; style?: StyleProp<ImageStyle>; resizeMode?: ImageResizeMode }) {
   const src = imageSource(name);
   if (!src) return <View style={style as StyleProp<ViewStyle>} />;
@@ -132,7 +130,7 @@ export function DottedBackground({ navy = false }: { navy?: boolean }) {
 
 export type ChipLook = 'normal' | 'selected' | 'correct' | 'wrong' | 'used';
 
-/** Answer chip. */
+/** Answer chip (TokenChip in Theme.swift). */
 export function TokenChip({ text, look = 'normal' }: { text: string; look?: ChipLook }) {
   const fill = { normal: C.card, used: C.card, selected: C.hintBlue, correct: C.lime, wrong: C.wrongChip }[look];
   return (
@@ -142,7 +140,7 @@ export function TokenChip({ text, look = 'normal' }: { text: string; look?: Chip
   );
 }
 
-/** Code box with horizontal scrolling. */
+/** Code box with horizontal scrolling (CodeBlock in Theme.swift). */
 export function CodeBlock({ codeText }: { codeText: string }) {
   return (
     <Card radius={16} contentStyle={{ padding: 0 }}>
@@ -155,8 +153,9 @@ export function CodeBlock({ codeText }: { codeText: string }) {
   );
 }
 
-/** Lays children out in rows, wrapping and centred. */
+/** Lays children out in rows, wrapping and centred (FlowLayout in Theme.swift). */
 export function FlowWrap({ spacing = 12, center = true, style, children }: { spacing?: number; center?: boolean; style?: StyleProp<ViewStyle>; children: React.ReactNode }) {
   return <View style={[{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: center ? 'center' : 'flex-start', gap: spacing }, style]}>{children}</View>;
 }
 
+export const textStyles = StyleSheet.create({ center: { textAlign: 'center' } as TextStyle });

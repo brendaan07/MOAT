@@ -1,13 +1,11 @@
-// The main store: saved progress, the course, the paywall and purchases. Every progress change is saved straight away.
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import type { CustomerInfo, PurchasesOffering, PurchasesPackage } from 'react-native-purchases';
+import type { PurchasesOffering, PurchasesPackage } from 'react-native-purchases';
 import { Course, Lesson, Phase, RobotForm, UserProgress, defaultProgress } from '../types/models';
 import { ProgressStorage } from '../storage/progressStorage';
-import { loadBundled } from '../services/contentLoader';
+import { loadBundled } from '../services/contentLoader_updated';
 import { APIClient, AppConfig } from '../services/apiClient';
 import { PurchasesService } from '../services/purchases';
 import { DayKey } from '../utils/dayKey';
-import { withLessonCompleted, withTrackBolts } from '../utils/progressRules';
 
 export type PaywallTier = 'premium' | 'expert';
 
@@ -23,13 +21,14 @@ interface AppStoreValue {
   orderedLessons: Lesson[];
   currentLesson: Lesson | null;
   displayStreak: number;
+  lessonsToday: number;
   isCompleted: (lesson: Lesson) => boolean;
   isUnlocked: (lesson: Lesson) => boolean;
   isPhaseStarted: (phase: Phase) => boolean;
   completedCount: (phase: Phase) => number;
   finishOnboarding: (name: string, age: number, education: string, studyArea: string, language: string) => void;
   setName: (name: string) => void;
-  finishLesson: (lesson: Lesson, boltsEarned: number) => void;
+  completeLesson: (lesson: Lesson, boltsEarned: number) => RobotForm | null;
   creditTrack: (bolts: number) => void;
   equip: (form: RobotForm) => void;
   editAnswers: () => void;
@@ -40,11 +39,11 @@ interface AppStoreValue {
   purchase: (pkg: PurchasesPackage) => Promise<boolean>;
   restorePurchases: () => Promise<boolean>;
   clearPendingEvolution: () => void;
+  setPendingEvolution: (form: RobotForm | null) => void;
 }
 
-const AppStoreContext = createContext<AppStoreValue | null>(null);
+const Ctx = createContext<AppStoreValue | null>(null);
 
-/** Wrap the app in this once; read it anywhere with useAppStore(). */
 export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgressState] = useState<UserProgress>(defaultProgress());
@@ -115,6 +114,7 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   /** The streak only counts if the learner practised today or yesterday. */
   const displayStreak =
     progress.lastActiveDay === DayKey.today() || progress.lastActiveDay === DayKey.yesterday() ? progress.streak : 0;
+  const lessonsToday = progress.todayKey === DayKey.today() ? progress.todayLessons : 0;
 
   const finishOnboarding = useCallback(
     (name: string, age: number, education: string, studyArea: string, language: string) => {
@@ -134,27 +134,55 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     [setProgress],
   );
 
+  const bumpDay = (u: UserProgress) => {
+    const today = DayKey.today();
+    if (u.lastActiveDay !== today) {
+      u.streak = u.lastActiveDay === DayKey.yesterday() ? u.streak + 1 : 1;
+      u.lastActiveDay = today;
+    }
+    if (u.todayKey !== today) {
+      u.todayKey = today;
+      u.todayLessons = 0;
+    }
+    u.todayLessons += 1;
+  };
+
   /** Records a finished lesson. Returns a new robot form if the learner just evolved. */
   const completeLesson = useCallback(
     (lesson: Lesson, boltsEarned: number): RobotForm | null => {
-      const { next, newForm } = withLessonCompleted(progressRef.current, lesson, boltsEarned, course.phases);
-      setProgress(next);
+      const u: UserProgress = { ...progressRef.current, completedLessons: [...progressRef.current.completedLessons], unlockedForms: [...progressRef.current.unlockedForms] };
+      bumpDay(u);
+      u.bolts += boltsEarned;
+      let newForm: RobotForm | null = null;
+      if (!u.completedLessons.includes(lesson.id)) {
+        u.completedLessons.push(lesson.id);
+        for (const phase of course.phases) {
+          if (!phase.lessons.some((l) => l.id === lesson.id)) continue;
+          const phaseDone = phase.lessons.every((l) => u.completedLessons.includes(l.id));
+          const form = phase.unlocksForm;
+          if (phaseDone && form && !u.unlockedForms.includes(form)) {
+            u.unlockedForms.push(form);
+            u.currentForm = form;
+            newForm = form;
+          }
+        }
+      }
+      setProgress(u);
       return newForm;
     },
     [course, setProgress],
   );
 
-  /** Finishes a general-path lesson or game: saves it, and queues the evolution screen for the Learn tab if the robot just evolved. */
-  const finishLesson = useCallback(
-    (lesson: Lesson, boltsEarned: number) => {
-      const form = completeLesson(lesson, boltsEarned);
-      if (form) setPendingEvolution(form);
-    },
-    [completeLesson],
-  );
-
   /** Bolts from a track lesson go to the account only when it is finished; streak and daily count update. */
-  const creditTrack = useCallback((bolts: number) => setProgress(withTrackBolts(progressRef.current, bolts)), [setProgress]);
+  const creditTrack = useCallback(
+    (bolts: number) => {
+      const u = { ...progressRef.current };
+      bumpDay(u);
+      u.bolts += bolts;
+      setProgress(u);
+    },
+    [setProgress],
+  );
 
   const equip = useCallback(
     (form: RobotForm) => {
@@ -172,14 +200,18 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   }, [setProgress]);
 
   const loadOffering = useCallback(async () => setOffering(await PurchasesService.currentOffering()), []);
-  /** Stores the entitlement from a purchase or restore. A failed call (no info) leaves the current status alone. */
-  const applyCustomerInfo = useCallback((info: CustomerInfo | null) => {
+  const purchase = useCallback(async (pkg: PurchasesPackage) => {
+    const info = await PurchasesService.purchase(pkg);
     const premium = PurchasesService.isPremium(info);
     if (info) setIsPremium(premium);
     return premium;
   }, []);
-  const purchase = useCallback(async (pkg: PurchasesPackage) => applyCustomerInfo(await PurchasesService.purchase(pkg)), [applyCustomerInfo]);
-  const restorePurchases = useCallback(async () => applyCustomerInfo(await PurchasesService.restore()), [applyCustomerInfo]);
+  const restorePurchases = useCallback(async () => {
+    const info = await PurchasesService.restore();
+    const premium = PurchasesService.isPremium(info);
+    if (info) setIsPremium(premium);
+    return premium;
+  }, []);
 
   const value: AppStoreValue = {
     hydrated,
@@ -193,13 +225,14 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     orderedLessons,
     currentLesson,
     displayStreak,
+    lessonsToday,
     isCompleted,
     isUnlocked,
     isPhaseStarted,
     completedCount,
     finishOnboarding,
     setName,
-    finishLesson,
+    completeLesson,
     creditTrack,
     equip,
     editAnswers,
@@ -213,12 +246,14 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     purchase,
     restorePurchases,
     clearPendingEvolution: () => setPendingEvolution(null),
+    // A finished lesson asks the Learn screen to celebrate an evolution once its modal has closed.
+    setPendingEvolution,
   };
-  return <AppStoreContext.Provider value={value}>{children}</AppStoreContext.Provider>;
+  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 
 export function useAppStore() {
-  const v = useContext(AppStoreContext);
+  const v = useContext(Ctx);
   if (!v) throw new Error('useAppStore must be used inside AppStoreProvider');
   return v;
 }

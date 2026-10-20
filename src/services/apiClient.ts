@@ -1,7 +1,6 @@
-// The optional backend: fetches lessons and AI explanations. Both are off in AppConfig until the server exists.
 import { Course } from '../types/models';
 
-/** Where the backend lives and which backend features are switched on. */
+/** AppConfig in APIClient_updated.swift. */
 export const AppConfig = {
   backendURL: 'http://localhost:8000',
   useBackendLessons: false,
@@ -28,7 +27,7 @@ async function withTimeout(url: string, init: RequestInit, ms: number) {
 }
 
 export const APIClient = {
-  /** GET /lessons?area=... (8 second timeout). Returns null on any failure, so the bundled lessons are used instead. */
+  /** GET /lessons?area=... (8 second timeout). Returns null on any failure, like the Swift client. */
   async fetchCourse(studyArea = 'Health Sciences'): Promise<Course | null> {
     try {
       const res = await withTimeout(`${AppConfig.backendURL}/lessons?area=${encodeURIComponent(studyArea)}`, {}, 8000);

@@ -1,26 +1,21 @@
-// Plays a loop game or stage lab as a lesson, with the same top bar, quit sheet and finish flow as a question lesson.
 import React, { useMemo, useState } from 'react';
 import { Text } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useAppStore } from '../hooks/useAppStore';
-import { QuitSheet } from '../components/QuitSheet';
+import { QuitSheet } from '../components/trackKit';
 import { C, body } from '../utils/theme';
-import { LessonTopBar } from '../components/lesson/LessonTopBar';
-import { SimpleLessonComplete } from '../components/lesson/SimpleLessonComplete';
-import { BOLTS_FOR_FINISHING } from '../utils/rewards';
+import { BOLTS_FOR_FINISHING, LessonTopBar, SimpleLessonComplete } from './LessonScreen';
 import { LOOP_CONFIGS, LoopGame, LoopKind } from './games/LoopGame';
 import { STAGES, StageGame } from './games/StageGame';
 import type { RootStackParamList } from '../navigation/RootNavigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'GameLesson'>;
 
-
-/** Games have no questions, so the bolts come from the game itself plus the finishing bonus. */
+/** GameLessonView.swift, with the custom quit warning instead of the system pop-up. */
 export default function GameLessonScreen({ route, navigation }: Props) {
   const store = useAppStore();
-  // A locked lesson (from a typed URL) counts as missing.
-  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId && store.isUnlocked(l)), []); // eslint-disable-line react-hooks/exhaustive-deps
+  const lesson = useMemo(() => store.orderedLessons.find((l) => l.id === route.params.lessonId), []); // eslint-disable-line react-hooks/exhaustive-deps
   const [progress, setProgress] = useState(0);
   const [bolts, setBolts] = useState(0);
   const [finished, setFinished] = useState(false);
@@ -33,7 +28,8 @@ export default function GameLessonScreen({ route, navigation }: Props) {
   };
   const complete = () => {
     if (!lesson) return navigation.goBack();
-    store.finishLesson(lesson, bolts);
+    const form = store.completeLesson(lesson, bolts);
+    if (form) store.setPendingEvolution(form);
     navigation.goBack();
   };
   return (

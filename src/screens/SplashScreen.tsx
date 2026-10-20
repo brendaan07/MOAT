@@ -1,4 +1,3 @@
-// The splash shown at launch while fonts and saved progress load: logo and wordmark over the backdrop.
 import React from 'react';
 import { Dimensions, Text, View } from 'react-native';
 import { BundleImage, FullScreenPicture } from '../components/ui';

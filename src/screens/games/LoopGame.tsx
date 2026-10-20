@@ -1,10 +1,9 @@
-// The loop game: the learner sets a loop's variables and watches a plant, wheel or fund grow as it runs.
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, Keyboard, ScrollView, Text, TextInput, View } from 'react-native';
 import Svg, { Circle, G, Line, Path, Rect, Text as SvgText } from 'react-native-svg';
 import { useAppStore } from '../../hooks/useAppStore';
 import { ChunkyButton } from '../../components/ui';
-import { BoltIcon } from '../../components/icons';
+import { BoltIcon } from '../../components/trackKit';
 import { CodeLine, CodePanel, FittedArt, GameFeedbackSheet, RunStep, tk, useStepPlayer } from '../../components/gameKit';
 import { BORDER, C, body, code, heading } from '../../utils/theme';
 import { moodImage } from '../../types/models';
@@ -30,7 +29,7 @@ interface LoopConfig {
   format: (n: number) => string;
 }
 
-/** The text and numbers for each loop game. */
+/** LoopGameConfig in LoopGames.swift. */
 export const LOOP_CONFIGS: Record<LoopKind, LoopConfig> = {
   loop_plant: {
     kind: 'loop_plant', title: 'Grow the plant to 10 cm',
@@ -179,7 +178,6 @@ function FundArt({ fund, cycles, fx }: { fund: number; cycles: number; fx: boole
   );
 }
 
-/** Reports progress (0 to 1) and bolts upward; calls onDone when the last part is right. */
 export function LoopGame({ kind, onProgress, onBolts, onDone }: { kind: LoopKind; onProgress: (p: number) => void; onBolts: (n: number) => void; onDone: () => void }) {
   const config = LOOP_CONFIGS[kind];
   const store = useAppStore();

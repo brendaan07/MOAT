@@ -1,4 +1,3 @@
-// The modal that celebrates a new robot form, shown after the lesson that finished a phase has closed.
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Text, View } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';

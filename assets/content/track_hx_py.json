@@ -1,0 +1,364 @@
+{
+ "id": "hx_py",
+ "title": "Healthcare",
+ "language": "Python",
+ "phases": [
+  {
+   "number": 1,
+   "area": "Healthcare",
+   "project": "Values and arithmetic",
+   "picture": "",
+   "skill": "Values and arithmetic",
+   "parts": [
+    [
+     "Fluid balance",
+     "Values and arithmetic"
+    ],
+    [
+     "Oxygen by cannula",
+     "Values and arithmetic"
+    ],
+    [
+     "Transfusion timing",
+     "Values and arithmetic"
+    ],
+    [
+     "GCS total",
+     "Values and arithmetic"
+    ],
+    [
+     "Ward occupancy",
+     "Values and arithmetic"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_py_p1_l1",
+     "part": 1,
+     "title": "Fluid balance",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p1_l2",
+     "part": 2,
+     "title": "Oxygen by cannula",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p1_l3",
+     "part": 3,
+     "title": "Transfusion timing",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p1_l4",
+     "part": 4,
+     "title": "GCS total",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p1_l5",
+     "part": 5,
+     "title": "Ward occupancy",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_py_cp1",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 2,
+   "area": "Healthcare",
+   "project": "Text and formatting",
+   "picture": "",
+   "skill": "Text and formatting",
+   "parts": [
+    [
+     "Blood group labels",
+     "Text and formatting"
+    ],
+    [
+     "Lab result line",
+     "Text and formatting"
+    ],
+    [
+     "Medicine labels",
+     "Text and formatting"
+    ],
+    [
+     "GCS codes",
+     "Text and formatting"
+    ],
+    [
+     "Bed codes",
+     "Text and formatting"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_py_p2_l1",
+     "part": 1,
+     "title": "Blood group labels",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p2_l2",
+     "part": 2,
+     "title": "Lab result line",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p2_l3",
+     "part": 3,
+     "title": "Medicine labels",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p2_l4",
+     "part": 4,
+     "title": "GCS codes",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p2_l5",
+     "part": 5,
+     "title": "Bed codes",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_py_cp2",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 3,
+   "area": "Healthcare",
+   "project": "Decisions and thresholds",
+   "picture": "",
+   "skill": "Decisions and thresholds",
+   "parts": [
+    [
+     "Sepsis screen",
+     "Decisions and thresholds"
+    ],
+    [
+     "Low sugar protocol",
+     "Decisions and thresholds"
+    ],
+    [
+     "Fever check",
+     "Decisions and thresholds"
+    ],
+    [
+     "Child dose band",
+     "Decisions and thresholds"
+    ],
+    [
+     "Head injury category",
+     "Decisions and thresholds"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_py_p3_l1",
+     "part": 1,
+     "title": "Sepsis screen",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p3_l2",
+     "part": 2,
+     "title": "Low sugar protocol",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p3_l3",
+     "part": 3,
+     "title": "Fever check",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p3_l4",
+     "part": 4,
+     "title": "Child dose band",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p3_l5",
+     "part": 5,
+     "title": "Head injury category",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_py_cp3",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 4,
+   "area": "Healthcare",
+   "project": "Lists and loops",
+   "picture": "",
+   "skill": "Lists and loops",
+   "parts": [
+    [
+     "Urine output",
+     "Lists and loops"
+    ],
+    [
+     "Medication round",
+     "Lists and loops"
+    ],
+    [
+     "Shift fluid balance",
+     "Lists and loops"
+    ],
+    [
+     "Deteriorating patient",
+     "Lists and loops"
+    ],
+    [
+     "Bed board",
+     "Lists and loops"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_py_p4_l1",
+     "part": 1,
+     "title": "Urine output",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p4_l2",
+     "part": 2,
+     "title": "Medication round",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p4_l3",
+     "part": 3,
+     "title": "Shift fluid balance",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p4_l4",
+     "part": 4,
+     "title": "Deteriorating patient",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p4_l5",
+     "part": 5,
+     "title": "Bed board",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_py_cp4",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 5,
+   "area": "Healthcare",
+   "project": "Ward calculations",
+   "picture": "",
+   "skill": "Ward calculations",
+   "parts": [
+    [
+     "Dose by weight",
+     "Ward calculations"
+    ],
+    [
+     "Infusion rate",
+     "Ward calculations"
+    ],
+    [
+     "BMI check",
+     "Ward calculations"
+    ],
+    [
+     "Next dose time",
+     "Ward calculations"
+    ],
+    [
+     "Early warning alert",
+     "Ward calculations"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "hx_py_p5_l1",
+     "part": 1,
+     "title": "Dose by weight",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p5_l2",
+     "part": 2,
+     "title": "Infusion rate",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p5_l3",
+     "part": 3,
+     "title": "BMI check",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p5_l4",
+     "part": 4,
+     "title": "Next dose time",
+     "questions": []
+    },
+    {
+     "id": "hx_py_p5_l5",
+     "part": 5,
+     "title": "Early warning alert",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "hx_py_cp5",
+    "name": "Coming soon",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "Healthcare",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}
