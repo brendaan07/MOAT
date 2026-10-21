@@ -377,6 +377,34 @@ Commit `Step 2a.4.<n>: Engineering phase <n> in V3`.
 
 **After 2a.4.5:** no track uses V2 or `TrackPlayer` any more. Record in §8 the V2/V1-track files now unused.
 
+### 2a.5 Healthcare picture fixes
+Added 2026-10-21 (user decision) for the Healthcare errors the 2a.0 validator found. Healthcare Python and R both play
+today; this step only fixes their pictures. Run it after 2a.0 at any point; it touches only the two Healthcare files,
+`picturesV3.tsx` and image files, so it doesn't conflict with 2a.1–2a.4.
+
+1. **72 pictures with `correct_state: null`** (39 in `healthcare_python_v3.json`, 33 in `healthcare_r_v3.json`; types
+   `labelcard`, `trial`, `stays_pic`, `coverage`, `ldl`).
+   - They carry the right answer in `go_text` / `go_after` instead. No renderer reads those, so they fall through to
+     `StateCardV3` and show the icon with no caption on a right answer.
+   - Two ways to fix it. Agree which one with the user before changing anything:
+     - **Content:** set `correct_state` from `go_text` / `go_after`, in the same form as the `wrong_by_option` states,
+       and remove the `go_*` fields.
+     - **Code:** give these types a renderer in `picturesV3.tsx` that reads `correct_state` / `wrong_by_option`
+       (pictures for `trial`, `coverage` and `ldl` hold number arrays, which a text caption may not show well). The
+       content still moves to `correct_state`.
+   - Re-save with the file's own JSON format (both files are one line; the 2a.0 strip script shows how) and check that
+     nothing but the intended fields changed.
+2. **23 fix-question pictures with no wrong state for a tappable line** (13 Python, 10 R).
+   - The player passes the **tapped line id** as the pick, so `wrong_by_option` needs a key for every line that isn't
+     `given_correct` and isn't `buggy_line`.
+   - Write each missing state from what that line's code really does. Run it with `scripts/run-answers.mjs` (D7); R runs
+     in the `moat-r` environment.
+3. Validator: 0 errors for both Healthcare files.
+
+**Done when:** §0 checks pass. Smoke test Healthcare Python and Healthcare R: open a lesson with a `labelcard` picture
+(for example `XpP2L3`) and one with a fixed fix question, answer right and wrong, and check that each picture shows its
+state. Commit `Step 2a.5: Healthcare picture fixes`.
+
 ---
 
 ## 5. Step 2b: general lessons
@@ -663,6 +691,7 @@ accounts for every expo-web file. One commit per sub-step.
 4. 2a.2: Biology checkpoints
 5. 2a.3: Biology P3 L1–L4
 6. 2a.4.1–5: Engineering, one phase per session
+   - 2a.5: Healthcare picture fixes (independent of 2a.1–2a.4)
 7. 2b.0: decisions with the user
 9. 2b.2.*: one general track per session
 10. 2b.3: switch off the general path
@@ -691,11 +720,10 @@ Each step adds here what it found or left for a later step (file, why, which ste
 - (step 2a.0) The validator reports 72 Healthcare pictures with `correct_state: null` (types `labelcard`, `trial`,
   `stays_pic`, `coverage`, `ldl` in `healthcare_python_v3.json` and `healthcare_r_v3.json`). They carry the answer in
   `go_text`/`go_after`, which no renderer reads, so the right-answer card shows no caption. The user decided this is an
-  error to fix. No step in this plan covers Healthcare content yet: proposed new sub-step **2a.5 Healthcare picture
-  fixes** (confirm with the user before running it).
+  error to fix. Fixed in **2a.5 Healthcare picture fixes** (added to the plan 2026-10-21).
 - (step 2a.0) The validator reports 34 fix-question pictures with no `wrong_by_option` state for a wrong line the learner
   can tap (the player passes the tapped line id), so the picture shows nothing for that pick. By file: Biology 6 (fix in
-  2a.2/2a.3), Finance 5 (fix in 2a.1), Healthcare Python 13 and Healthcare R 10 (proposed 2a.5). The user decided these
+  2a.2/2a.3), Finance 5 (fix in 2a.1), Healthcare Python 13 and Healthcare R 10 (2a.5). The user decided these
   are errors. `node scripts/validate-content.mjs` lists each one.
 - (step 2a.0) Finance's per-lesson checkpoints stay registered under `fin_py_p1_c{k}` (no `checkpointId` in `addV3`),
   and `fin_py_cp1` stays empty because the V3 phase has 5 checkpoint items, not 1. 2a.1 switches it to one phase
