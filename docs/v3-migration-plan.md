@@ -394,9 +394,9 @@ today; this step only fixes their pictures. Run it after 2a.0 at any point; it t
        content still moves to `correct_state`.
    - Re-save with the file's own JSON format (both files are one line; the 2a.0 strip script shows how) and check that
      nothing but the intended fields changed.
-2. **23 fix-question pictures with no wrong state for a tappable line** (13 Python, 10 R).
-   - The player passes the **tapped line id** as the pick, so `wrong_by_option` needs a key for every line that isn't
-     `given_correct` and isn't `buggy_line`.
+2. **7 fix-question pictures with no wrong state for a line that offers a wrong replacement** (2 Python, 5 R).
+   - The player passes the **tapped line id** as the pick, and Check needs a replacement, so `wrong_by_option` needs a
+     key for every line in `fixes_by_line` that has a wrong replacement, the buggy line included.
    - Write each missing state from what that line's code really does. Run it with `scripts/run-answers.mjs` (D7); R runs
      in the `moat-r` environment.
 3. Validator: 0 errors for both Healthcare files.
@@ -721,10 +721,21 @@ Each step adds here what it found or left for a later step (file, why, which ste
   `stays_pic`, `coverage`, `ldl` in `healthcare_python_v3.json` and `healthcare_r_v3.json`). They carry the answer in
   `go_text`/`go_after`, which no renderer reads, so the right-answer card shows no caption. The user decided this is an
   error to fix. Fixed in **2a.5 Healthcare picture fixes** (added to the plan 2026-10-21).
-- (step 2a.0) The validator reports 34 fix-question pictures with no `wrong_by_option` state for a wrong line the learner
-  can tap (the player passes the tapped line id), so the picture shows nothing for that pick. By file: Biology 6 (fix in
-  2a.2/2a.3), Finance 5 (fix in 2a.1), Healthcare Python 13 and Healthcare R 10 (2a.5). The user decided these
-  are errors. `node scripts/validate-content.mjs` lists each one.
+- (step 2a.0, rule corrected in 2a.1) The validator reports fix-question pictures with no `wrong_by_option` state for a
+  line that offers a wrong replacement (the player passes the tapped line id, and Check needs a replacement picked, so
+  the buggy line counts too). 2a.0's first version of the rule also demanded states for lines with no replacements,
+  which learners can never check, and skipped the buggy line. Corrected counts: Biology 1 (`BioP4L4` q5, fix in 2a.2 or
+  2a.3), Healthcare Python 2 and Healthcare R 5 (2a.5), Finance 0. The user decided these are errors.
+- (step 2a.1) A fix-question line with no `fixes_by_line` entry can still be tapped: the other lines fold away and no
+  replacements appear, so the learner has to tap it again to get back. Many questions have such lines (for example
+  `FpP1L2` q5 line d). Decide in 3.3 or 3.4 whether those lines should be untappable.
 - (step 2a.0) Finance's per-lesson checkpoints stay registered under `fin_py_p1_c{k}` (no `checkpointId` in `addV3`),
   and `fin_py_cp1` stays empty because the V3 phase has 5 checkpoint items, not 1. 2a.1 switches it to one phase
   checkpoint.
+- (step 2a.1 smoke test) On a track's last phase (Finance has one), the checkpoint result still says "Phase 2 is still
+  locked" below full stars and "Start phase 2" at full stars; the button just returns to the path. `CheckpointResult` in
+  `src/screens/track/TrackResults.tsx` should word the last phase differently. Handle with the other TrackResults text
+  fix (2a.0 note above), in 2a.2 or 3.3.
+- (step 2a.1) `scripts/run-answers.mjs` can't answer `input()`, so questions that read input (Finance `FpP1C` q5,
+  `FpP1L5` q2–q3) show `EOFError`. 2a.1 checked FpP1C q5 by hand with the quantity piped in. A later content step could
+  let the runner take the typed value from the question.

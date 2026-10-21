@@ -156,12 +156,7 @@ const addV3 = (data: any, tr: V3Track) => { for (const ph of data.phases) for (c
 addV3(BIO_V3, { prefix: 'bio', lang: 'r', name: 'Biology research R', checkpointId: (n) => `bio_p${n}_cp` });
 addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python', checkpointId: (n) => `hx_py_cp${n}` });
 addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', checkpointId: (n) => `hx_r_cp${n}` });
-addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python' });
-
-/** The checkpoint that follows an app lesson (Finance Python), or null. */
-export function v2Checkpoint(lessonId: string): V2Lesson | null {
-  return LESSONS[lessonId.replace(/_l(\d)$/, '_c$1')] ?? null;
-}
+addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python', checkpointId: (n) => `fin_py_cp${n}` });
 
 /** The label, icon and science-note wording for each field. */
 const FIELD = {
@@ -1102,7 +1097,7 @@ export function LessonIntroV2({ lesson, onStart, onClose }: { lesson: V2Lesson; 
               <RobotFace form={form} mood="excited" width={92} height={92} />
             </Enter>
             <View style={{ flex: 1 }}>
-              <Text style={[body(14, true), { color: cp ? C.lavender : C.muted }]}>{cp ? 'Checkpoint: 3 questions, no hints' : `${lesson.project}, part ${lesson.part} of ${lesson.parts ?? 4}`}</Text>
+              <Text style={[body(14, true), { color: cp ? C.lavender : C.muted }]}>{cp ? `Checkpoint: ${lesson.questions.length} questions, no hints` : `${lesson.project}, part ${lesson.part} of ${lesson.parts ?? 4}`}</Text>
               <Enter kind="head" delay={80}>
                 <Text style={[heading(cp ? 28 : 32), { lineHeight: cp ? 30 : 34, color: cp ? C.cream : C.navy }]} accessibilityRole="header">{lesson.title}</Text>
               </Enter>

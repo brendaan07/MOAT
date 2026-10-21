@@ -38,9 +38,10 @@ function imagePaths(o, out = []) {
 function checkPicture(where, q, pic) {
   for (const k of ['type', 'label', 'correct_state']) if (missing(pic[k])) error(where, `picture has no ${k}`);
   const keys = new Set(Object.keys(pic.states?.wrong_by_option ?? {}));
-  // Predict/fill: the player passes the picked option id. Fix: it passes the tapped line id.
+  // Predict/fill: the player passes the picked option id. Fix: it passes the tapped line id, and Check needs a
+  // replacement picked, so a wrong state shows for every line that offers a wrong replacement (the buggy line included).
   const wrong = q.kind === 'fix'
-    ? (q.lines ?? []).filter((l) => !l.given_correct && l.id !== q.buggy_line).map((l) => l.id)
+    ? Object.entries(q.fixes_by_line ?? {}).filter(([, fixes]) => fixes.some((f) => !f.correct)).map(([id]) => id)
     : (q.options ?? []).filter((o) => !o.correct).map((o) => o.id);
   const gaps = wrong.filter((id) => !keys.has(id));
   if (gaps.length) error(where, `picture "${pic.label ?? pic.type}" has no wrong state for ${q.kind === 'fix' ? 'line' : 'option'} ${gaps.join(', ')}`);
