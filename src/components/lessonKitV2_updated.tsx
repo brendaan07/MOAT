@@ -100,10 +100,9 @@ for (const l of (MORE as unknown as { lessons: V2Lesson[] }).lessons) LESSONS[l.
  * App ids: bio_p{phase}_l{part} for lessons (legacy lessons keep their entry above); its checkpoint is the track's phase checkpoint. */
 const WORD_COLOUR: Record<string, string> = { predict: '#B5E04A', fill: '#FFC93C', fix: '#FF8A3D' };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin'; name: string; phaseCheckpoint?: boolean };
-const BIO_TRACK: V3Track = { prefix: 'bio', lang: 'r', name: 'Biology research R' };
+type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin'; name: string; checkpointId?: (phase: number) => string };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track = BIO_TRACK): V2Lesson {
+function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track): V2Lesson {
   const cp = it.type === 'checkpoint';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const questions: V2Question[] = it.questions.map((q: any, i: number) => {
@@ -144,19 +143,19 @@ function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track = BIO_TR
     script, questions, checkpoint: cp, parts: 5,
   };
 }
+/* Every V3 track, in this player's format. App ids: <prefix>_p{phase}_l{part}; checkpoints use _c{part}, or the track's
+ * own phase checkpoint id when the track passes checkpointId (the same ids loadTrack uses).
+ * Items still marked `status` are not rebuilt yet and keep their older entry above. */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-for (const ph of (BIO_V3 as any).phases) for (const it of ph.items) if (!it.status) { const l = fromV3(it, ph.phase, ph.title); LESSONS[l.id] = l; }
-/* Healthcare (phases 1 to 5) and Finance, in the same format.
- * App ids: hx_py_p{phase}_l{part}, hx_r_..., fin_py_...; checkpoints use _c{part}.
- * Healthcare has one checkpoint per phase instead, under the track's checkpoint id (hx_py_cp{phase}). */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const addV3 = (data: any, tr: V3Track, phaseOffset = 0) => { for (const ph of data.phases) for (const it of ph.items) {
-  const l = fromV3(it, ph.phase + phaseOffset, ph.title, tr);
-  if (tr.phaseCheckpoint && l.checkpoint) l.id = `${tr.prefix}_cp${l.phase}`;
+const addV3 = (data: any, tr: V3Track) => { for (const ph of data.phases) for (const it of ph.items) {
+  if (it.status) continue;
+  const l = fromV3(it, ph.phase, ph.title, tr);
+  if (tr.checkpointId && l.checkpoint) l.id = tr.checkpointId(l.phase);
   LESSONS[l.id] = l;
 } };
-addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python', phaseCheckpoint: true });
-addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', phaseCheckpoint: true });
+addV3(BIO_V3, { prefix: 'bio', lang: 'r', name: 'Biology research R', checkpointId: (n) => `bio_p${n}_cp` });
+addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python', checkpointId: (n) => `hx_py_cp${n}` });
+addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', checkpointId: (n) => `hx_r_cp${n}` });
 addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python' });
 
 /** The checkpoint that follows an app lesson (Finance Python), or null. */

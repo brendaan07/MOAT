@@ -688,3 +688,15 @@ Each step adds here what it found or left for a later step (file, why, which ste
   Troubleshooting section. Left as is by the user's choice; it goes away with `LearnScreen` in 3.1.
 - (step 1 smoke test) `src/screens/track/TrackResults.tsx:66` hard-codes "part {lesson.part} of 4", so the V3 lesson
   results screen shows "part 1 of 4" for 5-lesson phases. Fix with the generic V3 hookup in 2a.0 (or 3.3 at the latest).
+- (step 2a.0) The validator reports 72 Healthcare pictures with `correct_state: null` (types `labelcard`, `trial`,
+  `stays_pic`, `coverage`, `ldl` in `healthcare_python_v3.json` and `healthcare_r_v3.json`). They carry the answer in
+  `go_text`/`go_after`, which no renderer reads, so the right-answer card shows no caption. The user decided this is an
+  error to fix. No step in this plan covers Healthcare content yet: proposed new sub-step **2a.5 Healthcare picture
+  fixes** (confirm with the user before running it).
+- (step 2a.0) The validator reports 34 fix-question pictures with no `wrong_by_option` state for a wrong line the learner
+  can tap (the player passes the tapped line id), so the picture shows nothing for that pick. By file: Biology 6 (fix in
+  2a.2/2a.3), Finance 5 (fix in 2a.1), Healthcare Python 13 and Healthcare R 10 (proposed 2a.5). The user decided these
+  are errors. `node scripts/validate-content.mjs` lists each one.
+- (step 2a.0) Finance's per-lesson checkpoints stay registered under `fin_py_p1_c{k}` (no `checkpointId` in `addV3`),
+  and `fin_py_cp1` stays empty because the V3 phase has 5 checkpoint items, not 1. 2a.1 switches it to one phase
+  checkpoint.

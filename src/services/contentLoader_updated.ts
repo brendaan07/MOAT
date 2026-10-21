@@ -62,45 +62,43 @@ export function loadTrack(studyArea = 'Biology research', language = 'R'): Track
   const name = trackFileFor(studyArea, language);
   const t = name ? (CONTENT[name] as Track | undefined) : undefined;
   if (!t || !Array.isArray(t.phases)) return null;
-  if (name === 'track_bio_r_updated') return withBiologyV3(t);
-  if (name === 'track_hx_py') return withHealthcareV3(t, 'healthcare_python_v3', 'hx_py');
-  if (name === 'track_hx_r') return withHealthcareV3(t, 'healthcare_r_v3', 'hx_r');
+  if (name === 'track_bio_r_updated') return withV3(t, 'biology_r_v3', 'bio', (n) => `bio_p${n}_cp`);
+  if (name === 'track_hx_py') return withV3(t, 'healthcare_python_v3', 'hx_py', (n) => `hx_py_cp${n}`);
+  if (name === 'track_hx_r') return withV3(t, 'healthcare_r_v3', 'hx_r', (n) => `hx_r_cp${n}`);
+  if (name === 'track_fin_py') return withV3(t, 'finance_python_v3', 'fin_py', (n) => `fin_py_cp${n}`);
   return t;
 }
 
-/** Healthcare lessons and its one checkpoint per phase live in the V3 files; the track file only lists them.
- *  Fills in their questions (same ids the lesson player records) so stars, the phase gate and the path count them. */
-function withHealthcareV3(t: Track, file: string, prefix: string): Track {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const v3: any[] = (CONTENT[file] as any)?.phases ?? [];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const questions = (it: any): TrackQuestion[] => (it?.questions ?? []).map((q: any, i: number) => ({
-    id: `${it.id}_q${i + 1}`, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint_before_check ?? '', ok: [q.explanation_after_check, q.takeaway].filter(Boolean).join(' '),
-  }));
-  return { ...t, phases: t.phases.map((p) => {
-    const items = v3.find((x) => x.phase === p.number)?.items ?? [];
-    return {
-      ...p,
-      lessons: p.lessons.map((l) => ({ ...l, questions: questions(items.find((i: { type: string; part: number }) => i.type === 'lesson' && `${prefix}_p${p.number}_l${i.part}` === l.id)) })),
-      checkpoint: { ...p.checkpoint, questions: questions(items.find((i: { type: string }) => i.type === 'checkpoint')) },
-    };
-  }) };
-}
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/** A V3 item's questions, under the ids the lesson player records (<itemId>_q<n>). */
+const v3Questions = (it: any): TrackQuestion[] => (it?.questions ?? []).map((q: any, i: number) => ({
+  id: `${it.id}_q${i + 1}`, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint_before_check ?? '', ok: [q.explanation_after_check, q.takeaway].filter(Boolean).join(' '),
+}));
+/** A V2 lesson's questions (lessons not rebuilt in V3 yet), under the ids the lesson player records. */
+const v2Questions = (id: string): TrackQuestion[] | null => {
+  const l = ((CONTENT['track_bio_r_lessons_v2'] as any)?.lessons ?? []).find((x: any) => x.id === id);
+  return l ? l.questions.map((q: any) => ({ id: q.id, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint, ok: q.ok })) : null;
+};
 
-/** Biology research R now has five lessons per phase, each followed by its own checkpoint (assets/content/biology_r_v3.json).
- *  Lesson ids stay bio_p{phase}_l{part}; legacy lessons keep their original questions. */
-function withBiologyV3(t: Track): Track {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const v3 = ((CONTENT['biology_r_v3'] as any)?.phases ?? []).map((p: any) => ({ phase: p.phase as number, // eslint-disable-line @typescript-eslint/no-explicit-any
-    lessons: p.items.filter((i: any) => i.type === 'lesson').map((i: any) => ({ part: i.part as number, title: i.title as string })) })); // eslint-disable-line @typescript-eslint/no-explicit-any
+/** V3 tracks: the track file holds the path (phases, checkpoint text, project code); the V3 file holds the lessons.
+ *  Lessons come from the V3 lesson items, ids <prefix>_p<phase>_l<part>, with their questions filled in so stars, the
+ *  phase gate and the path count them. An item still marked `status` (not rebuilt yet) keeps its V2 or track questions.
+ *  The phase checkpoint takes its questions from the phase's checkpoint item when there is exactly one; otherwise the
+ *  track file's checkpoint stays as it is. */
+function withV3(t: Track, file: string, prefix: string, checkpointId: (phase: number) => string): Track {
+  const v3: any[] = (CONTENT[file] as any)?.phases ?? [];
   return { ...t, phases: t.phases.map((p) => {
-    const ph = v3.find((x: { phase: number }) => x.phase === p.number);
-    if (!ph) return p;
-    const lessons = [1, 2, 3, 4, 5].map((k) => {
-      const old = p.lessons.find((l) => l.id === `bio_p${p.number}_l${k}`);
-      const title = ph.lessons.find((l: { part: number }) => l.part === k)?.title ?? old?.title ?? `Lesson ${k}`;
-      return { id: `bio_p${p.number}_l${k}`, part: k, title, questions: old?.questions ?? [] };
+    const items: any[] = v3.find((x) => x.phase === p.number)?.items ?? [];
+    if (!items.length) return p;
+    const lessons = items.filter((i) => i.type === 'lesson').sort((a, b) => a.part - b.part).map((it) => {
+      const id = `${prefix}_p${p.number}_l${it.part}`;
+      const old = p.lessons.find((l) => l.id === id);
+      const questions = it.status ? v2Questions(id) ?? old?.questions ?? [] : v3Questions(it);
+      return { id, part: it.part as number, title: (it.title as string) ?? old?.title ?? `Lesson ${it.part}`, questions };
     });
-    return { ...p, lessons };
+    const cps = items.filter((i) => i.type === 'checkpoint' && !i.status);
+    const checkpoint = cps.length === 1 ? { ...p.checkpoint, id: checkpointId(p.number), questions: v3Questions(cps[0]) } : p.checkpoint;
+    return { ...p, lessons, checkpoint };
   }) };
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
