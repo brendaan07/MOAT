@@ -739,3 +739,11 @@ Each step adds here what it found or left for a later step (file, why, which ste
 - (step 2a.1) `scripts/run-answers.mjs` can't answer `input()`, so questions that read input (Finance `FpP1C` q5,
   `FpP1L5` q2–q3) show `EOFError`. 2a.1 checked FpP1C q5 by hand with the quantity piped in. A later content step could
   let the runner take the typed value from the question.
+- (step 2a.2) Every track now has a V3 phase checkpoint, so `TrackFlowScreen_updated.tsx`'s TrackPlayer checkpoint
+  branch (`CheckpointIntro`, and `TrackPlayer` with `lesson={null}`) is unused. Left in place per 2a.2; delete it in 3.1
+  with the rest of V1. `track_bio_r_updated.json` checkpoints keep `filename`/`problem` (only `CheckpointIntro` reads
+  them) and its lessons keep their old V1 `questions` (the loader replaces them from V3); both go in 3.1/3.2.
+- (step 2a.2 smoke test) On web, the `steps` picture (`Steps` in `src/components/picturesV3.tsx`) logs a React dev warning
+  on Check: "Received `false` for a non-boolean attribute `collapsable`". It already happens in `BioP4L1` q1, so it's
+  the renderer, not the content: its animated SVG path passes `collapsable` through to the DOM on react-native-web.
+  Nothing breaks. Fix in 3.3 when `picturesV3.tsx` is split.

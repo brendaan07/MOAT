@@ -31,7 +31,7 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
   const [allowed] = useState(() => !!phase && (startLesson ? track.lessonUnlocked(startLesson, phase) : !route.params.lessonId && track.checkpointUnlocked(phase)));
   const lessonStep = (lesson: TrackLesson): Step => (v2Lesson(lesson.id) ? { kind: 'introV2', lesson } : { kind: 'lesson', lesson });
   const [step, setStep] = useState<Step>(startLesson ? lessonStep(startLesson) : { kind: 'checkpointIntro' });
-  /** V3 phase checkpoints (Healthcare, Finance) use the new-style player; Biology's still uses TrackPlayer. */
+  /** Every track's phase checkpoint is V3 now and uses the new-style player; the TrackPlayer branch below is unused (step 3 deletes it). */
   const cpV2 = phase ? v2Lesson(phase.checkpoint.id) : null;
   const [runID, setRunID] = useState(0);
   const close = () => navigation.goBack();

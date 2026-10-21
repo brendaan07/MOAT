@@ -3735,6 +3735,596 @@
        "output_after_fix": "After the fix: [1] FALSE"
       }
      ]
+    },
+    {
+     "id": "BioP1C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Primer check",
+     "person": "PCR lab technician",
+     "intro": "Before PCR, labs estimate a primer's melting temperature with the Wallace rule: Tm = 2 × (A+T) + 4 × (G+C). No hints, no notes: read every line.",
+     "script_file": "primer_tm.R",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "Tm of ATGCGCAT",
+       "value": "24"
+      },
+      {
+       "label": "G and C count",
+       "value": "4"
+      },
+      {
+       "label": "Lower-case primer",
+       "value": "8"
+      },
+      {
+       "label": "Anneal temperature",
+       "value": "fixed: number"
+      },
+      {
+       "label": "Label",
+       "value": "\"Anneal at 19°C\""
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 1 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "biology_research_r",
+     "phase": 1,
+     "language": "R",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The primer has 8 bases and 4 of them are G or C. What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "at is 8 − 4 = 4, so Tm = 2 × 4 + 4 × 4 = 24.",
+       "takeaway": null,
+       "next_bridge": "count the G and C bases.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The primer goes on the thermometer.",
+       "picture": [
+        {
+         "type": "thermo",
+         "description": "Thermometer icon with a mercury column that rises to the computed value; display shows the reading.",
+         "label": "Thermometer showing the temperature",
+         "args": [
+          [
+           24,
+           "24°C"
+          ],
+          {
+           "b": [
+            32,
+            "32°C?"
+           ],
+           "c": [
+            48,
+            "48°C?"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          24,
+          "24°C"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            32,
+            "32°C?"
+           ],
+           "c": [
+            48,
+            "48°C?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "primer_tm.R",
+       "code": [
+        "primer <- \"ATGCGCAT\"",
+        "gc <- 4",
+        "at <- nchar(primer) - gc",
+        "print(2 * at + 4 * gc)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 24",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 32",
+         "correct": false,
+         "feedback": "That counts all 8 bases as A or T."
+        },
+        {
+         "id": "c",
+         "label": "[1] 48",
+         "correct": false,
+         "feedback": "That adds 4 before multiplying; * comes first."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Count the G and C bases.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Replacing A and T with \"\" deletes them, leaving GCGC: 4 characters.",
+       "takeaway": null,
+       "next_bridge": "try a lower-case primer.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The primer, base by base.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Primer bases with their positions",
+         "args": [
+          "ATGCGCAT",
+          [
+           [
+            2,
+            3,
+            4,
+            5
+           ],
+           "4"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7
+            ],
+            "12?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7
+            ],
+            "8?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 1
+         },
+         "correct_state": [
+          [
+           2,
+           3,
+           4,
+           5
+          ],
+          "4"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7
+            ],
+            "12?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7
+            ],
+            "8?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "primer_tm.R",
+       "code": [
+        "primer <- \"ATGCGCAT\"",
+        "gc <- nchar(gsub(\"[AT]\", ___, primer))",
+        "print(gc)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"GC\"",
+         "correct": false,
+         "feedback": "That swaps every A and T for two letters: 12."
+        },
+        {
+         "id": "c",
+         "label": "\" \"",
+         "correct": false,
+         "feedback": "A space is still a character: 8."
+        }
+       ],
+       "option_layout": "coins in a row",
+       "goal_output": [
+        "[1] 4"
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The primer arrives in lower case. What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "R matches letters exactly: a and t are not A and T, so all 8 characters stay.",
+       "takeaway": null,
+       "next_bridge": "work out the annealing temperature.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A lower-case primer from the supplier.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Primer bases with their positions",
+         "args": [
+          "atgcgcat",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+           ],
+           "8: nothing removed"
+          ],
+          {
+           "b": [
+            [
+             2,
+             3,
+             4,
+             5
+            ],
+            "4?"
+           ],
+           "c": [
+            [],
+            "0?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 1
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7
+          ],
+          "8: nothing removed"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             2,
+             3,
+             4,
+             5
+            ],
+            "4?"
+           ],
+           "c": [
+            [],
+            "0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "primer_tm.R",
+       "code": [
+        "primer <- \"atgcgcat\"",
+        "gc <- nchar(gsub(\"[AT]\", \"\", primer))",
+        "print(gc)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 8",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 4",
+         "correct": false,
+         "feedback": "[AT] only matches capital letters, so nothing is removed."
+        },
+        {
+         "id": "c",
+         "label": "[1] 0",
+         "correct": false,
+         "feedback": "gsub() only deletes what it matches; here that's nothing."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "PCR anneals 5 °C below Tm, but R stops. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "\"24\" is text. Without quotes, 24 is a number and 24 − 5 = 19.",
+       "takeaway": null,
+       "next_bridge": "label the result.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Setting the PCR machine.",
+       "picture": [
+        {
+         "type": "thermo",
+         "description": "Thermometer icon with a mercury column that rises to the computed value; display shows the reading.",
+         "label": "Thermometer showing the temperature",
+         "args": [
+          [
+           19,
+           "19°C"
+          ],
+          {
+           "a": [
+            4,
+            "still text"
+           ],
+           "b": [
+            4,
+            "still text"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          19,
+          "19°C"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "a": [
+            4,
+            "still text"
+           ],
+           "b": [
+            4,
+            "still text"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "primer_tm.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "tm <- \"24\"",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "anneal <- tm - 5",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(anneal)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "a",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "tm <- 24",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "a1",
+          "replacement": "tm <- as.character(24)",
+          "correct": false,
+          "feedback": "Still text: R can't subtract 5 from it."
+         },
+         {
+          "id": "a2",
+          "replacement": "tm <- \"24 - 5\"",
+          "correct": false,
+          "feedback": "Quotes make it text again: error."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "anneal <- paste(tm, 5)",
+          "correct": false,
+          "feedback": "That joins text: \"24 5\"."
+         },
+         {
+          "id": "b1",
+          "replacement": "anneal <- tm + 5",
+          "correct": false,
+          "feedback": "tm is still text, so R still stops."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] 19"
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "paste0() joins the pieces with nothing between them, and print() keeps the quotes.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The label for the PCR run.",
+       "picture": [
+        {
+         "type": "thermo",
+         "description": "Thermometer icon with a mercury column that rises to the computed value; display shows the reading.",
+         "label": "Thermometer showing the temperature",
+         "args": [
+          [
+           19,
+           "\"Anneal at 19°C\""
+          ],
+          {
+           "b": [
+            19,
+            "extra space?"
+           ],
+           "c": [
+            19,
+            "no quotes?"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          19,
+          "\"Anneal at 19°C\""
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            19,
+            "extra space?"
+           ],
+           "c": [
+            19,
+            "no quotes?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "primer_tm.R",
+       "code": [
+        "tm <- 24",
+        "anneal <- tm - 5",
+        "print(paste0(\"Anneal at \", anneal, \"°C\"))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"Anneal at 19°C\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"Anneal at 19 °C\"",
+         "correct": false,
+         "feedback": "paste0() adds no spaces between pieces."
+        },
+        {
+         "id": "c",
+         "label": "[1] Anneal at 19°C",
+         "correct": false,
+         "feedback": "print() shows text in quotes."
+        }
+       ],
+       "option_layout": "coins in a row"
+      }
+     ]
     }
    ]
   },
@@ -7722,6 +8312,660 @@
        "output_after_fix": "After the fix: [1] 38 37 35"
       }
      ]
+    },
+    {
+     "id": "BioP2C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Protein mass",
+     "person": "Biochemistry lab",
+     "intro": "Biochemists estimate a protein's mass from its length: each amino acid adds about 110 daltons. No hints, no notes: read every line.",
+     "script_file": "protein_mass.R",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "Second protein",
+       "value": "27.5 kDa"
+      },
+      {
+       "label": "Alpha-synuclein",
+       "value": "15.4 kDa"
+      },
+      {
+       "label": "Two at once",
+       "value": "15.4 27.5"
+      },
+      {
+       "label": "Average mass",
+       "value": "fixed: mean(n)"
+      },
+      {
+       "label": "Above 20 kDa",
+       "value": "2"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 2 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "biology_research_r",
+     "phase": 2,
+     "language": "R",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "lengths[2] is 250, and 250 × 110 / 1000 = 27.5 kDa.",
+       "takeaway": null,
+       "next_bridge": "turn it into a function.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Three proteins on the bench.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Protein masses in kDa",
+         "args": [
+          [
+           "1",
+           "2",
+           "3"
+          ],
+          [
+           [
+            0,
+            27.5,
+            0
+           ],
+           "27.5 kDa"
+          ],
+          {
+           "b": [
+            [
+             15.4,
+             0,
+             0
+            ],
+            "position 1?"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             57.2
+            ],
+            "position 3?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60
+         },
+         "correct_state": [
+          [
+           0,
+           27.5,
+           0
+          ],
+          "27.5 kDa"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             15.4,
+             0,
+             0
+            ],
+            "position 1?"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             57.2
+            ],
+            "position 3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "protein_mass.R",
+       "code": [
+        "lengths <- c(140, 250, 520)",
+        "print(lengths[2] * 110 / 1000)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 27.5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 15.4",
+         "correct": false,
+         "feedback": "R counts from 1: [2] is the second length, 250."
+        },
+        {
+         "id": "c",
+         "label": "[1] 57.2",
+         "correct": false,
+         "feedback": "That is the third protein, 520."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Alpha-synuclein has 140 amino acids. Get its mass.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "The function multiplies n by 110 and divides by 1000: 140 gives 15.4 kDa.",
+       "takeaway": null,
+       "next_bridge": "pass two lengths at once.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Alpha-synuclein, 140 amino acids.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Protein mass in kDa",
+         "args": [
+          [
+           "mass"
+          ],
+          [
+           [
+            15.4
+           ],
+           "15.4 kDa"
+          ],
+          {
+           "b": [
+            [
+             0
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             154
+            ],
+            "154 kDa?"
+           ],
+           "d": [
+            [
+             1.54
+            ],
+            "1.54 kDa?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60
+         },
+         "correct_state": [
+          [
+           15.4
+          ],
+          "15.4 kDa"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             154
+            ],
+            "154 kDa?"
+           ],
+           "d": [
+            [
+             1.54
+            ],
+            "1.54 kDa?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "protein_mass.R",
+       "code": [
+        "protein_kda <- function(n) {",
+        "  n * 110 / 1000",
+        "}",
+        "print(protein_kda(___))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "140",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"140\"",
+         "correct": false,
+         "feedback": "Quotes make it text: R can't multiply it."
+        },
+        {
+         "id": "c",
+         "label": "1400",
+         "correct": false,
+         "feedback": "That is ten times too many amino acids: 154."
+        },
+        {
+         "id": "d",
+         "label": "14",
+         "correct": false,
+         "feedback": "That is ten times too few: 1.54."
+        }
+       ],
+       "option_layout": "coins in a row",
+       "goal_output": [
+        "[1] 15.4"
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "n is the vector c(140, 250), so R works out both masses at once.",
+       "takeaway": null,
+       "next_bridge": "average a batch of reads.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Two proteins, one call.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Protein masses in kDa",
+         "args": [
+          [
+           "140",
+           "250"
+          ],
+          [
+           [
+            15.4,
+            27.5
+           ],
+           "15.4 27.5"
+          ],
+          {
+           "b": [
+            [
+             42.9,
+             0
+            ],
+            "one total?"
+           ],
+           "c": [
+            [
+             0,
+             0
+            ],
+            "no error here"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60
+         },
+         "correct_state": [
+          [
+           15.4,
+           27.5
+          ],
+          "15.4 27.5"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             42.9,
+             0
+            ],
+            "one total?"
+           ],
+           "c": [
+            [
+             0,
+             0
+            ],
+            "no error here"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "protein_mass.R",
+       "code": [
+        "protein_kda <- function(n) {",
+        "  n * 110 / 1000",
+        "}",
+        "print(protein_kda(c(140, 250)))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 15.4 27.5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 42.9",
+         "correct": false,
+         "feedback": "The function works on each length; it doesn't add them up."
+        },
+        {
+         "id": "c",
+         "label": "Error",
+         "correct": false,
+         "feedback": "Arithmetic works on a whole vector at once."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The average mass of 100 and 200 amino acids should be 16.5 kDa. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Inside the function, use its own input n, not the lengths outside it: mean(c(100, 200)) × 0.11 = 16.5.",
+       "takeaway": null,
+       "next_bridge": "count the heavy proteins.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A function that ignores its input.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Average mass in kDa",
+         "args": [
+          [
+           "avg"
+          ],
+          [
+           [
+            16.5
+           ],
+           "16.5 kDa"
+          ],
+          {
+           "c": [
+            [
+             33.4
+            ],
+            "33.37: the old lengths?"
+           ],
+           "e": [
+            [
+             33.4
+            ],
+            "33.37: the old lengths?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60
+         },
+         "correct_state": [
+          [
+           16.5
+          ],
+          "16.5 kDa"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [
+             33.4
+            ],
+            "33.37: the old lengths?"
+           ],
+           "e": [
+            [
+             33.4
+            ],
+            "33.37: the old lengths?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "protein_mass.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "lengths <- c(140, 250, 520)",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "avg_kda <- function(n) {",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "  mean(lengths) * 110 / 1000",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "}",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "print(avg_kda(c(100, 200)))",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "  mean(n) * 110 / 1000",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "c1",
+          "replacement": "  mean(lengths * 110) / 1000",
+          "correct": false,
+          "feedback": "Still the old lengths: 33.36667."
+         },
+         {
+          "id": "c2",
+          "replacement": "  sum(n) * 110 / 1000",
+          "correct": false,
+          "feedback": "That adds them: 33."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "print(avg_kda(lengths))",
+          "correct": false,
+          "feedback": "That averages the old lengths: 33.36667."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] 16.5"
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many proteins are above 20 kDa?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "kda > 20 is FALSE TRUE TRUE, and sum() counts each TRUE as 1.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Sorting proteins by mass.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Protein masses against 20 kDa",
+         "args": [
+          [
+           "1",
+           "2",
+           "3"
+          ],
+          [
+           [
+            15.4,
+            27.5,
+            57.2
+           ],
+           "2 above 20"
+          ],
+          {
+           "b": [
+            [
+             15.4,
+             27.5,
+             57.2
+            ],
+            "84.7?"
+           ],
+           "c": [
+            [
+             15.4,
+             27.5,
+             57.2
+            ],
+            "1?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60,
+          "line": 20,
+          "line_label": "20 kDa",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           15.4,
+           27.5,
+           57.2
+          ],
+          "2 above 20"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             15.4,
+             27.5,
+             57.2
+            ],
+            "84.7?"
+           ],
+           "c": [
+            [
+             15.4,
+             27.5,
+             57.2
+            ],
+            "1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "protein_mass.R",
+       "code": [
+        "kda <- c(15.4, 27.5, 57.2)",
+        "print(sum(kda > 20))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 84.7",
+         "correct": false,
+         "feedback": "That would be sum(kda[kda > 20]), the masses themselves."
+        },
+        {
+         "id": "c",
+         "label": "[1] 1",
+         "correct": false,
+         "feedback": "Both 27.5 and 57.2 are above 20."
+        }
+       ],
+       "option_layout": "coins in a row"
+      }
+     ]
     }
    ]
   },
@@ -8507,6 +9751,667 @@
        },
        "wrong_line_feedback": {},
        "output_after_fix": "After the fix: [1] 3"
+      }
+     ]
+    },
+    {
+     "id": "BioP3C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Disk test",
+     "person": "Clinical microbiology lab",
+     "intro": "Labs measure the clear zone around a 5 µg ciprofloxacin disk: 21 mm or more is susceptible, 16 to 20 intermediate, 15 or less resistant. No hints, no notes: read every line.",
+     "script_file": "disk_test.R",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "16 mm zone",
+       "value": "\"Intermediate\""
+      },
+      {
+       "label": "Resistant test",
+       "value": "<="
+      },
+      {
+       "label": "Intermediate count",
+       "value": "2"
+      },
+      {
+       "label": "18 mm zone",
+       "value": "fixed: <="
+      },
+      {
+       "label": "category(21)",
+       "value": "\"S\""
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 3 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "biology_research_r",
+     "phase": 3,
+     "language": "R",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does R print for a 16 mm zone?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "The first test is FALSE, the second is TRUE, so R prints Intermediate and skips the rest.",
+       "takeaway": null,
+       "next_bridge": "test for resistance.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A 16 mm clear zone.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Zone diameter in mm",
+         "args": [
+          [
+           "zone"
+          ],
+          [
+           [
+            16
+           ],
+           "Intermediate"
+          ],
+          {
+           "b": [
+            [
+             16
+            ],
+            "Resistant?"
+           ],
+           "c": [
+            [
+             16
+            ],
+            "Susceptible?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 30,
+          "line": 21,
+          "line_label": "S ≥ 21 mm",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           16
+          ],
+          "Intermediate"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             16
+            ],
+            "Resistant?"
+           ],
+           "c": [
+            [
+             16
+            ],
+            "Susceptible?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "disk_test.R",
+       "code": [
+        "zone <- 16",
+        "if (zone >= 21) {",
+        "  print(\"Susceptible\")",
+        "} else if (zone >= 16) {",
+        "  print(\"Intermediate\")",
+        "} else {",
+        "  print(\"Resistant\")",
+        "}"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"Intermediate\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"Resistant\"",
+         "correct": false,
+         "feedback": "16 >= 16 is TRUE, so R stops at the second test."
+        },
+        {
+         "id": "c",
+         "label": "[1] \"Susceptible\"",
+         "correct": false,
+         "feedback": "16 is below 21, so the first test fails."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "A 15 mm zone counts as resistant.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "15 or less means <=: 15 <= 15 is TRUE.",
+       "takeaway": null,
+       "next_bridge": "count a whole batch.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The 15 mm cut-off.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Zone diameter in mm",
+         "args": [
+          [
+           "zone"
+          ],
+          [
+           [
+            15
+           ],
+           "Resistant"
+          ],
+          {
+           "b": [
+            [
+             15
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             15
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             15
+            ],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 30,
+          "line": 21,
+          "line_label": "S ≥ 21 mm",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           15
+          ],
+          "Resistant"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             15
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             15
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             15
+            ],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "disk_test.R",
+       "code": [
+        "zone <- 15",
+        "if (zone ___ 15) print(\"Resistant\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "<=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": "15 < 15 is FALSE: nothing prints."
+        },
+        {
+         "id": "c",
+         "label": ">",
+         "correct": false,
+         "feedback": "15 > 15 is FALSE: nothing prints."
+        },
+        {
+         "id": "d",
+         "label": "=",
+         "correct": false,
+         "feedback": "= stores a value; R stops with an error inside if ()."
+        }
+       ],
+       "option_layout": "coins in a row",
+       "goal_output": [
+        "[1] \"Resistant\""
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many of these zones are intermediate?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Only 18 and 20 pass both tests, so sum() counts 2.",
+       "takeaway": null,
+       "next_bridge": "fix a resistance check.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Four plates from the morning run.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Zone diameters in mm",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4"
+          ],
+          [
+           [
+            24,
+            18,
+            12,
+            20
+           ],
+           "2 intermediate"
+          ],
+          {
+           "b": [
+            [
+             24,
+             18,
+             12,
+             20
+            ],
+            "3?"
+           ],
+           "c": [
+            [
+             24,
+             18,
+             12,
+             20
+            ],
+            "1?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 30,
+          "line": 16,
+          "line_label": "16 mm",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           24,
+           18,
+           12,
+           20
+          ],
+          "2 intermediate"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             24,
+             18,
+             12,
+             20
+            ],
+            "3?"
+           ],
+           "c": [
+            [
+             24,
+             18,
+             12,
+             20
+            ],
+            "1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "disk_test.R",
+       "code": [
+        "zones <- c(24, 18, 12, 20)",
+        "print(sum(zones >= 16 & zones <= 20))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 3",
+         "correct": false,
+         "feedback": "24 is above 20, so it isn't intermediate."
+        },
+        {
+         "id": "c",
+         "label": "[1] 1",
+         "correct": false,
+         "feedback": "<= 20 includes 20 itself."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "An 18 mm zone is reported as Resistant. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Resistant means 15 or less, so the test is zone <= 15. For 18 it's FALSE.",
+       "takeaway": null,
+       "next_bridge": "write the whole decision as a function.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A report that looks wrong.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Zone diameter in mm",
+         "args": [
+          [
+           "zone"
+          ],
+          [
+           [
+            18
+           ],
+           "Not resistant"
+          ],
+          {
+           "b": [
+            [
+             18
+            ],
+            "Resistant?"
+           ],
+           "c": [
+            [
+             18
+            ],
+            "Intermediate?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 30,
+          "line": 21,
+          "line_label": "S ≥ 21 mm",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           18
+          ],
+          "Not resistant"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             18
+            ],
+            "Resistant?"
+           ],
+           "c": [
+            [
+             18
+            ],
+            "Intermediate?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "disk_test.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "zone <- 18",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if (zone >= 15) {",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "  print(\"Resistant\")",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "} else {",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "  print(\"Not resistant\")",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "}",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "if (zone <= 15) {",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "b1",
+          "replacement": "if (zone > 15) {",
+          "correct": false,
+          "feedback": "18 > 15 is still TRUE: Resistant."
+         },
+         {
+          "id": "b2",
+          "replacement": "if (zone >= 16) {",
+          "correct": false,
+          "feedback": "18 >= 16 is TRUE too: Resistant."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "  print(\"Intermediate\")",
+          "correct": false,
+          "feedback": "That changes the label, not the test: every zone over 15 says Intermediate."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] \"Not resistant\""
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "21 meets the first test, so the function returns \"S\".",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A zone exactly on the line.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Zone diameter in mm",
+         "args": [
+          [
+           "zone"
+          ],
+          [
+           [
+            21
+           ],
+           "\"S\""
+          ],
+          {
+           "b": [
+            [
+             21
+            ],
+            "\"I\"?"
+           ],
+           "c": [
+            [
+             21
+            ],
+            "\"R\"?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 30,
+          "line": 21,
+          "line_label": "S ≥ 21 mm",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           21
+          ],
+          "\"S\""
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             21
+            ],
+            "\"I\"?"
+           ],
+           "c": [
+            [
+             21
+            ],
+            "\"R\"?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "disk_test.R",
+       "code": [
+        "category <- function(z) {",
+        "  if (z >= 21) \"S\" else if (z >= 16) \"I\" else \"R\"",
+        "}",
+        "print(category(21))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"S\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"I\"",
+         "correct": false,
+         "feedback": "21 >= 21 is TRUE, so the first test already passes."
+        },
+        {
+         "id": "c",
+         "label": "[1] \"R\"",
+         "correct": false,
+         "feedback": "R only reaches \"R\" when both tests fail."
+        }
+       ],
+       "option_layout": "coins in a row"
       }
      ]
     }
@@ -11722,6 +13627,15 @@
              3
             ],
             "2: no overlaps"
+           ],
+           "d": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "3, but only by luck"
            ]
           }
          ],
@@ -11758,6 +13672,15 @@
              3
             ],
             "2: no overlaps"
+           ],
+           "d": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "3, but only by luck"
            ]
           }
          }
@@ -12566,6 +14489,675 @@
        },
        "wrong_line_feedback": {},
        "output_after_fix": "After the fix: [1] 60"
+      }
+     ]
+    },
+    {
+     "id": "BioP4C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Drug clearance",
+     "person": "Pharmacology lab",
+     "intro": "After a dose, the level of many drugs halves every half-life. Here, 80 mg/L halves every 6 hours. No hints, no notes: read every line.",
+     "script_file": "clearance.R",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "After 3 half-lives",
+       "value": "10 mg/L"
+      },
+      {
+       "label": "Each half-life",
+       "value": "40 20 10 5"
+      },
+      {
+       "label": "Hours to 10 mg/L",
+       "value": "18"
+      },
+      {
+       "label": "Endless loop",
+       "value": "fixed: / 2"
+      },
+      {
+       "label": "Levels kept",
+       "value": "40 20 10"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 4 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "biology_research_r",
+     "phase": 4,
+     "language": "R",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Three halvings: 80 → 40 → 20 → 10 mg/L.",
+       "takeaway": null,
+       "next_bridge": "keep every level.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The level after each half-life.",
+       "picture": [
+        {
+         "type": "steps",
+         "description": "Step curve that draws itself (stroke-dashoffset, 1.6 s); each wrong option draws its own curve in orange.",
+         "label": "Drug level, as a share of the first dose",
+         "args": [
+          [
+           [
+            0.5,
+            0.25,
+            0.125
+           ],
+           "10 mg/L"
+          ],
+          {
+           "b": [
+            [
+             0.5
+            ],
+            "40?"
+           ],
+           "c": [
+            [
+             0.5,
+             0.25
+            ],
+            "20?"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          [
+           0.5,
+           0.25,
+           0.125
+          ],
+          "10 mg/L"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0.5
+            ],
+            "40?"
+           ],
+           "c": [
+            [
+             0.5,
+             0.25
+            ],
+            "20?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "clearance.R",
+       "code": [
+        "level <- 80",
+        "for (i in 1:3) level <- level / 2",
+        "print(level)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 10",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 40",
+         "correct": false,
+         "feedback": "The loop halves the level 3 times, not once."
+        },
+        {
+         "id": "c",
+         "label": "[1] 20",
+         "correct": false,
+         "feedback": "1:3 runs 3 times: 80, 40, 20, 10."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Store the level after each of 4 half-lives.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "After half-life i the level is 80 / 2^i: 40, 20, 10, 5.",
+       "takeaway": null,
+       "next_bridge": "find when it drops to 10 mg/L.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Four blood samples.",
+       "picture": [
+        {
+         "type": "steps",
+         "description": "Step curve that draws itself (stroke-dashoffset, 1.6 s); each wrong option draws its own curve in orange.",
+         "label": "Drug level, as a share of the first dose",
+         "args": [
+          [
+           [
+            0.5,
+            0.25,
+            0.125,
+            0.0625
+           ],
+           "40 20 10 5"
+          ],
+          {
+           "b": [
+            [
+             0.0625,
+             0.0625,
+             0.0625,
+             0.0625
+            ],
+            "5 5 5 5?"
+           ],
+           "c": [
+            [
+             0.25,
+             0.25,
+             0.25,
+             0.25
+            ],
+            "20 20 20 20?"
+           ],
+           "d": [
+            [
+             1.0,
+             0.5,
+             0.25,
+             0.125
+            ],
+            "80 40 20 10?"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          [
+           0.5,
+           0.25,
+           0.125,
+           0.0625
+          ],
+          "40 20 10 5"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0.0625,
+             0.0625,
+             0.0625,
+             0.0625
+            ],
+            "5 5 5 5?"
+           ],
+           "c": [
+            [
+             0.25,
+             0.25,
+             0.25,
+             0.25
+            ],
+            "20 20 20 20?"
+           ],
+           "d": [
+            [
+             1.0,
+             0.5,
+             0.25,
+             0.125
+            ],
+            "80 40 20 10?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "clearance.R",
+       "code": [
+        "levels <- numeric(4)",
+        "for (i in 1:4) levels[i] <- 80 / 2^___",
+        "print(levels)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "i",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": "Every level uses 4 halvings: 5 5 5 5."
+        },
+        {
+         "id": "c",
+         "label": "2",
+         "correct": false,
+         "feedback": "Every level uses 2 halvings: 20 20 20 20."
+        },
+        {
+         "id": "d",
+         "label": "(i - 1)",
+         "correct": false,
+         "feedback": "That starts at the full dose: 80 40 20 10."
+        }
+       ],
+       "option_layout": "coins in a row",
+       "goal_output": [
+        "[1] 40 20 10  5"
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many hours until the level is 10 mg/L or less?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "80 → 40 → 20 → 10 takes three halvings, 6 hours each: 18 hours.",
+       "takeaway": null,
+       "next_bridge": "fix a loop that never ends.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Waiting for the level to fall.",
+       "picture": [
+        {
+         "type": "steps",
+         "description": "Step curve that draws itself (stroke-dashoffset, 1.6 s); each wrong option draws its own curve in orange.",
+         "label": "Drug level, as a share of the first dose",
+         "args": [
+          [
+           [
+            0.5,
+            0.25,
+            0.125
+           ],
+           "18 hours"
+          ],
+          {
+           "b": [
+            [
+             0.5,
+             0.25,
+             0.125
+            ],
+            "3?"
+           ],
+           "c": [
+            [
+             0.5,
+             0.25,
+             0.125,
+             0.0625
+            ],
+            "24?"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          [
+           0.5,
+           0.25,
+           0.125
+          ],
+          "18 hours"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0.5,
+             0.25,
+             0.125
+            ],
+            "3?"
+           ],
+           "c": [
+            [
+             0.5,
+             0.25,
+             0.125,
+             0.0625
+            ],
+            "24?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "clearance.R",
+       "code": [
+        "level <- 80",
+        "hours <- 0",
+        "while (level > 10) {",
+        "  level <- level / 2",
+        "  hours <- hours + 6",
+        "}",
+        "print(hours)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 18",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 3",
+         "correct": false,
+         "feedback": "hours goes up by 6 each time, not by 1."
+        },
+        {
+         "id": "c",
+         "label": "[1] 24",
+         "correct": false,
+         "feedback": "The loop stops as soon as the level reaches 10."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "This loop never ends. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Doubling never brings the level below 5. Halving does: 80 → 40 → 20 → 10 → 5 takes 24 hours.",
+       "takeaway": null,
+       "next_bridge": "keep every level.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A simulation that runs forever.",
+       "picture": [
+        {
+         "type": "steps",
+         "description": "Step curve that draws itself (stroke-dashoffset, 1.6 s); each wrong option draws its own curve in orange.",
+         "label": "Drug level, as a share of the first dose",
+         "args": [
+          [
+           [
+            0.5,
+            0.25,
+            0.125,
+            0.0625
+           ],
+           "24 hours"
+          ],
+          {
+           "c": [
+            [],
+            "0 hours?"
+           ],
+           "d": [
+            [
+             1.0,
+             1.0,
+             1.0,
+             1.0
+            ],
+            "never ends"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          [
+           0.5,
+           0.25,
+           0.125,
+           0.0625
+          ],
+          "24 hours"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [],
+            "0 hours?"
+           ],
+           "d": [
+            [
+             1.0,
+             1.0,
+             1.0,
+             1.0
+            ],
+            "never ends"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "clearance.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "level <- 80",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "hours <- 0",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "while (level > 5) {",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "  level <- level * 2",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "  hours <- hours + 6",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "}",
+         "given_correct": false
+        },
+        {
+         "id": "g",
+         "code": "print(hours)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "d",
+       "fixes_by_line": {
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "  level <- level / 2",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "d1",
+          "replacement": "  level <- level - 2",
+          "correct": false,
+          "feedback": "It ends, but subtracting isn't halving: 228 hours."
+         },
+         {
+          "id": "d2",
+          "replacement": "  level <- level + 2",
+          "correct": false,
+          "feedback": "The level still grows: it never ends."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "while (level < 5) {",
+          "correct": false,
+          "feedback": "80 < 5 is FALSE, so the loop never runs: 0 hours."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] 24"
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Each pass halves the level, then adds it to out: 40, 20, 10.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The level at hours 6, 12 and 18.",
+       "picture": [
+        {
+         "type": "steps",
+         "description": "Step curve that draws itself (stroke-dashoffset, 1.6 s); each wrong option draws its own curve in orange.",
+         "label": "Drug level, as a share of the first dose",
+         "args": [
+          [
+           [
+            0.5,
+            0.25,
+            0.125
+           ],
+           "40 20 10"
+          ],
+          {
+           "b": [
+            [
+             0.125
+            ],
+            "10?"
+           ],
+           "c": [
+            [
+             1.0,
+             0.5,
+             0.25
+            ],
+            "80 40 20?"
+           ]
+          }
+         ],
+         "options": {},
+         "correct_state": [
+          [
+           0.5,
+           0.25,
+           0.125
+          ],
+          "40 20 10"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0.125
+            ],
+            "10?"
+           ],
+           "c": [
+            [
+             1.0,
+             0.5,
+             0.25
+            ],
+            "80 40 20?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "clearance.R",
+       "code": [
+        "level <- 80",
+        "out <- c()",
+        "for (h in 1:3) {",
+        "  level <- level / 2",
+        "  out <- c(out, level)",
+        "}",
+        "print(out)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 40 20 10",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 10",
+         "correct": false,
+         "feedback": "out keeps every level, not only the last."
+        },
+        {
+         "id": "c",
+         "label": "[1] 80 40 20",
+         "correct": false,
+         "feedback": "Each level is stored after it's halved."
+        }
+       ],
+       "option_layout": "coins in a row"
       }
      ]
     }
@@ -16421,6 +19013,615 @@
        },
        "wrong_line_feedback": {},
        "output_after_fix": "After the fix: [1] TRUE"
+      }
+     ]
+    },
+    {
+     "id": "BioP5C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Blood bank sample",
+     "person": "Blood bank",
+     "intro": "A blood bank tallies the blood groups of a random sample of donors. The script must give the same sample every time. No hints, no notes: read every line.",
+     "script_file": "blood_bank.R",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "Group O donors",
+       "value": "3"
+      },
+      {
+       "label": "Donors in the table",
+       "value": "3"
+      },
+      {
+       "label": "Same sample twice",
+       "value": "TRUE"
+      },
+      {
+       "label": "Report count",
+       "value": "fixed: $donors"
+      },
+      {
+       "label": "Mean age, group O",
+       "value": "27.5"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 5 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "biology_research_r",
+     "phase": 5,
+     "language": "R",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many donors are group O?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "groups == \"O\" is TRUE three times, and sum() counts them: 3.",
+       "takeaway": null,
+       "next_bridge": "count rows in a table.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Six donors in the morning clinic.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Donors by blood group",
+         "args": [
+          [
+           "O",
+           "A",
+           "B",
+           "AB"
+          ],
+          [
+           [
+            3,
+            0,
+            0,
+            0
+           ],
+           "3 donors"
+          ],
+          {
+           "b": [
+            [
+             3,
+             2,
+             1,
+             0
+            ],
+            "6?"
+           ],
+           "c": [
+            [
+             1,
+             0,
+             0,
+             0
+            ],
+            "1?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 4
+         },
+         "correct_state": [
+          [
+           3,
+           0,
+           0,
+           0
+          ],
+          "3 donors"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             3,
+             2,
+             1,
+             0
+            ],
+            "6?"
+           ],
+           "c": [
+            [
+             1,
+             0,
+             0,
+             0
+            ],
+            "1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "blood_bank.R",
+       "code": [
+        "groups <- c(\"O\", \"A\", \"O\", \"B\", \"O\", \"A\")",
+        "print(sum(groups == \"O\"))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 6",
+         "correct": false,
+         "feedback": "That's every donor; == \"O\" keeps only the O ones."
+        },
+        {
+         "id": "c",
+         "label": "[1] 1",
+         "correct": false,
+         "feedback": "sum() counts every TRUE, not just the first."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Count the donors in the table.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Each donor is a row, so nrow() gives 3.",
+       "takeaway": null,
+       "next_bridge": "draw the same sample twice.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The donor table.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Blood group of each donor",
+         "args": [
+          "OAO",
+          [
+           [
+            0,
+            1,
+            2
+           ],
+           "3 donors"
+          ],
+          {
+           "b": [
+            [],
+            "2?"
+           ],
+           "c": [
+            [],
+            "2?"
+           ],
+           "d": [
+            [],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "base": 1
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2
+          ],
+          "3 donors"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "2?"
+           ],
+           "c": [
+            [],
+            "2?"
+           ],
+           "d": [
+            [],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "blood_bank.R",
+       "code": [
+        "donors <- data.frame(",
+        "  id = c(\"D1\", \"D2\", \"D3\"),",
+        "  group = c(\"O\", \"A\", \"O\")",
+        ")",
+        "print(___(donors))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "nrow",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "ncol",
+         "correct": false,
+         "feedback": "That counts columns: id and group, 2."
+        },
+        {
+         "id": "c",
+         "label": "length",
+         "correct": false,
+         "feedback": "For a data frame, length() counts columns: 2."
+        },
+        {
+         "id": "d",
+         "label": "sum",
+         "correct": false,
+         "feedback": "sum() can't add up text: error."
+        }
+       ],
+       "option_layout": "coins in a row",
+       "goal_output": [
+        "[1] 3"
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "set.seed(42) resets the random numbers, so both draws are the same.",
+       "takeaway": null,
+       "next_bridge": "fix the report.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Drawing the sample again.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Groups drawn",
+         "args": [
+          "OAB",
+          [
+           [
+            0,
+            1,
+            2
+           ],
+           "same sample twice"
+          ],
+          {
+           "b": [
+            [],
+            "FALSE?"
+           ],
+           "c": [
+            [],
+            "no error here"
+           ]
+          }
+         ],
+         "options": {
+          "base": 1
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2
+          ],
+          "same sample twice"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "FALSE?"
+           ],
+           "c": [
+            [],
+            "no error here"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "blood_bank.R",
+       "code": [
+        "set.seed(42)",
+        "a <- sample(c(\"O\", \"A\", \"B\", \"AB\"), 3)",
+        "set.seed(42)",
+        "b <- sample(c(\"O\", \"A\", \"B\", \"AB\"), 3)",
+        "print(identical(a, b))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] TRUE",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] FALSE",
+         "correct": false,
+         "feedback": "The same seed gives the same random draw."
+        },
+        {
+         "id": "c",
+         "label": "Error",
+         "correct": false,
+         "feedback": "sample() can draw from text."
+        }
+       ],
+       "option_layout": "coins in a row"
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The report prints NULL. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "The list has no element called count. Asking for donors gives 6.",
+       "takeaway": null,
+       "next_bridge": "summarise by group.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The donor report.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against an optional reference line; value labels and a result note.",
+         "label": "Donors in the report",
+         "args": [
+          [
+           "donors"
+          ],
+          [
+           [
+            6
+           ],
+           "6 donors"
+          ],
+          {
+           "a": [
+            [
+             0
+            ],
+            "NULL"
+           ],
+           "b": [
+            [
+             0
+            ],
+            "NULL"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 8
+         },
+         "correct_state": [
+          [
+           6
+          ],
+          "6 donors"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "a": [
+            [
+             0
+            ],
+            "NULL"
+           ],
+           "b": [
+            [
+             0
+            ],
+            "NULL"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "blood_bank.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "report <- list(site = \"City\", donors = 6)",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "print(report$count)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "print(report$donors)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "b1",
+          "replacement": "print(report[[\"count\"]])",
+          "correct": false,
+          "feedback": "There is still no element called count: NULL."
+         },
+         {
+          "id": "b2",
+          "replacement": "print(report$site)",
+          "correct": false,
+          "feedback": "That prints the site: \"City\"."
+         }
+        ],
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "report <- list(site = \"City\", donors = 0)",
+          "correct": false,
+          "feedback": "Still no element called count: NULL."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] 6"
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What is the mean age of the group O donors?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "code_size_px": null,
+       "explanation_after_check": "Group O donors are 30 and 25, so the mean is 27.5.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Ages of four donors.",
+       "picture": [
+        {
+         "type": "dots",
+         "description": "Dot plot; the mean marker slides to its value; lit dots scale up; result pill fades in after 0.6 s.",
+         "label": "Donor ages with the mean marker",
+         "args": [
+          [
+           30,
+           45,
+           25,
+           40
+          ],
+          60,
+          {
+           "mean": 27.5,
+           "lit": [
+            0,
+            2
+           ],
+           "text": "27.5"
+          },
+          {
+           "b": {
+            "mean": 35,
+            "text": "35?"
+           },
+           "c": {
+            "mean": 55,
+            "text": "55?"
+           }
+          }
+         ],
+         "options": {},
+         "correct_state": {
+          "mean": 27.5,
+          "lit": [
+           0,
+           2
+          ],
+          "text": "27.5"
+         },
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": {
+            "mean": 35,
+            "text": "35?"
+           },
+           "c": {
+            "mean": 55,
+            "text": "55?"
+           }
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "blood_bank.R",
+       "code": [
+        "donors <- data.frame(",
+        "  group = c(\"O\", \"A\", \"O\", \"B\"),",
+        "  age = c(30, 45, 25, 40)",
+        ")",
+        "print(mean(donors$age[donors$group == \"O\"]))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 27.5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 35",
+         "correct": false,
+         "feedback": "That's every donor; the [ ] keeps only group O."
+        },
+        {
+         "id": "c",
+         "label": "[1] 55",
+         "correct": false,
+         "feedback": "mean() divides the total by 2: 27.5."
+        }
+       ],
+       "option_layout": "coins in a row"
       }
      ]
     }

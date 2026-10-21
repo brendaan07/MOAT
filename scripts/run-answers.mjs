@@ -34,7 +34,9 @@ function run(lines) {
   try {
     return execFileSync(rt[0], [...rt[1], path], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000 }).trimEnd();
   } catch (e) {
-    return `ERROR: ${(e.stderr || e.stdout || e.message).toString().trim().split('\n').slice(-2).join(' | ')}`;
+    // conda run adds its own lines after R's message; keep R's.
+    const lines = (e.stderr || e.stdout || e.message).toString().trim().split('\n').filter((l) => !/^ERROR conda|Execution halted/.test(l));
+    return `ERROR: ${lines.slice(-2).join(' | ')}`;
   }
 }
 const indent = (s) => s.split('\n').map((l) => `      ${l}`).join('\n');
