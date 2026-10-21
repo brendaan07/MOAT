@@ -81,6 +81,88 @@
     "name": "Circuit calculator",
     "filename": "",
     "problem": "",
+    "unlock": [
+     "Phase 2 unlocked",
+     "Component labels & test reports",
+     "New skill: text and formatting. You'll build a test report."
+    ],
+    "questions": []
+   }
+  },
+  {
+   "number": 2,
+   "area": "Engineering",
+   "project": "Component labels & test reports",
+   "picture": "",
+   "skill": "Text and formatting",
+   "parts": [
+    [
+     "Part numbers",
+     "Component labels & test reports"
+    ],
+    [
+     "Multimeter readings",
+     "Component labels & test reports"
+    ],
+    [
+     "Test report line",
+     "Component labels & test reports"
+    ],
+    [
+     "Motor codes",
+     "Component labels & test reports"
+    ],
+    [
+     "Barcode scans",
+     "Component labels & test reports"
+    ]
+   ],
+   "code": [
+    "part = \"R470K\"",
+    "print(part[1:-1])",
+    "volts = float(\"V 11.8 volt\".split()[1])",
+    "print(f\"B07 at {volts:.1f} V\")",
+    "code = \"M3S8F2\"",
+    "print(code[1::2])",
+    "print(\" mtr-0042 \".strip().upper())"
+   ],
+   "lessons": [
+    {
+     "id": "eng_py_p2_l1",
+     "part": 1,
+     "title": "Part numbers",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p2_l2",
+     "part": 2,
+     "title": "Multimeter readings",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p2_l3",
+     "part": 3,
+     "title": "Test report line",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p2_l4",
+     "part": 4,
+     "title": "Motor codes",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p2_l5",
+     "part": 5,
+     "title": "Barcode scans",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "eng_py_cp2",
+    "name": "Component labels & test reports",
+    "filename": "",
+    "problem": "",
     "unlock": [],
     "questions": []
    }

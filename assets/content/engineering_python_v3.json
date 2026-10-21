@@ -3685,6 +3685,3811 @@
      ]
     }
    ]
+  },
+  {
+   "phase": 2,
+   "title": "Component labels & test reports",
+   "coding_idea": "Text and formatting",
+   "items": [
+    {
+     "id": "EpP2L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Part numbers",
+     "person": "Stores technician",
+     "intro": "Every resistor drawer has a code like R470K: a type letter, then the value. Read the codes before you pick parts.",
+     "script_file": "parts.py",
+     "start_button": "Read the codes",
+     "notebook": [
+      {
+       "label": "First letter",
+       "value": "R"
+      },
+      {
+       "label": "Unit letter",
+       "value": "K"
+      },
+      {
+       "label": "Value",
+       "value": "fixed: [1:4]"
+      },
+      {
+       "label": "Between the ends",
+       "value": "470"
+      },
+      {
+       "label": "Capacitor type",
+       "value": "fixed: [0]"
+      }
+     ],
+     "recap": {
+      "title": "Codes read",
+      "subtitle": "Indexes from 0, from the end with -1, and slices that stop before their end.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[0] is the first character of the text: R.",
+       "takeaway": "So: text[0] is the first character.",
+       "next_bridge": "find the unit letter.",
+       "hint_before_check": "Python counts positions from 0.",
+       "code_note": {
+        "title": "Indexing",
+        "text": "Square brackets pick one character by its position."
+       },
+       "science_note": {
+        "title": "Part codes",
+        "text": "Stores label every drawer with a short code so parts can be found and reordered fast."
+       },
+       "scene_label": "The drawer label.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "R470K",
+          [
+           [
+            0
+           ],
+           "R"
+          ],
+          {
+           "b": [
+            [
+             1
+            ],
+            "4?"
+           ],
+           "c": [
+            [
+             0,
+             1
+            ],
+            "R4?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0
+          ],
+          "R"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1
+            ],
+            "4?"
+           ],
+           "c": [
+            [
+             0,
+             1
+            ],
+            "R4?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "\"R470K\"[0]",
+         "c": "#FFFDF6"
+        },
+        "is",
+        {
+         "t": "R",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "part = \"R470K\"",
+        "print(part[0])"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "R",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": "Python counts from 0: [0] is the first character."
+        },
+        {
+         "id": "c",
+         "label": "R4",
+         "correct": false,
+         "feedback": "One index gives one character."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Pick out the unit letter at the end.",
+       "xp": 10,
+       "known_from_earlier": [
+        "part = \"R470K\""
+       ],
+       "explanation_after_check": "[-1] is the last character, whatever the length: K.",
+       "takeaway": "So: [-1] is the last character.",
+       "next_bridge": "read the value.",
+       "hint_before_check": "Negative positions count from the end.",
+       "code_note": {
+        "title": "Negative indexes",
+        "text": "-1 means the last character, -2 the one before it."
+       },
+       "science_note": {
+        "title": "Multipliers",
+        "text": "In resistor codes, K means kilo-ohms: R470K is 470 000 Ω."
+       },
+       "scene_label": "The end of the code.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "R470K",
+          [
+           [
+            4
+           ],
+           "K"
+          ],
+          {
+           "b": [
+            [],
+            "IndexError"
+           ],
+           "c": [
+            [
+             0
+            ],
+            "R?"
+           ],
+           "d": [
+            [
+             3
+            ],
+            "0?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           4
+          ],
+          "K"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "IndexError"
+           ],
+           "c": [
+            [
+             0
+            ],
+            "R?"
+           ],
+           "d": [
+            [
+             3
+            ],
+            "0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "unit = part[___]",
+        "print(unit)"
+       ],
+       "goal_output": [
+        "K"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "-1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "5",
+         "correct": false,
+         "feedback": "Positions run 0 to 4, so [5] is past the end: IndexError."
+        },
+        {
+         "id": "c",
+         "label": "0",
+         "correct": false,
+         "feedback": "[0] is the first character: R."
+        },
+        {
+         "id": "d",
+         "label": "-2",
+         "correct": false,
+         "feedback": "-2 is one before the end: 0."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The stores app shows 47 for R470K. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "part[1:3] stops before position 3: 47. [1:4] goes up to position 3: 470.",
+       "takeaway": "So: a slice stops before its end position.",
+       "next_bridge": "trim both ends at once.",
+       "hint_before_check": "Where does a slice stop?",
+       "code_note": {
+        "title": "Slicing",
+        "text": "[start:end] includes start but stops before end."
+       },
+       "science_note": {
+        "title": "Values matter",
+        "text": "A 47 Ω resistor in place of a 470 kΩ one lets 10 000 times more current through."
+       },
+       "scene_label": "A value with a digit missing.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "R470K",
+          [
+           [
+            1,
+            2,
+            3
+           ],
+           "470"
+          ],
+          {
+           "b": [
+            [
+             1,
+             2
+            ],
+            "47?"
+           ],
+           "c": [
+            [
+             1,
+             2
+            ],
+            "470, by luck"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           2,
+           3
+          ],
+          "470"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             2
+            ],
+            "47?"
+           ],
+           "c": [
+            [
+             1,
+             2
+            ],
+            "470, by luck"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "parts.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "part = \"R470K\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "value = part[1:3]",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(value)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "value = part[1:4]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "value = part[0:4]",
+          "correct": false,
+          "feedback": "That starts at the R: R470."
+         },
+         {
+          "id": "f2",
+          "replacement": "value = part[2:5]",
+          "correct": false,
+          "feedback": "That starts one too late: 70K."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(value + \"0\")",
+          "correct": false,
+          "feedback": "470 here, but R220K would still lose a digit."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 470"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[1:-1] starts after the first character and stops before the last: 470.",
+       "takeaway": "So: [1:-1] trims one character from each end.",
+       "next_bridge": "fix a capacitor's type letter.",
+       "hint_before_check": "-1 is the last character; the slice stops before it.",
+       "code_note": {
+        "title": "Slices from the end",
+        "text": "A slice can end at a negative position too."
+       },
+       "science_note": {
+        "title": "Codes of any length",
+        "text": "R1K and R4700K are different lengths; [1:-1] works for both."
+       },
+       "scene_label": "The value between the letters.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "R470K",
+          [
+           [
+            1,
+            2,
+            3
+           ],
+           "470"
+          ],
+          {
+           "b": [
+            [
+             1,
+             2,
+             3,
+             4
+            ],
+            "470K?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "R470?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           2,
+           3
+          ],
+          "470"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             2,
+             3,
+             4
+            ],
+            "470K?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "R470?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "code = \"R470K\"",
+        "print(code[1:-1])"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "470",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "470K",
+         "correct": false,
+         "feedback": "The slice stops before the last character."
+        },
+        {
+         "id": "c",
+         "label": "R470",
+         "correct": false,
+         "feedback": "The slice starts at position 1, after the R."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The capacitor's type letter should be C. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[-1] is the last character, N. The type letter comes first: [0] is C.",
+       "takeaway": "So: count from the side the part you want is on.",
+       "next_bridge": "see your code reader.",
+       "hint_before_check": "Which position holds the type?",
+       "code_note": {
+        "title": "Choosing an index",
+        "text": "Positive indexes count from the start, negative ones from the end."
+       },
+       "science_note": {
+        "title": "Capacitor codes",
+        "text": "C100N is a capacitor of 100 nF; the first letter says what kind of part it is."
+       },
+       "scene_label": "A capacitor drawer.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "C100N",
+          [
+           [
+            0
+           ],
+           "C"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "C100?"
+           ],
+           "c": [
+            [
+             4
+            ],
+            "N?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0
+          ],
+          "C"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "C100?"
+           ],
+           "c": [
+            [
+             4
+            ],
+            "N?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "parts.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "code = \"C100N\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "kind = code[-1]",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(kind)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "kind = code[0]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "kind = code[:-1]",
+          "correct": false,
+          "feedback": "That's everything but the last character: C100."
+         },
+         {
+          "id": "f2",
+          "replacement": "kind = code[1]",
+          "correct": false,
+          "feedback": "Position 1 is the first digit: 1."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(kind.upper())",
+          "correct": false,
+          "feedback": "N is already upper case: N."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: C"
+      }
+     ]
+    },
+    {
+     "id": "EpP2L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Multimeter readings",
+     "person": "Test engineer",
+     "intro": "The bench multimeter sends each reading as one line of text, like \"V 11.8 volt\". Pull the numbers out before you check them.",
+     "script_file": "meter.py",
+     "start_button": "Read the meter",
+     "notebook": [
+      {
+       "label": "Pieces",
+       "value": "['V', '11.8', 'volt']"
+      },
+      {
+       "label": "Volts after the leads",
+       "value": "11.5"
+      },
+      {
+       "label": "Current",
+       "value": "fixed: [1]"
+      },
+      {
+       "label": "Split at :",
+       "value": "['T', ' 41.5 C']"
+      },
+      {
+       "label": "Under 60 C",
+       "value": "fixed: .split()"
+      }
+     ],
+     "recap": {
+      "title": "Readings parsed",
+      "subtitle": "split() into pieces, float() for numbers, and the spaces split() leaves behind.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "split() cuts the text at each space and gives back a list of pieces.",
+       "takeaway": "So: split() turns one line into a list of pieces.",
+       "next_bridge": "turn the voltage into a number.",
+       "hint_before_check": "split() with no argument splits at spaces.",
+       "code_note": {
+        "title": "Splitting text",
+        "text": "split() breaks text into a list of smaller strings."
+       },
+       "science_note": {
+        "title": "Instrument output",
+        "text": "Meters and loggers send readings as text, so every script starts by taking the line apart."
+       },
+       "scene_label": "A line from the meter.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Reading characters with their positions",
+         "args": [
+          "V 11.8 volt",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+           ],
+           "3 pieces"
+          ],
+          {
+           "b": [
+            [],
+            "still one line?"
+           ],
+           "c": [
+            [],
+            "one piece?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8,
+           9,
+           10
+          ],
+          "3 pieces"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "still one line?"
+           ],
+           "c": [
+            [],
+            "one piece?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "line = \"V 11.8 volt\"",
+        "parts = line.split()",
+        "print(parts)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "['V', '11.8', 'volt']",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "V 11.8 volt",
+         "correct": false,
+         "feedback": "split() gives back a list, not the same text."
+        },
+        {
+         "id": "c",
+         "label": "['V 11.8 volt']",
+         "correct": false,
+         "feedback": "With no argument, split() cuts at every space."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Turn the reading into a number and take off 0.3 V for the leads.",
+       "xp": 10,
+       "known_from_earlier": [
+        "parts = [\"V\", \"11.8\", \"volt\"]"
+       ],
+       "explanation_after_check": "float() turns \"11.8\" into the number 11.8, so 11.8 − 0.3 = 11.5.",
+       "takeaway": "So: float() turns text into a decimal number.",
+       "next_bridge": "read a current.",
+       "hint_before_check": "The reading has a decimal point.",
+       "code_note": {
+        "title": "Converting text",
+        "text": "float() and int() turn text into numbers."
+       },
+       "science_note": {
+        "title": "Lead resistance",
+        "text": "Test leads lose a little voltage, so engineers correct readings taken through long leads."
+       },
+       "scene_label": "The supply voltage.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Supply voltage",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            9,
+            11,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            11,
+            13,
+            "#E4F5B8",
+            "ok"
+           ],
+           [
+            13,
+            15,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 9,
+          "vmax": 15
+         },
+         "correct_state": [
+          11.5,
+          "11.5"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            9,
+            "ValueError"
+           ],
+           "c": [
+            9,
+            "TypeError"
+           ],
+           "d": [
+            9,
+            "3.7?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "volts = ___(parts[1])",
+        "print(volts - 0.3)"
+       ],
+       "goal_output": [
+        "11.5"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "float",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "int",
+         "correct": false,
+         "feedback": "int() can't read a decimal point: ValueError."
+        },
+        {
+         "id": "c",
+         "label": "str",
+         "correct": false,
+         "feedback": "str() keeps it text, and text minus a number is a TypeError."
+        },
+        {
+         "id": "d",
+         "label": "len",
+         "correct": false,
+         "feedback": "len() counts the characters, 4: 4 − 0.3 is 3.7."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The current reading stops Python. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "split() gives ['A', '0.25', 'amp']; [2] is 'amp', which float() can't read. [1] is the number.",
+       "takeaway": "So: count the pieces from 0.",
+       "next_bridge": "split at a colon.",
+       "hint_before_check": "Which piece holds the number?",
+       "code_note": {
+        "title": "Picking a piece",
+        "text": "A list from split() is indexed from 0, like text."
+       },
+       "science_note": {
+        "title": "Current readings",
+        "text": "A 0.25 A draw is normal for a small board; a reading of 2.5 A would mean a short."
+       },
+       "scene_label": "A current reading.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Reading characters with their positions",
+         "args": [
+          "A 0.25 amp",
+          [
+           [
+            2,
+            3,
+            4,
+            5
+           ],
+           "0.25"
+          ],
+          {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "ValueError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           2,
+           3,
+           4,
+           5
+          ],
+          "0.25"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "ValueError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "meter.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "line = \"A 0.25 amp\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "amps = float(line.split()[2])",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(amps)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "amps = float(line.split()[1])",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "amps = float(line.split()[0])",
+          "correct": false,
+          "feedback": "[0] is the letter A: ValueError."
+         },
+         {
+          "id": "f2",
+          "replacement": "amps = float(line.split()[-1])",
+          "correct": false,
+          "feedback": "[-1] is the word amp: ValueError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(amps * 1000)",
+          "correct": false,
+          "feedback": "Python still stops on line 2, before it gets here."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 0.25"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The temperature probe uses a colon. What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "split(\":\") cuts only at the colon, so the space after it stays in the second piece: ' 41.5 C'.",
+       "takeaway": "So: split(x) cuts only at x and keeps everything else.",
+       "next_bridge": "fix the temperature check.",
+       "hint_before_check": "Split at the colon only.",
+       "code_note": {
+        "title": "Choosing where to split",
+        "text": "split(\":\") cuts at colons and leaves spaces alone."
+       },
+       "science_note": {
+        "title": "Probe formats",
+        "text": "Different instruments use different separators; check the format before splitting."
+       },
+       "scene_label": "A line from the temperature probe.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Reading characters with their positions",
+         "args": [
+          "T: 41.5 C",
+          [
+           [
+            0
+           ],
+           "['T', ' 41.5 C']"
+          ],
+          {
+           "b": [
+            [],
+            "cut at spaces?"
+           ],
+           "c": [
+            [],
+            "space gone?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0
+          ],
+          "['T', ' 41.5 C']"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "cut at spaces?"
+           ],
+           "c": [
+            [],
+            "space gone?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(\"T: 41.5 C\".split(\":\"))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "['T', ' 41.5 C']",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "['T:', '41.5', 'C']",
+         "correct": false,
+         "feedback": "That's split() at spaces, not at the colon."
+        },
+        {
+         "id": "c",
+         "label": "['T', '41.5 C']",
+         "correct": false,
+         "feedback": "The space after the colon stays in the second piece."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The temperature check stops Python. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "' 41.5 C'.split(\" \") starts with an empty piece '', which float() can't read. split() with no argument skips extra spaces.",
+       "takeaway": "So: split() with no argument ignores extra spaces.",
+       "next_bridge": "see your meter reader.",
+       "hint_before_check": "What is the first piece when text starts with a space?",
+       "code_note": {
+        "title": "Empty pieces",
+        "text": "Splitting at a single space keeps empty pieces where spaces repeat or lead."
+       },
+       "science_note": {
+        "title": "Thermal limits",
+        "text": "Many boards are rated to 60 °C; above that, parts age fast or shut down."
+       },
+       "scene_label": "The board temperature.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Board temperature in °C",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            60,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            60,
+            100,
+            "#FFE3CF",
+            "too hot"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 100
+         },
+         "correct_state": [
+          41.5,
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0,
+            "ValueError"
+           ],
+           "c": [
+            0,
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "meter.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "raw = \"T: 41.5 C\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "temp = raw.split(\":\")[1].split(\" \")[0]",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(float(temp) < 60)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "temp = raw.split(\":\")[1].split()[0]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "temp = raw.split(\":\")[0]",
+          "correct": false,
+          "feedback": "That's the letter T: ValueError."
+         },
+         {
+          "id": "f2",
+          "replacement": "temp = raw.split(\" \")[0]",
+          "correct": false,
+          "feedback": "That's 'T:': ValueError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(temp < 60)",
+          "correct": false,
+          "feedback": "Text can't be compared with a number: TypeError."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: True"
+      }
+     ]
+    },
+    {
+     "id": "EpP2L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Test report line",
+     "person": "Quality engineer",
+     "intro": "Each board that passes test gets one report line. Format the numbers so every line looks the same.",
+     "script_file": "report.py",
+     "start_button": "Write the report",
+     "notebook": [
+      {
+       "label": "Report line",
+       "value": "B07 at 5 V"
+      },
+      {
+       "label": "Draw",
+       "value": "0.46 A"
+      },
+      {
+       "label": "Both voltages",
+       "value": "fixed: {unit}"
+      },
+      {
+       "label": "Rounded temp",
+       "value": "42 C"
+      },
+      {
+       "label": "Result line",
+       "value": "fixed: f\"...\""
+      }
+     ],
+     "recap": {
+      "title": "Report formatted",
+      "subtitle": "f-strings, :.2f and :.0f, and the f that makes the braces work.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The f-string puts each value where its braces are: B07 at 5 V.",
+       "takeaway": "So: an f-string fills { } with values.",
+       "next_bridge": "format the current.",
+       "hint_before_check": "The f fills each { } with its value.",
+       "code_note": {
+        "title": "f-strings",
+        "text": "f\"...\" fills each {name} with that name's value."
+       },
+       "science_note": {
+        "title": "Test reports",
+        "text": "Every board shipped gets a line in the test report, so a fault can be traced to its batch."
+       },
+       "scene_label": "Board B07 on the tester.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Report characters with their positions",
+         "args": [
+          "B07 at 5 V",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+           ],
+           "B07 at 5 V"
+          ],
+          {
+           "b": [
+            [],
+            "braces?"
+           ],
+           "c": [
+            [],
+            "5.0?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8,
+           9
+          ],
+          "B07 at 5 V"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "braces?"
+           ],
+           "c": [
+            [],
+            "5.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "board = \"B07\"",
+        "volts = 5",
+        "print(f\"{board} at {volts} V\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "B07 at 5 V",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "{board} at {volts} V",
+         "correct": false,
+         "feedback": "The f in front fills the braces with values."
+        },
+        {
+         "id": "c",
+         "label": "B07 at 5.0 V",
+         "correct": false,
+         "feedback": "volts is the whole number 5, so it prints 5."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show the current to 2 decimal places.",
+       "xp": 10,
+       "known_from_earlier": [
+        "amps = 0.4567"
+       ],
+       "explanation_after_check": ":.2f shows exactly 2 decimals, rounding 0.4567 to 0.46.",
+       "takeaway": "So: :.2f keeps 2 decimals.",
+       "next_bridge": "fix a line with two voltages.",
+       "hint_before_check": "f means a fixed number of decimals.",
+       "code_note": {
+        "title": "Format specs",
+        "text": "After a colon inside the braces, you say how to show the value."
+       },
+       "science_note": {
+        "title": "Sensible precision",
+        "text": "A meter good to 0.01 A shouldn't be reported to 4 decimals."
+       },
+       "scene_label": "The current draw.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Report characters with their positions",
+         "args": [
+          "Draw 0.46 A",
+          [
+           [
+            5,
+            6,
+            7,
+            8
+           ],
+           "0.46"
+          ],
+          {
+           "b": [
+            [],
+            "0.456700?"
+           ],
+           "c": [
+            [],
+            "0?"
+           ],
+           "d": [
+            [],
+            "45.670000%?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           5,
+           6,
+           7,
+           8
+          ],
+          "0.46"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "0.456700?"
+           ],
+           "c": [
+            [],
+            "0?"
+           ],
+           "d": [
+            [],
+            "45.670000%?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(f\"Draw {amps:___} A\")"
+       ],
+       "goal_output": [
+        "Draw 0.46 A"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ".2f",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2f",
+         "correct": false,
+         "feedback": "Without the dot, 2 is a width and f keeps 6 decimals: 0.456700."
+        },
+        {
+         "id": "c",
+         "label": ".0f",
+         "correct": false,
+         "feedback": ".0f keeps no decimals: 0."
+        },
+        {
+         "id": "d",
+         "label": "%",
+         "correct": false,
+         "feedback": "% shows it as a percentage: 45.670000%."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The second voltage prints as 6.6unit. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without braces, unit is printed as the word itself. {unit} fills in \" V\".",
+       "takeaway": "So: only names in braces are filled in.",
+       "next_bridge": "round a temperature.",
+       "hint_before_check": "Which word is missing its braces?",
+       "code_note": {
+        "title": "Braces",
+        "text": "Inside an f-string, plain words stay as they are."
+       },
+       "science_note": {
+        "title": "Consistent units",
+        "text": "Every value in a report carries its unit, the same way each time."
+       },
+       "scene_label": "Two rails on one board.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Report characters with their positions",
+         "args": [
+          "3.3 V, 6.6 V",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+           ],
+           "3.3 V, 6.6 V"
+          ],
+          {
+           "c": [
+            [],
+            "6.6 unit?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8,
+           9,
+           10,
+           11
+          ],
+          "3.3 V, 6.6 V"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [],
+            "6.6 unit?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "report.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "v = 3.3",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "unit = \" V\"",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "print(f\"{v}{unit}, {v * 2}unit\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "print(f\"{v}{unit}, {v * 2}{unit}\")",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "print(f\"{v}{unit}, {v * 2} unit\")",
+          "correct": false,
+          "feedback": "A space doesn't make it a name: 6.6 unit."
+         },
+         {
+          "id": "f2",
+          "replacement": "print(f\"{v}{unit}, {v} * 2{unit}\")",
+          "correct": false,
+          "feedback": "Outside the braces, * 2 is just text: 3.3 * 2 V."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 3.3 V, 6.6 V"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": ":.0f rounds to a whole number: 41.666 becomes 42.",
+       "takeaway": "So: :.0f rounds to a whole number.",
+       "next_bridge": "fix the result line.",
+       "hint_before_check": ".0f keeps no decimals and rounds.",
+       "code_note": {
+        "title": "Rounding in a format",
+        "text": "A format spec rounds the value it shows; the value itself stays."
+       },
+       "science_note": {
+        "title": "Temperature reports",
+        "text": "Board temperatures are reported to the nearest degree; the sensor isn't more accurate than that."
+       },
+       "scene_label": "The board temperature.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Report characters with their positions",
+         "args": [
+          "42 C",
+          [
+           [
+            0,
+            1
+           ],
+           "42"
+          ],
+          {
+           "b": [
+            [],
+            "41?"
+           ],
+           "c": [
+            [],
+            "41.666?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1
+          ],
+          "42"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "41?"
+           ],
+           "c": [
+            [],
+            "41.666?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "temp = 41.666",
+        "print(f\"{temp:.0f} C\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "42 C",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "41 C",
+         "correct": false,
+         "feedback": ".0f rounds to the nearest whole number; it doesn't cut."
+        },
+        {
+         "id": "c",
+         "label": "41.666 C",
+         "correct": false,
+         "feedback": ".0f keeps no decimals."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The result line prints the braces. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without the f in front, braces are ordinary characters. f\"...\" fills them in: B07: PASS.",
+       "takeaway": "So: no f, no filling in.",
+       "next_bridge": "see your report line.",
+       "hint_before_check": "What turns braces into values?",
+       "code_note": {
+        "title": "The f prefix",
+        "text": "The f before the quote is what makes Python fill the braces."
+       },
+       "science_note": {
+        "title": "Pass and fail",
+        "text": "Each board gets PASS or FAIL next to its ID, so the line reads on its own."
+       },
+       "scene_label": "A result line with braces in it.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Report characters with their positions",
+         "args": [
+          "B07: PASS",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+           ],
+           "B07: PASS"
+          ],
+          {
+           "c": [
+            [],
+            "{board}: {result}?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8
+          ],
+          "B07: PASS"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [],
+            "{board}: {result}?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "report.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "board = \"B07\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "result = \"PASS\"",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "print(\"{board}: {result}\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "print(f\"{board}: {result}\")",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "print(\"board: result\")",
+          "correct": false,
+          "feedback": "That prints the words: board: result."
+         },
+         {
+          "id": "f2",
+          "replacement": "print({board}: {result})",
+          "correct": false,
+          "feedback": "Without quotes, Python stops with a SyntaxError."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: B07: PASS"
+      }
+     ]
+    },
+    {
+     "id": "EpP2L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Motor codes",
+     "person": "Maintenance engineer",
+     "intro": "Each motor's nameplate packs three settings into one code: \"M3S8F2\" is model 3, speed 8 and fan 2.",
+     "script_file": "motor.py",
+     "start_button": "Read the nameplate",
+     "notebook": [
+      {
+       "label": "Settings",
+       "value": "3 8 2"
+      },
+      {
+       "label": "Total",
+       "value": "13"
+      },
+      {
+       "label": "Digits",
+       "value": "fixed: [1::2]"
+      },
+      {
+       "label": "Last two",
+       "value": "19"
+      },
+      {
+       "label": "Sum of settings",
+       "value": "fixed: int() each"
+      }
+     ],
+     "recap": {
+      "title": "Nameplate read",
+      "subtitle": "Positions, int(), step slices, and the difference between joining and adding.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Positions 1, 3 and 5 hold the digits: 3 8 2. print() puts a space between them.",
+       "takeaway": "So: print() with commas puts spaces between values.",
+       "next_bridge": "add the settings up.",
+       "hint_before_check": "Digits sit at the odd positions.",
+       "code_note": {
+        "title": "Several indexes",
+        "text": "Each [ ] picks one character."
+       },
+       "science_note": {
+        "title": "Nameplates",
+        "text": "Motor nameplates pack settings into a short code so the plate stays small."
+       },
+       "scene_label": "The motor nameplate.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "M3S8F2",
+          [
+           [
+            1,
+            3,
+            5
+           ],
+           "3 8 2"
+          ],
+          {
+           "b": [
+            [
+             0,
+             2,
+             4
+            ],
+            "M S F?"
+           ],
+           "c": [
+            [],
+            "pairs?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           3,
+           5
+          ],
+          "3 8 2"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             2,
+             4
+            ],
+            "M S F?"
+           ],
+           "c": [
+            [],
+            "pairs?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "code = \"M3S8F2\"",
+        "print(code[1], code[3], code[5])"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3 8 2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "M S F",
+         "correct": false,
+         "feedback": "Those letters sit at positions 0, 2 and 4."
+        },
+        {
+         "id": "c",
+         "label": "M3 S8 F2",
+         "correct": false,
+         "feedback": "One index gives one character."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Add up the three settings.",
+       "xp": 10,
+       "known_from_earlier": [
+        "code = \"M3S8F2\""
+       ],
+       "explanation_after_check": "code[5] is '2', so int() gives 2 and the total is 3 + 8 + 2 = 13.",
+       "takeaway": "So: int() each digit before adding.",
+       "next_bridge": "pick all the digits at once.",
+       "hint_before_check": "Which position holds the last digit?",
+       "code_note": {
+        "title": "Converting digits",
+        "text": "int(\"3\") is the number 3."
+       },
+       "science_note": {
+        "title": "Checksums",
+        "text": "Adding the digits of a code is a quick check that it was typed correctly."
+       },
+       "scene_label": "The settings added up.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "M3S8F2",
+          [
+           [
+            1,
+            3,
+            5
+           ],
+           "13"
+          ],
+          {
+           "b": [
+            [
+             4
+            ],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "IndexError"
+           ],
+           "d": [
+            [
+             0
+            ],
+            "ValueError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           3,
+           5
+          ],
+          "13"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             4
+            ],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "IndexError"
+           ],
+           "d": [
+            [
+             0
+            ],
+            "ValueError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "m, s = int(code[1]), int(code[3])",
+        "total = m + s + int(code[___])",
+        "print(total)"
+       ],
+       "goal_output": [
+        "13"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": "Position 4 is the letter F: ValueError."
+        },
+        {
+         "id": "c",
+         "label": "6",
+         "correct": false,
+         "feedback": "Positions run 0 to 5: IndexError."
+        },
+        {
+         "id": "d",
+         "label": "0",
+         "correct": false,
+         "feedback": "Position 0 is the letter M: ValueError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "This should print the digits 382. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[0::2] starts at position 0 and takes every second character: the letters MSF. [1::2] starts at the first digit.",
+       "takeaway": "So: [start::step] takes every step-th character from start.",
+       "next_bridge": "join two digits.",
+       "hint_before_check": "Where should the step start?",
+       "code_note": {
+        "title": "Step slices",
+        "text": "A third number in a slice is the step."
+       },
+       "science_note": {
+        "title": "Settings at a glance",
+        "text": "Reading all the digits at once lets a technician compare two motors quickly."
+       },
+       "scene_label": "The digits only.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "M3S8F2",
+          [
+           [
+            1,
+            3,
+            5
+           ],
+           "382"
+          ],
+          {
+           "b": [
+            [
+             0,
+             2,
+             4
+            ],
+            "MSF?"
+           ],
+           "c": [
+            [
+             0,
+             2,
+             4
+            ],
+            "FSM?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           3,
+           5
+          ],
+          "382"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             2,
+             4
+            ],
+            "MSF?"
+           ],
+           "c": [
+            [
+             0,
+             2,
+             4
+            ],
+            "FSM?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "motor.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "code = \"M3S8F2\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "digits = code[0::2]",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(digits)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "digits = code[1::2]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "digits = code[1:2]",
+          "correct": false,
+          "feedback": "Without the second colon, that's one character: 3."
+         },
+         {
+          "id": "f2",
+          "replacement": "digits = code[::3]",
+          "correct": false,
+          "feedback": "A step of 3 picks positions 0 and 3: M8."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(digits[::-1])",
+          "correct": false,
+          "feedback": "That reverses the letters: FSM."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 382"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "code[-1] is '1' and code[-3] is '9'. + joins text, so it prints 19.",
+       "takeaway": "So: + joins text; it doesn't add.",
+       "next_bridge": "fix the total.",
+       "hint_before_check": "These are characters, not numbers.",
+       "code_note": {
+        "title": "Joining digits",
+        "text": "Digits in text are still text until you convert them."
+       },
+       "science_note": {
+        "title": "Reading codes backwards",
+        "text": "The fan setting is always last, so [-1] finds it on any length of code."
+       },
+       "scene_label": "A second motor.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "M4S9F1",
+          [
+           [
+            3,
+            5
+           ],
+           "19"
+          ],
+          {
+           "b": [
+            [
+             3,
+             5
+            ],
+            "10?"
+           ],
+           "c": [
+            [
+             3,
+             5
+            ],
+            "1 9?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           3,
+           5
+          ],
+          "19"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             3,
+             5
+            ],
+            "10?"
+           ],
+           "c": [
+            [
+             3,
+             5
+            ],
+            "1 9?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "code = \"M4S9F1\"",
+        "print(code[-1] + code[-3])"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "19",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "10",
+         "correct": false,
+         "feedback": "+ joins text, so '1' + '9' is '19'."
+        },
+        {
+         "id": "c",
+         "label": "1 9",
+         "correct": false,
+         "feedback": "+ adds no space between the pieces."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The settings should add up to 14. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "m + s + f joins the text to '491', and int() reads that as 491. Convert each digit first: 4 + 9 + 1 = 14.",
+       "takeaway": "So: convert, then add.",
+       "next_bridge": "see your nameplate reader.",
+       "hint_before_check": "Is int() working on one digit or three?",
+       "code_note": {
+        "title": "Order of conversion",
+        "text": "int(a + b) joins first; int(a) + int(b) adds."
+       },
+       "science_note": {
+        "title": "Total settings",
+        "text": "A quick total helps spot a nameplate that was misread."
+       },
+       "scene_label": "The second motor's total.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "M4S9F1",
+          [
+           [
+            1,
+            3,
+            5
+           ],
+           "14"
+          ],
+          {
+           "c": [
+            [
+             1,
+             3,
+             5
+            ],
+            "491?"
+           ],
+           "d": [
+            [
+             1,
+             3,
+             5
+            ],
+            "163.67?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           3,
+           5
+          ],
+          "14"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [
+             1,
+             3,
+             5
+            ],
+            "491?"
+           ],
+           "d": [
+            [
+             1,
+             3,
+             5
+            ],
+            "163.67?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "motor.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "code = \"M4S9F1\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "m, s, f = code[1::2]",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "total = int(m + s + f)",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(total)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "total = int(m) + int(s) + int(f)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "total = m + s + f",
+          "correct": false,
+          "feedback": "Still joined text: 491."
+         },
+         {
+          "id": "f2",
+          "replacement": "total = int(m + s) + f",
+          "correct": false,
+          "feedback": "A number plus text: TypeError."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(total / 3)",
+          "correct": false,
+          "feedback": "That divides the wrong total: 163.66666666666666."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 14"
+      }
+     ]
+    },
+    {
+     "id": "EpP2L5",
+     "type": "lesson",
+     "part": 5,
+     "title": "Barcode scans",
+     "person": "Warehouse lead",
+     "intro": "The scanner reads part barcodes like \" mtr-0042 \": a type, a dash and a number, with stray spaces and the wrong case.",
+     "script_file": "scan.py",
+     "start_button": "Clean the scans",
+     "notebook": [
+      {
+       "label": "Clean scan",
+       "value": "MTR-0042"
+      },
+      {
+       "label": "Number part",
+       "value": "0042"
+      },
+      {
+       "label": "As a number",
+       "value": "fixed: [1]"
+      },
+      {
+       "label": "Lower-case pieces",
+       "value": "['mtr', '0042']"
+      },
+      {
+       "label": "Type check",
+       "value": "fixed: strip()"
+      }
+     ],
+     "recap": {
+      "title": "Scans cleaned",
+      "subtitle": "strip(), upper(), split(\"-\") and int() on the pieces.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "strip() removes the spaces at both ends, then upper() makes every letter a capital: MTR-0042.",
+       "takeaway": "So: methods chain left to right.",
+       "next_bridge": "split off the number.",
+       "hint_before_check": "strip() works first, then upper().",
+       "code_note": {
+        "title": "Text methods",
+        "text": "strip() and upper() each give back a new, changed copy."
+       },
+       "science_note": {
+        "title": "Scanner noise",
+        "text": "Scanners add stray spaces and read case as printed, so every scan is cleaned first."
+       },
+       "scene_label": "A raw scan.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Scan characters with their positions",
+         "args": [
+          "MTR-0042",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+           ],
+           "MTR-0042"
+          ],
+          {
+           "b": [
+            [],
+            "spaces left?"
+           ],
+           "c": [
+            [],
+            "lower case?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7
+          ],
+          "MTR-0042"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "spaces left?"
+           ],
+           "c": [
+            [],
+            "lower case?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "scan = \"  mtr-0042 \"",
+        "print(scan.strip().upper())"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "MTR-0042",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": " MTR-0042 ",
+         "correct": false,
+         "feedback": "strip() removes the spaces at both ends."
+        },
+        {
+         "id": "c",
+         "label": "mtr-0042",
+         "correct": false,
+         "feedback": "upper() makes the letters capitals."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Split the type from the number.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "split(\"-\") cuts at the dash: 'MTR' and '0042', one for each name.",
+       "takeaway": "So: split at the character between the parts.",
+       "next_bridge": "turn the number into an int.",
+       "hint_before_check": "What sits between them?",
+       "code_note": {
+        "title": "Unpacking",
+        "text": "a, b = gives each piece of a two-piece list its own name."
+       },
+       "science_note": {
+        "title": "Part families",
+        "text": "The type tells stores which shelf; the number which bin."
+       },
+       "scene_label": "The clean scan.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Scan characters with their positions",
+         "args": [
+          "MTR-0042",
+          [
+           [
+            4,
+            5,
+            6,
+            7
+           ],
+           "0042"
+          ],
+          {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "ValueError"
+           ],
+           "d": [
+            [],
+            "-0042?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           4,
+           5,
+           6,
+           7
+          ],
+          "0042"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "ValueError"
+           ],
+           "d": [
+            [],
+            "-0042?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "kind, num = \"MTR-0042\".split(___)",
+        "print(num)"
+       ],
+       "goal_output": [
+        "0042"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"-\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\" \"",
+         "correct": false,
+         "feedback": "There's no space, so there's one piece for two names: ValueError."
+        },
+        {
+         "id": "c",
+         "label": "\"0\"",
+         "correct": false,
+         "feedback": "Cutting at each 0 makes three pieces for two names: ValueError."
+        },
+        {
+         "id": "d",
+         "label": "\"MTR\"",
+         "correct": false,
+         "feedback": "Cutting at MTR leaves the dash on the number: -0042."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Turning the number into an int stops Python. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[0] is 'MTR', which int() can't read. [1] is '0042', and int() gives 42.",
+       "takeaway": "So: int() drops leading zeros.",
+       "next_bridge": "lower-case a code.",
+       "hint_before_check": "Which piece is the number?",
+       "code_note": {
+        "title": "int() on text",
+        "text": "int(\"0042\") is 42."
+       },
+       "science_note": {
+        "title": "Bin numbers",
+        "text": "Stock systems store bin numbers as numbers, so 0042 and 42 are the same bin."
+       },
+       "scene_label": "The number part.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Scan characters with their positions",
+         "args": [
+          "MTR-0042",
+          [
+           [
+            4,
+            5,
+            6,
+            7
+           ],
+           "42"
+          ],
+          {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "ValueError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           4,
+           5,
+           6,
+           7
+          ],
+          "42"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "ValueError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "scan.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "code = \"MTR-0042\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "number = int(code.split(\"-\")[0])",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(number)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "number = int(code.split(\"-\")[1])",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "number = int(code.split(\"-\"))",
+          "correct": false,
+          "feedback": "int() can't read a whole list: TypeError."
+         },
+         {
+          "id": "f2",
+          "replacement": "number = int(code.split()[1])",
+          "correct": false,
+          "feedback": "With no spaces there's only one piece: IndexError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(int(number))",
+          "correct": false,
+          "feedback": "Python still stops on line 2."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 42"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "lower() makes 'mtr-0042', and split(\"-\") gives the two pieces in a list.",
+       "takeaway": "So: methods can be chained before a split.",
+       "next_bridge": "fix the type check.",
+       "hint_before_check": "lower() first, then split.",
+       "code_note": {
+        "title": "Chaining",
+        "text": "Each method works on the result of the one before."
+       },
+       "science_note": {
+        "title": "Case in codes",
+        "text": "Some systems store codes in lower case; the comparison has to match."
+       },
+       "scene_label": "A code for the old stock system.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Scan characters with their positions",
+         "args": [
+          "mtr-0042",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+           ],
+           "['mtr', '0042']"
+          ],
+          {
+           "b": [
+            [],
+            "capitals?"
+           ],
+           "c": [
+            [],
+            "no list?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7
+          ],
+          "['mtr', '0042']"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "capitals?"
+           ],
+           "c": [
+            [],
+            "no list?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(\"MTR-0042\".lower().split(\"-\"))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "['mtr', '0042']",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "['MTR', '0042']",
+         "correct": false,
+         "feedback": "lower() runs before the split."
+        },
+        {
+         "id": "c",
+         "label": "mtr 0042",
+         "correct": false,
+         "feedback": "split() gives back a list."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The type check prints False for a motor scan. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without strip(), the type piece is ' MTR' with a space, so it isn't equal to 'MTR'.",
+       "takeaway": "So: strip() before comparing.",
+       "next_bridge": "see your scan cleaner.",
+       "hint_before_check": "What is left on the type after splitting?",
+       "code_note": {
+        "title": "Hidden spaces",
+        "text": "A leading space makes two strings different."
+       },
+       "science_note": {
+        "title": "Sorting parts",
+        "text": "A failed type check sends a motor to the wrong shelf."
+       },
+       "scene_label": "A raw motor scan.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Scan characters with their positions",
+         "args": [
+          " mtr-0042 ",
+          [
+           [
+            1,
+            2,
+            3
+           ],
+           "True"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "False"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "False"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           2,
+           3
+          ],
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "False"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "False"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "scan.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "scan = \" mtr-0042 \"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "kind = scan.split(\"-\")[0].upper()",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(kind == \"MTR\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "kind = scan.strip().split(\"-\")[0].upper()",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "kind = scan.split(\"-\")[0].lower()",
+          "correct": false,
+          "feedback": "Still has the space, and now it's lower case: False."
+         },
+         {
+          "id": "f2",
+          "replacement": "kind = scan.upper().split(\"-\")[1]",
+          "correct": false,
+          "feedback": "That's the number piece: False."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(kind.upper() == \"MTR\")",
+          "correct": false,
+          "feedback": "The space is still there: False."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: True"
+      }
+     ]
+    },
+    {
+     "id": "EpP2C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Component labels & test reports",
+     "person": "Quality lead",
+     "intro": "One question from each part. No hints, no notes: read every line.",
+     "script_file": "label_check.py",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "Unit and value",
+       "value": "K 470"
+      },
+      {
+       "label": "Meter voltage",
+       "value": "11.8"
+      },
+      {
+       "label": "Half a cent",
+       "value": "0.12 A"
+      },
+      {
+       "label": "Digits both ways",
+       "value": "382 283"
+      },
+      {
+       "label": "Next bin",
+       "value": "fixed: [1]"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 2 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "engineering_python",
+     "phase": 2,
+     "language": "Python",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[-1] is the last character, K, and [1:4] is positions 1 to 3: 470.",
+       "takeaway": null,
+       "next_bridge": "read a meter line.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A resistor drawer.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "R470K",
+          [
+           [
+            1,
+            2,
+            3,
+            4
+           ],
+           "K 470"
+          ],
+          {
+           "b": [
+            [
+             1,
+             2,
+             4
+            ],
+            "K 47?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "R 470?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           2,
+           3,
+           4
+          ],
+          "K 470"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             2,
+             4
+            ],
+            "K 47?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3
+            ],
+            "R 470?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "part = \"R470K\"",
+        "print(part[-1], part[1:4])"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "K 470",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "K 47",
+         "correct": false,
+         "feedback": "[1:4] goes up to position 3: 470."
+        },
+        {
+         "id": "c",
+         "label": "R 470",
+         "correct": false,
+         "feedback": "[-1] counts from the end: K."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Read the voltage from the meter line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "split() gives ['V', '11.8', 'volt']; [1] is '11.8'.",
+       "takeaway": null,
+       "next_bridge": "format a current.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The meter line.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Supply voltage",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            9,
+            11,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            11,
+            13,
+            "#E4F5B8",
+            "ok"
+           ],
+           [
+            13,
+            15,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 9,
+          "vmax": 15
+         },
+         "correct_state": [
+          11.8,
+          "11.8"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            9,
+            "ValueError"
+           ],
+           "c": [
+            9,
+            "ValueError"
+           ],
+           "d": [
+            9,
+            "IndexError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "line = \"V 11.8 volt\"",
+        "volts = float(line.split()[___])",
+        "print(volts)"
+       ],
+       "goal_output": [
+        "11.8"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0",
+         "correct": false,
+         "feedback": "[0] is the letter V: ValueError."
+        },
+        {
+         "id": "c",
+         "label": "2",
+         "correct": false,
+         "feedback": "[2] is the word volt: ValueError."
+        },
+        {
+         "id": "d",
+         "label": "3",
+         "correct": false,
+         "feedback": "There are only 3 pieces: IndexError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "0.125 is stored exactly, and :.2f rounds a half to the even digit: 0.12.",
+       "takeaway": null,
+       "next_bridge": "read a nameplate.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A small current.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Report characters with their positions",
+         "args": [
+          "0.12 A",
+          [
+           [
+            0,
+            1,
+            2,
+            3
+           ],
+           "0.12 A"
+          ],
+          {
+           "b": [
+            [],
+            "0.13 A?"
+           ],
+           "c": [
+            [],
+            "0.125 A?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3
+          ],
+          "0.12 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "0.13 A?"
+           ],
+           "c": [
+            [],
+            "0.125 A?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "amps = 0.125",
+        "print(f\"{amps:.2f} A\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "0.12 A",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0.13 A",
+         "correct": false,
+         "feedback": "An exact half rounds to the even digit: 0.12."
+        },
+        {
+         "id": "c",
+         "label": "0.125 A",
+         "correct": false,
+         "feedback": ".2f keeps 2 decimals."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[1::2] takes positions 1, 3, 5: 382. [::-2] starts at the end and steps back 2: positions 5, 3, 1, so 283.",
+       "takeaway": null,
+       "next_bridge": "fix a scan.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The motor nameplate.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Code characters with their positions",
+         "args": [
+          "M3S8F2",
+          [
+           [
+            1,
+            3,
+            5
+           ],
+           "382 283"
+          ],
+          {
+           "b": [
+            [
+             1,
+             3,
+             5
+            ],
+            "382 382?"
+           ],
+           "c": [
+            [],
+            "letters?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           1,
+           3,
+           5
+          ],
+          "382 283"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             3,
+             5
+            ],
+            "382 382?"
+           ],
+           "c": [
+            [],
+            "letters?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "code = \"M3S8F2\"",
+        "print(code[1::2], code[::-2])"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "382 283",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "382 382",
+         "correct": false,
+         "feedback": "[::-2] reads the digits from the end."
+        },
+        {
+         "id": "c",
+         "label": "382 2F8",
+         "correct": false,
+         "feedback": "Stepping by 2 from the end skips the letters."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The scan's number stops Python. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[0] is 'mtr', which int() can't read. [1] is '0042', so the next bin is 43.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A raw scan.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Scan characters with their positions",
+         "args": [
+          "mtr-0042",
+          [
+           [
+            4,
+            5,
+            6,
+            7
+           ],
+           "43"
+          ],
+          {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "TypeError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           4,
+           5,
+           6,
+           7
+          ],
+          "43"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "ValueError"
+           ],
+           "c": [
+            [],
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "label_check.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "scan = \" mtr-0042 \"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "num = scan.strip().split(\"-\")[0]",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(int(num) + 1)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "num = scan.strip().split(\"-\")[1]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "num = scan.strip().split()[1]",
+          "correct": false,
+          "feedback": "With no spaces inside, there's one piece: IndexError."
+         },
+         {
+          "id": "f2",
+          "replacement": "num = scan.split(\"-\")[0].upper()",
+          "correct": false,
+          "feedback": "That's the type, ' MTR': ValueError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(num + 1)",
+          "correct": false,
+          "feedback": "Text plus a number: TypeError."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 43"
+      }
+     ]
+    }
+   ]
   }
  ]
 }
