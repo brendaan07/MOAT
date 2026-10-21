@@ -7490,6 +7490,3634 @@
      ]
     }
    ]
+  },
+  {
+   "phase": 3,
+   "title": "Fruit sorting conveyor",
+   "coding_idea": "Decisions and thresholds",
+   "items": [
+    {
+     "id": "EpP3L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Sort the fruit",
+     "person": "Internship mentor",
+     "intro": "The colour sensor reads how much of each fruit is covered in dark spots. Over 30% is spoilt, and the pusher sends it to the bin.",
+     "script_file": "sorter.py",
+     "start_button": "Start the conveyor",
+     "notebook": [
+      {
+       "label": "45% spots",
+       "value": "push to bin"
+      },
+      {
+       "label": "12% spots",
+       "value": "keep on belt"
+      },
+      {
+       "label": "20% spots",
+       "value": "juice line"
+      },
+      {
+       "label": "Mentor's pusher bug",
+       "value": "fixed: >"
+      },
+      {
+       "label": "Soft fruit",
+       "value": "push to bin"
+      }
+     ],
+     "recap": {
+      "title": "Sorter working",
+      "subtitle": "Spoilt fruit goes to the bin, marked fruit to juice, and the rest stays on the belt.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The sensor reads 45%. What happens?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "45 > 30 is True, so the pusher bins the spotted orange. The clean apple has no instruction yet, so it rolls off the end.",
+       "takeaway": "So: if runs its indented lines only when the test is True.",
+       "next_bridge": "give good fruit a route.",
+       "hint_before_check": "Compare the reading with the limit in the code.",
+       "code_note": {
+        "title": "Decisions with if",
+        "text": "if checks a condition. The indented lines below it belong to it."
+       },
+       "science_note": {
+        "title": "Sensors and actuators",
+        "text": "A sorting line pairs a sensor, here a colour camera, with an actuator, the pusher. The code in between decides."
+       },
+       "scene_label": "The first fruit on the belt.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/spoilt_orange.png",
+            "bin",
+            "45%"
+           ],
+           [
+            "assets/images/fruits/clean_apple.png",
+            "floor",
+            null
+           ]
+          ],
+          "push to bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "floor",
+              "45%"
+             ],
+             [
+              "assets/images/fruits/clean_apple.png",
+              "floor",
+              null
+             ]
+            ],
+            "nothing printed?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "floor",
+              "45%"
+             ],
+             [
+              "assets/images/fruits/clean_apple.png",
+              "floor",
+              null
+             ]
+            ],
+            "True?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "45 > 30",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "True",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "spots = 45",
+        "if spots > 30:",
+        "    print(\"push to bin\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "push to bin",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing prints",
+         "correct": false,
+         "feedback": "The condition is True here, so the indented line runs."
+        },
+        {
+         "id": "c",
+         "label": "True",
+         "correct": false,
+         "feedback": "if uses True or False to decide; it doesn't print it."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Good fruit should stay on the belt.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "else runs whenever the if check is False: 12 > 30 is False, so the pear stays on the belt.",
+       "takeaway": "So: else catches everything the if doesn't.",
+       "next_bridge": "add a juice line.",
+       "hint_before_check": "What should the line do when the check fails?",
+       "code_note": {
+        "title": "Another path",
+        "text": "An if can be followed by a block that runs in the other case."
+       },
+       "science_note": {
+        "title": "Every item needs a route",
+        "text": "On a production line, every item has to end up somewhere planned. An item with no route is a jam or a loss."
+       },
+       "scene_label": "A clean pear.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_pear.png",
+            "stay",
+            "12%"
+           ],
+           [
+            "assets/images/fruits/spoilt_strawberry.png",
+            "bin",
+            null
+           ]
+          ],
+          "keep on belt"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_pear.png",
+              "floor",
+              "12%"
+             ]
+            ],
+            "SyntaxError"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_pear.png",
+              "floor",
+              "12%"
+             ]
+            ],
+            "SyntaxError"
+           ],
+           "d": [
+            [
+             [
+              "assets/images/fruits/clean_pear.png",
+              "floor",
+              "12%"
+             ]
+            ],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 12",
+        "if spots > 30:",
+        "    print(\"push to bin\")",
+        "___:",
+        "    print(\"keep on belt\")"
+       ],
+       "goal_output": [
+        "keep on belt"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "else",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "elif",
+         "correct": false,
+         "feedback": "elif needs a condition after it; on its own, Python stops with a SyntaxError."
+        },
+        {
+         "id": "c",
+         "label": "if",
+         "correct": false,
+         "feedback": "if needs a condition; if: on its own is a SyntaxError."
+        },
+        {
+         "id": "d",
+         "label": "else if",
+         "correct": false,
+         "feedback": "Python has no \"else if\"; it's a SyntaxError. The word is elif."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The sensor reads 20%. Where does it go?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "20 > 30 is False, then 20 > 15 is True, so the peach goes to the juice line and Python skips the rest.",
+       "takeaway": "So: elif adds a check that runs only if the ones above failed.",
+       "next_bridge": "fix the mentor's pusher.",
+       "hint_before_check": "Python reads the checks from the top.",
+       "code_note": {
+        "title": "More than two paths",
+        "text": "A decision can have several checks in a row."
+       },
+       "science_note": {
+        "title": "Grading, not only sorting",
+        "text": "Real lines grade produce: perfect fruit for shops, marked fruit for juice, spoilt fruit to waste."
+       },
+       "scene_label": "A slightly marked peach.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_peach.png",
+            "juice",
+            "20%"
+           ],
+           [
+            "assets/images/fruits/clean_apple.png",
+            "stay",
+            "5%"
+           ],
+           [
+            "assets/images/fruits/spoilt_lemon.png",
+            "bin",
+            "60%"
+           ]
+          ],
+          "juice line"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "bin",
+              "20%"
+             ]
+            ],
+            "push to bin?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "stay",
+              "20%"
+             ]
+            ],
+            "keep on belt?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "20 > 15",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "True",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "spots = 20",
+        "if spots > 30:",
+        "    print(\"push to bin\")",
+        "elif spots > 15:",
+        "    print(\"juice line\")",
+        "else:",
+        "    print(\"keep on belt\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "juice line",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "push to bin",
+         "correct": false,
+         "feedback": "Only fruit over 30% goes to the bin."
+        },
+        {
+         "id": "c",
+         "label": "keep on belt",
+         "correct": false,
+         "feedback": "else only runs when every condition above it is False."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The pusher bins good fruit. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "< 30 is True for clean fruit, so the pusher fired on good fruit. Spoilt means more than 30: spots > 30.",
+       "takeaway": "So: > and < point in opposite directions.",
+       "next_bridge": "bin fruit that's spotted or soft.",
+       "hint_before_check": "Read the condition aloud and compare it with the rule.",
+       "code_note": {
+        "title": "Comparison direction",
+        "text": "> and < point in opposite directions."
+       },
+       "science_note": {
+        "title": "Failing the wrong way",
+        "text": "A flipped threshold makes a machine do the opposite of its job at full speed. Engineers test each branch with known items."
+       },
+       "scene_label": "Clean fruit in the bin.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_greenapple.png",
+            "stay",
+            "12%"
+           ],
+           [
+            "assets/images/fruits/spoilt_banana.png",
+            "bin",
+            "50%"
+           ]
+          ],
+          "clean fruit stays"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_greenapple.png",
+              "bin",
+              "12%"
+             ]
+            ],
+            "binned?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_greenapple.png",
+              "bin",
+              "12%"
+             ]
+            ],
+            "binned?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "sorter.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "spots = 12",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if spots < 30:",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(\"push to bin\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if spots > 30:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if spots <= 30:",
+          "correct": false,
+          "feedback": "Still points the wrong way: push to bin."
+         },
+         {
+          "id": "f2",
+          "replacement": "if spots < 300:",
+          "correct": false,
+          "feedback": "Every fruit is under 300%: push to bin."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(\"keep on belt\")",
+          "correct": false,
+          "feedback": "That changes the message, not the test: the pusher still fires on good fruit."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: nothing prints"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Bin fruit that is spotted or soft.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "or needs only one condition to be True: 12 > 30 is False, but firm < 2 is True, so the soft pear goes to the bin. and would need both.",
+       "takeaway": "So: or is True when either side is.",
+       "next_bridge": "see your sorter.",
+       "hint_before_check": "Does the fruit need both problems?",
+       "code_note": {
+        "title": "Combining checks",
+        "text": "Python can join two conditions into one with a word between them."
+       },
+       "science_note": {
+        "title": "Two sensors, one decision",
+        "text": "Spots show on the surface, but rot can start inside. A firmness sensor catches fruit the camera misses."
+       },
+       "scene_label": "A soft pear.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_pear.png",
+            "bin",
+            "soft"
+           ]
+          ],
+          "push to bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_pear.png",
+              "floor",
+              "soft"
+             ]
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_pear.png",
+              "floor",
+              "soft"
+             ]
+            ],
+            "nothing printed"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 12",
+        "firm = 1",
+        "if spots > 30 ___ firm < 2:",
+        "    print(\"push to bin\")"
+       ],
+       "goal_output": [
+        "push to bin"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "or",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "and",
+         "correct": false,
+         "feedback": "and needs both: 12 > 30 is False, so nothing prints."
+        },
+        {
+         "id": "c",
+         "label": "or not",
+         "correct": false,
+         "feedback": "not flips firm < 2 to False: nothing prints."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP3L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Grading order",
+     "person": "Line supervisor",
+     "intro": "The juice line takes fruit with over 15% spots; the bin takes over 30%. The order of the checks decides where each fruit goes.",
+     "script_file": "grading.py",
+     "start_button": "Grade the fruit",
+     "notebook": [
+      {
+       "label": "45% with the old order",
+       "value": "juice line"
+      },
+      {
+       "label": "Spoilt fruit",
+       "value": "fixed: 15 < spots <= 30"
+      },
+      {
+       "label": "Exactly 30%",
+       "value": "juice line"
+      },
+      {
+       "label": "30% or more",
+       "value": ">="
+      },
+      {
+       "label": "One-line route",
+       "value": "belt"
+      }
+     ],
+     "recap": {
+      "title": "Grading fixed",
+      "subtitle": "Order of checks, edges at the limit, and a one-line if.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does this print for 45% spots?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "45 > 15 is True, so Python runs the first branch and skips the elif, even though 45 > 30 is also True.",
+       "takeaway": "So: the first True check wins.",
+       "next_bridge": "fix the order.",
+       "hint_before_check": "Which check does Python test first?",
+       "code_note": {
+        "title": "Order of checks",
+        "text": "Python stops at the first True condition in an if / elif chain."
+       },
+       "science_note": {
+        "title": "Grading rules",
+        "text": "Juice lines take marked fruit, but spoilt fruit spoils a whole batch of juice."
+       },
+       "scene_label": "A badly spoilt orange.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/spoilt_orange.png",
+            "juice",
+            "45%"
+           ]
+          ],
+          "juice line"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "bin",
+              "45%"
+             ]
+            ],
+            "push to bin?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "juice",
+              "45%"
+             ]
+            ],
+            "both?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 45",
+        "if spots > 15:",
+        "    print(\"juice line\")",
+        "elif spots > 30:",
+        "    print(\"push to bin\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "juice line",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "push to bin",
+         "correct": false,
+         "feedback": "Python never reaches the elif: the first check is already True."
+        },
+        {
+         "id": "c",
+         "label": "juice line\npush to bin",
+         "correct": false,
+         "feedback": "Only one branch of an if / elif chain runs."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Spoilt fruit (45%) goes to the juice line. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The juice check caught everything over 15. 15 < spots <= 30 only matches marked fruit, so 45 falls through to the bin check.",
+       "takeaway": "So: make each check say exactly what it means.",
+       "next_bridge": "test a fruit right on the limit.",
+       "hint_before_check": "Make the juice check exclude spoilt fruit.",
+       "code_note": {
+        "title": "Ranges",
+        "text": "15 < spots <= 30 is one test with two limits."
+       },
+       "science_note": {
+        "title": "Contamination",
+        "text": "One spoilt fruit can contaminate a whole juice batch, so the bin rule must win."
+       },
+       "scene_label": "Spoilt fruit heading for the juice line.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/spoilt_orange.png",
+            "bin",
+            "45%"
+           ]
+          ],
+          "push to bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "juice",
+              "45%"
+             ]
+            ],
+            "juice line?"
+           ],
+           "d": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "juice",
+              "45%"
+             ]
+            ],
+            "juice line?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "grading.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "spots = 45",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if spots > 15:",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(\"juice line\")",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "elif spots > 30:",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "    print(\"push to bin\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if 15 < spots <= 30:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if spots >= 15:",
+          "correct": false,
+          "feedback": "Still catches 45 first: juice line."
+         },
+         {
+          "id": "f2",
+          "replacement": "if spots > 15 or spots > 30:",
+          "correct": false,
+          "feedback": "Still True for 45: juice line."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "elif spots > 15:",
+          "correct": false,
+          "feedback": "The first check still catches 45: juice line."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: push to bin"
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The sensor reads exactly 30%. Where does it go?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "30 > 30 is False, so the bin check fails; 30 > 15 is True, so it goes to the juice line.",
+       "takeaway": "So: > leaves out the limit itself.",
+       "next_bridge": "include the limit.",
+       "hint_before_check": "Is 30 > 30?",
+       "code_note": {
+        "title": "Edges",
+        "text": "Test the exact limit when you write a condition."
+       },
+       "science_note": {
+        "title": "Borderline fruit",
+        "text": "Fruit right on a limit follows the written rule; here, the rule says over 30%."
+       },
+       "scene_label": "A fruit right on the limit.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_peach.png",
+            "juice",
+            "30%"
+           ]
+          ],
+          "juice line"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "bin",
+              "30%"
+             ]
+            ],
+            "push to bin?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "stay",
+              "30%"
+             ]
+            ],
+            "keep on belt?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 30",
+        "if spots > 30:",
+        "    print(\"push to bin\")",
+        "elif spots > 15:",
+        "    print(\"juice line\")",
+        "else:",
+        "    print(\"keep on belt\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "juice line",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "push to bin",
+         "correct": false,
+         "feedback": "30 > 30 is False."
+        },
+        {
+         "id": "c",
+         "label": "keep on belt",
+         "correct": false,
+         "feedback": "30 > 15 is True, so the elif runs."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "The new rule: 30% or more goes in the bin.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": ">= includes the limit: 30 >= 30 is True, so the fruit is binned.",
+       "takeaway": "So: >= means \"or more\".",
+       "next_bridge": "write the route in one line.",
+       "hint_before_check": "\"Or more\" includes 30 itself.",
+       "code_note": {
+        "title": "Including the limit",
+        "text": ">= and <= include the value itself."
+       },
+       "science_note": {
+        "title": "Changing a rule",
+        "text": "When a rule changes, the script and the written procedure must change together."
+       },
+       "scene_label": "The same fruit under the new rule.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_peach.png",
+            "bin",
+            "30%"
+           ]
+          ],
+          "push to bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "floor",
+              "30%"
+             ]
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "floor",
+              "30%"
+             ]
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "floor",
+              "30%"
+             ]
+            ],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 30",
+        "if spots ___ 30:",
+        "    print(\"push to bin\")"
+       ],
+       "goal_output": [
+        "push to bin"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": ">",
+         "correct": false,
+         "feedback": "30 > 30 is False: nothing prints."
+        },
+        {
+         "id": "c",
+         "label": "<",
+         "correct": false,
+         "feedback": "30 < 30 is False: nothing prints."
+        },
+        {
+         "id": "d",
+         "label": "=>",
+         "correct": false,
+         "feedback": "Python writes it >=; => is a SyntaxError."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "22 > 30 is False, so the expression takes the value after else: belt.",
+       "takeaway": "So: a if test else b picks one value in one line.",
+       "next_bridge": "see your grading.",
+       "hint_before_check": "Read it as: this if the test is True, else that.",
+       "code_note": {
+        "title": "One-line if",
+        "text": "value_if_true if test else value_if_false"
+       },
+       "science_note": {
+        "title": "Compact rules",
+        "text": "Short rules fit on one line; longer ones are clearer as if / elif blocks."
+       },
+       "scene_label": "A fruit with 22% spots.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_apple.png",
+            "stay",
+            "22%"
+           ]
+          ],
+          "belt"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_apple.png",
+              "bin",
+              "22%"
+             ]
+            ],
+            "bin?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_apple.png",
+              "floor",
+              "22%"
+             ]
+            ],
+            "SyntaxError?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 22",
+        "route = \"bin\" if spots > 30 else \"belt\"",
+        "print(route)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "belt",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "bin",
+         "correct": false,
+         "feedback": "22 > 30 is False, so it takes the else value."
+        },
+        {
+         "id": "c",
+         "label": "SyntaxError",
+         "correct": false,
+         "feedback": "This is valid Python: a one-line if."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP3L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Weight check",
+     "person": "Packing engineer",
+     "intro": "Apples for the shop must weigh 150 to 200 g. The scale under the belt weighs each one.",
+     "script_file": "weight.py",
+     "start_button": "Weigh the apples",
+     "notebook": [
+      {
+       "label": "172 g",
+       "value": "True"
+      },
+      {
+       "label": "215 g",
+       "value": "False"
+      },
+      {
+       "label": "140 g",
+       "value": "fixed: and"
+      },
+      {
+       "label": "not 172 < 150",
+       "value": "True"
+      },
+      {
+       "label": "Bruised apple",
+       "value": "fixed: not bruised"
+      }
+     ],
+     "recap": {
+      "title": "Weights checked",
+      "subtitle": "and, or, not, and a range written as 150 <= w <= 200.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Is a 172 g apple in range?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "172 >= 150 is True and 172 <= 200 is True, so and gives True.",
+       "takeaway": "So: and is True only when both sides are.",
+       "next_bridge": "write the range in one test.",
+       "hint_before_check": "and needs both sides True.",
+       "code_note": {
+        "title": "and",
+        "text": "and joins two tests that must both pass."
+       },
+       "science_note": {
+        "title": "Pack weights",
+        "text": "Shops sell apples by the bag; apples outside the range make the bag weight wrong."
+       },
+       "scene_label": "An apple on the scale.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Apple weight in g",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#FFE3CF",
+            "light"
+           ],
+           [
+            150,
+            200,
+            "#E4F5B8",
+            "shop"
+           ],
+           [
+            200,
+            250,
+            "#FFE3CF",
+            "heavy"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 250
+         },
+         "correct_state": [
+          172,
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            172,
+            "False?"
+           ],
+           "c": [
+            172,
+            "172?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "w = 172",
+        "print(w >= 150 and w <= 200)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": "Both tests pass for 172."
+        },
+        {
+         "id": "c",
+         "label": "172",
+         "correct": false,
+         "feedback": "A comparison gives True or False, not the number."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Check a 215 g apple in one test.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "150 <= w <= 200 checks both limits at once: 150 <= 215 is True, but 215 <= 200 is False, so False.",
+       "takeaway": "So: a <= x <= b checks a range.",
+       "next_bridge": "fix a range check.",
+       "hint_before_check": "The test reads like the rule: 150 to 200.",
+       "code_note": {
+        "title": "Chained comparisons",
+        "text": "Python reads 150 <= w <= 200 as 150 <= w and w <= 200."
+       },
+       "science_note": {
+        "title": "Heavy apples",
+        "text": "Oversized apples go to a different pack size, not the bin."
+       },
+       "scene_label": "A heavy apple.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Apple weight in g",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#FFE3CF",
+            "light"
+           ],
+           [
+            150,
+            200,
+            "#E4F5B8",
+            "shop"
+           ],
+           [
+            200,
+            250,
+            "#FFE3CF",
+            "heavy"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 250
+         },
+         "correct_state": [
+          215,
+          "False"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            215,
+            "True?"
+           ],
+           "c": [
+            215,
+            "True?"
+           ],
+           "d": [
+            215,
+            "True?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "w = 215",
+        "print(150 <= w ___ 200)"
+       ],
+       "goal_output": [
+        "False"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "<=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": ">=",
+         "correct": false,
+         "feedback": "150 <= 215 >= 200 checks the wrong side: True."
+        },
+        {
+         "id": "c",
+         "label": "or",
+         "correct": false,
+         "feedback": "150 <= w or 200 is True as soon as the first part is."
+        },
+        {
+         "id": "d",
+         "label": "+",
+         "correct": false,
+         "feedback": "150 <= w + 200 checks 150 <= 415: True."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "A 140 g apple passes the check. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "or is True if either side is: 140 <= 200 is True, so it passed. Both limits must hold: and.",
+       "takeaway": "So: a range needs and, not or.",
+       "next_bridge": "use not.",
+       "hint_before_check": "Should one test be enough, or both?",
+       "code_note": {
+        "title": "and or or?",
+        "text": "or passes when one side passes; a range needs both."
+       },
+       "science_note": {
+        "title": "Light apples",
+        "text": "Underweight apples are often underripe; they go to juice."
+       },
+       "scene_label": "A light apple.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Apple weight in g",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#FFE3CF",
+            "light"
+           ],
+           [
+            150,
+            200,
+            "#E4F5B8",
+            "shop"
+           ],
+           [
+            200,
+            250,
+            "#FFE3CF",
+            "heavy"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 250
+         },
+         "correct_state": [
+          140,
+          "False"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            140,
+            "True?"
+           ],
+           "c": [
+            140,
+            "False, by luck"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "weight.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "w = 140",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "ok = w >= 150 or w <= 200",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(ok)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "ok = w >= 150 and w <= 200",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "ok = not w >= 150 or w <= 200",
+          "correct": false,
+          "feedback": "not only flips the first test: True."
+         },
+         {
+          "id": "f2",
+          "replacement": "ok = w <= 150 and w <= 200",
+          "correct": false,
+          "feedback": "That checks for light apples: True."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(not ok)",
+          "correct": false,
+          "feedback": "False here, but every good apple would print False too."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: False"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "172 < 150 is False, and not flips it to True.",
+       "takeaway": "So: not turns True into False and back.",
+       "next_bridge": "fix the bruise check.",
+       "hint_before_check": "not flips True and False.",
+       "code_note": {
+        "title": "not",
+        "text": "not comes before the test it flips."
+       },
+       "science_note": {
+        "title": "Reading rules",
+        "text": "\"Not underweight\" and \"at least 150 g\" are the same rule."
+       },
+       "scene_label": "The 172 g apple again.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Apple weight in g",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#FFE3CF",
+            "light"
+           ],
+           [
+            150,
+            200,
+            "#E4F5B8",
+            "shop"
+           ],
+           [
+            200,
+            250,
+            "#FFE3CF",
+            "heavy"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 250
+         },
+         "correct_state": [
+          172,
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            172,
+            "False?"
+           ],
+           "c": [
+            172,
+            "Error?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(not 172 < 150)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": "172 < 150 is False; not flips it."
+        },
+        {
+         "id": "c",
+         "label": "SyntaxError",
+         "correct": false,
+         "feedback": "not can go in front of any test."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "A good, unbruised apple isn't sent to the shop. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "and bruised needs bruised to be True. The shop wants apples that are not bruised: and not bruised.",
+       "takeaway": "So: and not adds a must-not condition.",
+       "next_bridge": "see your weight check.",
+       "hint_before_check": "The apple must not be bruised.",
+       "code_note": {
+        "title": "Combining not",
+        "text": "and not bruised means \"and also not bruised\"."
+       },
+       "science_note": {
+        "title": "Bruises",
+        "text": "A bruised apple rots faster and spoils the bag."
+       },
+       "scene_label": "A perfect apple.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Apple weight in g",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#FFE3CF",
+            "light"
+           ],
+           [
+            150,
+            200,
+            "#E4F5B8",
+            "shop"
+           ],
+           [
+            200,
+            250,
+            "#FFE3CF",
+            "heavy"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 250
+         },
+         "correct_state": [
+          172,
+          "shop"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            172,
+            "nothing printed"
+           ],
+           "d": [
+            172,
+            "nothing printed"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "weight.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "w = 172",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "bruised = False",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "if 150 <= w <= 200 and bruised:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    print(\"shop\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "if 150 <= w <= 200 and not bruised:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if 150 <= w <= 200 and bruised == True:",
+          "correct": false,
+          "feedback": "Still needs a bruise: nothing prints."
+         },
+         {
+          "id": "f2",
+          "replacement": "if not 150 <= w <= 200 and not bruised:",
+          "correct": false,
+          "feedback": "That flips the weight test too: nothing prints."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "    print(\"bruised\")",
+          "correct": false,
+          "feedback": "The test is still False: nothing prints."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: shop"
+      }
+     ]
+    },
+    {
+     "id": "EpP3L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Sensor count",
+     "person": "Controls technician",
+     "intro": "Three sensors watch each fruit: spots, softness and size. If two or more flag it, the fruit is binned.",
+     "script_file": "sensors.py",
+     "start_button": "Count the flags",
+     "notebook": [
+      {
+       "label": "True + True + False",
+       "value": "2"
+      },
+      {
+       "label": "Two flags",
+       "value": "bin"
+      },
+      {
+       "label": "Equal test",
+       "value": "fixed: =="
+      },
+      {
+       "label": "None tests",
+       "value": "False True"
+      },
+      {
+       "label": "Flag count",
+       "value": "fixed: +"
+      }
+     ],
+     "recap": {
+      "title": "Sensors counted",
+      "subtitle": "True as 1, == against =, and None that isn't False.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "True is 1 and False is 0 when you add them, so the total is 2.",
+       "takeaway": "So: adding True values counts them.",
+       "next_bridge": "bin on two flags.",
+       "hint_before_check": "In sums, True counts as 1.",
+       "code_note": {
+        "title": "True as a number",
+        "text": "True + True is 2."
+       },
+       "science_note": {
+        "title": "Voting sensors",
+        "text": "Using several sensors and a vote cuts false alarms from any single sensor."
+       },
+       "scene_label": "Three sensors on one fruit.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Sensor flags",
+         "args": [
+          [
+           "spots",
+           "soft",
+           "size"
+          ],
+          [
+           [
+            1,
+            1,
+            0
+           ],
+           "2"
+          ],
+          {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "True?"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "1?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           1,
+           0
+          ],
+          "2"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "True?"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(True + True + False)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": "+ adds them as numbers: 2."
+        },
+        {
+         "id": "c",
+         "label": "1",
+         "correct": false,
+         "feedback": "True + True is already 2."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Bin the fruit when two or more sensors flag it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "flags is 2, and 2 >= 2 is True, so it's binned.",
+       "takeaway": "So: count, then compare.",
+       "next_bridge": "fix an equals sign.",
+       "hint_before_check": "\"Two or more\" includes 2.",
+       "code_note": {
+        "title": "Counting flags",
+        "text": "Adding the flags gives how many sensors fired."
+       },
+       "science_note": {
+        "title": "Thresholds",
+        "text": "Two of three is a common vote: one faulty sensor can't bin good fruit alone."
+       },
+       "scene_label": "Two sensors firing.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Sensor flags",
+         "args": [
+          [
+           "spots",
+           "soft",
+           "size"
+          ],
+          [
+           [
+            1,
+            0,
+            1
+           ],
+           "bin"
+          ],
+          {
+           "b": [
+            [
+             1,
+             0,
+             1
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             1,
+             0,
+             1
+            ],
+            "SyntaxError"
+           ],
+           "d": [
+            [
+             1,
+             0,
+             1
+            ],
+            "nothing printed"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           0,
+           1
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             0,
+             1
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             1,
+             0,
+             1
+            ],
+            "SyntaxError"
+           ],
+           "d": [
+            [
+             1,
+             0,
+             1
+            ],
+            "nothing printed"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots, soft, size = True, False, True",
+        "flags = spots + soft + size",
+        "if flags ___ 2:",
+        "    print(\"bin\")"
+       ],
+       "goal_output": [
+        "bin"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": ">",
+         "correct": false,
+         "feedback": "2 > 2 is False: nothing prints."
+        },
+        {
+         "id": "c",
+         "label": "=",
+         "correct": false,
+         "feedback": "= stores a value; in an if, it's a SyntaxError."
+        },
+        {
+         "id": "d",
+         "label": "<",
+         "correct": false,
+         "feedback": "2 < 2 is False: nothing prints."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The flag check stops Python. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "= stores a value, so if flags = 2 is a SyntaxError. == compares: 2 == 2 is True.",
+       "takeaway": "So: == compares, = stores.",
+       "next_bridge": "test a missing reading.",
+       "hint_before_check": "One = stores; what compares?",
+       "code_note": {
+        "title": "= and ==",
+        "text": "= gives a name a value; == asks whether two values are equal."
+       },
+       "science_note": {
+        "title": "Bench testing",
+        "text": "A script that won't start is caught on the bench; one that compares wrongly is caught on the line."
+       },
+       "scene_label": "A script that won't run.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Sensor flags",
+         "args": [
+          [
+           "spots",
+           "soft",
+           "size"
+          ],
+          [
+           [
+            1,
+            1,
+            0
+           ],
+           "bin"
+          ],
+          {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "SyntaxError"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "SyntaxError"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           1,
+           0
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "SyntaxError"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "sensors.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "flags = 2",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if flags = 2:",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(\"bin\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if flags == 2:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if flags === 2:",
+          "correct": false,
+          "feedback": "Python has no ===: SyntaxError."
+         },
+         {
+          "id": "f2",
+          "replacement": "if flags != 2:",
+          "correct": false,
+          "feedback": "!= asks whether they differ: nothing prints."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(\"keep\")",
+          "correct": false,
+          "feedback": "Python still stops on line 2."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: bin"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The softness sensor sent no reading. What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "None == False is False: they're different values. But not None is True, because None counts as false.",
+       "takeaway": "So: None isn't False, but it's falsy.",
+       "next_bridge": "fix the flag count.",
+       "hint_before_check": "None isn't False, but it counts as false in a test.",
+       "code_note": {
+        "title": "None",
+        "text": "None means \"no value\". It isn't equal to False."
+       },
+       "science_note": {
+        "title": "Missing readings",
+        "text": "A sensor that sends nothing must not look like a sensor that says \"fine\"."
+       },
+       "scene_label": "A sensor with no reading.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Sensor flags",
+         "args": [
+          [
+           "spots",
+           "soft",
+           "size"
+          ],
+          [
+           [
+            1,
+            0,
+            0
+           ],
+           "False True"
+          ],
+          {
+           "b": [
+            [
+             1,
+             0,
+             0
+            ],
+            "True True?"
+           ],
+           "c": [
+            [
+             1,
+             0,
+             0
+            ],
+            "False False?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           0,
+           0
+          ],
+          "False True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             0,
+             0
+            ],
+            "True True?"
+           ],
+           "c": [
+            [
+             1,
+             0,
+             0
+            ],
+            "False False?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "soft = None",
+        "print(soft == False, not soft)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "False True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True True",
+         "correct": false,
+         "feedback": "None and False are different values: == is False."
+        },
+        {
+         "id": "c",
+         "label": "False False",
+         "correct": false,
+         "feedback": "None counts as false, so not None is True."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Two sensors flag the fruit, but it isn't binned. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "spots and soft and size is False as soon as one is False, and False >= 2 is False. + counts the flags: 2.",
+       "takeaway": "So: add flags to count them.",
+       "next_bridge": "see your sensor vote.",
+       "hint_before_check": "and gives one True or False, not a count.",
+       "code_note": {
+        "title": "Counting vs combining",
+        "text": "and combines tests; + counts True values."
+       },
+       "science_note": {
+        "title": "Sensor logic",
+        "text": "\"All three agree\" and \"two of three agree\" are different rules."
+       },
+       "scene_label": "Two flags, no bin.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Sensor flags",
+         "args": [
+          [
+           "spots",
+           "soft",
+           "size"
+          ],
+          [
+           [
+            1,
+            1,
+            0
+           ],
+           "bin"
+          ],
+          {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "nothing printed"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           1,
+           0
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "nothing printed"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "sensors.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "spots, soft, size = True, True, False",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "flags = spots and soft and size",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "if flags >= 2:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    print(\"bin\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "flags = spots + soft + size",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "flags = spots or soft or size",
+          "correct": false,
+          "feedback": "or gives True, which counts as 1: nothing prints."
+         },
+         {
+          "id": "f2",
+          "replacement": "flags = int(spots and soft)",
+          "correct": false,
+          "feedback": "That's 1: nothing prints."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "if flags > 2:",
+          "correct": false,
+          "feedback": "flags is False, so nothing prints."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: bin"
+      }
+     ]
+    },
+    {
+     "id": "EpP3L5",
+     "type": "lesson",
+     "part": 5,
+     "title": "Shift report",
+     "person": "Shift manager",
+     "intro": "At the end of a shift, each fruit's reading becomes a line in the report: where it went, and a warning if the line ran hot.",
+     "script_file": "shift.py",
+     "start_button": "Write the report",
+     "notebook": [
+      {
+       "label": "12% spots",
+       "value": "keep"
+      },
+      {
+       "label": "40% spots",
+       "value": "bin"
+      },
+      {
+       "label": "Clean fruit",
+       "value": "fixed: route = \"keep\""
+      },
+      {
+       "label": "61 °C",
+       "value": "running hot"
+      },
+      {
+       "label": "Report line",
+       "value": "bin, ok"
+      }
+     ],
+     "recap": {
+      "title": "Report written",
+      "subtitle": "Decisions that store a value, defaults, and short if-else in a line.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "route starts as \"keep\". 12 > 30 is False, so the if doesn't change it.",
+       "takeaway": "So: set a default, then let the if change it.",
+       "next_bridge": "store one of three routes.",
+       "hint_before_check": "Does the if change route?",
+       "code_note": {
+        "title": "Defaults",
+        "text": "Giving a name a value before the if means it always has one."
+       },
+       "science_note": {
+        "title": "Shift reports",
+        "text": "Every fruit's route is logged so the line's waste rate can be checked."
+       },
+       "scene_label": "A clean apple.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_apple.png",
+            "stay",
+            "12%"
+           ]
+          ],
+          "keep"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_apple.png",
+              "bin",
+              "12%"
+             ]
+            ],
+            "bin?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_apple.png",
+              "floor",
+              "12%"
+             ]
+            ],
+            "None?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 12",
+        "route = \"keep\"",
+        "if spots > 30:",
+        "    route = \"bin\"",
+        "print(route)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "keep",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "bin",
+         "correct": false,
+         "feedback": "12 > 30 is False, so route stays \"keep\"."
+        },
+        {
+         "id": "c",
+         "label": "None",
+         "correct": false,
+         "feedback": "route was set to \"keep\" before the if."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Store one of three routes.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "elif belongs to the same chain: 40 > 30 is True, so route is \"bin\" and the rest is skipped.",
+       "takeaway": "So: one chain, one route.",
+       "next_bridge": "fix the clean fruit.",
+       "hint_before_check": "The middle check belongs to the same chain.",
+       "code_note": {
+        "title": "Storing a decision",
+        "text": "Each branch sets the same name; the chain picks one."
+       },
+       "science_note": {
+        "title": "Three outcomes",
+        "text": "Shop, juice or waste: every fruit gets exactly one."
+       },
+       "scene_label": "A spoilt fruit.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/spoilt_pear.png",
+            "bin",
+            "40%"
+           ]
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/spoilt_pear.png",
+              "juice",
+              "40%"
+             ]
+            ],
+            "juice?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/spoilt_pear.png",
+              "floor",
+              "40%"
+             ]
+            ],
+            "SyntaxError"
+           ],
+           "d": [
+            [
+             [
+              "assets/images/fruits/spoilt_pear.png",
+              "floor",
+              "40%"
+             ]
+            ],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 40",
+        "if spots > 30:",
+        "    route = \"bin\"",
+        "___ spots > 15:",
+        "    route = \"juice\"",
+        "else:",
+        "    route = \"keep\"",
+        "print(route)"
+       ],
+       "goal_output": [
+        "bin"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "elif",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "if",
+         "correct": false,
+         "feedback": "A new if starts a second decision, which overwrites route: juice."
+        },
+        {
+         "id": "c",
+         "label": "else",
+         "correct": false,
+         "feedback": "else takes no condition: SyntaxError."
+        },
+        {
+         "id": "d",
+         "label": "or",
+         "correct": false,
+         "feedback": "or can't start a line: SyntaxError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Clean fruit prints None. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "route starts as None, and 10 > 30 is False, so it stays None. The default should be \"keep\".",
+       "takeaway": "So: the default is the answer when no check passes.",
+       "next_bridge": "add a temperature warning.",
+       "hint_before_check": "What should route be when nothing changes it?",
+       "code_note": {
+        "title": "None as a default",
+        "text": "None means \"no value yet\"; it's rarely the right final answer."
+       },
+       "science_note": {
+        "title": "Gaps in a log",
+        "text": "A report full of None tells nobody where the fruit went."
+       },
+       "scene_label": "A blank line in the report.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_cherries.png",
+            "stay",
+            "10%"
+           ]
+          ],
+          "keep"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_cherries.png",
+              "floor",
+              "10%"
+             ]
+            ],
+            "blank?"
+           ],
+           "e": [
+            [
+             [
+              "assets/images/fruits/clean_cherries.png",
+              "bin",
+              "10%"
+             ]
+            ],
+            "bin?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "shift.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "spots = 10",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "route = None",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "if spots > 30:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    route = \"bin\"",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "print(route)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "route = \"keep\"",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "route = \"\"",
+          "correct": false,
+          "feedback": "That prints an empty line."
+         },
+         {
+          "id": "f2",
+          "replacement": "route = \"bin\"",
+          "correct": false,
+          "feedback": "Now clean fruit is binned: bin."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "print(route or \"bin\")",
+          "correct": false,
+          "feedback": "None counts as false, so it prints bin."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: keep"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The line hit 61 °C. What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "61 > 60 is True, so and gives back its second value: running hot.",
+       "takeaway": "So: and gives back a value, not always True or False.",
+       "next_bridge": "build the report line.",
+       "hint_before_check": "and gives back one of its two values.",
+       "code_note": {
+        "title": "What and returns",
+        "text": "If the first part is true, and gives back the second part."
+       },
+       "science_note": {
+        "title": "Line temperature",
+        "text": "Motors and lamps heat the line; above 60 °C, belts wear fast."
+       },
+       "scene_label": "The line thermometer.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Line temperature in °C",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            60,
+            "#E4F5B8",
+            "ok"
+           ],
+           [
+            60,
+            100,
+            "#FFE3CF",
+            "too hot"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 100
+         },
+         "correct_state": [
+          61,
+          "running hot"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            61,
+            "True?"
+           ],
+           "c": [
+            61,
+            "False?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "temp = 61",
+        "warning = temp > 60 and \"running hot\"",
+        "print(warning)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "running hot",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": "and gives back its second value when the first is true."
+        },
+        {
+         "id": "c",
+         "label": "False",
+         "correct": false,
+         "feedback": "61 > 60 is True."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Write the report line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "'hot' if temp > 60 else 'ok' gives 'ok' for 58, so the line reads bin, ok.",
+       "takeaway": "So: a one-line if always needs its else.",
+       "next_bridge": "see your shift report.",
+       "hint_before_check": "A one-line if needs both parts.",
+       "code_note": {
+        "title": "Decisions inside f-strings",
+        "text": "A one-line if can sit inside the braces of an f-string."
+       },
+       "science_note": {
+        "title": "Readable reports",
+        "text": "One short line per fruit makes the shift report quick to scan."
+       },
+       "scene_label": "The last line of the shift.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Line temperature in °C",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            60,
+            "#E4F5B8",
+            "ok"
+           ],
+           [
+            60,
+            100,
+            "#FFE3CF",
+            "too hot"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 100
+         },
+         "correct_state": [
+          58,
+          "bin, ok"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            58,
+            "SyntaxError"
+           ],
+           "c": [
+            58,
+            "SyntaxError"
+           ],
+           "d": [
+            58,
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "route, temp = \"bin\", 58",
+        "line = f\"{route}, {'hot' if temp > 60 ___ 'ok'}\"",
+        "print(line)"
+       ],
+       "goal_output": [
+        "bin, ok"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "else",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "elif",
+         "correct": false,
+         "feedback": "A one-line if has no elif: SyntaxError."
+        },
+        {
+         "id": "c",
+         "label": "or",
+         "correct": false,
+         "feedback": "A one-line if needs else: SyntaxError."
+        },
+        {
+         "id": "d",
+         "label": ":",
+         "correct": false,
+         "feedback": "A one-line if has no colon: SyntaxError."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP3C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Fruit sorting conveyor",
+     "person": "Plant manager",
+     "intro": "One question from each part. No hints, no notes: read every line.",
+     "script_file": "conveyor_check.py",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "30% spots",
+       "value": "bin"
+      },
+      {
+       "label": "200 g",
+       "value": "True"
+      },
+      {
+       "label": "Two flags",
+       "value": "True True"
+      },
+      {
+       "label": "One-line route",
+       "value": "bin"
+      },
+      {
+       "label": "Soft fruit",
+       "value": "fixed: or"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 3 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "engineering_python",
+     "phase": 3,
+     "language": "Python",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "30 >= 30 is True, so the first branch runs: bin.",
+       "takeaway": null,
+       "next_bridge": "check an apple's weight.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A fruit on the limit.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_peach.png",
+            "bin",
+            "30%"
+           ]
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "juice",
+              "30%"
+             ]
+            ],
+            "juice?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_peach.png",
+              "juice",
+              "30%"
+             ]
+            ],
+            "both?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 30",
+        "if spots >= 30:",
+        "    print(\"bin\")",
+        "elif spots > 15:",
+        "    print(\"juice\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "bin",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "juice",
+         "correct": false,
+         "feedback": ">= includes 30 itself."
+        },
+        {
+         "id": "c",
+         "label": "bin\njuice",
+         "correct": false,
+         "feedback": "Only one branch runs."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Is a 200 g apple in range?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "<= includes the limit: 150 <= 200 <= 200 is True.",
+       "takeaway": null,
+       "next_bridge": "count some flags.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "An apple right on the limit.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Apple weight in g",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#FFE3CF",
+            "light"
+           ],
+           [
+            150,
+            200,
+            "#E4F5B8",
+            "shop"
+           ],
+           [
+            200,
+            250,
+            "#FFE3CF",
+            "heavy"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 250
+         },
+         "correct_state": [
+          200,
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            200,
+            "False?"
+           ],
+           "c": [
+            200,
+            "False?"
+           ],
+           "d": [
+            200,
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "w = 200",
+        "print(150 <= w ___ 200)"
+       ],
+       "goal_output": [
+        "True"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "<=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": "200 < 200 is False."
+        },
+        {
+         "id": "c",
+         "label": ">",
+         "correct": false,
+         "feedback": "200 > 200 is False."
+        },
+        {
+         "id": "d",
+         "label": "=<",
+         "correct": false,
+         "feedback": "Python writes it <=: SyntaxError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "True + True is 2, and 2 >= 2 is True. not 0 is True, because 0 counts as false.",
+       "takeaway": null,
+       "next_bridge": "route a fruit in one line.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Two sensors firing.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Sensor flags",
+         "args": [
+          [
+           "spots",
+           "soft",
+           "size"
+          ],
+          [
+           [
+            1,
+            1,
+            0
+           ],
+           "True True"
+          ],
+          {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "2 True?"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "True False?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           1,
+           0
+          ],
+          "True True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             1,
+             0
+            ],
+            "2 True?"
+           ],
+           "c": [
+            [
+             1,
+             1,
+             0
+            ],
+            "True False?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(True + True >= 2, not 0)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2 True",
+         "correct": false,
+         "feedback": ">= turns the sum into True or False."
+        },
+        {
+         "id": "c",
+         "label": "True False",
+         "correct": false,
+         "feedback": "0 counts as false, so not 0 is True."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "45 > 30 is True, so the first value wins: bin. The rest isn't checked.",
+       "takeaway": null,
+       "next_bridge": "fix the soft-fruit rule.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A spoilt orange.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {
+          "juice": true
+         },
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/spoilt_orange.png",
+            "bin",
+            "45%"
+           ]
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "juice",
+              "45%"
+             ]
+            ],
+            "juice?"
+           ],
+           "c": [
+            [
+             [
+              "assets/images/fruits/spoilt_orange.png",
+              "stay",
+              "45%"
+             ]
+            ],
+            "keep?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "spots = 45",
+        "route = \"bin\" if spots > 30 else \"juice\" if spots > 15 else \"keep\"",
+        "print(route)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "bin",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "juice",
+         "correct": false,
+         "feedback": "The first test is already True."
+        },
+        {
+         "id": "c",
+         "label": "keep",
+         "correct": false,
+         "feedback": "keep is only for fruit at 15% or less."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Soft fruit should be binned, whatever its spots. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "and needs both, and 10 > 30 is False. or bins it if either is true.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A soft cherry.",
+       "picture": [
+        {
+         "type": "belt",
+         "description": "Fruit passes the colour sensor; the pusher bins spoilt fruit, the rest stays on the belt or goes to the juice line.",
+         "label": "Conveyor belt: fruit passes a colour sensor",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          [
+           [
+            "assets/images/fruits/clean_cherries.png",
+            "bin",
+            "soft"
+           ]
+          ],
+          "bin"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [
+             [
+              "assets/images/fruits/clean_cherries.png",
+              "floor",
+              "soft"
+             ]
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             [
+              "assets/images/fruits/clean_cherries.png",
+              "floor",
+              "soft"
+             ]
+            ],
+            "nothing printed"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "conveyor_check.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "soft = True",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "spots = 10",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "if spots > 30 and soft:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    print(\"bin\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "if spots > 30 or soft:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if spots > 30 and not soft:",
+          "correct": false,
+          "feedback": "That needs spots and no softness: nothing prints."
+         },
+         {
+          "id": "f2",
+          "replacement": "if spots > 30 and soft == False:",
+          "correct": false,
+          "feedback": "Still needs spots over 30: nothing prints."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "    print(\"keep\")",
+          "correct": false,
+          "feedback": "The test is still False: nothing prints."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: bin"
+      }
+     ]
+    }
+   ]
   }
  ]
 }

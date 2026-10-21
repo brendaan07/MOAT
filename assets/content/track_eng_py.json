@@ -163,6 +163,92 @@
     "name": "Component labels & test reports",
     "filename": "",
     "problem": "",
+    "unlock": [
+     "Phase 3 unlocked",
+     "Fruit sorting conveyor",
+     "New skill: decisions. You'll build a fruit sorting conveyor."
+    ],
+    "questions": []
+   }
+  },
+  {
+   "number": 3,
+   "area": "Engineering",
+   "project": "Fruit sorting conveyor",
+   "picture": "",
+   "skill": "Decisions and thresholds",
+   "parts": [
+    [
+     "Sort the fruit",
+     "Fruit sorting conveyor"
+    ],
+    [
+     "Grading order",
+     "Fruit sorting conveyor"
+    ],
+    [
+     "Weight check",
+     "Fruit sorting conveyor"
+    ],
+    [
+     "Sensor count",
+     "Fruit sorting conveyor"
+    ],
+    [
+     "Shift report",
+     "Fruit sorting conveyor"
+    ]
+   ],
+   "code": [
+    "spots = 20",
+    "if spots > 30:",
+    "    print(\"push to bin\")",
+    "elif spots > 15:",
+    "    print(\"juice line\")",
+    "else:",
+    "    print(\"keep on belt\")",
+    "w = 172",
+    "print(150 <= w <= 200)",
+    "flags = True + True + False",
+    "print(flags >= 2)"
+   ],
+   "lessons": [
+    {
+     "id": "eng_py_p3_l1",
+     "part": 1,
+     "title": "Sort the fruit",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p3_l2",
+     "part": 2,
+     "title": "Grading order",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p3_l3",
+     "part": 3,
+     "title": "Weight check",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p3_l4",
+     "part": 4,
+     "title": "Sensor count",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p3_l5",
+     "part": 5,
+     "title": "Shift report",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "eng_py_cp3",
+    "name": "Fruit sorting conveyor",
+    "filename": "",
+    "problem": "",
     "unlock": [],
     "questions": []
    }

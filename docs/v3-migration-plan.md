@@ -757,3 +757,7 @@ Each step adds here what it found or left for a later step (file, why, which ste
   `track_eng_py.json` until 2a.4.3 (user decision). Delete the V2 pieces in 3.1.
 - (step 2a.4.1) Checkpoint questions in every V3 file have `known_from_earlier: []`; a checkpoint shows no "Known from
   earlier" line. The validator doesn't check this yet; consider adding the rule in a later content step.
+- (step 2a.4.3) Engineering phase 3 is V3, with the conveyor `belt` ported to `picturesV3.tsx` (user decision). The fruit
+  sprites in `assets/images/fruits/` are now registered in `imageMapV3.ts` and stay in use, so step 3 must not delete
+  them. Now unused: V2 `EngP3L1` in `track_lessons_v2_more.json`, and V2's `Belt` and its `SPRITES` map in
+  `picturesV2.tsx`. Delete those in 3.1.
