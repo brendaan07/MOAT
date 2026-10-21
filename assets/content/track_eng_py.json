@@ -8,7 +8,7 @@
    "area": "Engineering",
    "project": "Circuit calculator",
    "picture": "",
-   "skill": "Values, maths and printing",
+   "skill": "Values and arithmetic",
    "parts": [
     [
      "Label the circuit",
@@ -25,280 +25,60 @@
     [
      "Power budget",
      "Circuit calculator"
+    ],
+    [
+     "Fuse rating",
+     "Circuit calculator"
     ]
    ],
    "code": [
-    "led = 0.5",
-    "motor = 6.0",
-    "sensor = 0.25",
-    "print(led + motor + sensor)",
-    "total = 6.75",
-    "I = total / 12",
-    "print(I)",
-    "print(0.1 + 0.2)",
-    "headroom = (supply - need) / supply",
-    "ok = headroom >= 0.2",
-    "print(ok)"
+    "import math",
+    "name = \"Circuit A\"",
+    "volts = 12",
+    "print(f\"{name}: {volts} V\")",
+    "I = volts / 4",
+    "print(volts * I)",
+    "hours = 2000 / 300",
+    "print(round(hours, 1))",
+    "headroom = (10 - 6.75) / 10",
+    "print(headroom >= 0.2)",
+    "print(math.ceil(5.0 * 1.25))"
    ],
    "lessons": [
     {
-     "id": "EngP1L1",
+     "id": "eng_py_p1_l1",
      "part": 1,
      "title": "Label the circuit",
-     "questions": [
-      {
-       "id": "EngP1L1_q1",
-       "kind": "predict",
-       "prompt": "What does Python print?",
-       "hint": "Look at which name has quote marks around it.",
-       "ok": "name without quotes is the stored text; \"name\" in quotes is the word itself. Python prints text without its quote marks."
-      },
-      {
-       "id": "EngP1L1_q2",
-       "kind": "fill",
-       "prompt": "Store the supply voltage as a number",
-       "hint": "Think about what * would do to each option.",
-       "ok": "12 is a number, so volts * 2 is 24. In quotes, \"12\" is text, and text times 2 repeats it: 1212."
-      },
-      {
-       "id": "EngP1L1_q3",
-       "kind": "predict",
-       "prompt": "What does the label line print?",
-       "hint": "Look at where the spaces sit.",
-       "ok": "str(volts) turns 12 into \"12\", and + joins the pieces with their spaces: Circuit A at 12 V."
-      },
-      {
-       "id": "EngP1L1_q4",
-       "kind": "bug",
-       "prompt": "The technician's script stops. Which line?",
-       "hint": "Look for a line that mixes two different types.",
-       "ok": "volts is a number, and + cannot join text to a number, so Python stops. str(volts) fixes it."
-      },
-      {
-       "id": "EngP1L1_q5",
-       "kind": "fill",
-       "prompt": "Write the panel label in one line",
-       "hint": "One letter in front of the quotes changes what the braces do.",
-       "ok": "An f-string fills each {name} with its value, so no str() is needed: Circuit A: 12 V."
-      }
-     ]
+     "questions": []
     },
     {
-     "id": "EngP1L2",
+     "id": "eng_py_p1_l2",
      "part": 2,
      "title": "Ohm's law",
-     "questions": [
-      {
-       "id": "EngP1L2_q1",
-       "kind": "predict",
-       "prompt": "What current does Python print?",
-       "hint": "Think about whether Python keeps decimals when it divides.",
-       "ok": "I = V / R = 12 / 4. Python's / always gives a decimal number, a float, so it prints 3.0. // would give 3."
-      },
-      {
-       "id": "EngP1L2_q2",
-       "kind": "fill",
-       "prompt": "Work out the power",
-       "hint": "Which operation turns volts and amps into watts?",
-       "ok": "P = V × I = 12 × 3.0 = 36.0 W. ** would raise 12 to a power instead."
-      },
-      {
-       "id": "EngP1L2_q3",
-       "kind": "predict",
-       "prompt": "Add 3 Ω in series. What is the current now?",
-       "hint": "Combine the two resistors first.",
-       "ok": "4 Ω + 3 Ω in series is 7 Ω, so I = 12 / 7 = 1.714..., and round(I, 2) gives 1.71."
-      },
-      {
-       "id": "EngP1L2_q4",
-       "kind": "bug",
-       "prompt": "Partner's script says 39 W. Which line?",
-       "hint": "Look at which numbers each operation applies to.",
-       "ok": "Python works out V ** 2 / 4 first, then adds 3: 36 + 3 = 39.0. It should divide by R_total."
-      },
-      {
-       "id": "EngP1L2_q5",
-       "kind": "build",
-       "prompt": "Is the power under the 25 W rating?",
-       "hint": "Compare the power with the rating.",
-       "ok": "P is 144 / 7, about 20.6 W, so P < 25 is True: the resistor stays within its rating."
-      }
-     ]
+     "questions": []
     },
     {
-     "id": "EngP1L3",
+     "id": "eng_py_p1_l3",
      "part": 3,
      "title": "Battery life",
-     "questions": [
-      {
-       "id": "EngP1L3_q1",
-       "kind": "predict",
-       "prompt": "How many hours does the battery last?",
-       "hint": "Think about what / gives in Python.",
-       "ok": "2000 / 300 is 6.666... hours. Python prints a float with all its digits."
-      },
-      {
-       "id": "EngP1L3_q2",
-       "kind": "fill",
-       "prompt": "How many whole hours?",
-       "hint": "You want to drop the part after the decimal point.",
-       "ok": "// is floor division: 2000 // 300 is 6 whole hours."
-      },
-      {
-       "id": "EngP1L3_q3",
-       "kind": "predict",
-       "prompt": "What does the runtime line print?",
-       "hint": "Work out the remainder first, then left to right.",
-       "ok": "2000 % 300 is 200 mAh left over; 200 × 60 // 300 is 40 minutes, so it prints 6 h 40 min."
-      },
-      {
-       "id": "EngP1L3_q4",
-       "kind": "bug",
-       "prompt": "The club member's script stops. Which line?",
-       "hint": "Think about what input() gives back.",
-       "ok": "input() always returns text, so 2000 / \"300\" fails. Wrap it: int(input(\"mA: \"))."
-      },
-      {
-       "id": "EngP1L3_q5",
-       "kind": "build",
-       "prompt": "Round the runtime to 1 decimal for the poster",
-       "hint": "round() takes the number and the number of decimals.",
-       "ok": "round(hours, 1) keeps one decimal: 6.666... becomes 6.7."
-      }
-     ]
+     "questions": []
     },
     {
-     "id": "EngP1L4",
+     "id": "eng_py_p1_l4",
      "part": 4,
      "title": "Power budget",
-     "questions": [
-      {
-       "id": "EngP1L4_q1",
-       "kind": "predict",
-       "prompt": "What total power does Python print?",
-       "hint": "Add the three parts.",
-       "ok": "0.5 + 6.0 + 0.25 = 6.75 watts in total."
-      },
-      {
-       "id": "EngP1L4_q2",
-       "kind": "fill",
-       "prompt": "What current does a 12 V supply give?",
-       "hint": "Power is volts times amps.",
-       "ok": "I = P / V = 6.75 / 12 = 0.5625 amps."
-      },
-      {
-       "id": "EngP1L4_q3",
-       "kind": "predict",
-       "prompt": "Two sensors draw 0.1 W and 0.2 W. What prints?",
-       "hint": "Some decimals cannot be stored exactly in binary.",
-       "ok": "0.1 and 0.2 have no exact binary form, so the sum is a tiny bit off: 0.30000000000000004. Round before you compare or display."
-      },
-      {
-       "id": "EngP1L4_q4",
-       "kind": "bug",
-       "prompt": "Headroom shows 9.325, not 0.325. Which line?",
-       "hint": "Look at which numbers the division applies to.",
-       "ok": "Python divides first: 10 - 0.675 = 9.325. Brackets make it (supply - need) / supply = 0.325."
-      },
-      {
-       "id": "EngP1L4_q5",
-       "kind": "build",
-       "prompt": "Is there at least 20% headroom?",
-       "hint": "20% as a fraction of 1.",
-       "ok": "0.325 >= 0.2 is True: the supply keeps 32.5% headroom."
-      }
-     ]
+     "questions": []
+    },
+    {
+     "id": "eng_py_p1_l5",
+     "part": 5,
+     "title": "Fuse rating",
+     "questions": []
     }
    ],
    "checkpoint": {
     "id": "eng_py_cp1",
-    "name": "Coming soon",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
-   }
-  },
-  {
-   "number": 3,
-   "area": "Engineering",
-   "project": "Fruit sorting conveyor",
-   "picture": "",
-   "skill": "Decisions: if, elif, else",
-   "parts": [
-    [
-     "Sort the fruit",
-     "Fruit sorting conveyor"
-    ]
-   ],
-   "code": [
-    "spots = 45",
-    "if spots > 30:",
-    "    print(\"push to bin\")",
-    "spots = 12",
-    "if spots > 30:",
-    "    print(\"push to bin\")",
-    "else:",
-    "    print(\"keep on belt\")",
-    "spots = 20",
-    "if spots > 30:",
-    "    print(\"push to bin\")",
-    "elif spots > 15:",
-    "    print(\"juice line\")",
-    "else:",
-    "    print(\"keep on belt\")",
-    "spots = 12",
-    "firm = 1",
-    "if spots > 30 or firm < 2:",
-    "    print(\"push to bin\")"
-   ],
-   "lessons": [
-    {
-     "id": "EngP3L1",
-     "part": 1,
-     "title": "Sort the fruit",
-     "questions": [
-      {
-       "id": "EngP3L1_q1",
-       "kind": "predict",
-       "prompt": "The sensor reads 45%. What happens?",
-       "hint": "Compare the reading with the limit in the code.",
-       "ok": "45 > 30 is True, so the pusher bins the spotted orange. The clean apple has no instruction yet, so it rolls off the end."
-      },
-      {
-       "id": "EngP3L1_q2",
-       "kind": "fill",
-       "prompt": "Good fruit should stay on the belt",
-       "hint": "What should the line do when the check fails?",
-       "ok": "else runs whenever the if check is False: 12 > 30 is False, so the pear stays on the belt. Now every fruit has a place to go."
-      },
-      {
-       "id": "EngP3L1_q3",
-       "kind": "predict",
-       "prompt": "The sensor reads 20%. Where does it go?",
-       "hint": "Python reads the checks from the top.",
-       "ok": "20 > 30 is False, then 20 > 15 is True, so the peach goes to the juice line and Python skips the rest."
-      },
-      {
-       "id": "EngP3L1_q4",
-       "kind": "bug",
-       "prompt": "The pusher bins good fruit. Which line?",
-       "hint": "Read the condition aloud and compare it with the rule.",
-       "ok": "< 30 is True for clean fruit, so the pusher fired on good fruit. Spoilt means more than 30: spots > 30."
-      },
-      {
-       "id": "EngP3L1_q5",
-       "kind": "build",
-       "prompt": "Bin fruit that is spotted or soft",
-       "hint": "Re-read the question: does the fruit need both problems?",
-       "ok": "or needs only one condition to be True: 12 > 30 is False, but firm < 2 is True, so the soft pear goes to the bin. and would need both."
-      }
-     ]
-    }
-   ],
-   "checkpoint": {
-    "id": "eng_py_cp3",
-    "name": "Coming soon",
+    "name": "Circuit calculator",
     "filename": "",
     "problem": "",
     "unlock": [],

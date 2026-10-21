@@ -1,0 +1,3690 @@
+{
+ "track": {
+  "id": "engineering_python",
+  "name": "Engineering Python",
+  "language": "Python",
+  "phases": 5,
+  "lessons_per_phase": 5,
+  "item_order_rule": "Each phase's five lessons are followed by one checkpoint of five questions; the next phase unlocks at full stars."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Circuit calculator",
+   "coding_idea": "Values and arithmetic",
+   "items": [
+    {
+     "id": "EpP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Label the circuit",
+     "person": "Lab technician",
+     "intro": "Before anyone powers a board, it needs a label: its name and its supply voltage.",
+     "script_file": "circuit.py",
+     "start_button": "Label the circuit",
+     "notebook": [
+      {
+       "label": "Name",
+       "value": "Circuit A"
+      },
+      {
+       "label": "Supply",
+       "value": "12 V"
+      },
+      {
+       "label": "Label",
+       "value": "Circuit A at 12 V"
+      },
+      {
+       "label": "Technician's script",
+       "value": "fixed: str()"
+      },
+      {
+       "label": "Panel label",
+       "value": "Circuit A: 12 V"
+      }
+     ],
+     "recap": {
+      "title": "Circuit labelled",
+      "subtitle": "Name, voltage and a clean label line, ready for the bench.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "name without quotes is the stored text; \"name\" in quotes is the word itself. Python prints text without its quote marks.",
+       "takeaway": "So: quotes make text; no quotes means a stored value.",
+       "next_bridge": "store the board's supply voltage.",
+       "hint_before_check": "Look at which name has quote marks around it.",
+       "code_note": {
+        "title": "Text and names",
+        "text": "Quote marks make text. A name without them refers to a stored value."
+       },
+       "science_note": {
+        "title": "Why label a circuit?",
+        "text": "Labs share benches and boards. A name and supply voltage on every board stops someone connecting 12 V to a board built for 5 V."
+       },
+       "scene_label": "A blank label on the board.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Label characters",
+         "args": [
+          "Circuit A",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+           ],
+           "Circuit A, then name"
+          ],
+          {
+           "b": [
+            [],
+            "quote marks?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7,
+             8
+            ],
+            "Circuit A twice?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8
+          ],
+          "Circuit A, then name"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "quote marks?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7,
+             8
+            ],
+            "Circuit A twice?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "name",
+         "c": "#FFC93C"
+        },
+        "is",
+        {
+         "t": "Circuit A",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "name = \"Circuit A\"",
+        "print(name)",
+        "print(\"name\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Circuit A\nname",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"Circuit A\"\n\"name\"",
+         "correct": false,
+         "feedback": "Python leaves out the quote marks when it prints text."
+        },
+        {
+         "id": "c",
+         "label": "Circuit A\nCircuit A",
+         "correct": false,
+         "feedback": "In quotes, \"name\" is a word, not the variable."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Store the supply voltage as a number.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "12 is a number, so volts * 2 is 24. In quotes, \"12\" is text, and text times 2 repeats it: 1212.",
+       "takeaway": "So: numbers do maths; text in quotes doesn't.",
+       "next_bridge": "make one label from the name and the voltage.",
+       "hint_before_check": "Think about what * would do to each option.",
+       "code_note": {
+        "title": "Numbers and text",
+        "text": "Python stores numbers and text as different types, and each type behaves differently."
+       },
+       "science_note": {
+        "title": "Why voltage is a number",
+        "text": "Every later calculation, current, power, safe limits, needs the voltage as a number. Stored as text, the maths goes wrong."
+       },
+       "scene_label": "The supply voltage.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Voltage characters",
+         "args": [
+          "12",
+          [
+           [
+            0,
+            1
+           ],
+           "24"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1
+            ],
+            "1212"
+           ],
+           "c": [
+            [],
+            "NameError"
+           ],
+           "d": [
+            [],
+            "SyntaxError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1
+          ],
+          "24"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1
+            ],
+            "1212"
+           ],
+           "c": [
+            [],
+            "NameError"
+           ],
+           "d": [
+            [],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "12",
+         "c": "#FFFDF6"
+        },
+        "×",
+        {
+         "t": "2",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "24",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "volts = ___",
+        "print(volts * 2)"
+       ],
+       "goal_output": [
+        "24"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "12",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"12\"",
+         "correct": false,
+         "feedback": "\"12\" is text, and text times 2 repeats it: 1212."
+        },
+        {
+         "id": "c",
+         "label": "twelve",
+         "correct": false,
+         "feedback": "twelve isn't defined, so Python stops with a NameError."
+        },
+        {
+         "id": "d",
+         "label": "12V",
+         "correct": false,
+         "feedback": "12V isn't valid Python; it stops with a SyntaxError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the label line print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "name = \"Circuit A\"",
+        "volts = 12"
+       ],
+       "explanation_after_check": "str(volts) turns 12 into \"12\", and + joins the pieces with their spaces: Circuit A at 12 V.",
+       "takeaway": "So: + joins text, and str() turns a number into text.",
+       "next_bridge": "fix the technician's script.",
+       "hint_before_check": "Look at where the spaces sit.",
+       "code_note": {
+        "title": "Joining text",
+        "text": "+ joins pieces of text into one."
+       },
+       "science_note": {
+        "title": "Labels that read like a sentence",
+        "text": "\"Circuit A at 12 V\" can be read at a glance on a crowded bench, which is what safety labels are for."
+       },
+       "scene_label": "The label taking shape.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Label characters",
+         "args": [
+          "Circuit A at 12 V",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+           ],
+           "Circuit A at 12 V"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7,
+             8,
+             9,
+             10,
+             11
+            ],
+            "volts V?"
+           ],
+           "c": [
+            [],
+            "no spaces?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8,
+           9,
+           10,
+           11,
+           12,
+           13,
+           14,
+           15,
+           16
+          ],
+          "Circuit A at 12 V"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1,
+             2,
+             3,
+             4,
+             5,
+             6,
+             7,
+             8,
+             9,
+             10,
+             11
+            ],
+            "volts V?"
+           ],
+           "c": [
+            [],
+            "no spaces?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "label = name + \" at \" + str(volts)",
+        "print(label + \" V\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Circuit A at 12 V",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Circuit A at volts V",
+         "correct": false,
+         "feedback": "Without quotes, volts means its value, 12."
+        },
+        {
+         "id": "c",
+         "label": "Circuit Aat12V",
+         "correct": false,
+         "feedback": "The spaces are inside the quoted pieces, so they stay."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The technician's script stops. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "volts is a number, and + can't join text to a number, so Python stops. str(volts) turns it into text.",
+       "takeaway": "So: convert numbers with str() before joining them to text.",
+       "next_bridge": "write the label for the panel.",
+       "hint_before_check": "Look for a line that mixes two different types.",
+       "code_note": {
+        "title": "Types in one line",
+        "text": "Every value has a type, such as text or a number. Some operations need both sides to match."
+       },
+       "science_note": {
+        "title": "Why scripts should fail loudly",
+        "text": "A script that stops with a clear error is safer than one that prints a wrong label onto a live board."
+       },
+       "scene_label": "A TypeError on the bench laptop.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Label characters",
+         "args": [
+          "Circuit A at 12 V",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+           ],
+           "Circuit A at 12 V"
+          ],
+          {
+           "c": [
+            [],
+            "TypeError"
+           ],
+           "d": [
+            [],
+            "TypeError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8,
+           9,
+           10,
+           11,
+           12,
+           13,
+           14,
+           15,
+           16
+          ],
+          "Circuit A at 12 V"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [],
+            "TypeError"
+           ],
+           "d": [
+            [],
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "circuit.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "name = \"Circuit A\"",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "volts = 12",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "label = name + \" at \" + volts + \" V\"",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(label)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "label = name + \" at \" + str(volts) + \" V\"",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "label = name + \" at \" + \"volts\" + \" V\"",
+          "correct": false,
+          "feedback": "That prints the word volts: Circuit A at volts V."
+         },
+         {
+          "id": "f2",
+          "replacement": "label = name + \" at \" + int(volts) + \" V\"",
+          "correct": false,
+          "feedback": "int() keeps it a number: still a TypeError."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(name, volts)",
+          "correct": false,
+          "feedback": "Python still stops on line 3, before it gets here."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: Circuit A at 12 V"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Write the panel label in one line.",
+       "xp": 10,
+       "known_from_earlier": [
+        "name = \"Circuit A\"",
+        "volts = 12"
+       ],
+       "explanation_after_check": "An f-string fills each {name} with its value, so no str() is needed: Circuit A: 12 V.",
+       "takeaway": "So: f-strings fill values straight into text.",
+       "next_bridge": "see your finished label.",
+       "hint_before_check": "One letter in front of the quotes changes what the braces do.",
+       "code_note": {
+        "title": "String prefixes",
+        "text": "A letter placed before a quote mark changes how Python reads that text."
+       },
+       "science_note": {
+        "title": "Panel labels",
+        "text": "Control panels carry short, standard labels so an engineer can check every circuit's supply without opening the case."
+       },
+       "scene_label": "The panel label.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Label characters",
+         "args": [
+          "Circuit A: 12 V",
+          [
+           [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+           ],
+           "Circuit A: 12 V"
+          ],
+          {
+           "b": [
+            [],
+            "{name}: {volts} V"
+           ],
+           "c": [
+            [],
+            "b'{name}: {volts} V'"
+           ],
+           "d": [
+            [],
+            "SyntaxError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           2,
+           3,
+           4,
+           5,
+           6,
+           7,
+           8,
+           9,
+           10,
+           11,
+           12,
+           13,
+           14
+          ],
+          "Circuit A: 12 V"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "{name}: {volts} V"
+           ],
+           "c": [
+            [],
+            "b'{name}: {volts} V'"
+           ],
+           "d": [
+            [],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "f\"{name}: {volts} V\"",
+         "c": "#FFC93C"
+        },
+        "gives",
+        {
+         "t": "Circuit A: 12 V",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "print(___\"{name}: {volts} V\")"
+       ],
+       "goal_output": [
+        "Circuit A: 12 V"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "f",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "r",
+         "correct": false,
+         "feedback": "r means raw text, so the braces print as they are: {name}: {volts} V."
+        },
+        {
+         "id": "c",
+         "label": "b",
+         "correct": false,
+         "feedback": "b makes bytes, so Python prints b'{name}: {volts} V'."
+        },
+        {
+         "id": "d",
+         "label": "s",
+         "correct": false,
+         "feedback": "s isn't a string prefix; Python stops with a SyntaxError."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Ohm's law",
+     "person": "Lab partner",
+     "intro": "Our 12 V supply drives a 4 Ω resistor. Can you check the current and power before we switch on?",
+     "script_file": "ohms_law.py",
+     "start_button": "Work out the current",
+     "notebook": [
+      {
+       "label": "Current",
+       "value": "3.0 A"
+      },
+      {
+       "label": "Power",
+       "value": "36.0 W"
+      },
+      {
+       "label": "With 7 Ω in series",
+       "value": "1.71 A"
+      },
+      {
+       "label": "Partner's 39 W",
+       "value": "fixed: R_total"
+      },
+      {
+       "label": "Under 25 W rating",
+       "value": "True"
+      }
+     ],
+     "recap": {
+      "title": "Circuit checked",
+      "subtitle": "The current, the power and a safe rating, all from one script.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What current does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "I = V / R = 12 / 4. Python's / always gives a decimal number, a float, so it prints 3.0. // would give 3.",
+       "takeaway": "So: / always gives a float.",
+       "next_bridge": "work out the power.",
+       "hint_before_check": "Think about whether Python keeps decimals when it divides.",
+       "code_note": {
+        "title": "Division",
+        "text": "Python has more than one division operator, and they give different kinds of number."
+       },
+       "science_note": {
+        "title": "Ohm's law",
+        "text": "The current through a resistor is the voltage across it divided by its resistance: I = V / R."
+       },
+       "scene_label": "Switching on.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 12 V supply and 4 Ω",
+         "args": [
+          12,
+          [
+           4
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          3,
+          "3.0 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "3?"
+           ],
+           "c": [
+            48,
+            "48?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "12",
+         "c": "#FFFDF6"
+        },
+        "/",
+        {
+         "t": "4",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "3.0",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "V = 12",
+        "R = 4",
+        "print(V / R)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": "/ always gives a float in Python; 12 // 4 would give 3."
+        },
+        {
+         "id": "c",
+         "label": "48",
+         "correct": false,
+         "feedback": "That multiplies instead of dividing."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Work out the power.",
+       "xp": 10,
+       "known_from_earlier": [
+        "V = 12",
+        "R = 4"
+       ],
+       "explanation_after_check": "P = V × I = 12 × 3.0 = 36.0 W. ** would raise 12 to a power instead.",
+       "takeaway": "So: power is volts times amps.",
+       "next_bridge": "add a second resistor in series.",
+       "hint_before_check": "Which operation turns volts and amps into watts?",
+       "code_note": {
+        "title": "Arithmetic operators",
+        "text": "Python uses symbols such as +, -, *, / and ** for maths."
+       },
+       "science_note": {
+        "title": "Electrical power",
+        "text": "Power, P = V × I, is how fast a part turns electrical energy into heat or work."
+       },
+       "scene_label": "The resistor warming up.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 12 V supply and 4 Ω",
+         "args": [
+          12,
+          [
+           4
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          3,
+          "36.0 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "4.0?"
+           ],
+           "c": [
+            3,
+            "1728.0?"
+           ],
+           "d": [
+            3,
+            "15.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "12",
+         "c": "#FFFDF6"
+        },
+        "×",
+        {
+         "t": "3.0",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "36.0",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "I = V / R",
+        "P = V ___ I",
+        "print(P)"
+       ],
+       "goal_output": [
+        "36.0"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "*",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "/",
+         "correct": false,
+         "feedback": "12 / 3.0 is 4.0, the resistance again."
+        },
+        {
+         "id": "c",
+         "label": "**",
+         "correct": false,
+         "feedback": "** is a power in the maths sense: 12 ** 3.0 is 1728.0."
+        },
+        {
+         "id": "d",
+         "label": "+",
+         "correct": false,
+         "feedback": "12 + 3.0 is 15.0; power multiplies."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Add 3 Ω in series. What is the current now?",
+       "xp": 10,
+       "known_from_earlier": [
+        "V = 12"
+       ],
+       "explanation_after_check": "4 Ω + 3 Ω in series is 7 Ω, so I = 12 / 7 = 1.714..., and round(I, 2) gives 1.71.",
+       "takeaway": "So: round() sets how many decimals you see.",
+       "next_bridge": "fix your partner's power reading.",
+       "hint_before_check": "Combine the two resistors first.",
+       "code_note": {
+        "title": "Rounding",
+        "text": "round() controls how many decimal places you see."
+       },
+       "science_note": {
+        "title": "Resistors in series",
+        "text": "Resistors in a line add up: 4 Ω and 3 Ω behave like one 7 Ω resistor, so the same voltage pushes less current."
+       },
+       "scene_label": "A second resistor on the board.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 12 V supply and 4 Ω + 3 Ω",
+         "args": [
+          12,
+          [
+           4,
+           3
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          1.71,
+          "1.71 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            1.71,
+            "not rounded?"
+           ],
+           "c": [
+            3,
+            "3.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "12",
+         "c": "#FFFDF6"
+        },
+        "/",
+        {
+         "t": "7",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "1.71",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "R_total = 4 + 3",
+        "I = V / R_total",
+        "print(round(I, 2))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1.71",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1.7142857142857142",
+         "correct": false,
+         "feedback": "That's before rounding."
+        },
+        {
+         "id": "c",
+         "label": "3.0",
+         "correct": false,
+         "feedback": "That was the current with 4 Ω alone."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Your partner's script says 39 W. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Python works out V ** 2 / 4 first, then adds 3: 36 + 3 = 39.0. It should divide by R_total.",
+       "takeaway": "So: Python does ** first, then / and *, then + and -.",
+       "next_bridge": "check the power against the rating.",
+       "hint_before_check": "Look at which numbers each operation applies to.",
+       "code_note": {
+        "title": "Order of operations",
+        "text": "Python follows maths order when a line has several operations."
+       },
+       "science_note": {
+        "title": "Checking before buying parts",
+        "text": "A wrong power figure leads to buying oversized parts, or undersized ones that overheat."
+       },
+       "scene_label": "A power reading that's too high.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 12 V supply and 4 Ω + 3 Ω",
+         "args": [
+          12,
+          [
+           4,
+           3
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          1.71,
+          "20.57 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            1.71,
+            "39.0?"
+           ],
+           "d": [
+            1.71,
+            "39?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "ohms_law.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "V = 12",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "R_total = 4 + 3",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "P = V ** 2 / 4 + 3",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(P)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "P = V ** 2 / R_total",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "P = (V ** 2) / 4 + 3",
+          "correct": false,
+          "feedback": "Brackets round V ** 2 change nothing: still 39.0."
+         },
+         {
+          "id": "f2",
+          "replacement": "P = V * 2 / R_total",
+          "correct": false,
+          "feedback": "* 2 doubles; ** 2 squares: 3.4285714285714284."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(round(P))",
+          "correct": false,
+          "feedback": "That rounds the wrong answer: 39."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 20.571428571428573"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Is the power under the 25 W rating?",
+       "xp": 10,
+       "known_from_earlier": [
+        "V = 12",
+        "R_total = 7"
+       ],
+       "explanation_after_check": "P is 144 / 7, about 20.6 W, so P < 25 is True: the resistor stays within its rating.",
+       "takeaway": "So: a comparison gives True or False.",
+       "next_bridge": "see your finished circuit check.",
+       "hint_before_check": "Compare the power with the rating.",
+       "code_note": {
+        "title": "Comparisons",
+        "text": "Symbols such as < and > compare two values."
+       },
+       "science_note": {
+        "title": "Power ratings",
+        "text": "Every resistor has a power rating. Running it above that rating overheats it."
+       },
+       "scene_label": "The 25 W resistor's rating.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Power against the 25 W rating",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            25,
+            "#E4F5B8",
+            "under rating"
+           ],
+           [
+            25,
+            40,
+            "#FFE3CF",
+            "too hot"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 40
+         },
+         "correct_state": [
+          20.57,
+          "True: 20.6 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            20.57,
+            "False?"
+           ],
+           "c": [
+            20.57,
+            "False?"
+           ],
+           "d": [
+            25,
+            "25?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "P = V ** 2 / R_total",
+        "safe = P ___ 25",
+        "print(safe)"
+       ],
+       "goal_output": [
+        "True"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "<",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": ">",
+         "correct": false,
+         "feedback": "20.6 > 25 is False: that asks whether it's over the rating."
+        },
+        {
+         "id": "c",
+         "label": "==",
+         "correct": false,
+         "feedback": "== asks whether it's exactly 25: False."
+        },
+        {
+         "id": "d",
+         "label": "=",
+         "correct": false,
+         "feedback": "= stores 25 in both names, so Python prints 25."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Battery life",
+     "person": "Robotics club member",
+     "intro": "Our robot runs on a 2000 mAh battery and draws 300 mA. How long will it last between charges?",
+     "script_file": "battery.py",
+     "start_button": "Check the battery",
+     "notebook": [
+      {
+       "label": "Runtime",
+       "value": "6.666666666666667 h"
+      },
+      {
+       "label": "Whole hours",
+       "value": "6"
+      },
+      {
+       "label": "Runtime",
+       "value": "6 h 40 min"
+      },
+      {
+       "label": "Club member's script",
+       "value": "fixed: int()"
+      },
+      {
+       "label": "Rounded",
+       "value": "6.7 hours"
+      }
+     ],
+     "recap": {
+      "title": "Runtime worked out",
+      "subtitle": "6 h 40 min, rounded and read safely from typed input.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many hours does the battery last?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "2000 / 300 is 6.666... hours. Python prints a float with all its digits.",
+       "takeaway": "So: Python doesn't round unless you ask.",
+       "next_bridge": "find the whole hours.",
+       "hint_before_check": "Think about what / gives in Python.",
+       "code_note": {
+        "title": "Division",
+        "text": "Python has more than one division operator."
+       },
+       "science_note": {
+        "title": "Battery capacity",
+        "text": "mAh means milliamp-hours: a 2000 mAh battery can supply 2000 mA for 1 hour, or less current for longer."
+       },
+       "scene_label": "A full battery.",
+       "picture": [
+        {
+         "type": "battery",
+         "description": "A full battery that drains on Check to the charge left; the result pill shows the runtime.",
+         "label": "A battery draining on Check",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          0.05,
+          "6.67 hours"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.1,
+            "6?"
+           ],
+           "c": [
+            0.05,
+            "rounded?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "2000",
+         "c": "#FFFDF6"
+        },
+        "/",
+        {
+         "t": "300",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "6.666...",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "capacity = 2000",
+        "draw = 300",
+        "print(capacity / draw)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6.666666666666667",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "6",
+         "correct": false,
+         "feedback": "That would need //, which drops the fraction."
+        },
+        {
+         "id": "c",
+         "label": "6.67",
+         "correct": false,
+         "feedback": "Python doesn't round unless you ask it to."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "How many whole hours?",
+       "xp": 10,
+       "known_from_earlier": [
+        "capacity = 2000",
+        "draw = 300"
+       ],
+       "explanation_after_check": "// is floor division: 2000 // 300 is 6 whole hours.",
+       "takeaway": "So: // keeps whole numbers only.",
+       "next_bridge": "turn the remainder into minutes.",
+       "hint_before_check": "You want to drop the part after the decimal point.",
+       "code_note": {
+        "title": "Whole-number division",
+        "text": "// and % work with whole numbers."
+       },
+       "science_note": {
+        "title": "Why whole hours?",
+        "text": "Runtimes are quoted as hours and minutes, so a team can plan charging between rounds."
+       },
+       "scene_label": "Counting whole hours.",
+       "picture": [
+        {
+         "type": "battery",
+         "description": "A full battery that drains on Check to the charge left; the result pill shows the runtime.",
+         "label": "The battery draining for whole hours",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          0.1,
+          "6 whole hours"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.05,
+            "6.666666666666667"
+           ],
+           "c": [
+            0.9,
+            "200?"
+           ],
+           "d": [
+            0.04,
+            "an enormous number"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "2000",
+         "c": "#FFFDF6"
+        },
+        "//",
+        {
+         "t": "300",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "6",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "whole = capacity ___ draw",
+        "print(whole)"
+       ],
+       "goal_output": [
+        "6"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "//",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "/",
+         "correct": false,
+         "feedback": "/ keeps the fraction: 6.666666666666667."
+        },
+        {
+         "id": "c",
+         "label": "%",
+         "correct": false,
+         "feedback": "% gives the remainder, 200."
+        },
+        {
+         "id": "d",
+         "label": "**",
+         "correct": false,
+         "feedback": "** raises 2000 to the power 300, an enormous number."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the runtime line print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "capacity = 2000",
+        "draw = 300",
+        "whole = 6"
+       ],
+       "explanation_after_check": "2000 % 300 is 200 mAh left over; 200 × 60 // 300 is 40 minutes, so it prints 6 h 40 min.",
+       "takeaway": "So: *, /, // and % share a rank and run left to right.",
+       "next_bridge": "fix the club member's script.",
+       "hint_before_check": "Work out the remainder first, then left to right.",
+       "code_note": {
+        "title": "Operators of the same rank",
+        "text": "*, /, // and % share a rank, so Python works left to right."
+       },
+       "science_note": {
+        "title": "Planning charges",
+        "text": "Knowing the runtime in hours and minutes tells a team when to swap batteries."
+       },
+       "scene_label": "The runtime for the pit board.",
+       "picture": [
+        {
+         "type": "battery",
+         "description": "A full battery that drains on Check to the charge left; the result pill shows the runtime.",
+         "label": "The battery draining to the full runtime",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          0.05,
+          "6 h 40 min"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.05,
+            "6 h 20 min?"
+           ],
+           "c": [
+            0.05,
+            "6.67 h?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "200 × 60",
+         "c": "#FFFDF6"
+        },
+        "//",
+        {
+         "t": "300",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "40 min",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "mins = capacity % draw * 60 // draw",
+        "print(f\"{whole} h {mins} min\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6 h 40 min",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "6 h 20 min",
+         "correct": false,
+         "feedback": "20 would come from 200 divided by 10, not from minutes."
+        },
+        {
+         "id": "c",
+         "label": "6.67 h",
+         "correct": false,
+         "feedback": "The f-string fills in whole and mins, not the decimal hours."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The club member types 300, and the script stops. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "input() always gives back text, so 2000 / \"300\" fails. int() turns the typed text into a number.",
+       "takeaway": "So: convert typed input before doing maths.",
+       "next_bridge": "round the runtime for the poster.",
+       "hint_before_check": "Think about what input() gives back.",
+       "code_note": {
+        "title": "Reading input",
+        "text": "input() reads what the user types, always as text."
+       },
+       "science_note": {
+        "title": "Trusting user input",
+        "text": "Values typed by people always arrive as text. Converting them first keeps a calculator from crashing mid-demo."
+       },
+       "scene_label": "A calculator that crashes.",
+       "picture": [
+        {
+         "type": "battery",
+         "description": "A full battery that drains on Check to the charge left; the result pill shows the runtime.",
+         "label": "The battery reading once the input is a number",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          0.05,
+          "6.67 hours"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "a": [
+            1,
+            "TypeError"
+           ],
+           "b": [
+            1,
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "battery.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "draw = input(\"mA: \")",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "hours = 2000 / draw",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(hours)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "a",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "f0",
+          "replacement": "draw = int(input(\"mA: \"))",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "draw = str(input(\"mA: \"))",
+          "correct": false,
+          "feedback": "str() keeps it text: still a TypeError."
+         },
+         {
+          "id": "f2",
+          "replacement": "draw = input(\"mA: \") * 1",
+          "correct": false,
+          "feedback": "Text times 1 is still text: TypeError."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "hours = 2000 // draw",
+          "correct": false,
+          "feedback": "// can't divide by text either: TypeError."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 6.666666666666667"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Round the runtime to 1 decimal for the poster.",
+       "xp": 10,
+       "known_from_earlier": [
+        "capacity = 2000",
+        "draw = 300"
+       ],
+       "explanation_after_check": "round(hours, 1) keeps one decimal: 6.666... becomes 6.7.",
+       "takeaway": "So: round(x, n) keeps n decimals.",
+       "next_bridge": "see your finished battery check.",
+       "hint_before_check": "round() takes the number and the number of decimals.",
+       "code_note": {
+        "title": "Rounding",
+        "text": "round() controls how many decimals you see."
+       },
+       "science_note": {
+        "title": "Rounding for people",
+        "text": "Spec sheets round to a sensible precision. 6.7 hours is honest; 6.666666666666667 suggests precision nobody measured."
+       },
+       "scene_label": "The runtime for the poster.",
+       "picture": [
+        {
+         "type": "battery",
+         "description": "A full battery that drains on Check to the charge left; the result pill shows the runtime.",
+         "label": "The battery drain for the poster figure",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          0.05,
+          "6.7 hours"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.05,
+            "7.0?"
+           ],
+           "c": [
+            0.05,
+            "6.67?"
+           ],
+           "d": [
+            0.05,
+            "6.6666666667?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "hours = capacity / draw",
+        "print(round(hours, ___))"
+       ],
+       "goal_output": [
+        "6.7"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0",
+         "correct": false,
+         "feedback": "0 decimals rounds to 7.0."
+        },
+        {
+         "id": "c",
+         "label": "2",
+         "correct": false,
+         "feedback": "2 decimals gives 6.67."
+        },
+        {
+         "id": "d",
+         "label": "10",
+         "correct": false,
+         "feedback": "10 decimals gives 6.6666666667."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Power budget",
+     "person": "Senior engineer",
+     "intro": "Before we order a supply, add up what every part draws and check we keep 20% headroom.",
+     "script_file": "power_budget.py",
+     "start_button": "Check the budget",
+     "notebook": [
+      {
+       "label": "Total power",
+       "value": "6.75 W"
+      },
+      {
+       "label": "Current at 12 V",
+       "value": "0.5625 A"
+      },
+      {
+       "label": "0.1 + 0.2",
+       "value": "0.30000000000000004"
+      },
+      {
+       "label": "Engineer's headroom",
+       "value": "fixed: brackets"
+      },
+      {
+       "label": "Enough headroom",
+       "value": "True"
+      }
+     ],
+     "recap": {
+      "title": "Budget signed off",
+      "subtitle": "6.75 W needed, 0.5625 A drawn, and 32.5% headroom.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What total power does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "0.5 + 6.0 + 0.25 = 6.75 watts in total.",
+       "takeaway": "So: floats add like decimals.",
+       "next_bridge": "find the current the supply must give.",
+       "hint_before_check": "Add the three parts.",
+       "code_note": {
+        "title": "Adding floats",
+        "text": "Numbers with a decimal point are floats in Python."
+       },
+       "science_note": {
+        "title": "A power budget",
+        "text": "Engineers list what every part draws before choosing a supply, so the supply is never the weakest link."
+       },
+       "scene_label": "Every part on the robot.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Power drawn by each part, in W",
+         "args": [
+          [
+           "LED",
+           "motor",
+           "sensor"
+          ],
+          [
+           [
+            0.5,
+            6.0,
+            0.25
+           ],
+           "6.75 W"
+          ],
+          {
+           "b": [
+            [
+             0.5,
+             6.0,
+             0.25
+            ],
+            "6.7?"
+           ],
+           "c": [
+            [
+             0.5,
+             6.0,
+             0.25
+            ],
+            "675?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 8
+         },
+         "correct_state": [
+          [
+           0.5,
+           6.0,
+           0.25
+          ],
+          "6.75 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0.5,
+             6.0,
+             0.25
+            ],
+            "6.7?"
+           ],
+           "c": [
+            [
+             0.5,
+             6.0,
+             0.25
+            ],
+            "675?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "0.5",
+         "c": "#FFFDF6"
+        },
+        "+",
+        {
+         "t": "6.0",
+         "c": "#FFFDF6"
+        },
+        "+",
+        {
+         "t": "0.25",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "6.75",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "led = 0.5",
+        "motor = 6.0",
+        "sensor = 0.25",
+        "print(led + motor + sensor)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6.75",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "6.7",
+         "correct": false,
+         "feedback": "Python doesn't round unless you ask."
+        },
+        {
+         "id": "c",
+         "label": "675",
+         "correct": false,
+         "feedback": "These are decimals, not whole numbers."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "What current does a 12 V supply give?",
+       "xp": 10,
+       "known_from_earlier": [
+        "total = 6.75"
+       ],
+       "explanation_after_check": "I = P / V = 6.75 / 12 = 0.5625 amps.",
+       "takeaway": "So: rearrange P = V × I to I = P / V.",
+       "next_bridge": "add two small sensors.",
+       "hint_before_check": "Power is volts times amps.",
+       "code_note": {
+        "title": "Rearranging a formula",
+        "text": "Code can rearrange a formula the same way you would on paper."
+       },
+       "science_note": {
+        "title": "Current from power",
+        "text": "Supplies are rated in amps as well as volts. The current tells you which supply, wires and fuse to choose."
+       },
+       "scene_label": "The supply's current.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 12 V supply and 21.33 Ω",
+         "args": [
+          12,
+          [
+           21.33
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          0.5625,
+          "0.5625 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            81,
+            "81.0?"
+           ],
+           "c": [
+            0,
+            "0.0?"
+           ],
+           "d": [
+            0,
+            "6.75?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "6.75",
+         "c": "#FFFDF6"
+        },
+        "/",
+        {
+         "t": "12",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "0.5625",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "I = total ___ 12",
+        "print(I)"
+       ],
+       "goal_output": [
+        "0.5625"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "/",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "*",
+         "correct": false,
+         "feedback": "6.75 × 12 is 81.0; that multiplies instead."
+        },
+        {
+         "id": "c",
+         "label": "//",
+         "correct": false,
+         "feedback": "// rounds down to 0.0 here."
+        },
+        {
+         "id": "d",
+         "label": "%",
+         "correct": false,
+         "feedback": "% gives the remainder, 6.75."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Two sensors draw 0.1 W and 0.2 W. What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "0.1 and 0.2 have no exact binary form, so the sum is a tiny bit off: 0.30000000000000004. Round before you compare or display.",
+       "takeaway": "So: floats are close approximations.",
+       "next_bridge": "fix the senior engineer's headroom.",
+       "hint_before_check": "Some decimals can't be stored exactly in binary.",
+       "code_note": {
+        "title": "Floats are approximate",
+        "text": "Computers store most decimals as close approximations."
+       },
+       "science_note": {
+        "title": "Why engineers round",
+        "text": "Tiny float errors don't matter in a power budget, but 0.1 + 0.2 == 0.3 is False. Round, or compare with a tolerance."
+       },
+       "scene_label": "Two small sensors.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Two sensors, in W",
+         "args": [
+          [
+           "sensor 1",
+           "sensor 2"
+          ],
+          [
+           [
+            0.1,
+            0.2
+           ],
+           "0.30000000000000004"
+          ],
+          {
+           "b": [
+            [
+             0.1,
+             0.2
+            ],
+            "0.3?"
+           ],
+           "c": [
+            [
+             0.1,
+             0.2
+            ],
+            "0.30?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 0.4
+         },
+         "correct_state": [
+          [
+           0.1,
+           0.2
+          ],
+          "0.30000000000000004"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0.1,
+             0.2
+            ],
+            "0.3?"
+           ],
+           "c": [
+            [
+             0.1,
+             0.2
+            ],
+            "0.30?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "0.1 + 0.2",
+         "c": "#FFE3CF"
+        },
+        "=",
+        {
+         "t": "0.30000000000000004",
+         "c": "#FFFDF6"
+        }
+       ],
+       "code": [
+        "print(0.1 + 0.2)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "0.30000000000000004",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0.3",
+         "correct": false,
+         "feedback": "That's the maths answer, but Python stores floats in binary."
+        },
+        {
+         "id": "c",
+         "label": "0.30",
+         "correct": false,
+         "feedback": "Python doesn't pad decimals like that."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Headroom shows 9.325, not 0.325. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Python divides first: 10 − 0.675 = 9.325. Brackets make it (supply − need) / supply = 0.325.",
+       "takeaway": "So: brackets decide what a division covers.",
+       "next_bridge": "check the headroom is at least 20%.",
+       "hint_before_check": "Look at which numbers the division applies to.",
+       "code_note": {
+        "title": "Order of operations",
+        "text": "Python follows maths order when a line has several operations."
+       },
+       "science_note": {
+        "title": "Headroom",
+        "text": "Headroom is the spare share of the supply. Parts draw more when they start up or warm, so engineers keep a margin."
+       },
+       "scene_label": "A headroom figure that can't be right.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Headroom from 0 to 60 percent",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.2,
+            "#FFE3CF",
+            "too tight"
+           ],
+           [
+            0.2,
+            0.6,
+            "#E4F5B8",
+            "enough"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 0.6
+         },
+         "correct_state": [
+          0.325,
+          "0.325"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            0.6,
+            "9.325?"
+           ],
+           "d": [
+            0.6,
+            "9.325?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "power_budget.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "supply = 10",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "need = 6.75",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "headroom = supply - need / supply",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(headroom)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "headroom = (supply - need) / supply",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "headroom = supply - (need / supply)",
+          "correct": false,
+          "feedback": "Those brackets only make the old order visible: 9.325."
+         },
+         {
+          "id": "f2",
+          "replacement": "headroom = (supply - need) / need",
+          "correct": false,
+          "feedback": "That divides by the need: 0.48148148148148145."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(round(headroom, 3))",
+          "correct": false,
+          "feedback": "That rounds the wrong answer: 9.325."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 0.325"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Is there at least 20% headroom?",
+       "xp": 10,
+       "known_from_earlier": [
+        "supply = 10",
+        "need = 6.75"
+       ],
+       "explanation_after_check": "0.325 >= 0.2 is True: the supply keeps 32.5% headroom.",
+       "takeaway": "So: >= includes the limit itself.",
+       "next_bridge": "see your finished budget.",
+       "hint_before_check": "20% as a fraction of 1.",
+       "code_note": {
+        "title": "Comparisons",
+        "text": ">= compares two values and gives True or False."
+       },
+       "science_note": {
+        "title": "Signing off a design",
+        "text": "A design review asks for evidence. A True next to \"20% headroom\" is a check anyone can rerun."
+       },
+       "scene_label": "The sign-off check.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Headroom from 0 to 60 percent",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.2,
+            "#FFE3CF",
+            "too tight"
+           ],
+           [
+            0.2,
+            0.6,
+            "#E4F5B8",
+            "enough"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 0.6
+         },
+         "correct_state": [
+          0.325,
+          "True: 32.5% spare"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.325,
+            "False?"
+           ],
+           "c": [
+            0.325,
+            "False?"
+           ],
+           "d": [
+            0.2,
+            "0.2?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "headroom = (supply - need) / supply",
+        "ok = headroom ___ 0.2",
+        "print(ok)"
+       ],
+       "goal_output": [
+        "True"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": "0.325 < 0.2 is False: that asks whether it's too tight."
+        },
+        {
+         "id": "c",
+         "label": "==",
+         "correct": false,
+         "feedback": "== asks whether it's exactly 0.2: False."
+        },
+        {
+         "id": "d",
+         "label": "=",
+         "correct": false,
+         "feedback": "= stores 0.2 in both names: Python prints 0.2."
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "EpP1L5",
+     "type": "lesson",
+     "part": 5,
+     "title": "Fuse rating",
+     "person": "Workshop supervisor",
+     "intro": "A 60 W heater runs on a 12 V supply. Pick a fuse that carries its current with 25% to spare.",
+     "script_file": "fuse.py",
+     "start_button": "Size the fuse",
+     "notebook": [
+      {
+       "label": "Heater current",
+       "value": "5.0 A"
+      },
+      {
+       "label": "With 25% spare",
+       "value": "6.25 A"
+      },
+      {
+       "label": "round(6.25)",
+       "value": "6"
+      },
+      {
+       "label": "int(6.75)",
+       "value": "6"
+      },
+      {
+       "label": "Fuse size",
+       "value": "fixed: math.ceil()"
+      }
+     ],
+     "recap": {
+      "title": "Fuse chosen",
+      "subtitle": "Current from power, a 25% margin, and rounding up, not down.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What current does the heater draw?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "I = P / V = 60 / 12 = 5.0 A. / gives a float.",
+       "takeaway": "So: I = P / V.",
+       "next_bridge": "add the 25% margin.",
+       "hint_before_check": "I = P / V.",
+       "code_note": {
+        "title": "Reusing formulas",
+        "text": "The same P = V × I gives current when you divide."
+       },
+       "science_note": {
+        "title": "Fuses",
+        "text": "A fuse is a thin wire that melts when too much current flows, cutting the circuit before the wiring overheats."
+       },
+       "scene_label": "The heater on the bench.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 12 V supply and 2.4 Ω",
+         "args": [
+          12,
+          [
+           2.4
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          5,
+          "5.0 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            5,
+            "5?"
+           ],
+           "c": [
+            20,
+            "720?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "60",
+         "c": "#FFFDF6"
+        },
+        "/",
+        {
+         "t": "12",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "5.0",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "P = 60",
+        "V = 12",
+        "I = P / V",
+        "print(I)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "5",
+         "correct": false,
+         "feedback": "/ always gives a float: 5.0."
+        },
+        {
+         "id": "c",
+         "label": "720",
+         "correct": false,
+         "feedback": "That multiplies instead of dividing."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Add 25% to the current.",
+       "xp": 10,
+       "known_from_earlier": [
+        "I = 5.0"
+       ],
+       "explanation_after_check": "5.0 × 1.25 = 6.25 A: the current plus a quarter.",
+       "takeaway": "So: a percentage margin is a multiplier.",
+       "next_bridge": "round the fuse size.",
+       "hint_before_check": "125% of a value is the value times 1.25.",
+       "code_note": {
+        "title": "Multipliers",
+        "text": "Adding 25% is the same as multiplying by 1.25."
+       },
+       "science_note": {
+        "title": "Fuse margins",
+        "text": "A fuse rated exactly at the load current can blow from small surges, so fuses are chosen with a margin above it."
+       },
+       "scene_label": "Current with a margin.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Current in A",
+         "args": [
+          [
+           "load",
+           "fuse"
+          ],
+          [
+           [
+            5,
+            6.25
+           ],
+           "6.25 A"
+          ],
+          {
+           "b": [
+            [
+             5,
+             4
+            ],
+            "4.0?"
+           ],
+           "c": [
+            [
+             5,
+             7.48
+            ],
+            "7.48?"
+           ],
+           "d": [
+            [
+             5,
+             3.75
+            ],
+            "3.75?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 8,
+          "line": 5,
+          "line_label": "5 A load",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           5,
+           6.25
+          ],
+          "6.25 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             5,
+             4
+            ],
+            "4.0?"
+           ],
+           "c": [
+            [
+             5,
+             7.48
+            ],
+            "7.48?"
+           ],
+           "d": [
+            [
+             5,
+             3.75
+            ],
+            "3.75?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "5.0",
+         "c": "#FFFDF6"
+        },
+        "×",
+        {
+         "t": "1.25",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "6.25",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "fuse = I ___ 1.25",
+        "print(fuse)"
+       ],
+       "goal_output": [
+        "6.25"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "*",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "/",
+         "correct": false,
+         "feedback": "That takes some away: 4.0."
+        },
+        {
+         "id": "c",
+         "label": "**",
+         "correct": false,
+         "feedback": "That's a power: 5.0 ** 1.25 is 7.476743906106103."
+        },
+        {
+         "id": "d",
+         "label": "-",
+         "correct": false,
+         "feedback": "That takes 1.25 away: 3.75."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Fuses come in whole amps. What does round() give?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "round() goes to the nearest whole number, and 6.25 is nearer 6. A 6 A fuse is below 6.25 A, so it would blow.",
+       "takeaway": "So: round() can round down.",
+       "next_bridge": "try int().",
+       "hint_before_check": "round() goes to the nearest whole number.",
+       "code_note": {
+        "title": "round()",
+        "text": "round() with no decimals gives the nearest whole number."
+       },
+       "science_note": {
+        "title": "Sizing up",
+        "text": "A fuse must be at or above the margin, never below it."
+       },
+       "scene_label": "Picking a whole-amp fuse.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Current in A",
+         "args": [
+          [
+           "load",
+           "fuse"
+          ],
+          [
+           [
+            5,
+            6
+           ],
+           "6"
+          ],
+          {
+           "b": [
+            [
+             5,
+             7
+            ],
+            "7?"
+           ],
+           "c": [
+            [
+             5,
+             6.3
+            ],
+            "6.3?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 8,
+          "line": 5,
+          "line_label": "5 A load",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           5,
+           6
+          ],
+          "6"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             5,
+             7
+            ],
+            "7?"
+           ],
+           "c": [
+            [
+             5,
+             6.3
+            ],
+            "6.3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "round(6.25)",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "6",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "print(round(6.25))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "7",
+         "correct": false,
+         "feedback": "6.25 is nearer 6 than 7."
+        },
+        {
+         "id": "c",
+         "label": "6.3",
+         "correct": false,
+         "feedback": "With no second number, round() gives a whole number."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does int() give for 6.75?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "int() cuts the decimals off, so 6.75 becomes 6. It never rounds up.",
+       "takeaway": "So: int() always goes down for positive numbers.",
+       "next_bridge": "fix the fuse script.",
+       "hint_before_check": "int() doesn't round; it cuts.",
+       "code_note": {
+        "title": "int()",
+        "text": "int() keeps the whole-number part and drops the rest."
+       },
+       "science_note": {
+        "title": "Rounding rules",
+        "text": "Rounding a fuse down is the unsafe direction; a fuse rule always rounds up."
+       },
+       "scene_label": "Another load at 6.75 A.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Current in A",
+         "args": [
+          [
+           "load",
+           "fuse"
+          ],
+          [
+           [
+            5,
+            6
+           ],
+           "6"
+          ],
+          {
+           "b": [
+            [
+             5,
+             7
+            ],
+            "7?"
+           ],
+           "c": [
+            [
+             5,
+             6.75
+            ],
+            "6.75?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 8,
+          "line": 5,
+          "line_label": "5 A load",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           5,
+           6
+          ],
+          "6"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             5,
+             7
+            ],
+            "7?"
+           ],
+           "c": [
+            [
+             5,
+             6.75
+            ],
+            "6.75?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "int(6.75)",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "6",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "print(int(6.75))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "7",
+         "correct": false,
+         "feedback": "int() doesn't round to the nearest number; it cuts."
+        },
+        {
+         "id": "c",
+         "label": "6.75",
+         "correct": false,
+         "feedback": "int() gives a whole number."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "A 6 A fuse would blow at 6.25 A. Fix the size.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "round(6.25) is 6, below the 6.25 A needed. math.ceil() always rounds up: 7.",
+       "takeaway": "So: math.ceil() rounds up.",
+       "next_bridge": "see your fuse choice.",
+       "hint_before_check": "You need the next whole number up.",
+       "code_note": {
+        "title": "math.ceil()",
+        "text": "The math module's ceil() gives the next whole number up."
+       },
+       "science_note": {
+        "title": "Standard fuses",
+        "text": "Choose the next fuse size above the margin, so normal running never blows it."
+       },
+       "scene_label": "A fuse that's one size too small.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Current in A",
+         "args": [
+          [
+           "needed",
+           "fuse"
+          ],
+          [
+           [
+            6.25,
+            7
+           ],
+           "7 A fuse"
+          ],
+          {
+           "c": [
+            [
+             6.25,
+             6
+            ],
+            "6 A: it blows"
+           ],
+           "d": [
+            [
+             6.25,
+             7
+            ],
+            "7, by luck"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 8,
+          "line": 6.25,
+          "line_label": "6.25 A",
+          "good_high": true
+         },
+         "correct_state": [
+          [
+           6.25,
+           7
+          ],
+          "7 A fuse"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [
+             6.25,
+             6
+            ],
+            "6 A: it blows"
+           ],
+           "d": [
+            [
+             6.25,
+             7
+            ],
+            "7, by luck"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "fuse.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "import math",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "fuse = 5.0 * 1.25",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "size = round(fuse)",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(size)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "size = math.ceil(fuse)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "size = int(fuse)",
+          "correct": false,
+          "feedback": "int() cuts the decimals: 6."
+         },
+         {
+          "id": "f2",
+          "replacement": "size = round(fuse, 1)",
+          "correct": false,
+          "feedback": "One decimal is still below 6.25: 6.2."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(size + 1)",
+          "correct": false,
+          "feedback": "7 here, but a 6.0 A load would get a 7 A fuse when 6 is enough."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 7"
+      }
+     ]
+    },
+    {
+     "id": "EpP1C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Circuit calculator",
+     "person": "Robotics team lead",
+     "intro": "The robot arm runs on a 24 V supply through an 8 Ω motor coil. Check the current, power, runtime and headroom. No hints, no notes: read every line.",
+     "script_file": "robot_supply.py",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "Arm current",
+       "value": "3.0 A"
+      },
+      {
+       "label": "Arm power",
+       "value": "72.0 W"
+      },
+      {
+       "label": "Report line",
+       "value": "72.0 W from 24 V"
+      },
+      {
+       "label": "Runtime",
+       "value": "1 h + 2000 mAh"
+      },
+      {
+       "label": "Supply headroom",
+       "value": "fixed: brackets"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 1 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "engineering_python",
+     "phase": 1,
+     "language": "Python",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "I = V / R = 24 / 8, and / gives a float: 3.0.",
+       "takeaway": null,
+       "next_bridge": "work out the power.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The arm's motor coil.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 24 V supply and 8 Ω",
+         "args": [
+          24,
+          [
+           8
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          3,
+          "3.0 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "3?"
+           ],
+           "c": [
+            192,
+            "192?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "V = 24",
+        "R = 8",
+        "print(V / R)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": "/ always gives a float: 3.0."
+        },
+        {
+         "id": "c",
+         "label": "192",
+         "correct": false,
+         "feedback": "That multiplies instead."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Work out the arm's power.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "P = V × I = 24 × 3.0 = 72.0 W.",
+       "takeaway": null,
+       "next_bridge": "write the report line.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The arm under load.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 24 V supply and 8 Ω",
+         "args": [
+          24,
+          [
+           8
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          3,
+          "72.0 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "8.0?"
+           ],
+           "c": [
+            3,
+            "13824.0?"
+           ],
+           "d": [
+            3,
+            "27.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "V = 24",
+        "I = 3.0",
+        "P = V ___ I",
+        "print(P)"
+       ],
+       "goal_output": [
+        "72.0"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "*",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "/",
+         "correct": false,
+         "feedback": "24 / 3.0 is 8.0, the resistance."
+        },
+        {
+         "id": "c",
+         "label": "**",
+         "correct": false,
+         "feedback": "24 ** 3.0 is 13824.0, a power in the maths sense."
+        },
+        {
+         "id": "d",
+         "label": "+",
+         "correct": false,
+         "feedback": "24 + 3.0 is 27.0; power multiplies."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the report line print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The f-string fills in each value as it is stored: P is the float 72.0, V the whole number 24.",
+       "takeaway": null,
+       "next_bridge": "check the battery.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The test report.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Arm power in W",
+         "args": [
+          [
+           "arm"
+          ],
+          [
+           [
+            72
+           ],
+           "72.0 W from 24 V"
+          ],
+          {
+           "b": [
+            [
+             72
+            ],
+            "72?"
+           ],
+           "c": [
+            [
+             72
+            ],
+            "braces?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 100
+         },
+         "correct_state": [
+          [
+           72
+          ],
+          "72.0 W from 24 V"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             72
+            ],
+            "72?"
+           ],
+           "c": [
+            [
+             72
+            ],
+            "braces?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "V = 24",
+        "P = 72.0",
+        "print(f\"{P} W from {V} V\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "72.0 W from 24 V",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "72 W from 24 V",
+         "correct": false,
+         "feedback": "P is a float, so it keeps its .0."
+        },
+        {
+         "id": "c",
+         "label": "{P} W from {V} V",
+         "correct": false,
+         "feedback": "The f fills the braces with values."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "A 5000 mAh battery and a 3000 mA draw. What prints?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "5000 // 3000 is 1 whole hour, and 5000 % 3000 leaves 2000 mAh.",
+       "takeaway": null,
+       "next_bridge": "fix the headroom check.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The arm's battery.",
+       "picture": [
+        {
+         "type": "battery",
+         "description": "A full battery that drains on Check to the charge left; the result pill shows the runtime.",
+         "label": "A battery draining on Check",
+         "args": [],
+         "options": {},
+         "correct_state": [
+          0.4,
+          "1 h + 2000 mAh"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.4,
+            "one float?"
+           ],
+           "c": [
+            0.4,
+            "1 2?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "capacity = 5000",
+        "draw = 3000",
+        "print(capacity // draw, capacity % draw)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1 2000",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1.6666666666666667",
+         "correct": false,
+         "feedback": "// and % give two whole numbers, not one float."
+        },
+        {
+         "id": "c",
+         "label": "1 2",
+         "correct": false,
+         "feedback": "% gives the leftover mAh, 2000."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Headroom shows 99.28. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Python divides first: 100 − 0.72 = 99.28. Brackets make it (supply − need) / supply = 0.28.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "The supply check.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Headroom from 0 to 60 percent",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.2,
+            "#FFE3CF",
+            "too tight"
+           ],
+           [
+            0.2,
+            0.6,
+            "#E4F5B8",
+            "enough"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 0.6
+         },
+         "correct_state": [
+          0.28,
+          "0.28"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            0.6,
+            "99.28?"
+           ],
+           "d": [
+            0.6,
+            "99?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "robot_supply.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "supply = 100",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "need = 72",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "headroom = supply - need / supply",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(round(headroom, 2))",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "headroom = (supply - need) / supply",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "headroom = (supply - need) / need",
+          "correct": false,
+          "feedback": "That divides by the need: 0.39."
+         },
+         {
+          "id": "f2",
+          "replacement": "headroom = supply - (need / supply)",
+          "correct": false,
+          "feedback": "Those brackets keep the old order: 99.28."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(round(headroom))",
+          "correct": false,
+          "feedback": "That rounds the wrong answer: 99."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 0.28"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

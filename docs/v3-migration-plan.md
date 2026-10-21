@@ -750,3 +750,10 @@ Each step adds here what it found or left for a later step (file, why, which ste
 - (step 2a.3) `assets/content/track_bio_r_lessons_v2.json` is now unused: every Biology lesson is V3, so `addV3`
   overwrites each of its entries in `lessonKitV2_updated.tsx`'s `LESSONS` map. The file is still imported there (as
   `RAW`); delete the file and the import in 3.1. Its `CONTENT` entry (added in 2a.0 for the V2 question ids) is gone.
+- (step 2a.4.1) Engineering phase 1 is V3 (`engineering_python_v3.json`, item ids `EpP{n}…`, not the V2 `EngP…`, so
+  new question ids don't collide with V2 ones). Now unused: the V2 entries `EngP1L1`–`EngP1L4` in
+  `track_lessons_v2_more.json`, and V2's `Circuit`, `Battery`, `Gauge` and `BpBars` in `picturesV2.tsx` (V3 has its own
+  `circuit`, `battery` and `gauge`; power bars use `ratebars`). The V2 phase 3 (`EngP3L1`) was dropped from
+  `track_eng_py.json` until 2a.4.3 (user decision). Delete the V2 pieces in 3.1.
+- (step 2a.4.1) Checkpoint questions in every V3 file have `known_from_earlier: []`; a checkpoint shows no "Known from
+  earlier" line. The validator doesn't check this yet; consider adding the rule in a later content step.

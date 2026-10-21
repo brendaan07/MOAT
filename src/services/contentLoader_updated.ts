@@ -66,6 +66,7 @@ export function loadTrack(studyArea = 'Biology research', language = 'R'): Track
   if (name === 'track_hx_py') return withV3(t, 'healthcare_python_v3', 'hx_py', (n) => `hx_py_cp${n}`);
   if (name === 'track_hx_r') return withV3(t, 'healthcare_r_v3', 'hx_r', (n) => `hx_r_cp${n}`);
   if (name === 'track_fin_py') return withV3(t, 'finance_python_v3', 'fin_py', (n) => `fin_py_cp${n}`);
+  if (name === 'track_eng_py') return withV3(t, 'engineering_python_v3', 'eng_py', (n) => `eng_py_cp${n}`);
   return t;
 }
 

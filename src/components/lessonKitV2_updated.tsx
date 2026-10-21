@@ -24,6 +24,7 @@ import BIO_V3 from '../../assets/content/biology_r_v3.json';
 import HX_PY from '../../assets/content/healthcare_python_v3.json';
 import HX_R from '../../assets/content/healthcare_r_v3.json';
 import FIN_PY from '../../assets/content/finance_python_v3.json';
+import ENG_PY from '../../assets/content/engineering_python_v3.json';
 
 // ---------------------------------------------------------------- content
 export type V2Pic =
@@ -100,7 +101,7 @@ for (const l of (MORE as unknown as { lessons: V2Lesson[] }).lessons) LESSONS[l.
  * App ids: bio_p{phase}_l{part} for lessons (legacy lessons keep their entry above); its checkpoint is the track's phase checkpoint. */
 const WORD_COLOUR: Record<string, string> = { predict: '#B5E04A', fill: '#FFC93C', fix: '#FF8A3D' };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin'; name: string; checkpointId?: (phase: number) => string };
+type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin' | 'eng'; name: string; checkpointId?: (phase: number) => string };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track): V2Lesson {
   const cp = it.type === 'checkpoint';
@@ -157,6 +158,7 @@ addV3(BIO_V3, { prefix: 'bio', lang: 'r', name: 'Biology research R', checkpoint
 addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python', checkpointId: (n) => `hx_py_cp${n}` });
 addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', checkpointId: (n) => `hx_r_cp${n}` });
 addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python', checkpointId: (n) => `fin_py_cp${n}` });
+addV3(ENG_PY, { prefix: 'eng_py', lang: 'py', domain: 'eng', name: 'Engineering Python', checkpointId: (n) => `eng_py_cp${n}` });
 
 /** The label, icon and science-note wording for each field. */
 const FIELD = {
