@@ -1,9 +1,7 @@
 // Generated from assets/content. Every bundled lesson file, by name (without .json).
 export const CONTENT: Record<string, unknown> = {
-  "lessons": require('../../assets/content/lessons.json'),
   "lessons_arts_and_humanities": require('../../assets/content/lessons_arts_and_humanities.json'),
   "lessons_business": require('../../assets/content/lessons_business.json'),
-  "lessons_computing": require('../../assets/content/lessons_computing.json'),
   "lessons_engineering": require('../../assets/content/lessons_engineering.json'),
   "lessons_general": require('../../assets/content/lessons_general.json'),
   "lessons_java": require('../../assets/content/lessons_java.json'),
@@ -16,8 +14,6 @@ export const CONTENT: Record<string, unknown> = {
   "track_bio_r_updated": require('../../assets/content/track_bio_r_updated.json'),
   "biology_r_v3": require('../../assets/content/biology_r_v3.json'),
   "track_eng_py": require('../../assets/content/track_eng_py.json'),
-  "track_health_py": require('../../assets/content/track_health_py.json'),
-  "track_health_r": require('../../assets/content/track_health_r.json'),
   "track_hx_py": require('../../assets/content/track_hx_py.json'),
   "track_hx_r": require('../../assets/content/track_hx_r.json'),
   "healthcare_python_v3": require('../../assets/content/healthcare_python_v3.json'),

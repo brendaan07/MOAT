@@ -37,7 +37,7 @@ export function loadBundled(studyArea = 'Health Sciences', language = 'Python'):
   }
   const course = load(fileName(studyArea));
   if (course) return addingGames(course, studyArea);
-  return load('lessons') ?? { phases: [] };
+  return load('lessons_general') ?? { phases: [] };
 }
 
 /** Which languages have project tracks for each field (onboarding shows these). */

@@ -381,7 +381,7 @@ function DeviceV3({ spec, state, pick }: { spec: any; state: V3State; pick: stri
 }
 
 /** The other Healthcare and Finance pictures: the picture's own icon, which pops on Check, and the result for the answer given.
- *  The canvas pages hold the full scene animation for these types (see INTEGRATION_moat4new.md). */
+ *  The canvas pages hold the full scene animation for these types (see docs/INTEGRATION_moat4new.md). */
 function StateCardV3({ spec, state, pick }: { spec: any; state: V3State; pick: string | null }) {
   const a = spec.assets ?? {};
   const src = imageOf(spec.icon_asset ?? a.pig ?? a.pile ?? a.note ?? a.bag?.empty ?? a.face ?? a.device?.idle_frame ?? typeIcon(spec.type));

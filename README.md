@@ -143,6 +143,3 @@ This code was written without network access. `npm install`, the TypeScript comp
 - Lessons 3.1 to 3.4 keep their earlier versions until they are rebuilt.
 - The blue gear floating at the top right in Expo Go is Expo Go's developer tools button, not part of MOAT; hide it in
   Expo Go's settings.
-
-The three files at the project root (`LearnScreen.tsx`, `TrackPathScreen.tsx`, `ui.tsx`) are older stray copies; the app
-uses the versions in `src/`.
