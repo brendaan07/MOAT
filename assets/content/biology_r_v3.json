@@ -8991,28 +8991,2890 @@
      "type": "lesson",
      "part": 1,
      "title": "Too big for a well?",
-     "status": "legacy: original version on the main canvas, not yet rebuilt to this standard"
+     "person": "Lab manual",
+     "intro": "A well on this plate holds at most 200 µL. Check every volume before you pipette.",
+     "script_file": "well_check.R",
+     "start_button": "Check the volume",
+     "notebook": [
+      {
+       "label": "250 µL",
+       "value": "too big"
+      },
+      {
+       "label": "200 µL",
+       "value": "fits"
+      },
+      {
+       "label": "250 µL in range",
+       "value": "FALSE"
+      },
+      {
+       "label": "Typo in the limit",
+       "value": "fixed: 200"
+      },
+      {
+       "label": "Plan",
+       "value": "split into 2 wells"
+      }
+     ],
+     "recap": {
+      "title": "Volumes checked",
+      "subtitle": "if, <= at the limit, && for a range, and a typo in the limit.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Does 250 µL fit in a 200 µL well?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "250 > 200 is TRUE, so the code inside { } runs.",
+       "takeaway": "So: if () runs its { } only when the test is TRUE.",
+       "next_bridge": "test a volume right at the limit.",
+       "hint_before_check": "Is 250 > 200 TRUE or FALSE?",
+       "code_note": {
+        "title": "Decisions",
+        "text": "if () runs the code in { } only when its test is TRUE."
+       },
+       "science_note": {
+        "title": "Well volumes",
+        "text": "Overfilled wells spill into the next well and mix two samples."
+       },
+       "scene_label": "250 µL against the 200 µL limit.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volume against the well limit",
+         "args": [
+          [
+           "well"
+          ],
+          [
+           [
+            250
+           ],
+           "too big"
+          ],
+          {
+           "b": [
+            [
+             250
+            ],
+            "nothing printed?"
+           ],
+           "c": [
+            [
+             250
+            ],
+            "TRUE?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 300,
+          "line": 200,
+          "line_label": "200 µL"
+         },
+         "correct_state": [
+          [
+           250
+          ],
+          "too big"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             250
+            ],
+            "nothing printed?"
+           ],
+           "c": [
+            [
+             250
+            ],
+            "TRUE?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "250 > 200",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "TRUE",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "volume <- 250",
+        "if (volume > 200) {",
+        "  print(\"too big\")",
+        "}"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"too big\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing prints",
+         "correct": false,
+         "feedback": "The test is TRUE here, so the inside runs."
+        },
+        {
+         "id": "c",
+         "label": "[1] TRUE",
+         "correct": false,
+         "feedback": "if () uses TRUE or FALSE to decide; it doesn't print it."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Test a volume right at the limit.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "200 <= 200 is TRUE: \"less than or equal\" includes the limit itself.",
+       "takeaway": "So: <= includes the limit itself.",
+       "next_bridge": "check a safe range.",
+       "hint_before_check": "Should exactly 200 µL fit?",
+       "code_note": {
+        "title": "Comparisons",
+        "text": "< and <= only differ at the limit itself."
+       },
+       "science_note": {
+        "title": "Working volume",
+        "text": "Filling to the stated maximum is allowed; going above it is not."
+       },
+       "scene_label": "Exactly 200 µL.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volume against the well limit",
+         "args": [
+          [
+           "well"
+          ],
+          [
+           [
+            200
+           ],
+           "fits"
+          ],
+          {
+           "b": [
+            [
+             200
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             200
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             200
+            ],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 300,
+          "line": 200,
+          "line_label": "200 µL"
+         },
+         "correct_state": [
+          [
+           200
+          ],
+          "fits"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             200
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             200
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             200
+            ],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "200 <= 200",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "TRUE",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "volume <- 200",
+        "if (volume ___ 200) {",
+        "  print(\"fits\")",
+        "}"
+       ],
+       "goal_output": [
+        "[1] \"fits\""
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "<=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": "200 < 200 is FALSE, so nothing prints."
+        },
+        {
+         "id": "c",
+         "label": ">",
+         "correct": false,
+         "feedback": "200 > 200 is FALSE, so nothing prints."
+        },
+        {
+         "id": "d",
+         "label": "=",
+         "correct": false,
+         "feedback": "A single = isn't a comparison; R stops with an error."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Is 250 µL inside the safe range?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "&& needs both sides TRUE: 250 >= 10 is TRUE, but 250 <= 200 is FALSE.",
+       "takeaway": "So: && is TRUE only when both sides are.",
+       "next_bridge": "find a typo in the limit.",
+       "hint_before_check": "Check each side of && on its own.",
+       "code_note": {
+        "title": "Both conditions",
+        "text": "&& joins two single TRUE or FALSE tests."
+       },
+       "science_note": {
+        "title": "Pipette range",
+        "text": "Each pipette has a range; this one is accurate from 10 to 200 µL."
+       },
+       "scene_label": "The pipette's range.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volume against the well limit",
+         "args": [
+          [
+           "well"
+          ],
+          [
+           [
+            250
+           ],
+           "FALSE: outside 10 to 200"
+          ],
+          {
+           "b": [
+            [
+             250
+            ],
+            "TRUE?"
+           ],
+           "c": [
+            [
+             250
+            ],
+            "text?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 300,
+          "line": 200,
+          "line_label": "200 µL"
+         },
+         "correct_state": [
+          [
+           250
+          ],
+          "FALSE: outside 10 to 200"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             250
+            ],
+            "TRUE?"
+           ],
+           "c": [
+            [
+             250
+            ],
+            "text?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "TRUE && FALSE",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "FALSE",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "volume <- 250",
+        "ok <- volume >= 10 && volume <= 200",
+        "print(ok)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] FALSE",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] TRUE",
+         "correct": false,
+         "feedback": "Only the first test passes."
+        },
+        {
+         "id": "c",
+         "label": "[1] \"too big\"",
+         "correct": false,
+         "feedback": "ok stores TRUE or FALSE, not text."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The manual says 200 µL, yet 250 fits. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The limit was typed as 2000, so 250 passed. With 200 the test is FALSE, and nothing prints.",
+       "takeaway": "So: check the numbers in a test, not just the operator.",
+       "next_bridge": "plan what to do with 250 µL.",
+       "hint_before_check": "Compare each number with the manual.",
+       "code_note": {
+        "title": "Typos",
+        "text": "An extra 0 still runs; R can't know what the manual says."
+       },
+       "science_note": {
+        "title": "Protocols",
+        "text": "Limits in a script should match the written protocol; that's what gets checked."
+       },
+       "scene_label": "A limit with one 0 too many.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volume against the well limit",
+         "args": [
+          [
+           "well"
+          ],
+          [
+           [
+            250
+           ],
+           "nothing prints"
+          ],
+          {
+           "b": [
+            [
+             250
+            ],
+            "\"fits\"?"
+           ],
+           "c": [
+            [
+             250
+            ],
+            "\"too big\", from the wrong test"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 300,
+          "line": 200,
+          "line_label": "200 µL"
+         },
+         "correct_state": [
+          [
+           250
+          ],
+          "nothing prints"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             250
+            ],
+            "\"fits\"?"
+           ],
+           "c": [
+            [
+             250
+            ],
+            "\"too big\", from the wrong test"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "well_check.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "volume <- 250",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if (volume <= 2000) {",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "  print(\"fits\")",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "}",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if (volume <= 200) {",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if (volume < 2000) {",
+          "correct": false,
+          "feedback": "Still 2000: 250 fits."
+         },
+         {
+          "id": "f2",
+          "replacement": "if (volume >= 200) {",
+          "correct": false,
+          "feedback": "That flips the test: \"fits\" prints for 250."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "  print(\"too big\")",
+          "correct": false,
+          "feedback": "That changes the message, not the limit: 250 still passes."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: nothing prints"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Plan what to do with 250 µL.",
+       "xp": 10,
+       "known_from_earlier": [
+        "volume <- 250",
+        "ok <- volume >= 10 && volume <= 200"
+       ],
+       "explanation_after_check": "!ok flips FALSE to TRUE, so the message prints.",
+       "takeaway": "So: ! flips TRUE and FALSE.",
+       "next_bridge": "see your volume check.",
+       "hint_before_check": "You want the inside to run when ok is FALSE.",
+       "code_note": {
+        "title": "Not",
+        "text": "! turns FALSE into TRUE, and TRUE into FALSE."
+       },
+       "science_note": {
+        "title": "Splitting samples",
+        "text": "A volume too big for one well is split across two and the readings combined."
+       },
+       "scene_label": "250 µL, two wells.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volume per well",
+         "args": [
+          [
+           "well 1",
+           "well 2"
+          ],
+          [
+           [
+            125,
+            125
+           ],
+           "split into 2 wells"
+          ],
+          {
+           "b": [
+            [
+             250,
+             0
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             250,
+             0
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             250,
+             0
+            ],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 300,
+          "line": 200,
+          "line_label": "200 µL"
+         },
+         "correct_state": [
+          [
+           125,
+           125
+          ],
+          "split into 2 wells"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             250,
+             0
+            ],
+            "nothing printed"
+           ],
+           "c": [
+            [
+             250,
+             0
+            ],
+            "nothing printed"
+           ],
+           "d": [
+            [
+             250,
+             0
+            ],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "!FALSE",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "TRUE",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "if (___ok) {",
+        "  print(\"split into 2 wells\")",
+        "}"
+       ],
+       "goal_output": [
+        "[1] \"split into 2 wells\""
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "!",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "-",
+         "correct": false,
+         "feedback": "-FALSE is 0, which counts as FALSE: nothing prints."
+        },
+        {
+         "id": "c",
+         "label": "+",
+         "correct": false,
+         "feedback": "+FALSE is 0, which counts as FALSE: nothing prints."
+        },
+        {
+         "id": "d",
+         "label": "~",
+         "correct": false,
+         "feedback": "~ makes a formula, not a test; R stops with an error."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      }
+     ]
     },
     {
      "id": "BioP3L2",
      "type": "lesson",
      "part": 2,
      "title": "Big or small sample",
-     "status": "legacy: original version on the main canvas, not yet rebuilt to this standard"
+     "person": "Clinic sample sheet",
+     "intro": "Three samples: 3 million, 0.5 million and 2.5 million cells per mL. Dilute anything at 1 million or more.",
+     "script_file": "sample_plan.R",
+     "start_button": "Plan the samples",
+     "notebook": [
+      {
+       "label": "3 million cells",
+       "value": "dilute"
+      },
+      {
+       "label": "Plan",
+       "value": "dilute plate dilute"
+      },
+      {
+       "label": "Sample 3",
+       "value": "3-fold"
+      },
+      {
+       "label": "The 1 million case",
+       "value": "fixed: >="
+      },
+      {
+       "label": "Wells for 450 µL",
+       "value": "3"
+      }
+     ],
+     "recap": {
+      "title": "Samples planned",
+      "subtitle": "if / else, ifelse() for many, ceiling() and the >= edge.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What happens to the 3 million cell sample?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3e6 is 3 million, more than 1 million, so only the if branch runs.",
+       "takeaway": "So: exactly one branch of if / else runs.",
+       "next_bridge": "plan all three samples.",
+       "hint_before_check": "Is 3 million more than 1 million?",
+       "code_note": {
+        "title": "if / else",
+        "text": "else gives the code to run when the test is FALSE."
+       },
+       "science_note": {
+        "title": "Cell density",
+        "text": "Too many cells crowd a well and saturate the reading, so dense samples are diluted first."
+       },
+       "scene_label": "The first sample, in millions of cells per mL.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Cells per mL, in millions",
+         "args": [
+          [
+           "sample"
+          ],
+          [
+           [
+            3
+           ],
+           "dilute"
+          ],
+          {
+           "b": [
+            [
+             3
+            ],
+            "plate directly?"
+           ],
+           "c": [
+            [
+             3
+            ],
+            "both?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 4,
+          "line": 1,
+          "line_label": "1 million"
+         },
+         "correct_state": [
+          [
+           3
+          ],
+          "dilute"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             3
+            ],
+            "plate directly?"
+           ],
+           "c": [
+            [
+             3
+            ],
+            "both?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "3e6 > 1e6",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "TRUE",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "cells <- 3e6",
+        "if (cells > 1e6) {",
+        "  print(\"dilute\")",
+        "} else {",
+        "  print(\"plate directly\")",
+        "}"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"dilute\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"plate directly\"",
+         "correct": false,
+         "feedback": "That's the else branch, for the other case."
+        },
+        {
+         "id": "c",
+         "label": "[1] \"dilute\"\n[1] \"plate directly\"",
+         "correct": false,
+         "feedback": "if and else never both run."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Plan all three samples at once.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "ifelse() checks every count and picks \"dilute\" or \"plate\" for each.",
+       "takeaway": "So: ifelse() decides for each value.",
+       "next_bridge": "work out a dilution.",
+       "hint_before_check": "if () takes one TRUE or FALSE; you have three.",
+       "code_note": {
+        "title": "Vectors of decisions",
+        "text": "ifelse() returns one answer per value."
+       },
+       "science_note": {
+        "title": "Batches",
+        "text": "One rule applied to the whole batch keeps the plan consistent."
+       },
+       "scene_label": "Three samples, in millions of cells per mL.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Cells per mL, in millions",
+         "args": [
+          [
+           "1",
+           "2",
+           "3"
+          ],
+          [
+           [
+            3,
+            0.5,
+            2.5
+           ],
+           "dilute plate dilute"
+          ],
+          {
+           "b": [
+            [
+             3,
+             0.5,
+             2.5
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             3,
+             0.5,
+             2.5
+            ],
+            "one long vector?"
+           ],
+           "d": [
+            [
+             3,
+             0.5,
+             2.5
+            ],
+            "glued text?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 4,
+          "line": 1,
+          "line_label": "1 million"
+         },
+         "correct_state": [
+          [
+           3,
+           0.5,
+           2.5
+          ],
+          "dilute plate dilute"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             3,
+             0.5,
+             2.5
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             3,
+             0.5,
+             2.5
+            ],
+            "one long vector?"
+           ],
+           "d": [
+            [
+             3,
+             0.5,
+             2.5
+            ],
+            "glued text?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "counts <- c(3e6, 5e5, 2.5e6)",
+        "plan <- ___(counts > 1e6, \"dilute\", \"plate\")",
+        "print(plan)"
+       ],
+       "goal_output": [
+        "[1] \"dilute\" \"plate\"  \"dilute\""
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "ifelse",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "if",
+         "correct": false,
+         "feedback": "if isn't a function you can pass three parts to: R stops with an error."
+        },
+        {
+         "id": "c",
+         "label": "c",
+         "correct": false,
+         "feedback": "c() joins everything into one vector instead of choosing."
+        },
+        {
+         "id": "d",
+         "label": "paste",
+         "correct": false,
+         "feedback": "paste() glues the pieces together instead of choosing."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How much should sample 3 be diluted?",
+       "xp": 10,
+       "known_from_earlier": [
+        "counts <- c(3e6, 5e5, 2.5e6)"
+       ],
+       "explanation_after_check": "2.5e6 / 1e6 is 2.5, and ceiling() rounds up to 3.",
+       "takeaway": "So: ceiling() rounds up.",
+       "next_bridge": "fix the 1 million case.",
+       "hint_before_check": "What does ceiling() do to 2.5?",
+       "code_note": {
+        "title": "Rounding up",
+        "text": "ceiling() always goes up to the next whole number."
+       },
+       "science_note": {
+        "title": "Whole-fold dilutions",
+        "text": "A 3-fold dilution is 1 part sample to 2 parts buffer, easy to pipette; 2.5-fold is not."
+       },
+       "scene_label": "Sample 3 before and after diluting.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Cells per mL, in millions",
+         "args": [
+          [
+           "before",
+           "after"
+          ],
+          [
+           [
+            2.5,
+            0.83
+           ],
+           "3-fold"
+          ],
+          {
+           "b": [
+            [
+             2.5,
+             1
+            ],
+            "2.5-fold?"
+           ],
+           "c": [
+            [
+             2.5,
+             1.25
+            ],
+            "2-fold?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 4,
+          "line": 1,
+          "line_label": "1 million"
+         },
+         "correct_state": [
+          [
+           2.5,
+           0.83
+          ],
+          "3-fold"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             2.5,
+             1
+            ],
+            "2.5-fold?"
+           ],
+           "c": [
+            [
+             2.5,
+             1.25
+            ],
+            "2-fold?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "ceiling(2.5)",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "3",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "fold <- ceiling(counts[3] / 1e6)",
+        "print(fold)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 2.5",
+         "correct": false,
+         "feedback": "That's before rounding up."
+        },
+        {
+         "id": "c",
+         "label": "[1] 2",
+         "correct": false,
+         "feedback": "That rounds down; ceiling() rounds up."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Exactly 1 million should be diluted. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "> leaves out exactly 1 million. The protocol says \"or more\", so the test needs >=.",
+       "takeaway": "So: \"or more\" means >=.",
+       "next_bridge": "count wells for the diluted sample.",
+       "hint_before_check": "Does the protocol include 1 million itself?",
+       "code_note": {
+        "title": "Edges",
+        "text": "Test the exact limit when you write a condition."
+       },
+       "science_note": {
+        "title": "Protocols",
+        "text": "\"1 million or more\" includes 1 million; a borderline sample follows the written rule."
+       },
+       "scene_label": "A sample right on the line.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Cells per mL, in millions",
+         "args": [
+          [
+           "sample"
+          ],
+          [
+           [
+            1
+           ],
+           "dilute"
+          ],
+          {
+           "b": [
+            [
+             1
+            ],
+            "plate directly?"
+           ],
+           "e": [
+            [
+             1
+            ],
+            "always dilute?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 4,
+          "line": 1,
+          "line_label": "1 million"
+         },
+         "correct_state": [
+          [
+           1
+          ],
+          "dilute"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1
+            ],
+            "plate directly?"
+           ],
+           "e": [
+            [
+             1
+            ],
+            "always dilute?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "sample_plan.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "cells <- 1e6",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if (cells > 1e6) {",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "  print(\"dilute\")",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "} else {",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "  print(\"plate directly\")",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "}",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if (cells >= 1e6) {",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if (cells < 1e6) {",
+          "correct": false,
+          "feedback": "That flips the test: 1 million still goes to plate directly."
+         },
+         {
+          "id": "f2",
+          "replacement": "if (cells > 1e5) {",
+          "correct": false,
+          "feedback": "That dilutes everything above 100 000, far too many samples."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "  print(\"dilute\")",
+          "correct": false,
+          "feedback": "Then every sample says dilute, even 0.5 million."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] \"dilute\""
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "How many 200 µL wells does the diluted sample need?",
+       "xp": 10,
+       "known_from_earlier": [
+        "fold <- 3"
+       ],
+       "explanation_after_check": "150 µL × 3 = 450 µL, and 450 / 200 = 2.25, which rounds up to 3 wells.",
+       "takeaway": "So: round up when nothing can be left over.",
+       "next_bridge": "see your sample plan.",
+       "hint_before_check": "450 µL won't fit in 2 wells of 200.",
+       "code_note": {
+        "title": "Rounding choices",
+        "text": "round(), floor() and ceiling() give different answers for 2.25."
+       },
+       "science_note": {
+        "title": "Partial wells",
+        "text": "The last well can be part-filled, but no sample can be left over."
+       },
+       "scene_label": "450 µL to share out.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volume per well",
+         "args": [
+          [
+           "well 1",
+           "well 2",
+           "well 3"
+          ],
+          [
+           [
+            200,
+            200,
+            50
+           ],
+           "3 wells"
+          ],
+          {
+           "b": [
+            [
+             200,
+             200,
+             0
+            ],
+            "2 wells?"
+           ],
+           "c": [
+            [
+             200,
+             200,
+             0
+            ],
+            "2 wells?"
+           ],
+           "d": [
+            [
+             200,
+             200,
+             50
+            ],
+            "2.25 wells?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 250,
+          "line": 200,
+          "line_label": "200 µL"
+         },
+         "correct_state": [
+          [
+           200,
+           200,
+           50
+          ],
+          "3 wells"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             200,
+             200,
+             0
+            ],
+            "2 wells?"
+           ],
+           "c": [
+            [
+             200,
+             200,
+             0
+            ],
+            "2 wells?"
+           ],
+           "d": [
+            [
+             200,
+             200,
+             50
+            ],
+            "2.25 wells?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "450 / 200",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "2.25 → 3",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "volume <- 150 * fold",
+        "wells <- ___(volume / 200)",
+        "print(wells)"
+       ],
+       "goal_output": [
+        "[1] 3"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "ceiling",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "round",
+         "correct": false,
+         "feedback": "round(2.25) is 2: 50 µL left over."
+        },
+        {
+         "id": "c",
+         "label": "floor",
+         "correct": false,
+         "feedback": "floor() rounds down to 2: 50 µL left over."
+        },
+        {
+         "id": "d",
+         "label": "abs",
+         "correct": false,
+         "feedback": "abs() keeps 2.25; you can't fill a quarter of a well count."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      }
+     ]
     },
     {
      "id": "BioP3L3",
      "type": "lesson",
      "part": 3,
      "title": "Fix the else line",
-     "status": "legacy: original version on the main canvas, not yet rebuilt to this standard"
+     "person": "Group chat",
+     "intro": "Anyone free to look at my pH check? My if/else won't run at all.",
+     "script_file": "ph_check.R",
+     "start_button": "Help out",
+     "notebook": [
+      {
+       "label": "pH 7.4",
+       "value": "basic"
+      },
+      {
+       "label": "pH 7",
+       "value": "neutral"
+      },
+      {
+       "label": "Three cultures",
+       "value": "acid base acid"
+      },
+      {
+       "label": "Classmate's else",
+       "value": "fixed: } else {"
+      },
+      {
+       "label": "One-line label",
+       "value": "basic"
+      }
+     ],
+     "recap": {
+      "title": "pH check fixed",
+      "subtitle": "else if chains, ifelse() on many cultures, and where else must go.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does R print for pH 7.4?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "7.4 < 7 is FALSE and 7.4 > 7 is TRUE, so R prints \"basic\" and skips the rest.",
+       "takeaway": "So: only the first TRUE branch runs.",
+       "next_bridge": "add the middle check.",
+       "hint_before_check": "Which test is TRUE first?",
+       "code_note": {
+        "title": "else if",
+        "text": "else if adds another test that runs only if the ones before were FALSE."
+       },
+       "science_note": {
+        "title": "pH",
+        "text": "Below 7 is acidic and above 7 is basic; most growth media are kept near 7."
+       },
+       "scene_label": "A culture at pH 7.4.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Culture pH",
+         "args": [
+          [
+           "pH"
+          ],
+          [
+           [
+            7.4
+           ],
+           "basic"
+          ],
+          {
+           "b": [
+            [
+             7.4
+            ],
+            "neutral?"
+           ],
+           "c": [
+            [
+             7.4
+            ],
+            "two lines?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 14,
+          "line": 7,
+          "line_label": "neutral 7"
+         },
+         "correct_state": [
+          [
+           7.4
+          ],
+          "basic"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             7.4
+            ],
+            "neutral?"
+           ],
+           "c": [
+            [
+             7.4
+            ],
+            "two lines?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "7.4 > 7",
+         "c": "#FFFDF6"
+        },
+        "→",
+        {
+         "t": "TRUE",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "ph <- 7.4",
+        "if (ph < 7) {",
+        "  print(\"acidic\")",
+        "} else if (ph > 7) {",
+        "  print(\"basic\")",
+        "} else {",
+        "  print(\"neutral\")",
+        "}"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"basic\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"neutral\"",
+         "correct": false,
+         "feedback": "neutral only runs when both tests are FALSE."
+        },
+        {
+         "id": "c",
+         "label": "[1] \"acidic\"\n[1] \"basic\"",
+         "correct": false,
+         "feedback": "Only one branch of an if / else if / else chain runs."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Add the second check for pH 7.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "else if adds a second test: 7 < 7 and 7 > 7 are both FALSE, so the final else prints \"neutral\".",
+       "takeaway": "So: chain tests with else if.",
+       "next_bridge": "check three cultures at once.",
+       "hint_before_check": "The second test belongs to the same chain.",
+       "code_note": {
+        "title": "Chains",
+        "text": "if, else if and else form one statement, read top to bottom."
+       },
+       "science_note": {
+        "title": "Neutral",
+        "text": "A reading of exactly 7 is neither acidic nor basic."
+       },
+       "scene_label": "A culture at exactly pH 7.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Culture pH",
+         "args": [
+          [
+           "pH"
+          ],
+          [
+           [
+            7
+           ],
+           "neutral"
+          ],
+          {
+           "b": [
+            [
+             7
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             7
+            ],
+            "Error"
+           ],
+           "d": [
+            [
+             7
+            ],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 14,
+          "line": 7,
+          "line_label": "neutral 7"
+         },
+         "correct_state": [
+          [
+           7
+          ],
+          "neutral"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             7
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             7
+            ],
+            "Error"
+           ],
+           "d": [
+            [
+             7
+            ],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "ph <- 7",
+        "if (ph < 7) {",
+        "  print(\"acidic\")",
+        "} ___ (ph > 7) {",
+        "  print(\"basic\")",
+        "} else {",
+        "  print(\"neutral\")",
+        "}"
+       ],
+       "goal_output": [
+        "[1] \"neutral\""
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "else if",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "if",
+         "correct": false,
+         "feedback": "A new if straight after } is a syntax error; it must be else if."
+        },
+        {
+         "id": "c",
+         "label": "else",
+         "correct": false,
+         "feedback": "else takes no test; with (ph > 7) after it, R stops with an error."
+        },
+        {
+         "id": "d",
+         "label": "while",
+         "correct": false,
+         "feedback": "while starts a loop, not a second test; the else after it has nothing to attach to."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Check three cultures at once.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "ifelse() checks each pH: 6.2 acid, 7.9 base, 6.8 acid.",
+       "takeaway": "So: ifelse() is the vector version of if / else.",
+       "next_bridge": "fix the classmate's script.",
+       "hint_before_check": "ifelse() gives one answer per value.",
+       "code_note": {
+        "title": "ifelse()",
+        "text": "ifelse(test, yes, no) picks yes or no for each value."
+       },
+       "science_note": {
+        "title": "Culture pH",
+        "text": "Many bacteria acidify their medium as they grow, so the whole batch gets checked."
+       },
+       "scene_label": "Three cultures from the incubator.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Culture pH",
+         "args": [
+          [
+           "1",
+           "2",
+           "3"
+          ],
+          [
+           [
+            6.2,
+            7.9,
+            6.8
+           ],
+           "acid base acid"
+          ],
+          {
+           "b": [
+            [
+             6.2,
+             7.9,
+             6.8
+            ],
+            "one answer?"
+           ],
+           "c": [
+            [
+             6.2,
+             7.9,
+             6.8
+            ],
+            "no error here"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 14,
+          "line": 7,
+          "line_label": "neutral 7"
+         },
+         "correct_state": [
+          [
+           6.2,
+           7.9,
+           6.8
+          ],
+          "acid base acid"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             6.2,
+             7.9,
+             6.8
+            ],
+            "one answer?"
+           ],
+           "c": [
+            [
+             6.2,
+             7.9,
+             6.8
+            ],
+            "no error here"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "phs <- c(6.2, 7.9, 6.8)",
+        "low <- phs < 7",
+        "print(ifelse(low, \"acid\", \"base\"))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"acid\" \"base\" \"acid\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"acid\"",
+         "correct": false,
+         "feedback": "ifelse() gives one answer per value, not one in total."
+        },
+        {
+         "id": "c",
+         "label": "Error: the condition has length > 1",
+         "correct": false,
+         "feedback": "That error comes from if (), not ifelse(); ifelse() takes vectors."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "My classmate's if/else won't run at all. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "else has to follow the } that closes the if, on the same line. Without that }, R meets else inside the if block and stops.",
+       "takeaway": "So: write } else { on one line.",
+       "next_bridge": "label a culture in one line.",
+       "hint_before_check": "Where does the if block end?",
+       "code_note": {
+        "title": "Where else goes",
+        "text": "R reads line by line; else must come straight after the }, on the same line."
+       },
+       "science_note": {
+        "title": "Asking for help",
+        "text": "Posting the full error message gets help faster than \"it won't run\"."
+       },
+       "scene_label": "The script from the group chat.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Culture pH",
+         "args": [
+          [
+           "pH"
+          ],
+          [
+           [
+            7.4
+           ],
+           "not acidic"
+          ],
+          {
+           "d": [
+            [
+             7.4
+            ],
+            "Error"
+           ],
+           "e": [
+            [
+             7.4
+            ],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 14,
+          "line": 7,
+          "line_label": "neutral 7"
+         },
+         "correct_state": [
+          [
+           7.4
+          ],
+          "not acidic"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "d": [
+            [
+             7.4
+            ],
+            "Error"
+           ],
+           "e": [
+            [
+             7.4
+            ],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "ph_check.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "ph <- 7.4",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if (ph < 7) {",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "  print(\"acidic\")",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "else {",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "  print(\"not acidic\")",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "}",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "d",
+       "fixes_by_line": {
+        "d": [
+         {
+          "id": "f0",
+          "replacement": "} else {",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "else if (ph >= 7) {",
+          "correct": false,
+          "feedback": "else still has no } before it: R stops."
+         },
+         {
+          "id": "f2",
+          "replacement": "if (ph >= 7) {",
+          "correct": false,
+          "feedback": "That opens a second block inside the first, and one } is missing: R stops."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "  print(\"acidic\")",
+          "correct": false,
+          "feedback": "R still stops at the else line."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] \"not acidic\""
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Label the 7.9 culture in one line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "An if / else can give back a value: 7.9 > 7, so label is \"basic\".",
+       "takeaway": "So: if / else can return a value to store.",
+       "next_bridge": "see your pH check.",
+       "hint_before_check": "if / else can give back a value.",
+       "code_note": {
+        "title": "if as a value",
+        "text": "label <- if (test) a else b keeps whichever branch ran."
+       },
+       "science_note": {
+        "title": "Labels",
+        "text": "Labelling each culture in the script keeps the record next to the reading."
+       },
+       "scene_label": "The 7.9 culture.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Culture pH",
+         "args": [
+          [
+           "pH"
+          ],
+          [
+           [
+            7.9
+           ],
+           "\"basic\""
+          ],
+          {
+           "b": [
+            [
+             7.9
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             7.9
+            ],
+            "Error"
+           ],
+           "d": [
+            [
+             7.9
+            ],
+            "Error"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 14,
+          "line": 7,
+          "line_label": "neutral 7"
+         },
+         "correct_state": [
+          [
+           7.9
+          ],
+          "\"basic\""
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             7.9
+            ],
+            "Error"
+           ],
+           "c": [
+            [
+             7.9
+            ],
+            "Error"
+           ],
+           "d": [
+            [
+             7.9
+            ],
+            "Error"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "ph <- 7.9",
+        "label <- ___ (ph > 7) \"basic\" else \"not basic\"",
+        "print(label)"
+       ],
+       "goal_output": [
+        "[1] \"basic\""
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "if",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "ifelse",
+         "correct": false,
+         "feedback": "ifelse() takes its parts inside one pair of brackets; written like this, R stops."
+        },
+        {
+         "id": "c",
+         "label": "else",
+         "correct": false,
+         "feedback": "else needs an if before it: R stops."
+        },
+        {
+         "id": "d",
+         "label": "while",
+         "correct": false,
+         "feedback": "while starts a loop and has no else: R stops."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      }
+     ]
     },
     {
      "id": "BioP3L4",
      "type": "lesson",
      "part": 4,
      "title": "Buffer to add",
-     "status": "legacy: original version on the main canvas, not yet rebuilt to this standard"
+     "person": "Reagent datasheet",
+     "intro": "Stock concentration 10x. Make 50 µL at 2x. All volumes in µL.",
+     "script_file": "dilution_recipe.R",
+     "start_button": "Work out the recipe",
+     "notebook": [
+      {
+       "label": "Stock to add",
+       "value": "10 µL"
+      },
+      {
+       "label": "Buffer",
+       "value": "40 µL"
+      },
+      {
+       "label": "Recipe",
+       "value": "\"10 + 40\""
+      },
+      {
+       "label": "Colleague's units",
+       "value": "fixed: 50 µL"
+      },
+      {
+       "label": "Total check",
+       "value": "50 µL"
+      }
+     ],
+     "recap": {
+      "title": "Recipe ready",
+      "subtitle": "C1 × V1 = C2 × V2, the rest as buffer, and a units mix-up.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How much stock do you need?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "C1 × V1 = C2 × V2, so V1 = 2 × 50 / 10 = 10 µL of stock.",
+       "takeaway": "So: C1 × V1 = C2 × V2 gives the stock volume.",
+       "next_bridge": "work out the buffer.",
+       "hint_before_check": "V1 = C2 × V2 / C1.",
+       "code_note": {
+        "title": "Formulas",
+        "text": "Store each number once, and the formula reads like the datasheet."
+       },
+       "science_note": {
+        "title": "Dilutions",
+        "text": "10x stock is ten times the working strength; 2x is twice it."
+       },
+       "scene_label": "The tube for the stock.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volumes in µL",
+         "args": [
+          [
+           "stock",
+           "buffer"
+          ],
+          [
+           [
+            10,
+            0
+           ],
+           "10 µL stock"
+          ],
+          {
+           "b": [
+            [
+             250,
+             0
+            ],
+            "250?"
+           ],
+           "c": [
+            [
+             40,
+             0
+            ],
+            "40?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60,
+          "line": 50,
+          "line_label": "50 µL"
+         },
+         "correct_state": [
+          [
+           10,
+           0
+          ],
+          "10 µL stock"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             250,
+             0
+            ],
+            "250?"
+           ],
+           "c": [
+            [
+             40,
+             0
+            ],
+            "40?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "2 × 50 / 10",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "10",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "stock <- 10",
+        "target <- 2",
+        "final <- 50",
+        "sample <- target * final / stock",
+        "print(sample)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] 10",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] 250",
+         "correct": false,
+         "feedback": "That divides by the target instead of the stock."
+        },
+        {
+         "id": "c",
+         "label": "[1] 40",
+         "correct": false,
+         "feedback": "40 is the buffer, the rest of the volume."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Work out the buffer volume.",
+       "xp": 10,
+       "known_from_earlier": [
+        "final <- 50",
+        "sample <- 10"
+       ],
+       "explanation_after_check": "50 − 10 = 40 µL of buffer makes up the rest.",
+       "takeaway": "So: buffer = final − stock.",
+       "next_bridge": "print the recipe.",
+       "hint_before_check": "The buffer fills the rest of 50 µL.",
+       "code_note": {
+        "title": "Using results",
+        "text": "sample from the last step feeds straight into this one."
+       },
+       "science_note": {
+        "title": "Making up volume",
+        "text": "The buffer brings the mix to the final volume without adding more reagent."
+       },
+       "scene_label": "Filling up to 50 µL.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volumes in µL",
+         "args": [
+          [
+           "stock",
+           "buffer"
+          ],
+          [
+           [
+            10,
+            40
+           ],
+           "40 µL buffer"
+          ],
+          {
+           "b": [
+            [
+             10,
+             60
+            ],
+            "60?"
+           ],
+           "c": [
+            [
+             10,
+             5
+            ],
+            "5?"
+           ],
+           "d": [
+            [
+             10,
+             500
+            ],
+            "500?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60,
+          "line": 50,
+          "line_label": "50 µL"
+         },
+         "correct_state": [
+          [
+           10,
+           40
+          ],
+          "40 µL buffer"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             10,
+             60
+            ],
+            "60?"
+           ],
+           "c": [
+            [
+             10,
+             5
+            ],
+            "5?"
+           ],
+           "d": [
+            [
+             10,
+             500
+            ],
+            "500?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "50 − 10",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "40",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "buffer <- final ___ sample",
+        "print(buffer)"
+       ],
+       "goal_output": [
+        "[1] 40"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "-",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "+",
+         "correct": false,
+         "feedback": "60: more than the final volume."
+        },
+        {
+         "id": "c",
+         "label": "/",
+         "correct": false,
+         "feedback": "5: that divides instead."
+        },
+        {
+         "id": "d",
+         "label": "*",
+         "correct": false,
+         "feedback": "500: that multiplies instead."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the recipe line print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "sample <- 10",
+        "buffer <- 40"
+       ],
+       "explanation_after_check": "10 is not below 1, so the else branch prints the recipe: 10 µL stock + 40 µL buffer.",
+       "takeaway": "So: guard a result with if before you use it.",
+       "next_bridge": "fix a colleague's units.",
+       "hint_before_check": "Is 10 below 1?",
+       "code_note": {
+        "title": "Guards",
+        "text": "An if can stop a recipe that makes no sense."
+       },
+       "science_note": {
+        "title": "Pipetting limits",
+        "text": "Volumes under 1 µL can't be pipetted accurately."
+       },
+       "scene_label": "The recipe card.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volumes in µL",
+         "args": [
+          [
+           "stock",
+           "buffer"
+          ],
+          [
+           [
+            10,
+            40
+           ],
+           "\"10 + 40\""
+          ],
+          {
+           "b": [
+            [
+             10,
+             40
+            ],
+            "too small?"
+           ],
+           "c": [
+            [
+             10,
+             40
+            ],
+            "two numbers?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60,
+          "line": 50,
+          "line_label": "50 µL"
+         },
+         "correct_state": [
+          [
+           10,
+           40
+          ],
+          "\"10 + 40\""
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             10,
+             40
+            ],
+            "too small?"
+           ],
+           "c": [
+            [
+             10,
+             40
+            ],
+            "two numbers?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "if (sample < 1) {",
+        "  print(\"too small\")",
+        "} else {",
+        "  print(paste(sample, \"+\", buffer))",
+        "}"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1] \"10 + 40\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1] \"too small\"",
+         "correct": false,
+         "feedback": "too small only runs when sample is below 1 µL."
+        },
+        {
+         "id": "c",
+         "label": "[1] 10 40",
+         "correct": false,
+         "feedback": "paste() gives back one piece of text, with the pieces joined."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "A colleague's script asks for 0.01 µL of stock. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "final was typed in mL (0.05) instead of µL (50), so sample became 0.01 µL.",
+       "takeaway": "So: keep every volume in the same unit.",
+       "next_bridge": "check the parts add up.",
+       "hint_before_check": "The datasheet gives volumes in µL.",
+       "code_note": {
+        "title": "Units",
+        "text": "R doesn't know units; the numbers have to agree."
+       },
+       "science_note": {
+        "title": "µL and mL",
+        "text": "1 mL is 1000 µL, so 50 µL written as 0.05 is in mL."
+       },
+       "scene_label": "A recipe that can't be pipetted.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volumes in µL",
+         "args": [
+          [
+           "stock",
+           "buffer"
+          ],
+          [
+           [
+            10,
+            0
+           ],
+           "10 µL stock"
+          ],
+          {
+           "c": [
+            [
+             0.01,
+             0
+            ],
+            "wrong units"
+           ],
+           "d": [
+            [
+             1,
+             0
+            ],
+            "1 µL?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60,
+          "line": 50,
+          "line_label": "50 µL"
+         },
+         "correct_state": [
+          [
+           10,
+           0
+          ],
+          "10 µL stock"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [
+             0.01,
+             0
+            ],
+            "wrong units"
+           ],
+           "d": [
+            [
+             1,
+             0
+            ],
+            "1 µL?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "dilution_recipe.R",
+       "lines": [
+        {
+         "id": "a",
+         "code": "stock <- 10",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "target <- 2",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "final <- 0.05",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "sample <- target * final / stock",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "print(sample)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "final <- 50",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "final <- 0.05 * 100",
+          "correct": false,
+          "feedback": "That's 5 µL, not 50: sample becomes 1."
+         },
+         {
+          "id": "f2",
+          "replacement": "final <- 50 / 1000",
+          "correct": false,
+          "feedback": "That's mL again: 0.01."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "sample <- target * final * stock",
+          "correct": false,
+          "feedback": "Now it multiplies, still with the wrong units: 1."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [1] 10"
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Check the parts add up.",
+       "xp": 10,
+       "known_from_earlier": [
+        "sample <- 10",
+        "buffer <- 40"
+       ],
+       "explanation_after_check": "sum() adds 10 and 40: 50 µL, the final volume.",
+       "takeaway": "So: sum() checks the parts make the whole.",
+       "next_bridge": "see your recipe.",
+       "hint_before_check": "Add the parts.",
+       "code_note": {
+        "title": "Checks",
+        "text": "A last line that adds the parts back up catches typos."
+       },
+       "science_note": {
+        "title": "Final volume",
+        "text": "Stock plus buffer must equal the final volume on the datasheet."
+       },
+       "scene_label": "The tube at 50 µL.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another (0.14 s stagger) against a reference line; values above it turn red; value labels and a result note.",
+         "label": "Volumes in µL",
+         "args": [
+          [
+           "stock",
+           "buffer"
+          ],
+          [
+           [
+            10,
+            40
+           ],
+           "50 µL"
+          ],
+          {
+           "b": [
+            [
+             10,
+             40
+            ],
+            "25?"
+           ],
+           "c": [
+            [
+             10,
+             40
+            ],
+            "40?"
+           ],
+           "d": [
+            [
+             10,
+             40
+            ],
+            "2?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 60,
+          "line": 50,
+          "line_label": "50 µL"
+         },
+         "correct_state": [
+          [
+           10,
+           40
+          ],
+          "50 µL"
+         ],
+         "states": {
+          "idle": "before Check: resting animation (sway, pulse or scan)",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             10,
+             40
+            ],
+            "25?"
+           ],
+           "c": [
+            [
+             10,
+             40
+            ],
+            "40?"
+           ],
+           "d": [
+            [
+             10,
+             40
+            ],
+            "2?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "vols <- c(sample, buffer)",
+        "print(___(vols))"
+       ],
+       "goal_output": [
+        "[1] 50"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "sum",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "mean",
+         "correct": false,
+         "feedback": "mean() gives 25."
+        },
+        {
+         "id": "c",
+         "label": "max",
+         "correct": false,
+         "feedback": "max() gives 40."
+        },
+        {
+         "id": "d",
+         "label": "length",
+         "correct": false,
+         "feedback": "length() gives 2, the number of parts."
+        }
+       ],
+       "option_colours_on_checkpoint": null
+      }
+     ]
     },
     {
      "id": "BioP3L5",
@@ -9020,7 +11882,7 @@
      "part": 5,
      "title": "Plate layout check",
      "person": "Lab manager",
-     "intro": "Before the plate goes in the reader, check the layout: S is a sample, B a blank, C a control. Every sample needs 50 µL.",
+     "intro": "The recipe is mixed. Before the plate goes in the reader, check the layout: S is a sample, B a blank, C a control. Every sample needs 50 µL.",
      "script_file": "plate.R",
      "start_button": "Check the plate",
      "notebook": [

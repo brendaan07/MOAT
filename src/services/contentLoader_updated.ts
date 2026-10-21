@@ -74,15 +74,10 @@ export function loadTrack(studyArea = 'Biology research', language = 'R'): Track
 const v3Questions = (it: any): TrackQuestion[] => (it?.questions ?? []).map((q: any, i: number) => ({
   id: `${it.id}_q${i + 1}`, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint_before_check ?? '', ok: [q.explanation_after_check, q.takeaway].filter(Boolean).join(' '),
 }));
-/** A V2 lesson's questions (lessons not rebuilt in V3 yet), under the ids the lesson player records. */
-const v2Questions = (id: string): TrackQuestion[] | null => {
-  const l = ((CONTENT['track_bio_r_lessons_v2'] as any)?.lessons ?? []).find((x: any) => x.id === id);
-  return l ? l.questions.map((q: any) => ({ id: q.id, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint, ok: q.ok })) : null;
-};
 
 /** V3 tracks: the track file holds the path (phases, checkpoint text, project code); the V3 file holds the lessons.
  *  Lessons come from the V3 lesson items, ids <prefix>_p<phase>_l<part>, with their questions filled in so stars, the
- *  phase gate and the path count them. An item still marked `status` (not rebuilt yet) keeps its V2 or track questions.
+ *  phase gate and the path count them.
  *  The phase checkpoint takes its questions from the phase's checkpoint item when there is exactly one; otherwise the
  *  track file's checkpoint stays as it is. */
 function withV3(t: Track, file: string, prefix: string, checkpointId: (phase: number) => string): Track {
@@ -93,8 +88,7 @@ function withV3(t: Track, file: string, prefix: string, checkpointId: (phase: nu
     const lessons = items.filter((i) => i.type === 'lesson').sort((a, b) => a.part - b.part).map((it) => {
       const id = `${prefix}_p${p.number}_l${it.part}`;
       const old = p.lessons.find((l) => l.id === id);
-      const questions = it.status ? v2Questions(id) ?? old?.questions ?? [] : v3Questions(it);
-      return { id, part: it.part as number, title: (it.title as string) ?? old?.title ?? `Lesson ${it.part}`, questions };
+      return { id, part: it.part as number, title: (it.title as string) ?? old?.title ?? `Lesson ${it.part}`, questions: v3Questions(it) };
     });
     const cps = items.filter((i) => i.type === 'checkpoint' && !i.status);
     const checkpoint = cps.length === 1 ? { ...p.checkpoint, id: checkpointId(p.number), questions: v3Questions(cps[0]) } : p.checkpoint;

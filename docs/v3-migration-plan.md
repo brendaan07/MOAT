@@ -747,3 +747,6 @@ Each step adds here what it found or left for a later step (file, why, which ste
   on Check: "Received `false` for a non-boolean attribute `collapsable`". It already happens in `BioP4L1` q1, so it's
   the renderer, not the content: its animated SVG path passes `collapsable` through to the DOM on react-native-web.
   Nothing breaks. Fix in 3.3 when `picturesV3.tsx` is split.
+- (step 2a.3) `assets/content/track_bio_r_lessons_v2.json` is now unused: every Biology lesson is V3, so `addV3`
+  overwrites each of its entries in `lessonKitV2_updated.tsx`'s `LESSONS` map. The file is still imported there (as
+  `RAW`); delete the file and the import in 3.1. Its `CONTENT` entry (added in 2a.0 for the V2 question ids) is gone.
