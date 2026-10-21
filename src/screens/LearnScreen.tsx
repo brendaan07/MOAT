@@ -55,7 +55,6 @@ export default function LearnScreen() {
   );
 
   const openLesson = (lesson: Lesson) => (lesson.game ? navigation.navigate('GameLesson', { lessonId: lesson.id }) : navigation.navigate('Lesson', { lessonId: lesson.id }));
-  const openPremium = () => store.openPaywall('premium');
 
   const lessonRow = (lesson: Lesson, phase: Phase, step: number) => {
     const x = [0, 55, 0, -55][step % 4];
@@ -73,7 +72,7 @@ export default function LearnScreen() {
       <View key={lesson.id} onLayout={isCurrent ? (e) => { currentY.current = e.nativeEvent.layout.y; } : undefined} style={{ height: isCurrent ? 170 : 96, alignItems: 'center', justifyContent: 'center' }}>
         {phaseLocked && <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(27,36,114,0.55)' }} />}
         <View style={{ alignItems: 'center', gap: 8, transform: [{ translateX: x }] }}>
-          <Pressable onPress={() => (unlocked ? openLesson(lesson) : phaseLocked ? openPremium() : undefined)} accessibilityRole="button" accessibilityLabel={`${lesson.title}, ${state}`}>
+          <Pressable onPress={() => unlocked && openLesson(lesson)} accessibilityRole="button" accessibilityLabel={`${lesson.title}, ${state}`}>
             <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
               {isCurrent && <View style={{ position: 'absolute', width: size + 20, height: size + 20, borderRadius: (size + 20) / 2, borderWidth: 3, borderColor: C.cream }} />}
               <View style={{ position: 'absolute', top: 4, width: size, height: size, borderRadius: size / 2, backgroundColor: C.navy }} />
@@ -101,10 +100,10 @@ export default function LearnScreen() {
   const banner = (phase: Phase) => {
     const started = store.isPhaseStarted(phase);
     return (
-      <Pressable key={`banner-${phase.id}`} onPress={() => (!started ? openPremium() : undefined)} style={{ paddingHorizontal: 16, paddingVertical: 14, backgroundColor: started ? 'transparent' : 'rgba(27,36,114,0.55)' }} accessibilityRole="button">
-        <Card fill={started ? C.cream : C.premiumBand} radius={20} shadow contentStyle={{ height: 64, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+      <View key={`banner-${phase.id}`} style={{ paddingHorizontal: 16, paddingVertical: 14, backgroundColor: started ? 'transparent' : 'rgba(27,36,114,0.55)' }} accessibilityLabel={`Phase ${phase.number}, ${phase.title}, ${started ? `${store.completedCount(phase)} of ${phase.lessons.length} done` : 'locked'}`}>
+        <Card fill={started ? C.cream : C.lockedBand} radius={20} shadow contentStyle={{ height: 64, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ flex: 1 }}>
-            <Text style={[body(13, true), { color: started ? C.muted : C.premiumText }]}>{started ? `Phase ${phase.number}` : `Phase ${phase.number} · skip with Premium`}</Text>
+            <Text style={[body(13, true), { color: started ? C.muted : C.lockedBandText }]}>Phase {phase.number}</Text>
             <Text style={[heading(20), { color: started ? C.navy : C.cream }]} numberOfLines={1}>{phase.title}</Text>
           </View>
           {started ? (
@@ -113,12 +112,12 @@ export default function LearnScreen() {
             </View>
           ) : (
             <View style={{ height: 30, paddingHorizontal: 10, borderRadius: 15, backgroundColor: C.orange, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-              <Ionicons name="ribbon" size={14} color={C.navy} />
-              <Text style={body(13, true)}>Premium</Text>
+              <Ionicons name="lock-closed" size={13} color={C.navy} />
+              <Text style={body(13, true)}>Locked</Text>
             </View>
           )}
         </Card>
-      </Pressable>
+      </View>
     );
   };
 

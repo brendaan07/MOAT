@@ -44,10 +44,10 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 | Folder | What it holds |
 |---|---|
 | `src/screens` | Every screen. `games/` holds the loop and stage mini-games; `track/` holds the Biology research track. |
-| `src/components` | Shared UI: `ui.tsx` (cards, buttons, images), `trackKit.tsx` (track visuals and animations), `gameKit.tsx` (code playback), `PaywallOverlay.tsx`. |
+| `src/components` | Shared UI: `ui.tsx` (cards, buttons, images), `trackKit.tsx` (track visuals and animations), `gameKit.tsx` (code playback). |
 | `src/navigation` | The root stack (modals for lessons, games, the track flow and evolution) and the bottom tabs. |
 | `src/hooks` | App state as React context (`useAppStore`, `useTrackStore`), plus `useReduceMotion`. |
-| `src/services` | The API client, the lesson loader, the game catalog and RevenueCat. |
+| `src/services` | The API client, the lesson loader, and the game catalog. |
 | `src/storage` | AsyncStorage persistence. |
 | `src/types` | The data models. |
 | `src/utils` | Theme, day keys, code joining, study areas, and the generated image and content registries. |
@@ -66,25 +66,7 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 | SwiftUI animations, `phaseAnimator`, `keyframeAnimator` | React Native `Animated`, same timings | Yes |
 | `UINotificationFeedbackGenerator`, `sensoryFeedback` | `expo-haptics` | Yes |
 | Horizon, Baloo 2 and Atkinson Hyperlegible fonts | `expo-font` (Baloo 2 and Atkinson are under the SIL Open Font License, included in `assets/fonts`) | Yes |
-| Paywall blur | `expo-blur` | Yes |
-| `Slider` | `@react-native-community/slider` | Yes |
 | SF Symbols | `@expo/vector-icons` (Ionicons) | Yes |
-| RevenueCat iOS SDK | `react-native-purchases` | Partly, see below |
-
-## Expo Go compatibility
-
-Everything runs in Expo Go except real in-app purchases.
-
-`react-native-purchases` detects Expo Go and switches to its **Preview API Mode**: the paywall, offerings and entitlement checks all run, but purchases are mocked. Nothing was removed.
-
-To test real purchases, move to a **development build**:
-
-```bash
-npx expo install expo-dev-client
-eas build --profile development
-```
-
-I recommend staying on Expo Go for day-to-day work, and making a development build before testing payments or releasing.
 
 ## Feature parity checklist
 
@@ -92,7 +74,7 @@ I recommend staying on Expo Go for day-to-day work, and making a development bui
 |---|---|---|
 | Splash: 1.5s, then onboarding or tabs | `MOATApp.swift` | `RootNavigator.tsx` |
 | Onboarding: age slider and under-13 note, education menu, 7 areas, language step | `OnboardingView`, `LanguageStepView` | `OnboardingScreen.tsx` |
-| Learn path: zig-zag, phase banners, Premium lock, scroll to current, robot by current lesson | `LearnView` | `LearnScreen.tsx` |
+| Learn path: zig-zag, phase banners, locked phases, scroll to current, robot by current lesson | `LearnView` | `LearnScreen.tsx` |
 | Tappable streak, bolts and minutes bubbles | `StatChipsRow` | `trackKit.tsx` |
 | Lessons: choice, build, judge, bug, match | `LessonView` | `LessonScreen.tsx` |
 | One retry per wrong question; 5 bolts per correct answer, +10 for finishing | `LessonView` | `LessonScreen.tsx` |
@@ -103,8 +85,7 @@ I recommend staying on Expo Go for day-to-day work, and making a development bui
 | Stage labs (GC content, duty cycle, conversion), 5 parts each | `StageGames.swift` | `games/StageGame.tsx` |
 | Robot evolution when a phase unlocks a form | `EvolutionView` | `EvolutionScreen.tsx` |
 | Workshop: forms, parts, rotated antennas | `WorkshopView` | `WorkshopScreen.tsx` |
-| Profile v2: streak, stats, 9 badges, settings, reset, subscriptions | `ProfileView` | `ProfileScreen.tsx` |
-| Paywall: Premium and Expert, confetti, purchase | `PaywallTier.swift` | `PaywallOverlay.tsx` |
+| Profile v2: streak, stats, 9 badges, settings, reset | `ProfileView` | `ProfileScreen.tsx` |
 | Biology research track: Option A home, phase pictures, stars, Replay | `TrackScreens` | `track/TrackHomeScreen.tsx` |
 | Track lessons and checkpoints (plan, code, predict, debug, build) | `TrackPlayer` | `track/TrackPlayer.tsx` |
 | Bolt counter: count-up, glow, sparks, bounce | `TrackKit` | `trackKit.tsx` (`BoltPill`) |

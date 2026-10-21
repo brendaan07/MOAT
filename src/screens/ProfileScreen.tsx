@@ -113,7 +113,6 @@ export default function ProfileScreen() {
         </Card>
         <ChunkyButton title="Edit my answers" fill={C.card} onPress={store.editAnswers} />
         <ChunkyButton title="Reset all progress" fill={C.missSheet} onPress={confirmReset} />
-        <ChunkyButton title="Subscriptions" fill={C.sky} onPress={() => store.openPaywall('premium')} />
         <Text style={[body(14), { color: C.muted }]}>Sign in and account deletion come in a later build. Progress is saved on this phone only.</Text>
       </ScrollView>
       <Modal visible={editing} transparent animationType="fade" onRequestClose={() => setEditing(false)}>

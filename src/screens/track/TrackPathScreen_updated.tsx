@@ -65,9 +65,9 @@ export default function TrackPathScreen() {
     const total = phase.lessons.length + (phase.checkpoint.questions.length ? 1 : 0);
     return (
       <Pressable key={`banner-${phase.number}`} onPress={() => open && openPhase(phase)} accessibilityRole="button" accessibilityLabel={`Phase ${phase.number}, ${phase.project}, ${open ? `${done} of ${total} done` : 'locked'}`} style={{ paddingHorizontal: 16, paddingVertical: 14, backgroundColor: open ? 'transparent' : 'rgba(27,36,114,0.55)' }}>
-        <Card fill={open ? C.cream : C.premiumBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+        <Card fill={open ? C.cream : C.lockedBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ flex: 1 }}>
-            <Text style={[body(13, true), { color: open ? C.muted : C.premiumText }]}>Phase {phase.number} · {phase.area}</Text>
+            <Text style={[body(13, true), { color: open ? C.muted : C.lockedBandText }]}>Phase {phase.number} · {phase.area}</Text>
             <Text style={[heading(20), { color: open ? C.navy : C.cream }]} numberOfLines={1}>{phase.project}</Text>
           </View>
           {open ? (
@@ -136,8 +136,8 @@ export default function TrackPathScreen() {
         {t ? (
           <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 70, paddingBottom: 30 }} onContentSizeChange={() => scrollToCurrent(false)}>
             <View style={{ paddingHorizontal: 16, paddingVertical: 14 }}>
-              <Card fill={C.premiumBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, justifyContent: 'center' }}>
-                <Text style={[body(13, true), { color: C.premiumText }]}>Cycle 2 · {t.cycle2.area}</Text>
+              <Card fill={C.lockedBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, justifyContent: 'center' }}>
+                <Text style={[body(13, true), { color: C.lockedBandText }]}>Cycle 2 · {t.cycle2.area}</Text>
                 <Text style={[heading(20), { color: C.cream }]}>{t.cycle2.project}</Text>
               </Card>
             </View>

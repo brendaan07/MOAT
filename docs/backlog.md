@@ -55,5 +55,5 @@ To build it later:
 - Decide what Premium unlocks.
 - Re-add RevenueCat (`react-native-purchases`; it needs a development build, not Expo Go).
 - Gate the content in the TRACKS registry or path screen.
-- Recover the old `PaywallOverlay.tsx` and `services/purchases.ts` with `git show <step-1b commit>^:<path>`. Hash:
-  `TBD`.
+- Recover the old `src/components/PaywallOverlay.tsx` and `src/services/purchases.ts` with
+  `git show 5282c9b:<path>` (the commit before step 1b).

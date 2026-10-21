@@ -1,22 +1,14 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import type { PurchasesOffering, PurchasesPackage } from 'react-native-purchases';
 import { Course, Lesson, Phase, RobotForm, UserProgress, defaultProgress } from '../types/models';
 import { ProgressStorage } from '../storage/progressStorage';
 import { loadBundled } from '../services/contentLoader_updated';
 import { APIClient, AppConfig } from '../services/apiClient';
-import { PurchasesService } from '../services/purchases';
 import { DayKey } from '../utils/dayKey';
-
-export type PaywallTier = 'premium' | 'expert';
 
 interface AppStoreValue {
   hydrated: boolean;
   progress: UserProgress;
   course: Course;
-  showPaywall: boolean;
-  paywallTier: PaywallTier;
-  isPremium: boolean;
-  currentOffering: PurchasesOffering | null;
   pendingEvolution: RobotForm | null;
   orderedLessons: Lesson[];
   currentLesson: Lesson | null;
@@ -33,11 +25,6 @@ interface AppStoreValue {
   equip: (form: RobotForm) => void;
   editAnswers: () => void;
   resetProgress: () => void;
-  openPaywall: (tier?: PaywallTier) => void;
-  closePaywall: () => void;
-  loadOffering: () => Promise<void>;
-  purchase: (pkg: PurchasesPackage) => Promise<boolean>;
-  restorePurchases: () => Promise<boolean>;
   clearPendingEvolution: () => void;
   setPendingEvolution: (form: RobotForm | null) => void;
 }
@@ -49,10 +36,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [progress, setProgressState] = useState<UserProgress>(defaultProgress());
   const progressRef = useRef(progress);
   const [course, setCourse] = useState<Course>({ phases: [] });
-  const [showPaywall, setShowPaywall] = useState(false);
-  const [paywallTier, setPaywallTier] = useState<PaywallTier>('premium');
-  const [isPremium, setIsPremium] = useState(false);
-  const [currentOffering, setOffering] = useState<PurchasesOffering | null>(null);
   const [pendingEvolution, setPendingEvolution] = useState<RobotForm | null>(null);
 
   /** Every change is saved, like the didSet on AppStore.progress. */
@@ -81,14 +64,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     return () => {
       alive = false;
     };
-  }, []);
-
-  // RevenueCat: configure, read entitlements, load the offering, then listen for updates.
-  useEffect(() => {
-    PurchasesService.configure();
-    PurchasesService.customerInfo().then((info) => setIsPremium(PurchasesService.isPremium(info)));
-    PurchasesService.currentOffering().then(setOffering);
-    return PurchasesService.onUpdate((info) => setIsPremium(PurchasesService.isPremium(info)));
   }, []);
 
   const orderedLessons = useMemo(() => course.phases.flatMap((p) => p.lessons), [course]);
@@ -199,28 +174,10 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     setCourse(loadBundled(fresh.studyArea, fresh.language));
   }, [setProgress]);
 
-  const loadOffering = useCallback(async () => setOffering(await PurchasesService.currentOffering()), []);
-  const purchase = useCallback(async (pkg: PurchasesPackage) => {
-    const info = await PurchasesService.purchase(pkg);
-    const premium = PurchasesService.isPremium(info);
-    if (info) setIsPremium(premium);
-    return premium;
-  }, []);
-  const restorePurchases = useCallback(async () => {
-    const info = await PurchasesService.restore();
-    const premium = PurchasesService.isPremium(info);
-    if (info) setIsPremium(premium);
-    return premium;
-  }, []);
-
   const value: AppStoreValue = {
     hydrated,
     progress,
     course,
-    showPaywall,
-    paywallTier,
-    isPremium,
-    currentOffering,
     pendingEvolution,
     orderedLessons,
     currentLesson,
@@ -237,14 +194,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     equip,
     editAnswers,
     resetProgress,
-    openPaywall: (tier = 'premium') => {
-      setPaywallTier(tier);
-      setShowPaywall(true);
-    },
-    closePaywall: () => setShowPaywall(false),
-    loadOffering,
-    purchase,
-    restorePurchases,
     clearPendingEvolution: () => setPendingEvolution(null),
     // A finished lesson asks the Learn screen to celebrate an evolution once its modal has closed.
     setPendingEvolution,

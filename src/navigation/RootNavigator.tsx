@@ -6,7 +6,6 @@ import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore_updated';
 import { C } from '../utils/theme';
 import { RobotForm } from '../types/models';
-import { PaywallOverlay } from '../components/PaywallOverlay';
 import MainTabs from './MainTabs_updated';
 import SplashScreen from '../screens/SplashScreen';
 import OnboardingScreen from '../screens/OnboardingScreen_updated';
@@ -69,7 +68,6 @@ export default function RootNavigator() {
           <Stack.Screen name="Evolution" component={EvolutionScreen} options={{ presentation: 'modal' }} />
         </Stack.Navigator>
       </NavigationContainer>
-      {store.showPaywall && <PaywallOverlay />}
     </View>
   );
 }

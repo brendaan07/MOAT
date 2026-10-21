@@ -16,8 +16,8 @@ export const C = {
   successSheet: '#E4F5B8',
   missSheet: '#FFE3CF',
   hintBlue: '#DCEEFF',
-  premiumBand: '#2E3A9E',
-  premiumText: '#B8C4FF',
+  lockedBand: '#2E3A9E',
+  lockedBandText: '#B8C4FF',
   wrongChip: '#FFD3B0',
   // Track kit
   navyDeep: '#141A5C',
