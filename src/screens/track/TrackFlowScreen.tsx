@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { useTrackStore } from '../../hooks/useTrackStore_updated';
+import { useTrackStore } from '../../hooks/useTrackStore';
 import type { RunResult } from '../../types/models';
 import type { TrackLesson } from '../../content/types';
 import { lessonFor } from '../../services/contentLoader';

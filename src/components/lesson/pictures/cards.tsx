@@ -78,8 +78,8 @@ export function Device({ spec, state, pick }: { spec: DevicePicture; state: Pict
 /** The other Healthcare and Finance pictures: the picture's own icon, which pops on Check, and the result for the answer given.
  *  The canvas pages hold the full scene animation for these types (see docs/INTEGRATION_moat4new.md). */
 export function StateCard({ spec, state, pick }: { spec: CardPicture; state: PictureState; pick: string | null }) {
-  const a = spec.assets ?? {};
-  const src = lessonImage(spec.icon_asset ?? a.pig ?? a.pile ?? a.note ?? a.bag?.empty ?? a.face ?? a.device?.idle_frame ?? typeIcon(spec.type));
+  const assets = spec.assets ?? {};
+  const src = lessonImage(spec.icon_asset ?? assets.pig ?? assets.pile ?? assets.note ?? assets.bag?.empty ?? assets.face ?? assets.device?.idle_frame ?? typeIcon(spec.type));
   const pop = useRef(new Animated.Value(0)).current;
   const reduce = useReduceMotion();
   useEffect(() => {

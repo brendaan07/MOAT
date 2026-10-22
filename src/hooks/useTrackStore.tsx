@@ -29,7 +29,7 @@ interface TrackStoreValue {
   reset: () => void;
 }
 
-const Ctx = createContext<TrackStoreValue | null>(null);
+const TrackStoreContext = createContext<TrackStoreValue | null>(null);
 
 /** Loads the learner's track and its saved progress and provides them to the app. */
 export function TrackStoreProvider({ children }: { children: React.ReactNode }) {
@@ -101,12 +101,12 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
     minutesToday: rules.minutesToday(progress),
     reset: () => set(defaultTrackProgress()),
   };
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+  return <TrackStoreContext.Provider value={value}>{children}</TrackStoreContext.Provider>;
 }
 
 /** The learner's track, its progress and the unlock rules. */
 export function useTrackStore() {
-  const v = useContext(Ctx);
+  const v = useContext(TrackStoreContext);
   if (!v) throw new Error('useTrackStore must be used inside TrackStoreProvider');
   return v;
 }

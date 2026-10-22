@@ -1,7 +1,7 @@
-// Types for the bundled content: the V3 lesson files (*_v3.json), the track files (track_*.json), and the shapes the
+// Types for the bundled content: the lesson files (<track>.json), the track files (track_*.json), and the shapes the
 // loader turns them into for the screens (plan §1.4). JSON is cast to these once, in services/contentLoader.ts.
 
-// ---------- V3 lesson files ----------
+// ---------- Lesson files ----------
 
 /** A picture's look after Check. Each picture type has its own state shape; see the union below. */
 interface PictureBase<T extends string, S> {
@@ -98,7 +98,7 @@ export interface FixQuestion extends QuestionBase {
 export type Question = ChoiceQuestion | FixQuestion;
 export type QuestionKind = Question['kind'];
 
-/** A lesson or a phase checkpoint in a V3 file. */
+/** A lesson or a phase checkpoint in a lesson file. */
 export interface Item {
   id: string;
   type: 'lesson' | 'checkpoint';
@@ -124,7 +124,7 @@ export interface ContentFile {
 
 // ---------- Track files ----------
 
-/** A phase of a track file: the path's text and pictures. Lessons and the checkpoint get their questions from the V3 file. */
+/** A phase of a track file: the path's text and pictures. Lessons and the checkpoint get their questions from the lesson file. */
 export interface TrackFilePhase {
   number: number;
   area: string;
@@ -165,7 +165,7 @@ export interface Track extends Omit<TrackFile, 'phases'> {
   phases: TrackPhase[];
 }
 
-/** The lesson player's question: a V3 question with its texts resolved and the right answer named. */
+/** The lesson player's question: a content question with its texts resolved and the right answer named. */
 export interface PlayerQuestion {
   id: string;
   kind: QuestionKind;

@@ -6,7 +6,7 @@ import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../../hooks/useAppStore';
-import { useTrackStore } from '../../hooks/useTrackStore_updated';
+import { useTrackStore } from '../../hooks/useTrackStore';
 import { Card, ChunkyButton, FullScreenPicture } from '../../components/ui';
 import { LockIcon, StarIcon } from '../../components/icons';
 import { DoneTick } from '../../components/track/ProjectCard';
@@ -17,7 +17,7 @@ import type { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../content/
 import type { RootStackParamList } from '../../navigation/RootNavigator';
 
 /** The phase page (Option A design), opened from the play button on the Learn path. */
-export default function TrackHomeScreen() {
+export default function TrackPhaseScreen() {
   const app = useAppStore();
   const track = useTrackStore();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();

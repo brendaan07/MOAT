@@ -57,14 +57,17 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 ### Tracks and ids
 
 - A track is one `TRACKS` entry in `src/content/tracks.ts`. It names its track file (`track_*.json`: the path's phases,
-  pictures and project code) and its V3 file (`*_v3.json`: the lessons and checkpoints). Adding a track means adding
-  both files to `src/utils/content.ts` and one `TRACKS` line.
+  pictures and project code) and its lesson file (`<track>.json`, for example `healthcare_python.json`: the lessons and
+  checkpoints). Adding a track means adding both files to `src/utils/content.ts` and one `TRACKS` line.
 - Content ids stay in the JSON as written: items are `BioP1L1`, `XpP2C`, `GenPyP1L3`, … and questions are
   `<itemId>_q<n>`. Stars and bolts are saved under the question ids.
 - App ids come only from the registry `prefix`: lesson `k` of phase `n` is `<prefix>_p<n>_l<k>` (`hx_py_p2_l3`), and a
   phase checkpoint is the entry's `checkpointId(n)` (`hx_py_cp2`; Biology research uses `bio_p2_cp`). Lesson progress
   and URLs (`/phase/<n>/play/<app id>`) use these.
-- `scripts/validate-content.mjs` checks every V3 file against these rules; run it after any content change.
+- `scripts/validate-content.mjs` checks every lesson file against these rules; run it after any content change.
+- Pictures: `scripts/generate-image-maps.mjs` writes `src/utils/images.ts` (the app's own pictures in `assets/images`)
+  and `src/utils/lessonImages.ts` (every lesson picture in its subfolders, keyed by the path the content names). Run it
+  after adding or removing an image; it also lists byte-identical files, which should be one file instead.
 
 ## Swift to React Native mapping
 

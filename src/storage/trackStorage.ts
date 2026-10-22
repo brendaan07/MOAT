@@ -6,13 +6,13 @@ const KEY = 'moat.track.v1';
 
 /** Reads saved track progress field by field; anything missing or malformed starts empty. */
 function decode(raw: unknown): TrackProgress {
-  const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const saved = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
   const obj = <T,>(v: unknown, d: T): T => (v && typeof v === 'object' && !Array.isArray(v) ? (v as T) : d);
   return {
-    finished: Array.isArray(r.finished) ? (r.finished as string[]) : [],
-    bestStars: obj(r.bestStars, {}),
-    paid: Array.isArray(r.paid) ? (r.paid as string[]) : [],
-    secondsByDay: obj(r.secondsByDay, {}),
+    finished: Array.isArray(saved.finished) ? (saved.finished as string[]) : [],
+    bestStars: obj(saved.bestStars, {}),
+    paid: Array.isArray(saved.paid) ? (saved.paid as string[]) : [],
+    secondsByDay: obj(saved.secondsByDay, {}),
   };
 }
 

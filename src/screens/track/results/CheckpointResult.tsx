@@ -6,7 +6,7 @@ import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Card, ChunkyButton, DottedBackground } from '../../../components/ui';
 import { BoltIcon, StarIcon } from '../../../components/icons';
 import { StarsRow } from '../../../components/track/stars';
-import { useTrackStore } from '../../../hooks/useTrackStore_updated';
+import { useTrackStore } from '../../../hooks/useTrackStore';
 import { BORDER, C, body, heading } from '../../../utils/theme';
 import { RunResult, creditedBolts, isPerfect } from '../../../types/models';
 import { DAILY_GOAL_BONUS_BOLTS, PERFECT_BONUS } from '../../../utils/rewards';
@@ -24,7 +24,7 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
   // own text opens nothing yet, so it shows no card.
   const phases = track.track?.phases ?? [];
   const next = phases[phases.findIndex((p) => p.number === phase.number) + 1];
-  const u = phase.checkpoint.unlock.length ? phase.checkpoint.unlock : next ? [`Phase ${next.number} unlocked`, next.project, `New skill: ${next.skill}.`] : null;
+  const unlocked = phase.checkpoint.unlock.length ? phase.checkpoint.unlock : next ? [`Phase ${next.number} unlocked`, next.project, `New skill: ${next.skill}.`] : null;
   const weak = [
     ...phase.lessons.filter((l) => track.stars(l.id) < l.questions.length).map((l) => [`Part ${l.part} · ${l.title}`, track.stars(l.id), l.questions.length] as [string, number, number]),
     ...(track.stars(phase.checkpoint.id) < phase.checkpoint.questions.length ? [[`Checkpoint · ${phase.checkpoint.name}`, track.stars(phase.checkpoint.id), phase.checkpoint.questions.length] as [string, number, number]] : []),
@@ -62,13 +62,13 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
           )}
         </Card>
         {complete ? (
-          u && <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
+          unlocked && <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="lock-open" size={18} color={C.navy} />
-              <View style={{ paddingHorizontal: 8, paddingVertical: 1, borderRadius: 8, backgroundColor: C.lime, borderWidth: 1.5, borderColor: C.navy }}><Text style={body(13, true)}>{u[0]}</Text></View>
+              <View style={{ paddingHorizontal: 8, paddingVertical: 1, borderRadius: 8, backgroundColor: C.lime, borderWidth: 1.5, borderColor: C.navy }}><Text style={body(13, true)}>{unlocked[0]}</Text></View>
             </View>
-            <Text style={heading(24)}>{u[1]}</Text>
-            <Text style={body(15)}>{u[2]}</Text>
+            <Text style={heading(24)}>{unlocked[1]}</Text>
+            <Text style={body(15)}>{unlocked[2]}</Text>
           </Card>
         ) : (
           <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>

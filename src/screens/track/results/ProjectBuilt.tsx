@@ -5,7 +5,7 @@ import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Card, ChunkyButton, DottedBackground } from '../../../components/ui';
 import { ProjectCard } from '../../../components/track/ProjectCard';
 import { RCodeLine } from '../../../components/track/RCodeLine';
-import { useTrackStore } from '../../../hooks/useTrackStore_updated';
+import { useTrackStore } from '../../../hooks/useTrackStore';
 import { C, body, heading } from '../../../utils/theme';
 import type { TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';

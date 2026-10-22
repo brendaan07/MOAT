@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Runs each V3 question's code and prints the real output beside the marked answer (plan D7). A review aid: it doesn't
-// decide pass/fail. Usage: node scripts/run-answers.mjs <v3 file> [item id]
+// Runs each lesson question's code and prints the real output beside the marked answer (plan D7). A review aid: it doesn't
+// decide pass/fail. Usage: node scripts/run-answers.mjs <lesson file> [item id]
 // Python runs with python3; R with Rscript, or `conda run -n moat-r Rscript` when that environment exists.
 // Every question's code runs after its known_from_earlier lines, as the learner reads it.
 import { execFileSync, spawnSync } from 'node:child_process';
@@ -10,7 +10,7 @@ import { join } from 'node:path';
 
 const [file, only] = process.argv.slice(2);
 if (!file) {
-  console.log('Usage: node scripts/run-answers.mjs <v3 file> [item id]');
+  console.log('Usage: node scripts/run-answers.mjs <lesson file> [item id]');
   process.exit(1);
 }
 const data = JSON.parse(readFileSync(file, 'utf8'));

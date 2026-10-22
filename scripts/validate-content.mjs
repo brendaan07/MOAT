@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Checks every V3 lesson file against the rules in docs/v3-migration-plan.md (§1.4 and step 2a.0).
+// Checks every lesson file (the TRACKS registry's lessonFile) against the rules in docs/v3-migration-plan.md (§1.4 and step 2a.0).
 // Usage: node scripts/validate-content.mjs
 // Prints one line per problem and exits 1 if there are any errors. Items marked `status` (not rebuilt yet) are warnings.
 import { readFileSync } from 'node:fs';
@@ -9,17 +9,18 @@ import { fileURLToPath } from 'node:url';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(root, p), 'utf8');
 
-// V3 files: every CONTENT entry whose name ends in _v3.
+// Every bundled content file, by CONTENT name.
 const content = read('src/utils/content.ts');
 const files = Object.fromEntries([...content.matchAll(/"([^"]+)":\s*require\('\.\.\/\.\.\/(assets\/content\/[^']+)'\)/g)].map((m) => [m[1], m[2]]));
-const v3Files = Object.keys(files).filter((n) => n.endsWith('_v3'));
 
-// Which track file goes with which V3 file: the TRACKS registry, one entry per line (trackFile, v3File, prefix in order).
+// The tracks, from the TRACKS registry (one entry per line: trackFile, lessonFile, prefix in order). The lesson files
+// are the ones this script checks.
 const trackRegistry = read('src/content/tracks.ts');
-const tracks = [...trackRegistry.matchAll(/trackFile: '([^']+)', v3File: '([^']+)', prefix: '([^']+)'/g)].map((m) => ({ track: m[1], file: m[2], prefix: m[3] }));
+const tracks = [...trackRegistry.matchAll(/trackFile: '([^']+)', lessonFile: '([^']+)', prefix: '([^']+)'/g)].map((m) => ({ track: m[1], file: m[2], prefix: m[3] }));
 if (!tracks.length) throw new Error('no TRACKS entries found in src/content/tracks.ts');
+const lessonFiles = [...new Set(tracks.map((t) => t.file))];
 
-// Every picture type the app can draw: the keys of RENDERERS in picturesV3.tsx.
+// Every picture type the app can draw: the keys of RENDERERS in src/components/lesson/pictures/index.tsx.
 const registry = read('src/components/lesson/pictures/index.tsx').match(/const RENDERERS[^\n]*= \{\n([\s\S]*?)\n\};/);
 if (!registry) throw new Error('RENDERERS not found in src/components/lesson/pictures/index.tsx');
 const renderers = new Set([...registry[1].replace(/\/\/.*$/gm, '').matchAll(/(\w+):/g)].map((m) => m[1]));
@@ -76,7 +77,7 @@ function checkQuestion(where, q) {
 // Every file the registry names must be bundled.
 for (const t of tracks) for (const f of [t.track, t.file]) if (!files[f]) error(`TRACKS ${t.prefix}`, `${f} is not in src/utils/content.ts`);
 
-for (const name of v3Files) {
+for (const name of lessonFiles) {
   const data = JSON.parse(read(files[name]));
   const ids = new Set();
   // A track may declare a smaller shape (the general tracks: 4 lessons, no checkpoint yet, plan 2b.0); the rest are 5 + 1.
@@ -107,16 +108,16 @@ for (const name of v3Files) {
       for (const p of new Set(imagePaths(it))) if (!images.has(p)) error(where, `image ${p} is not in src/utils/lessonImages.ts`);
     }
   }
-  // Every lesson the track file lists must be a V3 lesson item.
+  // Every lesson the track file lists must be a lesson item in the lesson file.
   for (const tr of tracks.filter((t) => t.file === name)) {
     const track = JSON.parse(read(files[tr.track]));
     for (const p of track.phases ?? []) for (const l of p.lessons ?? []) {
       const m = l.id.match(new RegExp(`^${tr.prefix}_p(\\d+)_l(\\d+)$`));
       const item = m && data.phases?.find((x) => x.phase === +m[1])?.items?.find((i) => i.type === 'lesson' && i.part === +m[2]);
-      if (!item) error(`${tr.track} ${l.id}`, `no V3 lesson item in ${name}`);
+      if (!item) error(`${tr.track} ${l.id}`, `no lesson item in ${name}`);
     }
   }
 }
 
-console.log(`\n${v3Files.length} V3 files, ${errors} errors, ${warnings} warnings.`);
+console.log(`\n${lessonFiles.length} lesson files, ${errors} errors, ${warnings} warnings.`);
 process.exit(errors ? 1 : 0);

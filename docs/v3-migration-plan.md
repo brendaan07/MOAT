@@ -705,7 +705,7 @@ Target (names from expo-web; adjust to V3):
   - list anything you deliberately kept in the commit message
 - Rewrite `README.md` along expo-web's README:
   - project structure table for the new folders
-  - how a track is defined (the registry, the V3 file, the track file, the id rule, the validator)
+  - how a track is defined (the registry, the lesson file, the track file, the id rule, the validator)
   - how to add a track
   - web build and Vercel
   - Remove the October-2026 notes that are no longer true.
@@ -953,3 +953,18 @@ Each step adds here what it found or left for a later step (file, why, which ste
   a "+20 daily goal reached" tag. Checked in the browser: 594 s + one lesson paid 50 + 30 + 20.
   On Healthcare and Finance the fallback reads "Text and formatting / New skill: Text and formatting." because those
   track files use the same text for `project` and `skill`.
+- (step 3.5) Names. No `_updated` file is left: `useTrackStore`, `MainTabs`, `OnboardingScreen`, `TrackFlowScreen`,
+  `TrackPathScreen`, `TrackPhaseScreen` (was `TrackHomeScreen`), `assets/content/track_bio_r.json`. Lesson files lost
+  `_v3` (user decision): `healthcare_python.json` etc., with their `CONTENT` keys; the registry field `v3File` is now
+  `lessonFile`, and the validator takes its lesson files from `TRACKS` instead of the `_v3` suffix. Images follow
+  expo-web's mapping (`blob_<mood>.png`, `robot_logo_filled*.png`; its logo swap is a no-op, the two files were
+  identical), `app.json`'s favicon follows, and `BundleImage` looks names up directly. `scripts/generate-image-maps.mjs`
+  writes `utils/images.ts` and `utils/lessonImages.ts` from `assets/images` and lists byte-identical files: the 43
+  duplicate Finance device images are gone (the content points at the one copy kept, the first by name), as are
+  `blob.png` and `robot_logo_filled_neutral.png` (copies of `blob_wink.png` and `robot_logo_filled.png`; nothing used
+  them). Vague names: `Ctx` → `AppStoreContext`/`TrackStoreContext`, `L` → `look`, plus `u`, `F`, `a`, `s`, `r` where
+  they spanned a component; `v` (animated values), `p` (store progress) and `q` (question props) stay, as in expo-web.
+  Version words are gone from code and comments; the storage keys `moat.progress.v1`/`moat.track.v1` stay (renaming
+  them would drop saved progress). Left for 3.6: Swift file names in comments, the README's older sections, and
+  `docs/HANDOFF_healthcare_v3.md`/`docs/INTEGRATION_moat4new.md`, which name files as they were then (kept unedited per
+  the step 1 decision). Still bundled but unused: `robot_logo_filled_<mood>.png` (kept as the app logo set, per 3.1).

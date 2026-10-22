@@ -3,7 +3,7 @@
 import { RunResult, creditedBolts } from '../types/models';
 import type { TrackQuestion } from '../content/types';
 import { useAppStore } from './useAppStore';
-import { useTrackStore } from './useTrackStore_updated';
+import { useTrackStore } from './useTrackStore';
 import { goalBonus } from '../utils/progressRules';
 
 /** Returns a function that finishes a run started at `startedAt` (Date.now()) and gives its result. */

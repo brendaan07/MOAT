@@ -3,7 +3,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { C } from '../utils/theme';
-import TrackPathScreen from '../screens/track/TrackPathScreen_updated';
+import TrackPathScreen from '../screens/track/TrackPathScreen';
 import WorkshopScreen from '../screens/WorkshopScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 

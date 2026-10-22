@@ -91,14 +91,10 @@ export function ChunkyButton({
   );
 }
 
-/** Finds a bundled picture: the new "_updated" version first, then the original name (BundleImage). */
-function imageSource(name: string): number | undefined {
-  return IMAGES[name + '_updated'] ?? IMAGES[name];
-}
 
-/** A bundled picture by name (the "_updated" version first); an empty box when the name is unknown. */
+/** A bundled picture by name (see utils/images.ts); an empty box when the name is unknown. */
 export function BundleImage({ name, style, resizeMode = 'contain' }: { name: string; style?: StyleProp<ImageStyle>; resizeMode?: ImageResizeMode }) {
-  const src = imageSource(name);
+  const src = IMAGES[name];
   if (!src) return <View style={style as StyleProp<ViewStyle>} />;
   return <Image source={src} style={style} resizeMode={resizeMode} accessibilityIgnoresInvertColors />;
 }

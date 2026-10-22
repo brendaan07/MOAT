@@ -18,12 +18,12 @@ export function Answers({ q, looks, pick }: { q: PlayerQuestion; looks: Record<s
   const opts = q.opts ?? [];
   const labels = opts.map((o) => o.label);
   const press = (o: { id: string; label: string }, style: StyleProp<ViewStyle>, textSize: number, inner?: React.ReactNode) => {
-    const L = looks[o.id];
+    const look = looks[o.id];
     return (
-      <Pressable key={o.id} onPress={() => pick(o.id)} accessibilityRole="button" accessibilityState={{ selected: L.bg === C.lime && !L.ok }} style={(s) => [style, { backgroundColor: L.bg, opacity: L.op }, pressDown(s)]}>
+      <Pressable key={o.id} onPress={() => pick(o.id)} accessibilityRole="button" accessibilityState={{ selected: look.bg === C.lime && !look.ok }} style={(s) => [style, { backgroundColor: look.bg, opacity: look.op }, pressDown(s)]}>
         {inner ?? (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-            {(L.ok || L.x) && <Tick ok={L.ok} />}
+            {(look.ok || look.x) && <Tick ok={look.ok} />}
             <Text style={monoBold(textSize)}>{o.label}</Text>
           </View>
         )}

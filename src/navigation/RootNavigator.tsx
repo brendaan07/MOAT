@@ -4,14 +4,14 @@ import { View } from 'react-native';
 import { NavigationContainer, DefaultTheme, LinkingOptions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppStore } from '../hooks/useAppStore';
-import { useTrackStore } from '../hooks/useTrackStore_updated';
+import { useTrackStore } from '../hooks/useTrackStore';
 import { hasTrack } from '../content/tracks';
 import { C } from '../utils/theme';
-import MainTabs from './MainTabs_updated';
+import MainTabs from './MainTabs';
 import SplashScreen from '../screens/SplashScreen';
-import OnboardingScreen from '../screens/OnboardingScreen_updated';
-import TrackFlowScreen from '../screens/track/TrackFlowScreen_updated';
-import TrackHomeScreen from '../screens/track/TrackHomeScreen_updated';
+import OnboardingScreen from '../screens/OnboardingScreen';
+import TrackFlowScreen from '../screens/track/TrackFlowScreen';
+import TrackPhaseScreen from '../screens/track/TrackPhaseScreen';
 
 export type RootStackParamList = {
   Main: undefined;
@@ -54,7 +54,7 @@ export default function RootNavigator() {
       <NavigationContainer theme={theme} linking={linking} documentTitle={{ formatter: () => 'MOAT' }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main" component={MainTabs} />
-          <Stack.Screen name="TrackPhase" component={TrackHomeScreen} />
+          <Stack.Screen name="TrackPhase" component={TrackPhaseScreen} />
           <Stack.Screen name="TrackFlow" component={TrackFlowScreen} options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
         </Stack.Navigator>
       </NavigationContainer>

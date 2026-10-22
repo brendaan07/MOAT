@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-// Converts a V1 general lesson file (assets/content/lessons_*.json) into a V3 file and its track file (plan step 2b.2).
-// Usage: node scripts/convert-v1.mjs <v1 name> <v3 name> <track name> <app prefix> <item prefix> <track title> <language> <area>
-//   e.g. node scripts/convert-v1.mjs lessons_general general_python_v3 track_gen_py gen_py GenPy "General Python" Python General
+// Converts a V1 general lesson file (assets/content/lessons_*.json, deleted in step 3.1; recover with git show 14e1e03:<path>)
+// into a lesson file and its track file (plan step 2b.2).
+// Usage: node scripts/convert-v1.mjs <v1 name> <lesson name> <track name> <app prefix> <item prefix> <track title> <language> <area>
+//   e.g. node scripts/convert-v1.mjs lessons_general general_python track_gen_py gen_py GenPy "General Python" Python General
 // Restructure only (2b.0): keeps the V1 lessons as they are (4 per phase, no checkpoint), maps what V1 has, and rewrites
 // the V1-only kinds to the closest V3 kind:
 //   choice with ___ -> fill; other choice -> predict; judge -> predict (True/False); bug -> fix;

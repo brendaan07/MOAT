@@ -13,11 +13,11 @@ import { Tick } from './Answers';
 export function FixPaper({ q, line, fix, setLine, setFix, checked, right, dark }: {
   q: PlayerQuestion; line: string | null; fix: string | null; setLine: (id: string | null) => void; setFix: (id: string) => void; checked: boolean; right: boolean; dark: boolean;
 }) {
-  const F = q.fix!;
-  const longest = Math.max(...F.lines.map((l) => l.code.length));
+  const script = q.fix!;
+  const longest = Math.max(...script.lines.map((l) => l.code.length));
   const size = longest <= 26 ? 14 : 13;
-  const opts = line ? F.byLine[line] ?? [] : [];
-  const n = (id: string) => F.lines.findIndex((l) => l.id === id) + 1;
+  const opts = line ? script.byLine[line] ?? [] : [];
+  const n = (id: string) => script.lines.findIndex((l) => l.id === id) + 1;
   return (
     <View style={{ gap: 12 }}>
       <View style={{ borderWidth: BORDER, borderColor: C.red, borderRadius: 20, overflow: 'hidden', backgroundColor: C.card }}>
@@ -29,7 +29,7 @@ export function FixPaper({ q, line, fix, setLine, setFix, checked, right, dark }
           <Text style={[body(11, true), { color: C.muted, width: 28, textAlign: 'center' }]}>Line</Text>
           <Text style={[body(11, true), { color: C.muted }]}>Code: tap the line with the bug</Text>
         </View>
-        {F.lines.map((l, i) => {
+        {script.lines.map((l, i) => {
           const sel = line === l.id;
           if (line && !sel && !l.given && !checked && opts.length > 0) return null; // the other lines fold away, unless the tapped line has nothing to change
           const bg = l.given ? C.successSheet : checked && sel ? (right ? C.lime : C.peach) : sel ? C.highlight : 'transparent';

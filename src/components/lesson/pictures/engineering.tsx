@@ -7,7 +7,7 @@ import { C, body, monoBold } from '../../../utils/theme';
 import type { BatteryPicture, CircuitPicture, GaugePicture } from '../../../content/types';
 import { BAD, LIT, PictureState, Result, resolve, useIdle, usePlay } from './motion';
 
-/* ------------------------------------------------------------------ Engineering: circuit, battery, gauge (ported from picturesV2) */
+/* ------------------------------------------------------------------ Engineering: circuit, battery, gauge */
 /** A battery and its resistors in a loop. State: [current in A, text]; current flows round the wire, faster for more amps. */
 export function Circuit({ spec, state, pick }: { spec: CircuitPicture; state: PictureState; pick: string | null }) {
   const volts: number = spec.args[0];

@@ -7,7 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../../hooks/useAppStore';
-import { useTrackStore } from '../../hooks/useTrackStore_updated';
+import { useTrackStore } from '../../hooks/useTrackStore';
 import { useScrollToCurrent } from '../../hooks/useScrollToCurrent';
 import { BundleImage, Card, FullScreenPicture } from '../../components/ui';
 import { StatChipsRow } from '../../components/StatChipsRow';

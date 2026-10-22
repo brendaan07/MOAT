@@ -1,5 +1,5 @@
 // The only place the bundled JSON is read: it builds the learner's track and the lesson player's lessons from the
-// track files and V3 files the TRACKS registry names.
+// track files and lesson files the TRACKS registry names.
 import { CONTENT } from '../utils/content';
 import { TRACKS, TrackEntry, codeLangOf, trackFor } from '../content/tracks';
 import type { ContentFile, Item, PlayerLesson, PlayerQuestion, Track, TrackFile, TrackQuestion } from '../content/types';
@@ -9,19 +9,19 @@ const contentFile = (name: string) => CONTENT[name] as ContentFile | undefined;
 /** An item's questions as progress counts them, under the ids the lesson player records (<itemId>_q<n>). */
 const progressQuestions = (it: Item): TrackQuestion[] => it.questions.map((q, i) => ({ id: `${it.id}_q${i + 1}`, kind: q.kind }));
 
-/** The learner's track: the track file holds the path (phases, checkpoint text, project code); the V3 file holds the
- *  lessons. Lessons come from the V3 lesson items, ids <prefix>_p<phase>_l<part>, with their questions filled in so
+/** The learner's track: the track file holds the path (phases, checkpoint text, project code); the lesson file holds
+ *  the lessons. Lessons come from its lesson items, ids <prefix>_p<phase>_l<part>, with their questions filled in so
  *  stars, the phase gate and the path count them. The phase checkpoint takes its questions from the phase's checkpoint
  *  item; a phase without one (the general tracks) has a checkpoint with no questions, which the path hides. */
 export function loadTrack(studyArea: string, language: string): Track | null {
   const entry = trackFor(studyArea, language);
   const file = entry ? (CONTENT[entry.trackFile] as TrackFile | undefined) : undefined;
   if (!entry || !file || !Array.isArray(file.phases)) return null;
-  const v3 = contentFile(entry.v3File)?.phases ?? [];
+  const lessonPhases = contentFile(entry.lessonFile)?.phases ?? [];
   return {
     ...file,
     phases: file.phases.map((p) => {
-      const items = v3.find((x) => x.phase === p.number)?.items ?? [];
+      const items = lessonPhases.find((x) => x.phase === p.number)?.items ?? [];
       const lessons = items.filter((i) => i.type === 'lesson').sort((a, b) => a.part - b.part)
         .map((it) => ({ id: `${entry.prefix}_p${p.number}_l${it.part}`, part: it.part, title: it.title, questions: progressQuestions(it) }));
       const cps = items.filter((i) => i.type === 'checkpoint');
@@ -31,7 +31,7 @@ export function loadTrack(studyArea: string, language: string): Track | null {
   };
 }
 
-/** A V3 lesson or checkpoint in the lesson player's shape. */
+/** A lesson file's lesson or checkpoint in the lesson player's shape. */
 function playerLesson(it: Item, phase: number, phaseTitle: string, tr: TrackEntry, parts: number): PlayerLesson {
   const cp = it.type === 'checkpoint';
   const questions = it.questions.map((q, i): PlayerQuestion => {
@@ -76,7 +76,7 @@ let lessons: Record<string, PlayerLesson> | null = null;
 export function lessonFor(id: string): PlayerLesson | null {
   if (!lessons) {
     lessons = {};
-    for (const tr of TRACKS) for (const ph of contentFile(tr.v3File)?.phases ?? []) {
+    for (const tr of TRACKS) for (const ph of contentFile(tr.lessonFile)?.phases ?? []) {
       const parts = ph.items.filter((x) => x.type === 'lesson').length;
       for (const it of ph.items) {
         const l = playerLesson(it, ph.phase, ph.title, tr, parts);

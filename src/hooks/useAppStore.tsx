@@ -17,7 +17,7 @@ interface AppStoreValue {
   resetProgress: () => void;
 }
 
-const Ctx = createContext<AppStoreValue | null>(null);
+const AppStoreContext = createContext<AppStoreValue | null>(null);
 
 /** Loads saved progress and provides it, with its actions, to the app. */
 export function AppStoreProvider({ children }: { children: React.ReactNode }) {
@@ -87,12 +87,12 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     editAnswers,
     resetProgress,
   };
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+  return <AppStoreContext.Provider value={value}>{children}</AppStoreContext.Provider>;
 }
 
 /** The learner's profile progress and its actions. */
 export function useAppStore() {
-  const v = useContext(Ctx);
+  const v = useContext(AppStoreContext);
   if (!v) throw new Error('useAppStore must be used inside AppStoreProvider');
   return v;
 }

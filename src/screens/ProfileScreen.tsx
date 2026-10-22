@@ -4,7 +4,7 @@ import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Te
 import { SafeAreaView } from '../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
 import { useAppStore } from '../hooks/useAppStore';
-import { useTrackStore } from '../hooks/useTrackStore_updated';
+import { useTrackStore } from '../hooks/useTrackStore';
 import { DAILY_GOAL_MINUTES } from '../utils/rewards';
 import { BundleImage, Card, ChunkyButton, DottedBackground } from '../components/ui';
 import { FlameIcon } from '../components/icons';
@@ -13,7 +13,7 @@ import { C, body, heading } from '../utils/theme';
 import { robotImage } from '../types/models';
 import { DayKey } from '../utils/dayKey';
 
-/** Profile v2 (ProfileView_updated.swift): streak hero, stats row, 3 by 3 badges, then every setting from the old Profile. */
+/** The Profile tab: streak hero, stats row, 3 by 3 badges, then every setting from the old Profile. */
 export default function ProfileScreen() {
   const store = useAppStore();
   const track = useTrackStore();

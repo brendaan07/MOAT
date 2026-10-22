@@ -17,7 +17,7 @@ import { FixPaper } from '../../../components/lesson/FixPaper';
 import { FeedbackSheet } from '../../../components/lesson/FeedbackSheet';
 import { BORDER, C, body, heading, monoBold } from '../../../utils/theme';
 import { useFinishRun } from '../../../hooks/useFinishRun';
-import { useTrackStore } from '../../../hooks/useTrackStore_updated';
+import { useTrackStore } from '../../../hooks/useTrackStore';
 import type { RunResult } from '../../../types/models';
 import { BOLTS_PER_QUESTION } from '../../../utils/rewards';
 import type { PlayerLesson, PlayerQuestion, QuestionKind, TrackQuestion } from '../../../content/types';
@@ -64,13 +64,13 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
   const looks = useMemo(() => {
     const out: Record<string, Look> = {};
     for (const o of all) {
-      let L: Look = { bg: cp ? [C.hintBlue, C.highlight, C.peach, C.pink][all.findIndex((x) => x.id === o.id) % 4] : C.card, op: 1, ok: false, x: false };
+      let look: Look = { bg: cp ? [C.hintBlue, C.highlight, C.peach, C.pink][all.findIndex((x) => x.id === o.id) % 4] : C.card, op: 1, ok: false, x: false };
       if (checked) {
-        if (o.id === q.correct) L = { ...L, bg: C.lime, ok: true };
-        else if (o.id === pick) L = { ...L, bg: C.peach, x: true };
-        else L = { ...L, op: 0.45 };
-      } else if (o.id === pick) L = { ...L, bg: C.lime };
-      out[o.id] = L;
+        if (o.id === q.correct) look = { ...look, bg: C.lime, ok: true };
+        else if (o.id === pick) look = { ...look, bg: C.peach, x: true };
+        else look = { ...look, op: 0.45 };
+      } else if (o.id === pick) look = { ...look, bg: C.lime };
+      out[o.id] = look;
     }
     return out;
   }, [q, pick, checked]); // eslint-disable-line react-hooks/exhaustive-deps
