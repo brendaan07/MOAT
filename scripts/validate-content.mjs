@@ -18,6 +18,11 @@ const v3Files = Object.keys(files).filter((n) => n.endsWith('_v3'));
 const loader = read('src/services/contentLoader_updated.ts');
 const tracks = [...loader.matchAll(/name === '([^']+)'\) return withV3\(t, '([^']+)', '([^']+)'/g)].map((m) => ({ track: m[1], file: m[2], prefix: m[3] }));
 
+// Every picture type the app can draw: the keys of RENDERERS in picturesV3.tsx.
+const registry = read('src/components/picturesV3.tsx').match(/const RENDERERS[^\n]*= \{\n([\s\S]*?)\n\};/);
+if (!registry) throw new Error('RENDERERS not found in src/components/picturesV3.tsx');
+const renderers = new Set([...registry[1].replace(/\/\/.*$/gm, '').matchAll(/(\w+):/g)].map((m) => m[1]));
+
 // Every image the app can show: the keys of V3_IMAGES.
 const images = new Set([...read('src/utils/imageMapV3.ts').matchAll(/^\s*'([^']+)':\s*require\(/gm)].map((m) => m[1]));
 const IMAGE = /\.(png|webp|jpe?g|gif)$/i;
@@ -37,6 +42,7 @@ function imagePaths(o, out = []) {
 
 function checkPicture(where, q, pic) {
   for (const k of ['type', 'label', 'correct_state']) if (missing(pic[k])) error(where, `picture has no ${k}`);
+  if (pic.type && !renderers.has(pic.type)) error(where, `picture type "${pic.type}" has no renderer in RENDERERS (src/components/picturesV3.tsx)`);
   const keys = new Set(Object.keys(pic.states?.wrong_by_option ?? {}));
   // Predict/fill: the player passes the picked option id. Fix: it passes the tapped line id, and Check needs a
   // replacement picked, so a wrong state shows for every line that offers a wrong replacement (the buggy line included).

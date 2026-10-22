@@ -774,3 +774,9 @@ Each step adds here what it found or left for a later step (file, why, which ste
   Keep `assets/images/fruits/` (used by the V3 belt).
 - (step 2a.4.5) On a 5-phase track the final checkpoint reads "Cycle 1 complete / Start cycle 2", which is right. The
   "Start phase 2" wording noted for 2a.1 only affects tracks shorter than 5 phases (Finance).
+- (step 2a.5, user decisions) Healthcare pictures fixed. 54 text pictures (`labelcard`, `stays_pic`) now carry their
+  answer in `correct_state` (the unread `go_text`/`go_txt`/`icon`/`stays`/`extra` fields are gone). The 18 number
+  pictures (`trial`, `coverage`, `ldl` in Healthcare R phase 1) are now `ratebars`, with captions from running the R
+  code. `picturesV3.tsx` has an explicit `RENDERERS` registry for all 30 picture types; the validator reads it and
+  rejects any type without a renderer. All five V3 files: 0 errors, 0 warnings. `trial`, `coverage` and `ldl` are no
+  longer used anywhere: drop their `TYPE_ICON` entries in 3.3.

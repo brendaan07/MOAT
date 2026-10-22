@@ -599,11 +599,23 @@ function StateCardV3({ spec, state, pick }: { spec: any; state: V3State; pick: s
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 /* ------------------------------------------------------------------ entry point */
+/** Every picture type the content may use, and what draws it. scripts/validate-content.mjs reads these keys and rejects
+ *  any other type, so a new type needs an entry here (and its renderer) before content can use it. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RENDERERS: Record<string, React.ComponentType<{ spec: any; state: V3State; pick: string | null }>> = {
+  tiles: Tiles, ratebars: RateBars, dots: Dots, steps: Steps, strands: Strands, thermo: Thermo,
+  circuit: Circuit, battery: Battery, gauge: Gauge, belt: Belt,
+  // a device whose screen counts up through strip images
+  calc: DeviceV3, till: DeviceV3, device: DeviceV3,
+  // the picture's icon with the result as a caption
+  balance: StateCardV3, change: StateCardV3, dftable: StateCardV3, drain: StateCardV3, flowmeter: StateCardV3, gcs_chart: StateCardV3,
+  grid2: StateCardV3, labelcard: StateCardV3, lamps: StateCardV3, piggy: StateCardV3, stays_pic: StateCardV3, transfusion: StateCardV3,
+  ward: StateCardV3, wards: StateCardV3,
+};
+
 export function PictureV3({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
-  const known = { tiles: Tiles, ratebars: RateBars, dots: Dots, steps: Steps, strands: Strands, thermo: Thermo, circuit: Circuit, battery: Battery, gauge: Gauge, belt: Belt }[spec.type as 'tiles'];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const a = (spec as any).assets;
-  const P = known ?? (a?.strips || a?.device?.strips ? DeviceV3 : StateCardV3);
+  // Unknown types still get the icon card, so a content mistake never blanks a lesson; the validator catches them first.
+  const P = RENDERERS[spec.type] ?? StateCardV3;
   return (
     <View accessible accessibilityRole="image" accessibilityLabel={spec.label}>
       <Shake state={state} pick={pick}>
