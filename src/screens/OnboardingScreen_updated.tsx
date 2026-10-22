@@ -95,10 +95,12 @@ export default function OnboardingScreen() {
   const isBio = studyArea === BIO;
   /** Languages with project lessons for this field, shown first and marked on step 2. */
   const trackLangs = TRACK_LANGUAGES[studyArea] ?? [];
+  /** "Python, R and SQL": the track languages as one phrase. */
+  const langList = trackLangs.length > 1 ? `${trackLangs.slice(0, -1).join(', ')} and ${trackLangs[trackLangs.length - 1]}` : trackLangs.join('');
   const ordered = [...LANGUAGES].sort((a, b) => Number(trackLangs.includes(b.name)) - Number(trackLangs.includes(a.name)));
   const fieldLine = trackLangs.length === 0
     ? `${studyArea} uses general lessons in every language for now.`
-    : `${studyArea}: project lessons in ${trackLangs.join(' and ')}.`;
+    : `${studyArea}: project lessons in ${langList}.`;
 
   useEffect(() => {
     const p = store.progress;
@@ -145,7 +147,7 @@ export default function OnboardingScreen() {
               : trackLangs.includes(language)
                 ? `You'll build ${studyArea.toLowerCase()} projects in ${language}, one step at a time.`
                 : trackLangs.length
-                  ? `${language} uses the general lessons. Project lessons for ${studyArea} are in ${trackLangs.join(' and ')}.`
+                  ? `${language} uses the general lessons. Project lessons for ${studyArea} are in ${langList}.`
                   : language !== 'Python' ? `${language} starts with Phase 1. More phases are coming soon.` : ''}
           </Text>
         </ScrollView>

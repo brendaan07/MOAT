@@ -816,3 +816,23 @@ Each step adds here what it found or left for a later step (file, why, which ste
   code. `picturesV3.tsx` has an explicit `RENDERERS` registry for all 30 picture types; the validator reads it and
   rejects any type without a renderer. All five V3 files: 0 errors, 0 warnings. `trial`, `coverage` and `ldl` are no
   longer used anywhere: drop their `TYPE_ICON` entries in 3.3.
+- (step 2b.2) All 8 general tracks are V3, converted by `scripts/convert-v1.mjs` (restructure only, per the 2b.0
+  decisions): `general_python_v3`, `physics_python_v3`, `arts_python_v3`, `general_r_v3`, `general_sql_v3`,
+  `general_javascript_v3`, `general_matlab_v3`, `general_java_v3`, each with its `track_*.json`. Their V3 `track` block
+  declares `lessons_per_phase: 4` and `checkpoints: false`, and the validator checks that shape. Questions have no
+  pictures, per-option feedback or notes yet; the player falls back without them. The field chip reads "Coding".
+  Answers checked by `scripts/run-answers.mjs` (Python, R, SQL against `scripts/fixtures/sql_menu.sql`, JavaScript,
+  Java); MATLAB was read by hand ("not run"). All 13 V3 files: 0 errors, 0 warnings.
+- (step 2b.2) Fixed for 4-lesson phases: the path banner's "N of 5" (now lessons + checkpoint), the lesson header's
+  "part N of 5" (now the phase's lesson count), and the phase card's last-phase line (now the track's phase count).
+  Still hardcoded, for 3.4: `CheckpointIntro` in `TrackResults.tsx` says "Cycle 2" only after phase 5 (general tracks
+  have no checkpoints, so it isn't reached yet).
+- (step 2b.2) Content to revisit when the general lessons are rewritten (the converter kept V1 as it was):
+  - The player never shuffles options, and every V3 file puts the correct answer first (id `a`), so in every track,
+    not just the general ones, the right option is always the first button. Same for a fix's replacements.
+  - Former `build` questions blank one token of a line that can't run alone: a bare `for …:` / `if …:` header (no
+    body), or an update like `score = score - 3` with no earlier `score`. The marked answers are right.
+  - Former `match` questions became "Which line does this: …?" predicts with no code to run.
+  - Some answers keep V1's friendly format rather than the real output, for example R's "Check in, then Check out"
+    for `[1] "Check in"` / `[1] "Check out"`, and SQL's `4.50` for sqlite's `4.5`.
+  - General R is healthcare-themed (a ward), as decided in 2b.0 (keep the current themes).
