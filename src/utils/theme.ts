@@ -47,7 +47,7 @@ export const BORDER = 2.5;
 const mono = Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' });
 
 /** Font files loaded in App.tsx, named by their PostScript names. */
-export const FONTS = {
+const FONTS = {
   heading: 'Baloo2-ExtraBold',
   body: 'AtkinsonHyperlegible-Regular',
   bodyBold: 'AtkinsonHyperlegible-Bold',
@@ -57,8 +57,7 @@ export const FONTS = {
 export const heading = (size: number): TextStyle => ({ fontSize: size, fontFamily: FONTS.heading, color: C.navy });
 /** Body text: Atkinson Hyperlegible, regular or bold. */
 export const body = (size: number, bold = false): TextStyle => ({ fontSize: size, fontFamily: bold ? FONTS.bodyBold : FONTS.body, color: C.navy });
-/** Theme.code (semibold monospaced) and TK.mono (bold monospaced). */
-export const code = (size: number): TextStyle => ({ fontSize: size, fontFamily: mono, fontWeight: '600', color: C.navy });
+/** Bold monospaced code text (TK.mono). */
 export const monoBold = (size: number): TextStyle => ({ fontSize: size, fontFamily: mono, fontWeight: '700', color: C.navy });
 /** The MOAT wordmark font, registered as "Horizon-Bold" like FontLoader in the Swift app. */
 export const wordmark = (size: number): TextStyle => ({ fontSize: size, fontFamily: 'Horizon-Bold' });

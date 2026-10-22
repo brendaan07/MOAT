@@ -1,30 +1,18 @@
-import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Course, Lesson, Phase, RobotForm, UserProgress, defaultProgress } from '../types/models';
+import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { UserProgress, defaultProgress } from '../types/models';
 import { ProgressStorage } from '../storage/progressStorage';
 import { DayKey } from '../utils/dayKey';
 
 interface AppStoreValue {
   hydrated: boolean;
   progress: UserProgress;
-  course: Course;
-  pendingEvolution: RobotForm | null;
-  orderedLessons: Lesson[];
-  currentLesson: Lesson | null;
   displayStreak: number;
   lessonsToday: number;
-  isCompleted: (lesson: Lesson) => boolean;
-  isUnlocked: (lesson: Lesson) => boolean;
-  isPhaseStarted: (phase: Phase) => boolean;
-  completedCount: (phase: Phase) => number;
   finishOnboarding: (name: string, age: number, education: string, studyArea: string, language: string) => void;
   setName: (name: string) => void;
-  completeLesson: (lesson: Lesson, boltsEarned: number) => RobotForm | null;
   creditTrack: (bolts: number) => void;
-  equip: (form: RobotForm) => void;
   editAnswers: () => void;
   resetProgress: () => void;
-  clearPendingEvolution: () => void;
-  setPendingEvolution: (form: RobotForm | null) => void;
 }
 
 const Ctx = createContext<AppStoreValue | null>(null);
@@ -33,9 +21,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgressState] = useState<UserProgress>(defaultProgress());
   const progressRef = useRef(progress);
-  // The V1 general course. Every learner has a track now (plan 2b.3), so it stays empty; step 3.1 removes it.
-  const [course] = useState<Course>({ phases: [] });
-  const [pendingEvolution, setPendingEvolution] = useState<RobotForm | null>(null);
 
   /** Every change is saved, like the didSet on AppStore.progress. */
   const setProgress = useCallback((next: UserProgress) => {
@@ -58,26 +43,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  const orderedLessons = useMemo(() => course.phases.flatMap((p) => p.lessons), [course]);
-  const isCompleted = useCallback((l: Lesson) => progress.completedLessons.includes(l.id), [progress.completedLessons]);
-  /** A lesson opens once every lesson before it is done. */
-  const isUnlocked = useCallback(
-    (l: Lesson) => {
-      const i = orderedLessons.findIndex((x) => x.id === l.id);
-      if (i < 0) return false;
-      return orderedLessons.slice(0, i).every((x) => progress.completedLessons.includes(x.id));
-    },
-    [orderedLessons, progress.completedLessons],
-  );
-  const currentLesson = useMemo(
-    () => orderedLessons.find((l) => !progress.completedLessons.includes(l.id)) ?? null,
-    [orderedLessons, progress.completedLessons],
-  );
-  const isPhaseStarted = useCallback((phase: Phase) => (phase.lessons[0] ? isUnlocked(phase.lessons[0]) : false), [isUnlocked]);
-  const completedCount = useCallback(
-    (phase: Phase) => phase.lessons.filter((l) => progress.completedLessons.includes(l.id)).length,
-    [progress.completedLessons],
-  );
   /** The streak only counts if the learner practised today or yesterday. */
   const displayStreak =
     progress.lastActiveDay === DayKey.today() || progress.lastActiveDay === DayKey.yesterday() ? progress.streak : 0;
@@ -113,32 +78,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     u.todayLessons += 1;
   };
 
-  /** Records a finished lesson. Returns a new robot form if the learner just evolved. */
-  const completeLesson = useCallback(
-    (lesson: Lesson, boltsEarned: number): RobotForm | null => {
-      const u: UserProgress = { ...progressRef.current, completedLessons: [...progressRef.current.completedLessons], unlockedForms: [...progressRef.current.unlockedForms] };
-      bumpDay(u);
-      u.bolts += boltsEarned;
-      let newForm: RobotForm | null = null;
-      if (!u.completedLessons.includes(lesson.id)) {
-        u.completedLessons.push(lesson.id);
-        for (const phase of course.phases) {
-          if (!phase.lessons.some((l) => l.id === lesson.id)) continue;
-          const phaseDone = phase.lessons.every((l) => u.completedLessons.includes(l.id));
-          const form = phase.unlocksForm;
-          if (phaseDone && form && !u.unlockedForms.includes(form)) {
-            u.unlockedForms.push(form);
-            u.currentForm = form;
-            newForm = form;
-          }
-        }
-      }
-      setProgress(u);
-      return newForm;
-    },
-    [course, setProgress],
-  );
-
   /** Bolts from a track lesson go to the account only when it is finished; streak and daily count update. */
   const creditTrack = useCallback(
     (bolts: number) => {
@@ -150,13 +89,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     [setProgress],
   );
 
-  const equip = useCallback(
-    (form: RobotForm) => {
-      if (!progressRef.current.unlockedForms.includes(form)) return;
-      setProgress({ ...progressRef.current, currentForm: form });
-    },
-    [setProgress],
-  );
   const setName = useCallback((name: string) => setProgress({ ...progressRef.current, name: name.trim() }), [setProgress]);
   const editAnswers = useCallback(() => setProgress({ ...progressRef.current, hasOnboarded: false }), [setProgress]);
   const resetProgress = useCallback(() => {
@@ -167,26 +99,13 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const value: AppStoreValue = {
     hydrated,
     progress,
-    course,
-    pendingEvolution,
-    orderedLessons,
-    currentLesson,
     displayStreak,
     lessonsToday,
-    isCompleted,
-    isUnlocked,
-    isPhaseStarted,
-    completedCount,
     finishOnboarding,
     setName,
-    completeLesson,
     creditTrack,
-    equip,
     editAnswers,
     resetProgress,
-    clearPendingEvolution: () => setPendingEvolution(null),
-    // A finished lesson asks the Learn screen to celebrate an evolution once its modal has closed.
-    setPendingEvolution,
   };
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

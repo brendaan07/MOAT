@@ -6,7 +6,7 @@ import TrackPathScreen from '../screens/track/TrackPathScreen_updated';
 import WorkshopScreen from '../screens/WorkshopScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-export type TabParamList = { Learn: undefined; Workshop: undefined; Profile: undefined };
+type TabParamList = { Learn: undefined; Workshop: undefined; Profile: undefined };
 const Tab = createBottomTabNavigator<TabParamList>();
 
 /** The three tabs at the bottom (MainTabView_updated.swift). Learn is the track path: every learner has a track (plan 2b.3). */

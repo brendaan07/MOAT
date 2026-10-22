@@ -6,19 +6,18 @@ import { useAppStore } from '../../hooks/useAppStore';
 import { useTrackStore } from '../../hooks/useTrackStore_updated';
 import { Card, ChunkyButton, DottedBackground } from '../../components/ui';
 import { BoltIcon, FlameIcon, ProjectCard, RCodeLine, RobotFace, SegmentBar, StarIcon, StarsRow, WeekStrip, useCountUp } from '../../components/trackKit';
-import { BORDER, C, FONTS, body, heading } from '../../utils/theme';
+import { BORDER, C, body, heading } from '../../utils/theme';
 import { RunResult, TrackLesson, TrackPhase, isPerfect } from '../../types/models';
 import { DayKey } from '../../utils/dayKey';
 import { useReduceMotion } from '../../hooks/useReduceMotion';
 
 const Hero = ({ mood, size, dark = false }: { mood: 'hearts' | 'surprised' | 'wink'; size: number; dark?: boolean }) => {
-  const app = useAppStore();
   return (
     <View style={{ width: size, height: size, alignSelf: 'center' }}>
       <View style={{ position: 'absolute', left: 0, right: 0, top: dark ? 0 : 4, height: size, borderRadius: size / 2, backgroundColor: dark ? 'transparent' : C.navy }} />
       <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: C.sky, borderWidth: BORDER, borderColor: dark ? C.cream : C.navy }} />
       <View style={{ position: 'absolute', left: size * 0.04, top: -size * 0.08 }}>
-        <RobotFace form={app.progress.currentForm} mood={mood} width={size * 0.92} height={size * 1.1} />
+        <RobotFace mood={mood} width={size * 0.92} height={size * 1.1} />
       </View>
     </View>
   );
@@ -127,60 +126,6 @@ export function ProjectBuilt({ phase, onCheckpoint, onBack }: { phase: TrackPhas
   );
 }
 
-const TYPES: [string, string, keyof typeof Ionicons.glyphMap][] = [
-  ['Plan it', C.sun, 'flag'],
-  ['Order the code', C.sky, 'code-slash'],
-  ['Predict', C.lime, 'terminal'],
-  ['Debug', C.orange, 'search'],
-  ['Build it', C.hintBlue, 'cube'],
-];
-
-export function CheckpointIntro({ phase, onStart, onClose }: { phase: TrackPhase; onStart: () => void; onClose: () => void }) {
-  return (
-    <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
-      <DottedBackground navy />
-      <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 8 }}>
-        <Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="close" size={24} color={C.cream} />
-        </Pressable>
-        <View style={{ flex: 1, alignItems: 'center' }}>
-          <View style={{ paddingHorizontal: 10, paddingVertical: 2, borderRadius: 10, backgroundColor: C.sun, borderWidth: 2, borderColor: C.navy }}>
-            <Text style={body(14, true)}>Checkpoint {phase.number}</Text>
-          </View>
-        </View>
-        <View style={{ width: 44 }} />
-      </View>
-      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }} showsVerticalScrollIndicator={false}>
-        <Hero mood="surprised" size={100} dark />
-        <Text style={[heading(32), { color: C.cream, textAlign: 'center' }]} accessibilityRole="header">{phase.checkpoint.name}</Text>
-        <Text style={[body(15), { color: C.lavender, textAlign: 'center' }]}>5 harder questions. A new problem, using everything from phase {phase.number}.</Text>
-        <Card fill={C.hintBlue} radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 14, gap: 3 }}>
-          <Text style={heading(18)}>The problem</Text>
-          <Text style={body(15)}>{phase.checkpoint.problem}</Text>
-        </Card>
-        <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 14, gap: 4 }}>
-          <Text style={heading(18)}>What's inside</Text>
-          {TYPES.map(([name, color, icon], i) => (
-            <View key={name} style={{ flexDirection: 'row', alignItems: 'center', gap: 10, minHeight: 38 }}>
-              <View style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: color, borderWidth: 2, borderColor: C.navy, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name={icon} size={14} color={C.navy} />
-              </View>
-              <Text style={[body(15), { flex: 1 }]}>
-                <Text style={{ fontFamily: FONTS.bodyBold }}>{name}</Text> · {phase.checkpoint.questions[i]?.prompt ?? ''}
-              </Text>
-            </View>
-          ))}
-        </Card>
-        <Text style={[body(14), { color: C.lavender, textAlign: 'center' }]}>
-          {phase.number >= 5 ? 'Cycle 2 opens at 5 stars here and on every lesson.' : `Phase ${phase.number + 1} opens at 5 stars here and on every lesson.`}
-        </Text>
-      </ScrollView>
-      <View style={{ padding: 16 }}>
-        <ChunkyButton title="Start checkpoint" onPress={onStart} />
-      </View>
-    </SafeAreaView>
-  );
-}
 
 export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: TrackPhase; result: RunResult; onReplay: () => void; onDone: () => void }) {
   const track = useTrackStore();

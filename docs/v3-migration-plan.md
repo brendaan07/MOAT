@@ -857,3 +857,26 @@ Each step adds here what it found or left for a later step (file, why, which ste
   - The evolution trigger (`completeLesson` → `pendingEvolution` → `EvolutionScreen`), which only the general path
     fired (see 3.1, "Robot forms").
   - README rows for the Learn path and V1 lessons (3.6).
+- (step 3.1) V1 and V2 are gone. Deleted: `LearnScreen`, `LessonScreen`, `EvolutionScreen`, `track/TrackPlayer`,
+  `picturesV2`, `gameKit`, `codeJoin`, `apiClient` (with "Explain more" and `useBackendLessons`), every `lessons_*.json`,
+  `track_bio_r_lessons_v2.json`, `track_lessons_v2_more.json`, `CheckpointIntro`, the `Lesson`/`Evolution` routes and
+  links, the V1 `Course`/`Phase`/`Lesson`/`Question` types, and the V1 parts of `useAppStore` and `UserProgress`
+  (`completedLessons`, `unlockedForms`, `currentForm`; old saves keep them on disk until the next save, and loading
+  ignores them). The robot is always Blob (`robotImage(mood)`); the other forms' and the parts' pictures are deleted,
+  the Workshop shows only Blob, and the Profile has 8 badges (no "Hatched"). `TrackFlowScreen` has one path on the V3
+  player. `healthcare_design.json` moved to `docs/` (the three V3 files' `design` pointer and the two handoff docs
+  follow). `track_bio_r_updated.json` no longer holds V1 lesson questions or checkpoint `filename`/`problem` (both
+  empty). Unused exports were removed or made file-local. Backlog hashes filled in (`14e1e03` before 3.1, `048ec78`).
+  Left for later:
+  - 3.2: `TrackQuestion` and the other `Track*` types still describe V1 fields (`opts`, `lines`, `steps`, `style`,
+    `screen`…); only `id`, `kind`, `prompt`, `hint`, `ok` are filled now (by `v3Questions`). `TrackCheckpoint` still
+    requires the now-empty `filename`/`problem`.
+  - 3.3: the lesson kit's V2 names (`V2Lesson`, `V2Question`, `LessonPlayerV2`, `v2Lesson`, `fromV3`) and its
+    constant-only fields (`eq`, `goal`, `earlier`, `okTitle`) describe V3 content now; rename and split with the file.
+  - 3.6: README still lists `gameKit.tsx`, `LearnScreen`, `LessonScreen`, `EvolutionScreen`, `TrackPlayer`, the
+    Workshop forms and parts, and V1 lesson features.
+  - Behaviour change: two V3 fill questions blank a whole line (`XpP4L4`, `EpP4L4` q2). They used to go through V2's
+    build branch, which never showed the picked option in the line; now the line shows it like every other fill.
+  - Open question for the user: `expo-haptics` (in `package.json`) has no importer now. Only the deleted V1
+    `LessonScreen` and `TrackPlayer` buzzed on Check; the V3 player never has. Either add haptics to the V3 player or
+    remove the dependency (3.6).

@@ -10,7 +10,7 @@ The user received a content pack to integrate: `/Users/brendanchong/Downloads/mo
 - `assets/content/healthcare_python_v3.json`: Healthcare Python, 4 phases, 40 items, 160 questions
 - `assets/content/healthcare_r_v3.json`: Healthcare R, 4 phases, 40 items, 160 questions
 - `assets/content/healthcare_core_python_v3.json` / `healthcare_core_r_v3.json`: 1 phase each, 10 items, 40 questions. These replace the current `track_health_py.json` / `track_health_r.json`.
-- `assets/content/healthcare_design.json`: measured layout, animation timings, bolts, confetti, 23 keyframes (reference spec, not code)
+- `docs/healthcare_design.json`: measured layout, animation timings, bolts, confetti, 23 keyframes (reference spec, not code)
 - `assets/images/healthcare/{icons,layers,devices}/`: 17 icons, catheter bag and jug layers, device count-up strips (`.webp`)
 
 Totals: 100 items (50 lessons + 50 checkpoints), 400 questions (200 predict, 150 fix, 50 fill). There are no new subjects: it is new and expanded Healthcare learning paths, plus new picture types.

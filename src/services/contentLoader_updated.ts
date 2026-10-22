@@ -1,42 +1,12 @@
-import { Course, Track, TrackQuestion } from '../types/models';
+import { Track, TrackQuestion } from '../types/models';
 import { CONTENT } from '../utils/content_updated';
 import { canonicalArea } from '../utils/studyAreas';
-
-/** "Physics & maths" becomes "lessons_physics_and_maths". Unused since 2b.3 (every learner has a track); removed in 3.1. */
-export function fileName(studyArea: string): string {
-  return `lessons_${canonicalArea(studyArea).toLowerCase().replace(/&/g, 'and').replace(/ /g, '_')}`;
-}
-
-export function languageFileName(language: string): string | null {
-  return { R: 'lessons_r', SQL: 'lessons_sql', JavaScript: 'lessons_javascript', MATLAB: 'lessons_matlab', Java: 'lessons_java' }[language] ?? null;
-}
-
-function load(name: string): Course | null {
-  const data = CONTENT[name] as Course | undefined;
-  if (!data || !Array.isArray(data.phases)) {
-    if (__DEV__) console.warn(`MOAT warning: ${name}.json is missing or could not be read.`);
-    return null;
-  }
-  return data;
-}
-
-/** ContentLoader.loadBundled: language files first, then the study-area file, then the default. Unused since 2b.3; removed in 3.1. */
-export function loadBundled(studyArea = 'Health Sciences', language = 'Python'): Course {
-  const lang = languageFileName(language);
-  if (lang) {
-    const course = load(lang);
-    if (course) return course;
-  }
-  const course = load(fileName(studyArea));
-  if (course) return course;
-  return load('lessons_general') ?? { phases: [] };
-}
 
 /** The languages each field has a track in. Onboarding offers only these (plan 2b.0), so every learner has a track. */
 export const TRACK_LANGUAGES: Record<string, string[]> = { 'Biology research': ['R'], Engineering: ['Python'], Healthcare: ['Python', 'R'], 'Business & finance': ['Python'], General: ['Python', 'R', 'SQL', 'JavaScript', 'MATLAB', 'Java'], 'Physics & maths': ['Python'], 'Arts & humanities': ['Python'] };
 
 /** The track file for a field and language, or null when that pair has no track (onboarding sends the learner back to pick). */
-export function trackFileFor(studyArea: string, language: string): string | null {
+function trackFileFor(studyArea: string, language: string): string | null {
   const area = canonicalArea(studyArea);
   if (area === 'Biology research' && language === 'R') return 'track_bio_r_updated';
   if (area === 'Engineering' && language === 'Python') return 'track_eng_py';

@@ -14,8 +14,8 @@ one per phase; confirm it when this is built.
 - Finishing that phase ran `useAppStore.completeLesson`, which unlocked and equipped the form and set `pendingEvolution`.
   `LearnScreen` then opened `EvolutionScreen` once the lesson screen closed.
 - Track lessons only call `creditTrack` (bolts and streak), so track learners never evolved.
-- The cleanup (plan step 3.1) deletes that trigger and `EvolutionScreen`, and keeps `ROBOT_FORMS`, `currentForm`,
-  `unlockedForms` and `equip`.
+- The cleanup (plan step 3.1) deleted that trigger, `EvolutionScreen` and choosing a form (see 4). The robot is always
+  Blob.
 
 **To build it:**
 1. Track files: add `unlocksForm?: RobotForm` per phase, and add it to the `TrackPhase` type (the TRACKS registry may
@@ -24,11 +24,12 @@ one per phase; confirm it when this is built.
    `track.record`), add it to `unlockedForms`, set `currentForm`, and queue the evolution.
 3. Show the evolution screen after the checkpoint result closes. Use the same pattern as before: a pending value in the
    store, read by the track path screen's `useFocusEffect`.
-4. Step 3.1 also removes choosing a form: `unlockedForms`, `currentForm`, `equip`, `ROBOT_FORMS`/`ROBOT_NAMES` and the
+4. Step 3.1 also removed choosing a form: `unlockedForms`, `currentForm`, `equip`, `ROBOT_FORMS`/`ROBOT_NAMES` and the
    pictures for builder, rover, gardener, orb and cat. Restore those, then show the locked forms in the Workshop with how
    to earn each one. Profile: bring back the "Hatched" badge.
-5. Recover the old screen with `git show <step-3.1 commit>^:src/screens/EvolutionScreen.tsx`, and the other files and
-   pictures the same way. Fill in the hash when step 3.1 lands: `TBD`.
+5. Recover the old screen with `git show 14e1e03:src/screens/EvolutionScreen.tsx` (`14e1e03` is the commit before
+   step 3.1), and the other files and pictures the same way, for example `src/screens/WorkshopScreen.tsx`,
+   `src/types/models.ts` and `assets/images/builder_neutral_updated.png`.
 
 ## AI chat on questions (`ai_context`)
 **Decided:** 2026-10-21. V3 questions came with an `ai_context` field for a future "ask about this question" chat.
@@ -37,17 +38,17 @@ To build it later:
 - Design the chat.
 - Decide what context each question needs; it can usually be derived from `ask`, `code`, `options` and
   `explanation_after_check`.
-- Recover the old field values with `git show <step-2a.0 commit>^:assets/content/<file>`. Hash: `TBD`.
+- Recover the old field values with `git show 048ec78^:assets/content/<file>` (`048ec78` is step 2a.0).
 
 ## Workshop parts
 The Workshop showed antennas (always unlocked) and wheels and hands (locked; nothing ever unlocked them). Step 3.1
-removes the Parts section and the `antennas`/`wheels`/`hands` pictures. The Workshop tab stays as a page that only shows
+removed the Parts section and the `antennas`/`wheels`/`hands` pictures. The Workshop tab stays as a page that only shows
 the robot.
 To build this later:
 - Decide what earns each part (for example, a phase or a badge).
 - Store the unlocked parts in progress.
 - Show them in the Workshop again.
-- Recover the pictures with `git show <step-3.1 commit>^:assets/images/<name>_updated.png`.
+- Recover the pictures with `git show 14e1e03:assets/images/<name>_updated.png` (the commit before step 3.1).
 
 ## Paywall / Premium
 **Decided:** 2026-10-21. Removed in plan step 1b, because no real paywall was integrated (`isPremium` gated nothing).

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Image, ImageResizeMode, ImageStyle, Pressable, ScrollView, StyleProp, StyleSheet, Text, TextStyle, View, ViewStyle, useWindowDimensions } from 'react-native';
+import { Image, ImageResizeMode, ImageStyle, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle, useWindowDimensions } from 'react-native';
 import Svg, { Circle, Defs, Pattern, Rect } from 'react-native-svg';
-import { BORDER, C, code, heading } from '../utils/theme';
+import { BORDER, C, heading } from '../utils/theme';
 import { IMAGES } from '../utils/images';
 
 /** Card look: fill, navy outline, optional hard shadow 3pt below (CardStyle in Theme.swift). */
@@ -91,7 +91,7 @@ export function ChunkyButton({
 }
 
 /** Finds a bundled picture: the new "_updated" version first, then the original name (BundleImage). */
-export function imageSource(name: string): number | undefined {
+function imageSource(name: string): number | undefined {
   return IMAGES[name + '_updated'] ?? IMAGES[name];
 }
 
@@ -127,35 +127,3 @@ export function DottedBackground({ navy = false }: { navy?: boolean }) {
     </View>
   );
 }
-
-export type ChipLook = 'normal' | 'selected' | 'correct' | 'wrong' | 'used';
-
-/** Answer chip (TokenChip in Theme.swift). */
-export function TokenChip({ text, look = 'normal' }: { text: string; look?: ChipLook }) {
-  const fill = { normal: C.card, used: C.card, selected: C.hintBlue, correct: C.lime, wrong: C.wrongChip }[look];
-  return (
-    <Card fill={fill} radius={14} shadow={look !== 'used'} style={{ opacity: look === 'used' ? 0.3 : 1 }} contentStyle={{ minHeight: 48, paddingHorizontal: 16, justifyContent: 'center' }}>
-      <Text style={code(17)}>{text}</Text>
-    </Card>
-  );
-}
-
-/** Code box with horizontal scrolling (CodeBlock in Theme.swift). */
-export function CodeBlock({ codeText }: { codeText: string }) {
-  return (
-    <Card radius={16} contentStyle={{ padding: 0 }}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ padding: 16 }}>
-        <Text style={[code(17), { lineHeight: 26 }]} accessibilityLabel={`Code: ${codeText}`}>
-          {codeText}
-        </Text>
-      </ScrollView>
-    </Card>
-  );
-}
-
-/** Lays children out in rows, wrapping and centred (FlowLayout in Theme.swift). */
-export function FlowWrap({ spacing = 12, center = true, style, children }: { spacing?: number; center?: boolean; style?: StyleProp<ViewStyle>; children: React.ReactNode }) {
-  return <View style={[{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: center ? 'center' : 'flex-start', gap: spacing }, style]}>{children}</View>;
-}
-
-export const textStyles = StyleSheet.create({ center: { textAlign: 'center' } as TextStyle });

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Easing, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import Svg, { Circle, G, Line, Path, Polyline, Rect, Text as SvgText } from 'react-native-svg';
 import { BORDER, C, body, heading, monoBold } from '../utils/theme';
 import { BundleImage, Card, ChunkyButton } from './ui';
-import { RobotForm, RobotMood, TrackPhase, moodImage } from '../types/models';
+import { RobotMood, TrackPhase, robotImage } from '../types/models';
 import { useReduceMotion } from '../hooks/useReduceMotion';
 import { DAILY_GOAL_MINUTES } from '../hooks/useTrackStore_updated';
 
@@ -37,26 +37,14 @@ export const LockIcon = ({ color = C.lockedText, size = 15 }: { color?: string; 
     <Path d="M8 11V7a4 4 0 0 1 8 0v4" fill="none" stroke={color} strokeWidth={2.6} strokeLinecap="round" />
   </Svg>
 );
-export const CheckIcon = ({ size = 12, color = C.navy, strokeWidth = 4 }: { size?: number; color?: string; strokeWidth?: number }) => (
+const CheckIcon = ({ size = 12, color = C.navy, strokeWidth = 4 }: { size?: number; color?: string; strokeWidth?: number }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24">
     <Path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
-  </Svg>
-);
-export const CrossIcon = ({ size = 18, color = C.navy, strokeWidth = 3 }: { size?: number; color?: string; strokeWidth?: number }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24">
-    <Path d="M6 6l12 12M18 6L6 18" fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round" />
   </Svg>
 );
 export const FlameIcon = ({ size = 22, fill = C.orange, stroke = C.orange }: { size?: number; fill?: string; stroke?: string }) => (
   <Svg width={size} height={size} viewBox="0 0 24 24">
     <Path d="M12 2c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z" fill={fill} stroke={stroke} strokeWidth={2} strokeLinejoin="round" />
-  </Svg>
-);
-const BulbIcon = () => (
-  <Svg width={18} height={18} viewBox="0 0 24 24" fill="none" stroke={C.navy} strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round">
-    <Path d="M9 18h6" />
-    <Path d="M10 22h4" />
-    <Path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.7A7 7 0 0 0 12 2z" />
   </Svg>
 );
 
@@ -156,19 +144,9 @@ export function SegmentBar({ total, index, currentCorrect }: { total: number; in
   );
 }
 
-export function StarSlots({ total, index, currentCorrect }: { total: number; index: number; currentCorrect: boolean }) {
-  return (
-    <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', gap: 6 }} accessible accessibilityLabel={`Checkpoint question ${index + 1} of ${total}`}>
-      {Array.from({ length: total }, (_, i) => (
-        <StarIcon key={i} size={24} stroke={C.cream} fill={i < index ? C.lime : i === index ? (currentCorrect ? C.lime : C.sky) : C.locked} />
-      ))}
-    </View>
-  );
-}
-
 // ---------- Robot ----------
-/** The learner's robot with a mood. Every new mood pops in, as on the canvas. */
-export function RobotFace({ form, mood, width, height }: { form: RobotForm; mood: RobotMood; width: number; height: number }) {
+/** The robot with a mood. Every new mood pops in, as on the canvas. */
+export function RobotFace({ mood, width, height }: { mood: RobotMood; width: number; height: number }) {
   const reduce = useReduceMotion();
   const scale = useRef(new Animated.Value(1)).current;
   const y = useRef(new Animated.Value(0)).current;
@@ -188,7 +166,7 @@ export function RobotFace({ form, mood, width, height }: { form: RobotForm; mood
   }, [mood]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <Animated.View style={{ width, height, transform: [{ scale }, { translateY: y }] }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      <BundleImage name={moodImage(form, mood)} style={{ width, height }} />
+      <BundleImage name={robotImage(mood)} style={{ width, height }} />
     </Animated.View>
   );
 }
@@ -199,73 +177,6 @@ export function moodPlan(index: number): { ask: RobotMood; ok: RobotMood; bad: R
   const oks: RobotMood[] = ['excited', 'hearts', 'wink'];
   const ask = asks[index % 3];
   return { ask, ok: oks[(index + 1) % 3], bad: ask === 'surprised' ? 'confused' : 'surprised' };
-}
-
-// ---------- Question bubble with the hint bulb in its corner ----------
-export function PromptBubble({
-  sub,
-  title,
-  hint,
-  tag,
-  tagColor = C.sun,
-  darkShadow = false,
-  hintOpen,
-  onToggleHint,
-}: {
-  sub: string;
-  title: string;
-  hint: string;
-  tag?: string;
-  tagColor?: string;
-  darkShadow?: boolean;
-  hintOpen: boolean;
-  onToggleHint: () => void;
-}) {
-  const pop = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    Animated.timing(pop, { toValue: hintOpen ? 1 : 0, duration: 180, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
-  }, [hintOpen]); // eslint-disable-line react-hooks/exhaustive-deps
-  const radius = { borderTopLeftRadius: 20, borderTopRightRadius: 20, borderBottomRightRadius: 20, borderBottomLeftRadius: 6 };
-  return (
-    <View style={{ flex: 1, zIndex: 3 }}>
-      <View style={[StyleSheet.absoluteFill, radius, { top: 3, bottom: -3, backgroundColor: darkShadow ? C.shadowDark : C.navy }]} />
-      <View style={[radius, { backgroundColor: C.card, borderWidth: BORDER, borderColor: C.navy, paddingLeft: 14, paddingRight: 50, paddingVertical: 12 }]}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
-          {tag ? (
-            <View style={{ paddingHorizontal: 7, paddingVertical: 1, borderRadius: 7, backgroundColor: tagColor, borderWidth: 1.5, borderColor: C.navy }}>
-              <Text style={body(13, true)} numberOfLines={1}>{tag}</Text>
-            </View>
-          ) : null}
-          <Text style={[body(14, true), { color: C.muted }]}>{sub}</Text>
-        </View>
-        <Text style={[heading(22), { marginTop: 3 }]} accessibilityRole="header">{title}</Text>
-      </View>
-      <Pressable onPress={onToggleHint} accessibilityRole="button" accessibilityLabel={hintOpen ? 'Hide hint' : 'Show hint'} style={{ position: 'absolute', right: 4, top: 4, width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-        <View style={{ width: 34, height: 34 }}>
-          <View style={{ position: 'absolute', left: 0, right: 0, top: 2, height: 34, borderRadius: 17, backgroundColor: C.navy }} />
-          <View style={{ width: 34, height: 34, borderRadius: 17, borderWidth: BORDER, borderColor: C.navy, backgroundColor: hintOpen ? C.orange : C.sun, alignItems: 'center', justifyContent: 'center' }}>
-            <BulbIcon />
-          </View>
-        </View>
-      </Pressable>
-      {hintOpen && (
-        <Animated.View style={{ position: 'absolute', right: 0, top: 52, width: 240, zIndex: 5, opacity: pop, transform: [{ scale: pop.interpolate({ inputRange: [0, 1], outputRange: [0.92, 1] }) }] }}>
-          <Card fill={C.hintBlue} radius={16} shadow contentStyle={{ paddingHorizontal: 14, paddingVertical: 11 }}>
-            <Text style={body(15)} accessibilityRole="text">{hint}</Text>
-          </Card>
-        </Animated.View>
-      )}
-    </View>
-  );
-}
-
-export function CoachRow({ form, mood, children }: { form: RobotForm; mood: RobotMood; children: React.ReactNode }) {
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 6, zIndex: 3 }}>
-      <RobotFace form={form} mood={mood} width={86} height={90} />
-      {children}
-    </View>
-  );
 }
 
 // ---------- R code colouring ----------
@@ -331,7 +242,7 @@ export function RCodeLine({ text, number, blankFill, size = 16 }: { text: string
 // ---------- Phase pictures ----------
 const baseColor = (b: string) => (b === 'A' ? C.orange : b === 'T' ? C.sun : b === 'G' ? C.lime : C.sky);
 
-export function DNAStrip({ sequence, size = 24 }: { sequence: string; size?: number }) {
+function DNAStrip({ sequence, size = 24 }: { sequence: string; size?: number }) {
   return (
     <View style={{ flexDirection: 'row', gap: 4 }} accessible accessibilityLabel={`DNA sample ${sequence}`}>
       {sequence.split('').map((b, i) => (
@@ -494,7 +405,7 @@ export function PhasePicture({ kind, compact = false }: { kind: string; compact?
 }
 
 // ---------- Project card ----------
-export interface LiveOutput {
+interface LiveOutput {
   label: string;
   text: string;
   color: string;
@@ -568,80 +479,14 @@ export function useSlideUp(visible: boolean) {
   return { opacity: v, transform: [{ translateY: v.interpolate({ inputRange: [0, 1], outputRange: [36, 0] }) }] };
 }
 
-function PoppingImage({ name, width, height, style }: { name: string; width: number; height: number; style?: object }) {
-  const s = useRef(new Animated.Value(0.9)).current;
-  const y = useRef(new Animated.Value(10)).current;
-  useEffect(() => {
-    Animated.parallel([
-      Animated.spring(s, { toValue: 1, friction: 4, tension: 120, useNativeDriver: true }),
-      Animated.spring(y, { toValue: 0, friction: 4, tension: 120, useNativeDriver: true }),
-    ]).start();
-  }, [name]); // eslint-disable-line react-hooks/exhaustive-deps
-  return (
-    <Animated.View style={[{ position: 'absolute', transform: [{ scale: s }, { translateY: y }] }, style]} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      <BundleImage name={name} style={{ width, height }} />
-    </Animated.View>
-  );
-}
-
-export function FeedbackSheet({
-  correct,
-  title,
-  message,
-  answerLine,
-  bonusLine,
-  note,
-  robot,
-  onContinue,
-  onRetry,
-}: {
-  correct: boolean;
-  title: string;
-  message: string;
-  answerLine?: string;
-  bonusLine?: string;
-  note?: string;
-  robot: string;
-  onContinue: () => void;
-  onRetry: () => void;
-}) {
-  const anim = useSlideUp(true);
-  return (
-    <Animated.View style={[{ position: 'absolute', left: 0, right: 0, bottom: 0, zIndex: 6, backgroundColor: correct ? C.successSheet : C.missSheet, borderTopWidth: BORDER, borderTopColor: C.navy, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 30 }, anim]} accessibilityLiveRegion="polite">
-      <PoppingImage name={robot} width={104} height={104} style={{ right: 14, top: -58 }} />
-      <View style={{ paddingRight: 110, gap: 6 }}>
-        <Text style={heading(28)} accessibilityRole="header">{title}</Text>
-        <Text style={body(16)}>{message}</Text>
-        {correct && bonusLine ? (
-          <View style={{ flexDirection: 'row', alignItems: 'center', alignSelf: 'flex-start', gap: 6, paddingHorizontal: 12, height: 32, borderRadius: 16, backgroundColor: C.navy, marginTop: 6 }}>
-            <BoltIcon size={16} stroke={C.sky} />
-            <Text style={[body(15, true), { color: C.cream }]}>{bonusLine}</Text>
-          </View>
-        ) : null}
-        {!correct && answerLine ? (
-          <Card radius={12} style={{ alignSelf: 'flex-start', marginTop: 6 }} contentStyle={{ paddingHorizontal: 12, paddingVertical: 6 }}>
-            <Text style={monoBold(15)}>{answerLine}</Text>
-          </Card>
-        ) : null}
-      </View>
-      {correct && note ? (
-        <View style={{ marginTop: 12, paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12, borderWidth: 2, borderStyle: 'dashed', borderColor: C.navy }}>
-          <Text style={body(14)}>{note}</Text>
-        </View>
-      ) : null}
-      <ChunkyButton title={correct ? 'Continue' : 'Try again'} fill={correct ? C.lime : C.orange} onPress={correct ? onContinue : onRetry} style={{ marginTop: 16 }} />
-    </Animated.View>
-  );
-}
-
 // ---------- Quit warning (replaces the system pop-up) ----------
-export function QuitSheet({ form, questionsDone, total, bolts, onKeep, onLeave }: { form: RobotForm; questionsDone: number; total: number; bolts: number; onKeep: () => void; onLeave: () => void }) {
+export function QuitSheet({ questionsDone, total, bolts, onKeep, onLeave }: { questionsDone: number; total: number; bolts: number; onKeep: () => void; onLeave: () => void }) {
   const anim = useSlideUp(true);
   return (
     <View style={[StyleSheet.absoluteFill, { zIndex: 10, justifyContent: 'flex-end' }]} accessibilityViewIsModal>
       <Pressable style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(23,30,99,0.55)' }]} onPress={onKeep} accessibilityLabel="Keep going" />
       <Animated.View style={[{ backgroundColor: C.cream, borderTopLeftRadius: 24, borderTopRightRadius: 24, paddingHorizontal: 20, paddingTop: 22, paddingBottom: 30 }, anim]}>
-        <BundleImage name={moodImage(form, 'surprised')} style={{ position: 'absolute', right: 16, top: -64, width: 104, height: 110 }} />
+        <BundleImage name={robotImage('surprised')} style={{ position: 'absolute', right: 16, top: -64, width: 104, height: 110 }} />
         <Text style={[heading(28), { paddingRight: 120 }]} accessibilityRole="header">Leave this lesson?</Text>
         <Text style={[body(16), { marginTop: 6, paddingRight: 120 }]}>All progress in this lesson will be lost.</Text>
         <View style={{ flexDirection: 'row', gap: 8, marginTop: 12, flexWrap: 'wrap' }}>
@@ -799,7 +644,3 @@ export function WeekStrip({ streak, activeToday, dark = true }: { streak: number
     </View>
   );
 }
-
-export const HScroll = ({ children }: { children: React.ReactNode }) => (
-  <ScrollView horizontal showsHorizontalScrollIndicator={false}>{children}</ScrollView>
-);

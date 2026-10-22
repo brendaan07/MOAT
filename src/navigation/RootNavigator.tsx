@@ -6,22 +6,17 @@ import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore_updated';
 import { hasTrack } from '../services/contentLoader_updated';
 import { C } from '../utils/theme';
-import { RobotForm } from '../types/models';
 import MainTabs from './MainTabs_updated';
 import SplashScreen from '../screens/SplashScreen';
 import OnboardingScreen from '../screens/OnboardingScreen_updated';
-import LessonScreen from '../screens/LessonScreen';
-import EvolutionScreen from '../screens/EvolutionScreen';
 import TrackFlowScreen from '../screens/track/TrackFlowScreen_updated';
 import TrackHomeScreen from '../screens/track/TrackHomeScreen_updated';
 
 export type RootStackParamList = {
   Main: undefined;
-  Lesson: { lessonId: string };
   /** No lessonId means the phase's checkpoint. */
   TrackFlow: { phase: number; lessonId?: string };
   TrackPhase: { phase: number };
-  Evolution: { form: RobotForm };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,10 +30,8 @@ const linking: LinkingOptions<RootStackParamList> = {
     initialRouteName: 'Main',
     screens: {
       Main: { screens: { Learn: '', Workshop: 'workshop', Profile: 'profile' } },
-      Lesson: 'lesson/:lessonId',
       TrackPhase: { path: 'phase/:phase', parse: { phase: Number } },
       TrackFlow: { path: 'phase/:phase/play/:lessonId?', parse: { phase: Number } },
-      Evolution: 'evolution/:form',
     },
   },
 };
@@ -60,10 +53,8 @@ export default function RootNavigator() {
       <NavigationContainer theme={theme} linking={linking} documentTitle={{ formatter: () => 'MOAT' }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main" component={MainTabs} />
-          <Stack.Screen name="Lesson" component={LessonScreen} options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
           <Stack.Screen name="TrackPhase" component={TrackHomeScreen} />
           <Stack.Screen name="TrackFlow" component={TrackFlowScreen} options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
-          <Stack.Screen name="Evolution" component={EvolutionScreen} options={{ presentation: 'modal' }} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

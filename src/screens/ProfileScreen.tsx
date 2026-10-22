@@ -7,7 +7,7 @@ import { DAILY_GOAL_MINUTES, useTrackStore } from '../hooks/useTrackStore_update
 import { BundleImage, Card, ChunkyButton, DottedBackground } from '../components/ui';
 import { FlameIcon, WeekStrip } from '../components/trackKit';
 import { C, body, heading } from '../utils/theme';
-import { moodImage } from '../types/models';
+import { robotImage } from '../types/models';
 import { DayKey } from '../utils/dayKey';
 
 /** Profile v2 (ProfileView_updated.swift): streak hero, stats row, 3 by 3 badges, then every setting from the old Profile. */
@@ -22,7 +22,7 @@ export default function ProfileScreen() {
   const saveName = () => { store.setName(draft); setEditing(false); };
   const streak = store.displayStreak;
   const activeToday = p.lastActiveDay === DayKey.today();
-  const lessonsDone = p.completedLessons.length + track.progress.finished.filter((id) => !id.includes('_cp')).length;
+  const lessonsDone = track.progress.finished.filter((id) => !id.includes('_cp')).length;
   const concepts = track.track?.phases.filter((ph) => track.isFinished(ph.lessons[0]?.id ?? '')).length ?? 0;
   const anyPerfect = Object.values(track.progress.bestStars).some((s) => s >= 5);
   const loops = track.track?.phases.find((ph) => ph.number === 4)?.lessons.filter((l) => track.isFinished(l.id)).length ?? 0;
@@ -30,7 +30,6 @@ export default function ProfileScreen() {
   const bugs = track.progress.paid.filter((id) => bugIDs.has(id)).length;
   const badges: { id: string; label: string; icon: keyof typeof Ionicons.glyphMap; color: string; done: boolean; progress: string }[] = [
     { id: 'hello', label: 'First hello', icon: 'checkmark', color: C.lime, done: lessonsDone > 0, progress: lessonsDone > 0 ? 'done' : '0 of 1' },
-    { id: 'hatched', label: 'Hatched', icon: 'star', color: C.sky, done: p.unlockedForms.length > 1, progress: p.unlockedForms.length > 1 ? 'done' : '0 of 1' },
     { id: 's7', label: '7 day streak', icon: 'flame', color: C.orange, done: streak >= 7, progress: streak >= 7 ? 'done' : `${streak} of 7` },
     { id: 'perfect', label: 'Perfect lesson', icon: 'star', color: C.sun, done: anyPerfect, progress: anyPerfect ? 'done' : '0 of 1' },
     { id: 'loops', label: 'Loop master', icon: 'repeat', color: C.lime, done: loops >= 4, progress: loops >= 4 ? 'done' : `${loops} of 4` },
@@ -40,7 +39,7 @@ export default function ProfileScreen() {
     { id: 'l50', label: '50 lessons', icon: 'layers', color: C.lime, done: lessonsDone >= 50, progress: lessonsDone >= 50 ? 'done' : `${lessonsDone} of 50` },
   ];
   const confirmReset = () =>
-    Alert.alert('Reset all progress?', 'This clears lessons, bolts, streak and robot forms on this phone.', [
+    Alert.alert('Reset all progress?', 'This clears your lessons, stars, bolts, streak and answers on this phone.', [
       { text: 'Cancel', style: 'cancel' },
       { text: 'Reset progress', style: 'destructive', onPress: () => { store.resetProgress(); track.reset(); } },
     ]);
@@ -61,7 +60,7 @@ export default function ProfileScreen() {
       <DottedBackground />
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 24, gap: 14 }} showsVerticalScrollIndicator={false}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-          <BundleImage name={moodImage(p.currentForm, 'wink')} style={{ width: 76, height: 80 }} />
+          <BundleImage name={robotImage('wink')} style={{ width: 76, height: 80 }} />
           <View style={{ flex: 1 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               <Text style={[heading(30), { flexShrink: 1 }]} accessibilityRole="header" numberOfLines={1}>{p.name || 'Your profile'}</Text>

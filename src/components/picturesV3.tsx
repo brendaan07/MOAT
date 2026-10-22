@@ -11,9 +11,10 @@ import Svg, { Path } from 'react-native-svg';
 import { C, body, monoBold } from '../utils/theme';
 import { useReduceMotion } from '../hooks/useReduceMotion';
 
-export type V3State = 'idle' | 'go' | 'nope';
+type V3State = 'idle' | 'go' | 'nope';
 // The JSON picture spec: { type, label, args, options, correct_state, states: { wrong_by_option } }
-type Spec = { type: string; label: string; args: any[]; options: Record<string, any>; correct_state: any; states?: { wrong_by_option?: Record<string, any> } }; // eslint-disable-line @typescript-eslint/no-explicit-any
+/** One picture as a V3 content file describes it. */
+export type V3Spec = { type: string; label: string; args: any[]; options: Record<string, any>; correct_state: any; states?: { wrong_by_option?: Record<string, any> } }; // eslint-disable-line @typescript-eslint/no-explicit-any
 const EASE = Easing.bezier(0.3, 0.7, 0.3, 1);
 const BOUNCE = Easing.bezier(0.3, 1.5, 0.5, 1);
 const LIT = '#B5E04A';
@@ -21,7 +22,7 @@ const BAD = '#FFB37A';
 const PAL = ['#59B4FF', '#FFC93C', '#FF8A3D', '#B5E04A', '#F48FB1'];
 
 /** The state each option leads to: the right answer's, the picked wrong option's, or nothing yet. */
-function resolve(spec: Spec, state: V3State, pick: string | null) {
+function resolve(spec: V3Spec, state: V3State, pick: string | null) {
   if (state === 'go') return spec.correct_state;
   if (state === 'nope') return (pick && spec.states?.wrong_by_option?.[pick]) ?? null;
   return null;
@@ -102,7 +103,7 @@ function Tile({ ch, i, n, lit, state, k, w, base, neg }: { ch: string; i: number
     </View>
   );
 }
-function Tiles({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Tiles({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const text: string = spec.args[0];
   const base: number = spec.options?.base ?? 0;
   const s = resolve(spec, state, pick);
@@ -133,7 +134,7 @@ function Bar({ h, colour, i, k, active, label, name }: { h: number; colour: stri
     </View>
   );
 }
-function RateBars({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function RateBars({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const names: string[] = spec.args[0];
   const o = spec.options ?? {};
   const vmax: number = o.vmax ?? 3;
@@ -173,7 +174,7 @@ function Marker({ x, colour, label, k, top }: { x: number | null; colour: string
     </Animated.View>
   );
 }
-function Dots({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Dots({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const values: number[] = spec.args[0];
   const vmax: number = spec.args[1];
   const s = resolve(spec, state, pick) ?? {};
@@ -206,7 +207,7 @@ function Dot({ x, y, lit, state, i, k }: { x: number; y: number; lit: boolean; s
 
 /* ------------------------------------------------------------------ a curve that draws itself */
 const APath = Animated.createAnimatedComponent(Path);
-function Steps({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Steps({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const ymin: number = spec.options?.ymin ?? 0;
   const s = resolve(spec, state, pick);
   const vals: number[] = s ? s[0] : [];
@@ -263,7 +264,7 @@ function Base({ top, bottom, i, state, k }: { top: string; bottom: string; i: nu
     </View>
   );
 }
-function Strands({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Strands({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const top: string = spec.args[0];
   const s = resolve(spec, state, pick);
   const bottom: string = s ? s[0] : '';
@@ -279,7 +280,7 @@ function Strands({ spec, state, pick }: { spec: Spec; state: V3State; pick: stri
 }
 
 /* ------------------------------------------------------------------ thermometer */
-function Thermo({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Thermo({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const vmax: number = spec.options?.vmax ?? 60;
   const s = resolve(spec, state, pick);
   const k = `${state}-${pick}`;
@@ -306,7 +307,7 @@ function Thermo({ spec, state, pick }: { spec: Spec; state: V3State; pick: strin
 
 /* ------------------------------------------------------------------ Engineering: circuit, battery, gauge (ported from picturesV2) */
 /** A battery and its resistors in a loop. State: [current in A, text]; current flows round the wire, faster for more amps. */
-function Circuit({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Circuit({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const volts: number = spec.args[0];
   const res: number[] = spec.args[1] ?? [];
   const s = resolve(spec, state, pick);
@@ -350,7 +351,7 @@ function Circuit({ spec, state, pick }: { spec: Spec; state: V3State; pick: stri
 }
 
 /** A battery that drains on Check. State: [charge left at the end, 0 to 1, text]. */
-function Battery({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Battery({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const s = resolve(spec, state, pick);
   const left: number = s ? Math.max(0.04, Math.min(1, s[0])) : 1;
   const k = `${state}-${pick}`;
@@ -373,7 +374,7 @@ function Battery({ spec, state, pick }: { spec: Spec; state: V3State; pick: stri
 }
 
 /** A scale with coloured bands and a pointer that slides to the value. Options: bands [[lo, hi, colour, label]], vmin, vmax. State: [value, text]. */
-function Gauge({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Gauge({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const o = spec.options ?? {};
   const bands: [number, number, string, string][] = o.bands ?? [];
   const vmin: number = o.vmin ?? 0, vmax: number = o.vmax ?? 1;
@@ -429,7 +430,7 @@ function BeltFruit({ sprite, route, badge, k, play }: { sprite: string; route: B
     </Animated.View>
   );
 }
-function Belt({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+function Belt({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   const s = resolve(spec, state, pick);
   const items: [string, BeltRoute, string | null][] = s ? s[0] : (spec.correct_state?.[0] ?? []).map(([sprite, , badge]: [string, BeltRoute, string | null]) => [sprite, 'stay', badge]);
   const k = `${state}-${pick}`;
@@ -613,7 +614,7 @@ const RENDERERS: Record<string, React.ComponentType<{ spec: any; state: V3State;
   ward: StateCardV3, wards: StateCardV3,
 };
 
-export function PictureV3({ spec, state, pick }: { spec: Spec; state: V3State; pick: string | null }) {
+export function PictureV3({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
   // Unknown types still get the icon card, so a content mistake never blanks a lesson; the validator catches them first.
   const P = RENDERERS[spec.type] ?? StateCardV3;
   return (

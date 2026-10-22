@@ -10,7 +10,7 @@ import { useTrackStore } from '../../hooks/useTrackStore_updated';
 import { BundleImage, Card, FullScreenPicture } from '../../components/ui';
 import { StatChipsRow } from '../../components/trackKit';
 import { BORDER, C, body, heading } from '../../utils/theme';
-import { TrackPhase, moodImage } from '../../types/models';
+import { TrackPhase, robotImage } from '../../types/models';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
 
 type Node = { id: string; kind: 'lesson' | 'checkpoint'; title: string; phase: TrackPhase; step: number };
@@ -123,7 +123,7 @@ export default function TrackPathScreen() {
           )}
         </View>
         {isCurrent && (
-          <BundleImage name={moodImage(app.progress.currentForm, app.progress.currentForm === 'blob' ? 'excited' : 'closed')} style={{ position: 'absolute', width: 96, height: 112, transform: [{ translateX: x > 0 ? -110 : 110 }] }} />
+          <BundleImage name={robotImage('excited')} style={{ position: 'absolute', width: 96, height: 112, transform: [{ translateX: x > 0 ? -110 : 110 }] }} />
         )}
       </View>
     );

@@ -1,56 +1,8 @@
-// Mirrors the Swift models (CourseModels.swift, UserProgress.swift, TrackData_updated.swift).
-
-export type RobotForm = 'blob' | 'builder' | 'rover' | 'gardener' | 'orb' | 'cat';
-export const ROBOT_FORMS: RobotForm[] = ['blob', 'builder', 'rover', 'gardener', 'orb', 'cat'];
-export const ROBOT_NAMES: Record<RobotForm, string> = {
-  blob: 'Blob',
-  builder: 'Builder Bot',
-  rover: 'Rover',
-  gardener: 'Gardener',
-  orb: 'Orb',
-  cat: 'Cat Bot',
-};
-/** Only the blob and Builder Bot can be earned in version 1. */
-export const isInVersionOne = (form: RobotForm) => form === 'blob' || form === 'builder';
+// Mirrors the Swift models (UserProgress.swift, TrackData_updated.swift).
 
 export type RobotMood = 'neutral' | 'excited' | 'surprised' | 'wink' | 'closed' | 'hearts' | 'confused';
-/** The picture file for a form with a given expression, for example "blob_excited". */
-export const moodImage = (form: RobotForm, mood: RobotMood) => `${form}_${mood}`;
-
-// ---------- Course (lessons_*.json) ----------
-export type QuestionKind = 'choice' | 'build' | 'judge' | 'bug' | 'match';
-
-export interface Question {
-  id: string;
-  kind: QuestionKind;
-  prompt: string;
-  hint?: string | null;
-  code?: string | null;
-  picture?: string | null;
-  options: string[];
-  answer: string[];
-  right?: string[] | null;
-  explanation: string;
-}
-
-export interface Lesson {
-  id: string;
-  title: string;
-  questions: Question[];
-}
-
-export interface Phase {
-  id: string;
-  number: number;
-  title: string;
-  subtitle?: string | null;
-  unlocksForm?: RobotForm | null;
-  lessons: Lesson[];
-}
-
-export interface Course {
-  phases: Phase[];
-}
+/** The robot's picture with a given expression, for example "blob_excited". */
+export const robotImage = (mood: RobotMood) => `blob_${mood}`;
 
 // ---------- Progress (saved on the phone) ----------
 export interface UserProgress {
@@ -61,15 +13,12 @@ export interface UserProgress {
   education: string;
   studyArea: string;
   language: string;
-  completedLessons: string[];
   bolts: number;
   streak: number;
   lastActiveDay?: string | null;
   todayKey?: string | null;
   todayLessons: number;
   dailyGoalLessons: number;
-  unlockedForms: RobotForm[];
-  currentForm: RobotForm;
 }
 
 export const defaultProgress = (): UserProgress => ({
@@ -79,27 +28,24 @@ export const defaultProgress = (): UserProgress => ({
   education: 'Secondary school',
   studyArea: 'Health Sciences',
   language: 'Python',
-  completedLessons: [],
   bolts: 0,
   streak: 0,
   lastActiveDay: null,
   todayKey: null,
   todayLessons: 0,
   dailyGoalLessons: 3,
-  unlockedForms: ['blob'],
-  currentForm: 'blob',
 });
 
 // ---------- Biology research track (track_bio_r_updated.json) ----------
-export type TrackKind = 'fill' | 'predict' | 'bug' | 'build' | 'order';
-export type CheckpointStyle = 'plan' | 'code' | 'predict' | 'debug' | 'build';
+type TrackKind = 'fill' | 'predict' | 'bug' | 'build' | 'order';
+type CheckpointStyle = 'plan' | 'code' | 'predict' | 'debug' | 'build';
 
-export interface TrackOption {
+interface TrackOption {
   id: string;
   label: string;
 }
 
-export interface TrackScreen {
+interface TrackScreen {
   goal?: string;
   done?: string;
   err?: string;
@@ -141,7 +87,7 @@ export interface TrackLesson {
   questions: TrackQuestion[];
 }
 
-export interface TrackCheckpoint {
+interface TrackCheckpoint {
   id: string;
   name: string;
   filename: string;
@@ -197,9 +143,3 @@ export interface RunResult {
   missedIndexes: number[];
 }
 export const isPerfect = (r: RunResult) => r.stars === r.total;
-
-// Helpers that mirror TrackQuestion's Swift computed values
-export const correctOne = (q: TrackQuestion) => (typeof q.correct === 'string' ? q.correct : undefined);
-export const correctMany = (q: TrackQuestion) => (Array.isArray(q.correct) ? q.correct : []);
-export const labelOf = (q: TrackQuestion, id: string) =>
-  q.opts?.find((o) => o.id === id)?.label ?? q.lines?.find((o) => o.id === id)?.label ?? q.steps?.[id] ?? '';

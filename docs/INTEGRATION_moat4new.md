@@ -8,7 +8,7 @@ The whole app, with every Healthcare and Finance lesson built so far added to th
 |---|---|
 | `assets/content/healthcare_python_v3.json`, `healthcare_r_v3.json` | Healthcare phases 1 to 5: 50 items, 200 questions each |
 | `assets/content/finance_python_v3.json` | Finance Python phase 1: 10 items, 40 questions |
-| `assets/content/healthcare_design.json` | Measured layout, type and animation timings, bolts, confetti, keyframes |
+| `docs/healthcare_design.json` | Measured layout, type and animation timings, bolts, confetti, keyframes |
 | `assets/content/track_hx_py.json`, `track_hx_r.json`, `track_fin_py.json` | The path screen's tracks for these lessons |
 | `assets/images/healthcare/`, `assets/images/finance/` | Icons, liquid layers and device count-up strips (173 images) |
 | `src/utils/imageMapV3.ts` | Generated: a static `require` for every image the content names |
