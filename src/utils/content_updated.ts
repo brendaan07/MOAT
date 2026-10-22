@@ -31,4 +31,6 @@ export const CONTENT: Record<string, unknown> = {
   "general_r_v3": require('../../assets/content/general_r_v3.json'),
   "track_gen_sql": require('../../assets/content/track_gen_sql.json'),
   "general_sql_v3": require('../../assets/content/general_sql_v3.json'),
+  "track_gen_js": require('../../assets/content/track_gen_js.json'),
+  "general_javascript_v3": require('../../assets/content/general_javascript_v3.json'),
 };

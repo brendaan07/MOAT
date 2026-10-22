@@ -1,0 +1,1077 @@
+{
+ "track": {
+  "id": "gen_js",
+  "name": "General JavaScript",
+  "language": "JavaScript",
+  "phases": 1,
+  "lessons_per_phase": 4,
+  "checkpoints": false,
+  "item_order_rule": "Each phase has four lessons in order and no checkpoint yet (restructured from the V1 general lessons)."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Say hello",
+   "coding_idea": "Show messages and store numbers",
+   "items": [
+    {
+     "id": "GenJsP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Game start",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.js",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Make the game say hello",
+       "value": "\"Hello, player!\""
+      },
+      {
+       "label": "What does the game screen show?",
+       "value": "Coin"
+      },
+      {
+       "label": "Build the line that shows: Leve…",
+       "value": "\"Level 1\""
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Ready, Go"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Game start",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Make the game say hello",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words go inside quote marks. Then console.log shows them on the game screen.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "console.log() shows whatever is inside the brackets.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(___);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Hello, player!\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Hello, player!",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "[Hello, player!]",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "\"hello, player!\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the game screen show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "console.log shows the words between the quote marks. The quote marks themselves are not shown.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(\"Coin\");"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Coin",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"Coin\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "console.log",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows: Level 1",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with console.log, then brackets, and put the words inside quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(___);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Level 1\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Level 1",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words need quote marks. Fix: console.log(\"Go!\");",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.js",
+       "lines": [
+        {
+         "id": "a",
+         "code": "console.log(\"Start\");",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "console.log(\"Jump\");",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "console.log(Go!);",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "console.log(\"Start\");",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "console.log(\"Jump\");",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "console.log(\"Go!\");",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "console.log(Go!);",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The computer runs the lines from top to bottom, so Ready shows first.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(\"Ready\");",
+        "console.log(\"Go\");"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Ready, Go",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Go, Ready",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Ready",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenJsP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Coins and text",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.js",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "5"
+      },
+      {
+       "label": "True or false: this shows 3 + 2.",
+       "value": "True"
+      },
+      {
+       "label": "What does the console show?",
+       "value": "32"
+      },
+      {
+       "label": "Build the line that shows the t…",
+       "value": "+"
+      },
+      {
+       "label": "What shows?",
+       "value": "6"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Coins and text",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without quote marks, JavaScript does the maths: 3 + 2 = 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Without quote marks, JavaScript does the maths.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(3 + 2);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "32",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3 + 2",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 3 + 2.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make it a message. The words show, and no adding happens.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(\"3 + 2\");"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the console show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "\"3\" is in quotes, so it is text. With text, + joins instead of adding.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Numbers add. Text joins.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(\"3\" + 2);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "32",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3 + 2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Error",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows the total of 4 + 6.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Numbers without quote marks are added, so the console shows 10.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(4 ___ 6);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "+",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"4 + 6\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "-",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "10 - 4 = 6.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "console.log(10 - 4);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "14",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "10 - 4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenJsP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Named boxes",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.js",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Put 3 lives in the box labelled…",
+       "value": "="
+      },
+      {
+       "label": "What shows?",
+       "value": "5"
+      },
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: show what…",
+       "value": "console.log(score);"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Named boxes",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Put 3 lives in the box labelled lives",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "One = puts a value into the box. Two == would ask a question instead.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "let makes a labelled box that holds a value.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "let lives ___ 3;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "==",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "coins holds 5, so console.log(coins) shows 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "let coins = 5;",
+        "console.log(coins);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "coins",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "\"coins\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The newest value replaces the old one. The box now holds 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "let score = 2;",
+        "score = 7;",
+        "console.log(score);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "9",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "A name cannot start with a number. Fix: let lives = 3;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.js",
+       "lines": [
+        {
+         "id": "a",
+         "code": "let score = 3;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "let coins = 5;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "let 2lives = 3;",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "let score = 3;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "let coins = 5;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "let lives = 3;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "let 2lives = 3;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: show what the box holds?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "= stores a value. console.log(score) shows the value. Quote marks show the name itself.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "console.log(score);",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "let score = 2;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "score = 5;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "console.log(\"score\");",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenJsP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Level up",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.js",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Add 5 points. Which line update…",
+       "value": "score = score + 5;"
+      },
+      {
+       "label": "What shows?",
+       "value": "2"
+      },
+      {
+       "label": "Build the score message.",
+       "value": "score"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: take away…",
+       "value": "score = score - 1;"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Level up",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Add 5 points. Which line updates the score?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, add 5, and put it back in the same box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Take the old value, change it, and put it back in the same box.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "let score = 10;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "score = score + 5;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "score + 5;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "score = 5;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3 - 1 = 2.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "let lives = 3;",
+        "lives = lives - 1;",
+        "console.log(lives);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the score message.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The + joins the text and the score, so the console shows Score: 3.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "let score = 3;",
+        "console.log(\"Score: \" + ___);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "score",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"score\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "-",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The + needs a number after it. Fix: coins = coins + 3;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.js",
+       "lines": [
+        {
+         "id": "a",
+         "code": "let coins = 2;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "coins = coins +;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "console.log(coins);",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "let coins = 2;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "coins = coins + 3;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "coins = coins +;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "console.log(coins);",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: take away 1?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "+ adds, - takes away, and * multiplies. The new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "score = score - 1;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "score = score + 1;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "score = score * 2;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "score = score + 10;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
