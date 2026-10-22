@@ -249,6 +249,92 @@
     "name": "Fruit sorting conveyor",
     "filename": "",
     "problem": "",
+    "unlock": [
+     "Phase 4 unlocked",
+     "Sensor log",
+     "New skill: lists and loops. You'll build a sensor log."
+    ],
+    "questions": []
+   }
+  },
+  {
+   "number": 4,
+   "area": "Engineering",
+   "project": "Sensor log",
+   "picture": "",
+   "skill": "Lists and loops",
+   "parts": [
+    [
+     "Temperature log",
+     "Sensor log"
+    ],
+    [
+     "Station check",
+     "Sensor log"
+    ],
+    [
+     "Energy meter",
+     "Sensor log"
+    ],
+    [
+     "Overheat alert",
+     "Sensor log"
+    ],
+    [
+     "Sensor rack",
+     "Sensor log"
+    ]
+   ],
+   "code": [
+    "temps = [52, 61, 58, 70, 49, 66]",
+    "hot = 0",
+    "for t in temps:",
+    "    if t > 65:",
+    "        hot += 1",
+    "print(hot)",
+    "print(sum(temps) / len(temps))",
+    "for i, t in enumerate(temps, 1):",
+    "    if t >= 70:",
+    "        print(\"alert at\", i)",
+    "        break"
+   ],
+   "lessons": [
+    {
+     "id": "eng_py_p4_l1",
+     "part": 1,
+     "title": "Temperature log",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p4_l2",
+     "part": 2,
+     "title": "Station check",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p4_l3",
+     "part": 3,
+     "title": "Energy meter",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p4_l4",
+     "part": 4,
+     "title": "Overheat alert",
+     "questions": []
+    },
+    {
+     "id": "eng_py_p4_l5",
+     "part": 5,
+     "title": "Sensor rack",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "eng_py_cp4",
+    "name": "Sensor log",
+    "filename": "",
+    "problem": "",
     "unlock": [],
     "questions": []
    }

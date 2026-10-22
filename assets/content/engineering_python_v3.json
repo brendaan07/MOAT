@@ -11118,6 +11118,4604 @@
      ]
     }
    ]
+  },
+  {
+   "phase": 4,
+   "title": "Sensor log",
+   "coding_idea": "Lists and loops",
+   "items": [
+    {
+     "id": "EpP4L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Temperature log",
+     "person": "Plant technician",
+     "intro": "The motor's temperature is logged every 10 minutes into a list. Read the log before the shift ends.",
+     "script_file": "templog.py",
+     "start_button": "Read the log",
+     "notebook": [
+      {
+       "label": "Second reading, count",
+       "value": "61 6"
+      },
+      {
+       "label": "Last reading",
+       "value": "66"
+      },
+      {
+       "label": "Readings 3 to 5",
+       "value": "fixed: [2:5]"
+      },
+      {
+       "label": "Over 65 °C",
+       "value": "2"
+      },
+      {
+       "label": "Average",
+       "value": "fixed: total += t"
+      }
+     ],
+     "recap": {
+      "title": "Log read",
+      "subtitle": "Indexes, len(), slices, and loops that count and add up.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "temps[1] is the second reading, 61, and len() counts all 6.",
+       "takeaway": "So: list[i] picks one item; len() counts them.",
+       "next_bridge": "read the last entry.",
+       "hint_before_check": "Lists count from 0, like text.",
+       "code_note": {
+        "title": "Lists",
+        "text": "A list keeps several values in order, inside square brackets."
+       },
+       "science_note": {
+        "title": "Logging",
+        "text": "A temperature log shows trends a single reading can't: a motor creeping hotter needs a check."
+       },
+       "scene_label": "The shift's log.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Motor temperature log in °C",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            0,
+            61,
+            0,
+            0,
+            0,
+            0
+           ],
+           "61 6"
+          ],
+          {
+           "b": [
+            [
+             52,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "52 6?"
+           ],
+           "c": [
+            [
+             0,
+             61,
+             0,
+             0,
+             0,
+             0
+            ],
+            "61 5?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 80,
+          "line": 65,
+          "line_label": "65 °C limit"
+         },
+         "correct_state": [
+          [
+           0,
+           61,
+           0,
+           0,
+           0,
+           0
+          ],
+          "61 6"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             52,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "52 6?"
+           ],
+           "c": [
+            [
+             0,
+             61,
+             0,
+             0,
+             0,
+             0
+            ],
+            "61 5?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "temps = [52, 61, 58, 70, 49, 66]",
+        "print(temps[1], len(temps))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "61 6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "52 6",
+         "correct": false,
+         "feedback": "[1] is the second item; [0] is the first."
+        },
+        {
+         "id": "c",
+         "label": "61 5",
+         "correct": false,
+         "feedback": "len() counts every item: 6."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show the latest reading.",
+       "xp": 10,
+       "known_from_earlier": [
+        "temps = [52, 61, 58, 70, 49, 66]"
+       ],
+       "explanation_after_check": "[-1] is the last item, whatever the length: 66.",
+       "takeaway": "So: list[-1] is the newest entry.",
+       "next_bridge": "add up a stretch of readings.",
+       "hint_before_check": "Count from the end.",
+       "code_note": {
+        "title": "Negative indexes",
+        "text": "-1 is the last item, -2 the one before."
+       },
+       "science_note": {
+        "title": "Latest reading",
+        "text": "Dashboards show the newest value first; it's always at the end of the log."
+       },
+       "scene_label": "The newest entry.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Motor temperature log in °C",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            0,
+            0,
+            0,
+            0,
+            0,
+            66
+           ],
+           "66"
+          ],
+          {
+           "b": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "IndexError"
+           ],
+           "c": [
+            [
+             52,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "52?"
+           ],
+           "d": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "IndexError"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 80,
+          "line": 65,
+          "line_label": "65 °C limit"
+         },
+         "correct_state": [
+          [
+           0,
+           0,
+           0,
+           0,
+           0,
+           66
+          ],
+          "66"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "IndexError"
+           ],
+           "c": [
+            [
+             52,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "52?"
+           ],
+           "d": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             0
+            ],
+            "IndexError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(temps[___])"
+       ],
+       "goal_output": [
+        "66"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "-1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "6",
+         "correct": false,
+         "feedback": "Positions run 0 to 5: IndexError."
+        },
+        {
+         "id": "c",
+         "label": "0",
+         "correct": false,
+         "feedback": "[0] is the first reading: 52."
+        },
+        {
+         "id": "d",
+         "label": "len(temps)",
+         "correct": false,
+         "feedback": "len(temps) is 6, one past the end: IndexError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Readings 3 to 5 (58, 70 and 49) should add up to 177. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Readings 3 to 5 sit at positions 2, 3 and 4. [2:4] stops before 4, so it misses 49; [2:5] includes it.",
+       "takeaway": "So: [start:end] stops before end.",
+       "next_bridge": "count the hot readings.",
+       "hint_before_check": "A slice stops before its end position.",
+       "code_note": {
+        "title": "Slicing lists",
+        "text": "Slices work on lists the same way as on text."
+       },
+       "science_note": {
+        "title": "Windows",
+        "text": "Engineers look at a window of readings, such as the last half hour, rather than the whole day."
+       },
+       "scene_label": "Half an hour of readings.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Motor temperature log in °C",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            0,
+            0,
+            58,
+            70,
+            49,
+            0
+           ],
+           "177"
+          ],
+          {
+           "b": [
+            [
+             0,
+             0,
+             58,
+             70,
+             0,
+             0
+            ],
+            "128?"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             58,
+             70,
+             0,
+             0
+            ],
+            "177, by hand"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 80,
+          "line": 65,
+          "line_label": "65 °C limit"
+         },
+         "correct_state": [
+          [
+           0,
+           0,
+           58,
+           70,
+           49,
+           0
+          ],
+          "177"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             0,
+             58,
+             70,
+             0,
+             0
+            ],
+            "128?"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             58,
+             70,
+             0,
+             0
+            ],
+            "177, by hand"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "templog.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "temps = [52, 61, 58, 70, 49, 66]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "part = temps[2:4]",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(sum(part))",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "part = temps[2:5]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "part = temps[3:6]",
+          "correct": false,
+          "feedback": "That starts one too late: 185."
+         },
+         {
+          "id": "f2",
+          "replacement": "part = temps[1:4]",
+          "correct": false,
+          "feedback": "That starts one too early: 189."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(sum(part) + 49)",
+          "correct": false,
+          "feedback": "177 here, but only because 49 is typed in by hand."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 177"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many readings are over 65 °C?",
+       "xp": 10,
+       "known_from_earlier": [
+        "temps = [52, 61, 58, 70, 49, 66]"
+       ],
+       "explanation_after_check": "The loop checks each reading; 70 and 66 are over 65, so hot ends at 2.",
+       "takeaway": "So: a loop with an if counts matches.",
+       "next_bridge": "fix the average.",
+       "hint_before_check": "The if runs once for each reading.",
+       "code_note": {
+        "title": "for loops",
+        "text": "for t in temps runs the indented lines once per item."
+       },
+       "science_note": {
+        "title": "Overheating",
+        "text": "Short peaks are normal; repeated readings over the limit mean the motor needs attention."
+       },
+       "scene_label": "The readings over the limit.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Motor temperature log in °C",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            52,
+            61,
+            58,
+            70,
+            49,
+            66
+           ],
+           "2"
+          ],
+          {
+           "b": [
+            [
+             52,
+             61,
+             58,
+             70,
+             49,
+             66
+            ],
+            "1?"
+           ],
+           "c": [
+            [
+             52,
+             61,
+             58,
+             70,
+             49,
+             66
+            ],
+            "6?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 80,
+          "line": 65,
+          "line_label": "65 °C limit"
+         },
+         "correct_state": [
+          [
+           52,
+           61,
+           58,
+           70,
+           49,
+           66
+          ],
+          "2"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             52,
+             61,
+             58,
+             70,
+             49,
+             66
+            ],
+            "1?"
+           ],
+           "c": [
+            [
+             52,
+             61,
+             58,
+             70,
+             49,
+             66
+            ],
+            "6?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "hot = 0",
+        "for t in temps:",
+        "    if t > 65:",
+        "        hot += 1",
+        "print(hot)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1",
+         "correct": false,
+         "feedback": "66 is over 65 too."
+        },
+        {
+         "id": "c",
+         "label": "6",
+         "correct": false,
+         "feedback": "hot only goes up when the if is True."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The average shows 11.0. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "total = t replaces the total each time, so it ends as the last reading, 66. total += t adds each one: 356 / 6.",
+       "takeaway": "So: += keeps a running total.",
+       "next_bridge": "see your log reader.",
+       "hint_before_check": "Does total keep growing, or start over each time?",
+       "code_note": {
+        "title": "Accumulating",
+        "text": "total += t means total = total + t."
+       },
+       "science_note": {
+        "title": "Average temperature",
+        "text": "The average tells you how hard the motor works across the shift."
+       },
+       "scene_label": "An average that can't be right.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Motor temperature log in °C",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            52,
+            61,
+            58,
+            70,
+            49,
+            66
+           ],
+           "59.33"
+          ],
+          {
+           "d": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             66
+            ],
+            "11.0?"
+           ],
+           "e": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             66
+            ],
+            "66?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 80,
+          "line": 65,
+          "line_label": "65 °C limit"
+         },
+         "correct_state": [
+          [
+           52,
+           61,
+           58,
+           70,
+           49,
+           66
+          ],
+          "59.33"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "d": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             66
+            ],
+            "11.0?"
+           ],
+           "e": [
+            [
+             0,
+             0,
+             0,
+             0,
+             0,
+             66
+            ],
+            "66?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "templog.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "temps = [52, 61, 58, 70, 49, 66]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "total = 0",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "for t in temps:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    total = t",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "print(total / len(temps))",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "d",
+       "fixes_by_line": {
+        "d": [
+         {
+          "id": "f0",
+          "replacement": "    total += t",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    total += 1",
+          "correct": false,
+          "feedback": "That counts readings instead: 1.0."
+         },
+         {
+          "id": "f2",
+          "replacement": "    total = t + t",
+          "correct": false,
+          "feedback": "Still replaces the total each time: 22.0."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "print(total)",
+          "correct": false,
+          "feedback": "That prints the last reading: 66."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 59.333333333333336"
+      }
+     ]
+    },
+    {
+     "id": "EpP4L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Station check",
+     "person": "Line engineer",
+     "intro": "Three stations on the line, A1 to A3, each report a status. Walk the list in order.",
+     "script_file": "stations.py",
+     "start_button": "Walk the line",
+     "notebook": [
+      {
+       "label": "Stations",
+       "value": "A1 A2 A3"
+      },
+      {
+       "label": "With status",
+       "value": "range(3)"
+      },
+      {
+       "label": "Numbered list",
+       "value": "fixed: enumerate(…, 1)"
+      },
+      {
+       "label": "Faults",
+       "value": "1"
+      },
+      {
+       "label": "OK stations",
+       "value": "fixed: continue"
+      }
+     ],
+     "recap": {
+      "title": "Line walked",
+      "subtitle": "for, range(), enumerate(), continue and break.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The loop prints each station, and end=\" \" keeps them on one line.",
+       "takeaway": "So: for walks a list in order.",
+       "next_bridge": "pair stations with their status.",
+       "hint_before_check": "end=\" \" puts a space where the new line would go.",
+       "code_note": {
+        "title": "Printing in a loop",
+        "text": "end= changes what print() adds after each value."
+       },
+       "science_note": {
+        "title": "Line walks",
+        "text": "Engineers check stations in line order, so a fault upstream is found first."
+       },
+       "scene_label": "The three stations.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Station names",
+         "args": [
+          "A1 A2 A3",
+          [
+           [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7
+           ],
+           "A1 A2 A3"
+          ],
+          {
+           "b": [
+            [],
+            "one per line?"
+           ],
+           "c": [
+            [],
+            "a list?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           3,
+           4,
+           6,
+           7
+          ],
+          "A1 A2 A3"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "one per line?"
+           ],
+           "c": [
+            [],
+            "a list?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "stations = [\"A1\", \"A2\", \"A3\"]",
+        "for s in stations:",
+        "    print(s, end=\" \")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "A1 A2 A3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "A1\nA2\nA3",
+         "correct": false,
+         "feedback": "end=\" \" replaces the new line with a space."
+        },
+        {
+         "id": "c",
+         "label": "['A1', 'A2', 'A3']",
+         "correct": false,
+         "feedback": "The loop prints each item, not the list."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Print each station with its status.",
+       "xp": 10,
+       "known_from_earlier": [
+        "stations = [\"A1\", \"A2\", \"A3\"]",
+        "status = [\"ok\", \"fault\", \"ok\"]"
+       ],
+       "explanation_after_check": "range(3) gives 0, 1 and 2: one index for each station.",
+       "takeaway": "So: range(n) counts 0 up to n − 1.",
+       "next_bridge": "number the list.",
+       "hint_before_check": "How many stations are there?",
+       "code_note": {
+        "title": "range()",
+        "text": "range(3) gives the numbers 0, 1, 2."
+       },
+       "science_note": {
+        "title": "Paired lists",
+        "text": "Two lists in the same order, one of names and one of status, line up by index."
+       },
+       "scene_label": "The status board.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Station names",
+         "args": [
+          "A1 A2 A3",
+          [
+           [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7
+           ],
+           "3 lines"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1,
+             3,
+             4,
+             6,
+             7
+            ],
+            "IndexError"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             3,
+             4
+            ],
+            "2 lines?"
+           ],
+           "d": [
+            [],
+            "TypeError"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           3,
+           4,
+           6,
+           7
+          ],
+          "3 lines"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1,
+             3,
+             4,
+             6,
+             7
+            ],
+            "IndexError"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             3,
+             4
+            ],
+            "2 lines?"
+           ],
+           "d": [
+            [],
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "for i in range(___):",
+        "    print(stations[i], status[i])"
+       ],
+       "goal_output": [
+        "A1 ok",
+        "A2 fault",
+        "A3 ok"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": "Index 3 doesn't exist: IndexError after three lines."
+        },
+        {
+         "id": "c",
+         "label": "2",
+         "correct": false,
+         "feedback": "range(2) stops before A3."
+        },
+        {
+         "id": "d",
+         "label": "stations",
+         "correct": false,
+         "feedback": "range() needs a number, not a list: TypeError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The list should be numbered from 1. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "enumerate() counts from 0 unless you give it a start: enumerate(stations, 1).",
+       "takeaway": "So: enumerate(items, 1) numbers from 1.",
+       "next_bridge": "count the faults.",
+       "hint_before_check": "enumerate() can start from another number.",
+       "code_note": {
+        "title": "enumerate()",
+        "text": "enumerate() gives each item with its number."
+       },
+       "science_note": {
+        "title": "Numbering",
+        "text": "Station sheets are numbered from 1; a list starting at 0 confuses the night shift."
+       },
+       "scene_label": "A numbered checklist.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Station names",
+         "args": [
+          "A1 A2 A3",
+          [
+           [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7
+           ],
+           "1. A1 …"
+          ],
+          {
+           "b": [
+            [],
+            "TypeError"
+           ],
+           "c": [
+            [],
+            "A1. 0?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           3,
+           4,
+           6,
+           7
+          ],
+          "1. A1 …"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [],
+            "TypeError"
+           ],
+           "c": [
+            [],
+            "A1. 0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "stations.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "stations = [\"A1\", \"A2\", \"A3\"]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "for i, s in enumerate(stations):",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(f\"{i}. {s}\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "for i, s in enumerate(stations, 1):",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "for i, s in enumerate(stations + 1):",
+          "correct": false,
+          "feedback": "A list plus a number: TypeError."
+         },
+         {
+          "id": "f2",
+          "replacement": "for i, s in range(stations):",
+          "correct": false,
+          "feedback": "range() needs a number: TypeError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(f\"{s}. {i}\")",
+          "correct": false,
+          "feedback": "That swaps them: A1. 0."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 1. A1, 2. A2, 3. A3 (one per line)"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many faults are there?",
+       "xp": 10,
+       "known_from_earlier": [
+        "status = [\"ok\", \"fault\", \"ok\"]"
+       ],
+       "explanation_after_check": "For each ok station, continue skips the += line. Only the fault reaches it: 1.",
+       "takeaway": "So: continue jumps to the next item.",
+       "next_bridge": "fix the ok count.",
+       "hint_before_check": "continue skips the rest of this round of the loop.",
+       "code_note": {
+        "title": "continue",
+        "text": "continue skips the rest of the loop body for this item."
+       },
+       "science_note": {
+        "title": "Fault counts",
+        "text": "A fault count per shift is one of the first numbers a line manager asks for."
+       },
+       "scene_label": "The status board.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Station names",
+         "args": [
+          "A1 A2 A3",
+          [
+           [
+            3,
+            4
+           ],
+           "1"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1,
+             6,
+             7
+            ],
+            "2?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             3,
+             4,
+             6,
+             7
+            ],
+            "3?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           3,
+           4
+          ],
+          "1"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1,
+             6,
+             7
+            ],
+            "2?"
+           ],
+           "c": [
+            [
+             0,
+             1,
+             3,
+             4,
+             6,
+             7
+            ],
+            "3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "faults = 0",
+        "for st in status:",
+        "    if st == \"ok\":",
+        "        continue",
+        "    faults += 1",
+        "print(faults)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": "The two ok stations skip the count."
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": "continue skips the count for ok stations."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Every ok station should be counted: 2. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "break stops the loop at the fault, so A3 is never checked. continue skips just the fault and carries on.",
+       "takeaway": "So: break stops; continue skips.",
+       "next_bridge": "see your station check.",
+       "hint_before_check": "break stops the whole loop.",
+       "code_note": {
+        "title": "break and continue",
+        "text": "break leaves the loop; continue moves to the next item."
+       },
+       "science_note": {
+        "title": "Stopping early",
+        "text": "Stopping at the first fault is right for an alarm, wrong for a count."
+       },
+       "scene_label": "A count that stops too soon.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Station names",
+         "args": [
+          "A1 A2 A3",
+          [
+           [
+            0,
+            1,
+            6,
+            7
+           ],
+           "2"
+          ],
+          {
+           "d": [
+            [
+             0,
+             1
+            ],
+            "1?"
+           ],
+           "e": [
+            [
+             0,
+             1
+            ],
+            "1?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1,
+           6,
+           7
+          ],
+          "2"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "d": [
+            [
+             0,
+             1
+            ],
+            "1?"
+           ],
+           "e": [
+            [
+             0,
+             1
+            ],
+            "1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "stations.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "status = [\"ok\", \"fault\", \"ok\"]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "checked = 0",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "for st in status:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    if st == \"fault\": break",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "    checked += 1",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "print(checked)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "d",
+       "fixes_by_line": {
+        "d": [
+         {
+          "id": "f0",
+          "replacement": "    if st == \"fault\": continue",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    if st == \"ok\": break",
+          "correct": false,
+          "feedback": "That stops at the first station: 0."
+         },
+         {
+          "id": "f2",
+          "replacement": "    if st == \"fault\": pass",
+          "correct": false,
+          "feedback": "pass does nothing, so the fault is counted too: 3."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "    checked = 1",
+          "correct": false,
+          "feedback": "The loop still stops at the fault: 1."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 2"
+      }
+     ]
+    },
+    {
+     "id": "EpP4L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Energy meter",
+     "person": "Energy manager",
+     "intro": "Each hour the meter logs the energy the line used and the energy the roof panels made, in kWh. Track the totals.",
+     "script_file": "energy.py",
+     "start_button": "Read the meter",
+     "notebook": [
+      {
+       "label": "Net use",
+       "value": "20"
+      },
+      {
+       "label": "Running total",
+       "value": "[12, 27, 36, 50]"
+      },
+      {
+       "label": "Loop total",
+       "value": "fixed: +="
+      },
+      {
+       "label": "Sums",
+       "value": "20"
+      },
+      {
+       "label": "Hourly net",
+       "value": "fixed: append()"
+      }
+     ],
+     "recap": {
+      "title": "Energy tracked",
+      "subtitle": "range() over two lists, append(), zip() and sum().",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What net energy did the line use?",
+       "xp": 10,
+       "known_from_earlier": [
+        "used = [12, 15, 9, 14]",
+        "made = [5, 8, 11, 6]"
+       ],
+       "explanation_after_check": "The hourly nets are 7, 7, −2 and 8, and += adds them up: 20.",
+       "takeaway": "So: a loop over range(len) can walk two lists together.",
+       "next_bridge": "keep a running total.",
+       "hint_before_check": "Add used − made for each hour.",
+       "code_note": {
+        "title": "Index loops",
+        "text": "range(4) gives each position, so used[i] and made[i] line up."
+       },
+       "science_note": {
+        "title": "Net energy",
+        "text": "Solar panels offset part of a line's use; the net is what the grid supplies."
+       },
+       "scene_label": "The meter log.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Energy per hour in kWh",
+         "args": [
+          [
+           "h1",
+           "h2",
+           "h3",
+           "h4"
+          ],
+          [
+           [
+            7,
+            7,
+            -2,
+            8
+           ],
+           "20 kWh"
+          ],
+          {
+           "b": [
+            [
+             12,
+             15,
+             9,
+             14
+            ],
+            "50?"
+           ],
+           "c": [
+            [
+             5,
+             8,
+             11,
+             6
+            ],
+            "30?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 55
+         },
+         "correct_state": [
+          [
+           7,
+           7,
+           -2,
+           8
+          ],
+          "20 kWh"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             12,
+             15,
+             9,
+             14
+            ],
+            "50?"
+           ],
+           "c": [
+            [
+             5,
+             8,
+             11,
+             6
+            ],
+            "30?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "net = 0",
+        "for i in range(4):",
+        "    net += used[i] - made[i]",
+        "print(net)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "20",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "50",
+         "correct": false,
+         "feedback": "That's the energy used alone."
+        },
+        {
+         "id": "c",
+         "label": "30",
+         "correct": false,
+         "feedback": "That's the energy made alone."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Keep the running total after each hour.",
+       "xp": 10,
+       "known_from_earlier": [
+        "used = [12, 15, 9, 14]"
+       ],
+       "explanation_after_check": "append() adds each new total to the end of the list.",
+       "takeaway": "So: append() grows a list.",
+       "next_bridge": "fix the loop total.",
+       "hint_before_check": "Which list method adds to the end?",
+       "code_note": {
+        "title": "Growing a list",
+        "text": "list.append(x) adds x at the end."
+       },
+       "science_note": {
+        "title": "Cumulative use",
+        "text": "A running total shows when in the day most energy goes."
+       },
+       "scene_label": "The running total.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Energy per hour in kWh",
+         "args": [
+          [
+           "h1",
+           "h2",
+           "h3",
+           "h4"
+          ],
+          [
+           [
+            12,
+            27,
+            36,
+            50
+           ],
+           "[12, 27, 36, 50]"
+          ],
+          {
+           "b": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "AttributeError"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ],
+           "d": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 55
+         },
+         "correct_state": [
+          [
+           12,
+           27,
+           36,
+           50
+          ],
+          "[12, 27, 36, 50]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "AttributeError"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ],
+           "d": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "running, total = [], 0",
+        "for x in used:",
+        "    total += x",
+        "    running.___(total)",
+        "print(running)"
+       ],
+       "goal_output": [
+        "[12, 27, 36, 50]"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "append",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "add",
+         "correct": false,
+         "feedback": "Lists have no add(): AttributeError."
+        },
+        {
+         "id": "c",
+         "label": "insert",
+         "correct": false,
+         "feedback": "insert() also needs a position: TypeError."
+        },
+        {
+         "id": "d",
+         "label": "extend",
+         "correct": false,
+         "feedback": "extend() needs a list, not a number: TypeError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The net total shows 8. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "total = replaces the total each hour, so only the last hour, 8, is left. += adds them all: 20.",
+       "takeaway": "So: += inside a loop keeps a total.",
+       "next_bridge": "use sum().",
+       "hint_before_check": "Is the total kept, or replaced?",
+       "code_note": {
+        "title": "Replacing vs adding",
+        "text": "= replaces; += adds to what's there."
+       },
+       "science_note": {
+        "title": "Daily reports",
+        "text": "A net figure for one hour isn't a daily report."
+       },
+       "scene_label": "A total that's too small.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Energy per hour in kWh",
+         "args": [
+          [
+           "h1",
+           "h2",
+           "h3",
+           "h4"
+          ],
+          [
+           [
+            7,
+            7,
+            -2,
+            8
+           ],
+           "20"
+          ],
+          {
+           "e": [
+            [
+             0,
+             0,
+             0,
+             8
+            ],
+            "8?"
+           ],
+           "f": [
+            [
+             0,
+             0,
+             0,
+             8
+            ],
+            "32?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 55
+         },
+         "correct_state": [
+          [
+           7,
+           7,
+           -2,
+           8
+          ],
+          "20"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "e": [
+            [
+             0,
+             0,
+             0,
+             8
+            ],
+            "8?"
+           ],
+           "f": [
+            [
+             0,
+             0,
+             0,
+             8
+            ],
+            "32?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "energy.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "used = [12, 15, 9, 14]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "made = [5, 8, 11, 6]",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "total = 0",
+         "given_correct": true
+        },
+        {
+         "id": "d",
+         "code": "for i in range(4):",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "    total = used[i] - made[i]",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "print(total)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "e",
+       "fixes_by_line": {
+        "e": [
+         {
+          "id": "f0",
+          "replacement": "    total += used[i] - made[i]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    total += used[i]",
+          "correct": false,
+          "feedback": "That adds use only: 50."
+         },
+         {
+          "id": "f2",
+          "replacement": "    total = total - made[i]",
+          "correct": false,
+          "feedback": "That subtracts what was made: -30."
+         }
+        ],
+        "f": [
+         {
+          "id": "f0",
+          "replacement": "print(total * 4)",
+          "correct": false,
+          "feedback": "That multiplies the last hour: 32."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 20"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "used = [12, 15, 9, 14]",
+        "made = [5, 8, 11, 6]"
+       ],
+       "explanation_after_check": "sum(used) is 50 and sum(made) is 30, so the net is 20, the same as the loop.",
+       "takeaway": "So: sum() replaces a simple adding loop.",
+       "next_bridge": "fix the hourly list.",
+       "hint_before_check": "sum() adds a whole list.",
+       "code_note": {
+        "title": "Built-ins",
+        "text": "sum(), max() and min() work on whole lists."
+       },
+       "science_note": {
+        "title": "Cross-checks",
+        "text": "Getting the same net two ways is a quick check that the log is right."
+       },
+       "scene_label": "The day's totals.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Energy per hour in kWh",
+         "args": [
+          [
+           "h1",
+           "h2",
+           "h3",
+           "h4"
+          ],
+          [
+           [
+            50,
+            30,
+            0,
+            0
+           ],
+           "20"
+          ],
+          {
+           "b": [
+            [
+             50,
+             30,
+             0,
+             0
+            ],
+            "30?"
+           ],
+           "c": [
+            [
+             50,
+             30,
+             0,
+             0
+            ],
+            "-20?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 55
+         },
+         "correct_state": [
+          [
+           50,
+           30,
+           0,
+           0
+          ],
+          "20"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             50,
+             30,
+             0,
+             0
+            ],
+            "30?"
+           ],
+           "c": [
+            [
+             50,
+             30,
+             0,
+             0
+            ],
+            "-20?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(sum(used) - sum(made))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "20",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "30",
+         "correct": false,
+         "feedback": "That's sum(made)."
+        },
+        {
+         "id": "c",
+         "label": "-20",
+         "correct": false,
+         "feedback": "That's sum(made) − sum(used)."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Building the list of hourly nets stops Python. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "hourly += a number fails: += on a list needs another list. append() adds one value.",
+       "takeaway": "So: append() for one item.",
+       "next_bridge": "see your energy report.",
+       "hint_before_check": "How do you add one number to a list?",
+       "code_note": {
+        "title": "zip()",
+        "text": "zip(used, made) gives the two lists' items in pairs."
+       },
+       "science_note": {
+        "title": "Hourly profile",
+        "text": "The hourly net shows when the panels cover the line's use."
+       },
+       "scene_label": "The hourly net.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Energy per hour in kWh",
+         "args": [
+          [
+           "h1",
+           "h2",
+           "h3",
+           "h4"
+          ],
+          [
+           [
+            7,
+            7,
+            -2,
+            8
+           ],
+           "[7, 7, -2, 8]"
+          ],
+          {
+           "e": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ],
+           "f": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 55
+         },
+         "correct_state": [
+          [
+           7,
+           7,
+           -2,
+           8
+          ],
+          "[7, 7, -2, 8]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "e": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ],
+           "f": [
+            [
+             0,
+             0,
+             0,
+             0
+            ],
+            "TypeError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "energy.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "used = [12, 15, 9, 14]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "made = [5, 8, 11, 6]",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "hourly = []",
+         "given_correct": true
+        },
+        {
+         "id": "d",
+         "code": "for u, m in zip(used, made):",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "    hourly += u - m",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "print(hourly)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "e",
+       "fixes_by_line": {
+        "e": [
+         {
+          "id": "f0",
+          "replacement": "    hourly.append(u - m)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    hourly = u - m",
+          "correct": false,
+          "feedback": "That replaces the list with a number: 8."
+         },
+         {
+          "id": "f2",
+          "replacement": "    hourly += [u] - [m]",
+          "correct": false,
+          "feedback": "Lists can't be subtracted: TypeError."
+         }
+        ],
+        "f": [
+         {
+          "id": "f0",
+          "replacement": "print(sum(hourly))",
+          "correct": false,
+          "feedback": "Python still stops on line 5."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [7, 7, -2, 8]"
+      }
+     ]
+    },
+    {
+     "id": "EpP4L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Overheat alert",
+     "person": "Safety engineer",
+     "intro": "The bearing temperature is checked every minute. Raise the alert the first time it reaches 80 °C.",
+     "script_file": "bearing.py",
+     "start_button": "Watch the bearing",
+     "notebook": [
+      {
+       "label": "Hottest, where",
+       "value": "85 4"
+      },
+      {
+       "label": "First alert",
+       "value": "break"
+      },
+      {
+       "label": "Rise per minute",
+       "value": "fixed: len − 1"
+      },
+      {
+       "label": "Last three",
+       "value": "82.0"
+      },
+      {
+       "label": "While loop",
+       "value": "fixed: i += 1"
+      }
+     ],
+     "recap": {
+      "title": "Alert working",
+      "subtitle": "max() and index(), break, safe ranges, and a while loop that moves on.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "temps = [62, 68, 75, 82, 85, 79]"
+       ],
+       "explanation_after_check": "The highest reading is 85, at position 4 (the 5th minute).",
+       "takeaway": "So: list.index(x) finds where x is.",
+       "next_bridge": "stop at the first alert.",
+       "hint_before_check": "index() gives the position, counting from 0.",
+       "code_note": {
+        "title": "max() and index()",
+        "text": "max() finds the largest; index() finds its position."
+       },
+       "science_note": {
+        "title": "Bearings",
+        "text": "A bearing that runs hot is wearing or short of grease; caught early, it's a cheap fix."
+       },
+       "scene_label": "The bearing log.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Bearing temperature in °C, minute by minute",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            62,
+            68,
+            75,
+            82,
+            85,
+            79
+           ],
+           "85 at 4"
+          ],
+          {
+           "b": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "85 at 5?"
+           ],
+           "c": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "82 at 3?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 95,
+          "line": 80,
+          "line_label": "80 °C"
+         },
+         "correct_state": [
+          [
+           62,
+           68,
+           75,
+           82,
+           85,
+           79
+          ],
+          "85 at 4"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "85 at 5?"
+           ],
+           "c": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "82 at 3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(max(temps), temps.index(max(temps)))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "85 4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "85 5",
+         "correct": false,
+         "feedback": "index() counts from 0: the 5th minute is position 4."
+        },
+        {
+         "id": "c",
+         "label": "82 3",
+         "correct": false,
+         "feedback": "max() finds 85, the highest."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Raise the alert only once, at the first reading of 80 or more.",
+       "xp": 10,
+       "known_from_earlier": [
+        "temps = [62, 68, 75, 82, 85, 79]"
+       ],
+       "explanation_after_check": "break leaves the loop after the first alert, so minute 5 is never reported.",
+       "takeaway": "So: break stops at the first match.",
+       "next_bridge": "fix the rise per minute.",
+       "hint_before_check": "Which word leaves the loop?",
+       "code_note": {
+        "title": "Stopping a search",
+        "text": "break ends the loop as soon as you've found what you need."
+       },
+       "science_note": {
+        "title": "One alert",
+        "text": "Repeated alerts for the same event train people to ignore them."
+       },
+       "scene_label": "The first hot minute.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Bearing temperature in °C, minute by minute",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            62,
+            68,
+            75,
+            82,
+            85,
+            79
+           ],
+           "alert at minute 4"
+          ],
+          {
+           "b": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "4 and 5?"
+           ],
+           "c": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "4 and 5?"
+           ],
+           "d": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "SyntaxError"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 95,
+          "line": 80,
+          "line_label": "80 °C"
+         },
+         "correct_state": [
+          [
+           62,
+           68,
+           75,
+           82,
+           85,
+           79
+          ],
+          "alert at minute 4"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "4 and 5?"
+           ],
+           "c": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "4 and 5?"
+           ],
+           "d": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "for i, t in enumerate(temps):",
+        "    if t >= 80:",
+        "        print(\"alert at minute\", i + 1)",
+        "        ___"
+       ],
+       "goal_output": [
+        "alert at minute 4"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "break",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "continue",
+         "correct": false,
+         "feedback": "continue moves on, so minute 5 alerts too."
+        },
+        {
+         "id": "c",
+         "label": "pass",
+         "correct": false,
+         "feedback": "pass does nothing, so minute 5 alerts too."
+        },
+        {
+         "id": "d",
+         "label": "return",
+         "correct": false,
+         "feedback": "return only works inside a function: SyntaxError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The rise per minute stops with an IndexError. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "temps[i + 1] runs past the end on the last round. range(len(temps) − 1) stops one early.",
+       "takeaway": "So: comparing neighbours needs one fewer step.",
+       "next_bridge": "average the last three minutes.",
+       "hint_before_check": "The last reading has no next one.",
+       "code_note": {
+        "title": "Off by one",
+        "text": "With 6 readings there are only 5 gaps between them."
+       },
+       "science_note": {
+        "title": "Rate of rise",
+        "text": "How fast a bearing heats up matters as much as how hot it is."
+       },
+       "scene_label": "Minute-by-minute rises.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Bearing temperature in °C, minute by minute",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            62,
+            68,
+            75,
+            82,
+            85,
+            79
+           ],
+           "6 7 7 3 -6"
+          ],
+          {
+           "b": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "IndexError"
+           ],
+           "c": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "-17 first?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 95,
+          "line": 80,
+          "line_label": "80 °C"
+         },
+         "correct_state": [
+          [
+           62,
+           68,
+           75,
+           82,
+           85,
+           79
+          ],
+          "6 7 7 3 -6"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "IndexError"
+           ],
+           "c": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "-17 first?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "bearing.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "temps = [62, 68, 75, 82, 85, 79]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "for i in range(len(temps)):",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(temps[i + 1] - temps[i])",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "for i in range(len(temps) - 1):",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "for i in range(len(temps) + 1):",
+          "correct": false,
+          "feedback": "Even further past the end: IndexError."
+         },
+         {
+          "id": "f2",
+          "replacement": "for i in range(1, len(temps)):",
+          "correct": false,
+          "feedback": "It still reaches the last index: IndexError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(temps[i] - temps[i - 1])",
+          "correct": false,
+          "feedback": "No error, but the first line compares minute 1 with the last: -17."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 6, 7, 7, 3, -6 (one per line)"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "temps = [62, 68, 75, 82, 85, 79]"
+       ],
+       "explanation_after_check": "temps[-3:] is [82, 85, 79], and their average is 246 / 3 = 82.0.",
+       "takeaway": "So: list[-n:] is the last n items.",
+       "next_bridge": "fix the while loop.",
+       "hint_before_check": "[-3:] is the last three.",
+       "code_note": {
+        "title": "Recent values",
+        "text": "A slice from the end gives the most recent readings."
+       },
+       "science_note": {
+        "title": "Smoothing",
+        "text": "Averaging the last few readings smooths out a single noisy one."
+       },
+       "scene_label": "The last three minutes.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Bearing temperature in °C, minute by minute",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            0,
+            0,
+            0,
+            82,
+            85,
+            79
+           ],
+           "82.0"
+          ],
+          {
+           "b": [
+            [
+             0,
+             0,
+             75,
+             82,
+             85,
+             0
+            ],
+            "80.67?"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             0,
+             82,
+             85,
+             79
+            ],
+            "82?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 95,
+          "line": 80,
+          "line_label": "80 °C"
+         },
+         "correct_state": [
+          [
+           0,
+           0,
+           0,
+           82,
+           85,
+           79
+          ],
+          "82.0"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             0,
+             75,
+             82,
+             85,
+             0
+            ],
+            "80.67?"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             0,
+             82,
+             85,
+             79
+            ],
+            "82?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(temps[-3:], sum(temps[-3:]) / 3)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[82, 85, 79] 82.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[75, 82, 85] 80.66666666666667",
+         "correct": false,
+         "feedback": "[-3:] runs to the end: 82, 85, 79."
+        },
+        {
+         "id": "c",
+         "label": "[82, 85, 79] 82",
+         "correct": false,
+         "feedback": "/ always gives a float: 82.0."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "This loop never ends. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "i + 1 works out a number and throws it away, so i stays 0 forever. i += 1 moves on.",
+       "takeaway": "So: a while loop must change what it tests.",
+       "next_bridge": "see your alert.",
+       "hint_before_check": "Does i ever change?",
+       "code_note": {
+        "title": "while loops",
+        "text": "while repeats as long as its test is True."
+       },
+       "science_note": {
+        "title": "Watchdogs",
+        "text": "Control code that loops forever freezes the machine; real controllers have a watchdog to reset it."
+       },
+       "scene_label": "A frozen alert.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Bearing temperature in °C, minute by minute",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4",
+           "5",
+           "6"
+          ],
+          [
+           [
+            62,
+            68,
+            75,
+            82,
+            85,
+            79
+           ],
+           "alert at minute 4"
+          ],
+          {
+           "d": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "never ends"
+           ],
+           "e": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "never ends"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 95,
+          "line": 80,
+          "line_label": "80 °C"
+         },
+         "correct_state": [
+          [
+           62,
+           68,
+           75,
+           82,
+           85,
+           79
+          ],
+          "alert at minute 4"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "d": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "never ends"
+           ],
+           "e": [
+            [
+             62,
+             68,
+             75,
+             82,
+             85,
+             79
+            ],
+            "never ends"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "bearing.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "temps = [62, 68, 75, 82, 85, 79]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "i = 0",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "while temps[i] < 80:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    i + 1",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "print(\"alert at minute\", i + 1)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "d",
+       "fixes_by_line": {
+        "d": [
+         {
+          "id": "f0",
+          "replacement": "    i += 1",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    i = 1",
+          "correct": false,
+          "feedback": "i is set to 1 every time and never reaches 3: it never ends."
+         },
+         {
+          "id": "f2",
+          "replacement": "    i - 1",
+          "correct": false,
+          "feedback": "Still throws the result away: it never ends."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "print(\"alert at minute\", i)",
+          "correct": false,
+          "feedback": "The loop never ends, so Python never gets here."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: alert at minute 4"
+      }
+     ]
+    },
+    {
+     "id": "EpP4L5",
+     "type": "lesson",
+     "part": 5,
+     "title": "Sensor rack",
+     "person": "Instrument technician",
+     "intro": "The test rack holds three rows of sensors. 1 means a sensor is working, 0 means it's offline.",
+     "script_file": "rack.py",
+     "start_button": "Check the rack",
+     "notebook": [
+      {
+       "label": "Row 2, slot 3",
+       "value": "0 3"
+      },
+      {
+       "label": "Offline",
+       "value": "3"
+      },
+      {
+       "label": "Per row",
+       "value": "fixed: append()"
+      },
+      {
+       "label": "Row 3 working, first gap",
+       "value": "3 1"
+      },
+      {
+       "label": "Offline per row",
+       "value": "fixed: count(0)"
+      }
+     ],
+     "recap": {
+      "title": "Rack checked",
+      "subtitle": "Lists of lists, nested loops, count() and index().",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "rack = [[1, 1, 0], [1, 0, 0], [1, 1, 1]]"
+       ],
+       "explanation_after_check": "rack[1] is the second row, [1, 0, 0], and [2] is its third slot: 0. rack[2] has 3 sensors.",
+       "takeaway": "So: list[i][j] picks row i, slot j.",
+       "next_bridge": "count the offline sensors.",
+       "hint_before_check": "rack[1] is a whole row; [2] picks inside it.",
+       "code_note": {
+        "title": "Nested lists",
+        "text": "A list can hold lists: one per row."
+       },
+       "science_note": {
+        "title": "Test racks",
+        "text": "Racks test many sensors at once; each slot's result is logged by row and position."
+       },
+       "scene_label": "The sensor rack.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Working sensors per row",
+         "args": [
+          [
+           "row 1",
+           "row 2",
+           "row 3"
+          ],
+          [
+           [
+            2,
+            1,
+            3
+           ],
+           "0 3"
+          ],
+          {
+           "b": [
+            [
+             2,
+             1,
+             3
+            ],
+            "0 2?"
+           ],
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "1 3?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 3.5
+         },
+         "correct_state": [
+          [
+           2,
+           1,
+           3
+          ],
+          "0 3"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             2,
+             1,
+             3
+            ],
+            "0 2?"
+           ],
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "1 3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(rack[1][2], len(rack[2]))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "0 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0 2",
+         "correct": false,
+         "feedback": "len(rack[2]) counts row 3's slots: 3."
+        },
+        {
+         "id": "c",
+         "label": "1 3",
+         "correct": false,
+         "feedback": "rack[1][2] is row 2, slot 3: 0."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Count the offline sensors.",
+       "xp": 10,
+       "known_from_earlier": [
+        "rack = [[1, 1, 0], [1, 0, 0], [1, 1, 1]]"
+       ],
+       "explanation_after_check": "s == 0 is True for each offline sensor, and True adds as 1: 3 in total.",
+       "takeaway": "So: a loop inside a loop visits every slot.",
+       "next_bridge": "count per row.",
+       "hint_before_check": "An offline sensor is 0; a test gives True or False.",
+       "code_note": {
+        "title": "Nested loops",
+        "text": "The inner loop runs fully for each round of the outer one."
+       },
+       "science_note": {
+        "title": "Yield",
+        "text": "The share of working sensors on a rack is the batch's yield."
+       },
+       "scene_label": "Every slot on the rack.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Working sensors per row",
+         "args": [
+          [
+           "row 1",
+           "row 2",
+           "row 3"
+          ],
+          [
+           [
+            2,
+            1,
+            3
+           ],
+           "3 offline"
+          ],
+          {
+           "b": [
+            [
+             2,
+             1,
+             3
+            ],
+            "6?"
+           ],
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "SyntaxError"
+           ],
+           "d": [
+            [
+             2,
+             1,
+             3
+            ],
+            "0?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 3.5
+         },
+         "correct_state": [
+          [
+           2,
+           1,
+           3
+          ],
+          "3 offline"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             2,
+             1,
+             3
+            ],
+            "6?"
+           ],
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "SyntaxError"
+           ],
+           "d": [
+            [
+             2,
+             1,
+             3
+            ],
+            "0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "offline = 0",
+        "for row in rack:",
+        "    for s in row:",
+        "        offline += s ___ 0",
+        "print(offline)"
+       ],
+       "goal_output": [
+        "3"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "==",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "!=",
+         "correct": false,
+         "feedback": "That counts working sensors: 6."
+        },
+        {
+         "id": "c",
+         "label": "=",
+         "correct": false,
+         "feedback": "= can't go inside +=: SyntaxError."
+        },
+        {
+         "id": "d",
+         "label": "<",
+         "correct": false,
+         "feedback": "No sensor is below 0: 0."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "This should give a count for each row. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "counts = sum(row) replaces the list each round, leaving 3. append() keeps one count per row.",
+       "takeaway": "So: append() inside a loop builds a list of results.",
+       "next_bridge": "find a gap.",
+       "hint_before_check": "Keep every row's count, not just the last.",
+       "code_note": {
+        "title": "Building results",
+        "text": "Start with [] and append() one result per round."
+       },
+       "science_note": {
+        "title": "Per-row results",
+        "text": "A row with many failures can point to a fault in the rack, not the sensors."
+       },
+       "scene_label": "Working sensors by row.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Working sensors per row",
+         "args": [
+          [
+           "row 1",
+           "row 2",
+           "row 3"
+          ],
+          [
+           [
+            2,
+            1,
+            3
+           ],
+           "[2, 1, 3]"
+          ],
+          {
+           "d": [
+            [
+             0,
+             0,
+             3
+            ],
+            "3?"
+           ],
+           "e": [
+            [
+             0,
+             0,
+             3
+            ],
+            "[3]?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 3.5
+         },
+         "correct_state": [
+          [
+           2,
+           1,
+           3
+          ],
+          "[2, 1, 3]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "d": [
+            [
+             0,
+             0,
+             3
+            ],
+            "3?"
+           ],
+           "e": [
+            [
+             0,
+             0,
+             3
+            ],
+            "[3]?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "rack.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "rack = [[1, 1, 0], [1, 0, 0], [1, 1, 1]]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "counts = []",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "for row in rack:",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    counts = sum(row)",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "print(counts)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "d",
+       "fixes_by_line": {
+        "d": [
+         {
+          "id": "f0",
+          "replacement": "    counts.append(sum(row))",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    counts += sum(row)",
+          "correct": false,
+          "feedback": "+= on a list needs a list: TypeError."
+         },
+         {
+          "id": "f2",
+          "replacement": "    counts = [sum(row)]",
+          "correct": false,
+          "feedback": "Still replaced each round: [3]."
+         }
+        ],
+        "e": [
+         {
+          "id": "e0",
+          "replacement": "print([counts])",
+          "correct": false,
+          "feedback": "That wraps the last count: [3]."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [2, 1, 3]"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [
+        "rack = [[1, 1, 0], [1, 0, 0], [1, 1, 1]]"
+       ],
+       "explanation_after_check": "Row 3 has three 1s, and the first 0 in row 2 is at position 1.",
+       "takeaway": "So: count() and index() search a list.",
+       "next_bridge": "fix the offline count.",
+       "hint_before_check": "count() counts matches; index() finds the first.",
+       "code_note": {
+        "title": "Searching lists",
+        "text": "count(x) counts x; index(x) gives the first position of x."
+       },
+       "science_note": {
+        "title": "First failure",
+        "text": "The first failed slot shows where to start looking."
+       },
+       "scene_label": "Rows 2 and 3.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Working sensors per row",
+         "args": [
+          [
+           "row 1",
+           "row 2",
+           "row 3"
+          ],
+          [
+           [
+            2,
+            1,
+            3
+           ],
+           "3 1"
+          ],
+          {
+           "b": [
+            [
+             2,
+             1,
+             3
+            ],
+            "3 2?"
+           ],
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "1 1?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 3.5
+         },
+         "correct_state": [
+          [
+           2,
+           1,
+           3
+          ],
+          "3 1"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             2,
+             1,
+             3
+            ],
+            "3 2?"
+           ],
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "1 1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "c = rack[-1].count(1)",
+        "print(c, rack[1].index(0))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3 1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3 2",
+         "correct": false,
+         "feedback": "index() gives the first 0, at position 1."
+        },
+        {
+         "id": "c",
+         "label": "1 1",
+         "correct": false,
+         "feedback": "count(1) counts every 1 in row 3: 3."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Every row shows 0 offline. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The rack holds numbers, so count(\"0\") finds no text \"0\". count(0) counts the number.",
+       "takeaway": "So: 0 and \"0\" are different values.",
+       "next_bridge": "see your rack check.",
+       "hint_before_check": "Are the sensors stored as numbers or text?",
+       "code_note": {
+        "title": "Types in searches",
+        "text": "count() only matches values of the same type."
+       },
+       "science_note": {
+        "title": "Silent errors",
+        "text": "A check that always says \"0 offline\" is worse than no check: it looks like good news."
+       },
+       "scene_label": "A report that's too good.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Working sensors per row",
+         "args": [
+          [
+           "row 1",
+           "row 2",
+           "row 3"
+          ],
+          [
+           [
+            2,
+            1,
+            3
+           ],
+           "1, 2, 0 offline"
+          ],
+          {
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "wrong count"
+           ],
+           "d": [
+            [
+             2,
+             1,
+             3
+            ],
+            "3 each?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 3.5
+         },
+         "correct_state": [
+          [
+           2,
+           1,
+           3
+          ],
+          "1, 2, 0 offline"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            [
+             2,
+             1,
+             3
+            ],
+            "wrong count"
+           ],
+           "d": [
+            [
+             2,
+             1,
+             3
+            ],
+            "3 each?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "rack.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "rack = [[1, 1, 0], [1, 0, 0], [1, 1, 1]]",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "for r, row in enumerate(rack, 1):",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    off = row.count(\"0\")",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "    print(f\"Row {r}: {off} offline\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "    off = row.count(0)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "    off = row.count(1)",
+          "correct": false,
+          "feedback": "That counts working sensors: 2, 1, 3."
+         },
+         {
+          "id": "f2",
+          "replacement": "    off = len(row)",
+          "correct": false,
+          "feedback": "That's every slot: 3 each."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "    print(f\"Row {r}: {3 - off} offline\")",
+          "correct": false,
+          "feedback": "off is still 0, so every row says 3."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: Row 1: 1, Row 2: 2, Row 3: 0 offline (one per line)"
+      }
+     ]
+    },
+    {
+     "id": "EpP4C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Sensor log",
+     "person": "Controls lead",
+     "intro": "One question from each part. No hints, no notes: read every line.",
+     "script_file": "log_check.py",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "Shared list",
+       "value": "[1, 2, 3]"
+      },
+      {
+       "label": "Numbered",
+       "value": "[(1, 'A'), (2, 'B')]"
+      },
+      {
+       "label": "First slot",
+       "value": "[5, 0, 0]"
+      },
+      {
+       "label": "Countdown",
+       "value": "[10, 7, 4, 1]"
+      },
+      {
+       "label": "Grid rows",
+       "value": "fixed: two lists"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 4 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "engineering_python",
+     "phase": 4,
+     "language": "Python",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "b = a doesn't copy the list; both names point to the same one, so appending to b changes a.",
+       "takeaway": null,
+       "next_bridge": "number some readings.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Two names for one log.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Log entries",
+         "args": [
+          [
+           "1",
+           "2",
+           "3"
+          ],
+          [
+           [
+            1,
+            2,
+            3
+           ],
+           "[1, 2, 3]"
+          ],
+          {
+           "b": [
+            [
+             1,
+             2,
+             0
+            ],
+            "[1, 2]?"
+           ],
+           "c": [
+            [
+             1,
+             2,
+             3
+            ],
+            "[1, 2, 3, 3]?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 3.5
+         },
+         "correct_state": [
+          [
+           1,
+           2,
+           3
+          ],
+          "[1, 2, 3]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             1,
+             2,
+             0
+            ],
+            "[1, 2]?"
+           ],
+           "c": [
+            [
+             1,
+             2,
+             3
+            ],
+            "[1, 2, 3, 3]?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "a = [1, 2]",
+        "b = a",
+        "b.append(3)",
+        "print(a)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[1, 2, 3]",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[1, 2]",
+         "correct": false,
+         "feedback": "b is the same list as a, not a copy."
+        },
+        {
+         "id": "c",
+         "label": "[1, 2, 3, 3]",
+         "correct": false,
+         "feedback": "append() runs once."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "enumerate() starting at 1 pairs each character with its number.",
+       "takeaway": null,
+       "next_bridge": "update a reading.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Two labels.",
+       "picture": [
+        {
+         "type": "tiles",
+         "description": "Character tiles with positions; lit tiles pop up green (right) or orange (wrong option); a result pill fades in.",
+         "label": "Labels",
+         "args": [
+          "AB",
+          [
+           [
+            0,
+            1
+           ],
+           "[(1, 'A'), (2, 'B')]"
+          ],
+          {
+           "b": [
+            [
+             0,
+             1
+            ],
+            "from 0?"
+           ],
+           "c": [
+            [],
+            "numbers only?"
+           ]
+          }
+         ],
+         "options": {
+          "base": 0
+         },
+         "correct_state": [
+          [
+           0,
+           1
+          ],
+          "[(1, 'A'), (2, 'B')]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             1
+            ],
+            "from 0?"
+           ],
+           "c": [
+            [],
+            "numbers only?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(list(enumerate(\"AB\", 1)))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[(1, 'A'), (2, 'B')]",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[(0, 'A'), (1, 'B')]",
+         "correct": false,
+         "feedback": "The 1 makes it count from 1."
+        },
+        {
+         "id": "c",
+         "label": "[1, 2]",
+         "correct": false,
+         "feedback": "enumerate() gives pairs: number and item."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Add 5 to the first reading.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "+= adds to the value already there: 0 + 5 = 5.",
+       "takeaway": null,
+       "next_bridge": "count down.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Three empty slots.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Readings",
+         "args": [
+          [
+           "1",
+           "2",
+           "3"
+          ],
+          [
+           [
+            5,
+            0,
+            0
+           ],
+           "[5, 0, 0]"
+          ],
+          {
+           "b": [
+            [
+             0,
+             0,
+             0
+            ],
+            "[0, 0, 0]"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             0
+            ],
+            "[-5, 0, 0]?"
+           ],
+           "d": [
+            [
+             0,
+             0,
+             0
+            ],
+            "[0, 0, 0]"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 6
+         },
+         "correct_state": [
+          [
+           5,
+           0,
+           0
+          ],
+          "[5, 0, 0]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             0,
+             0,
+             0
+            ],
+            "[0, 0, 0]"
+           ],
+           "c": [
+            [
+             0,
+             0,
+             0
+            ],
+            "[-5, 0, 0]?"
+           ],
+           "d": [
+            [
+             0,
+             0,
+             0
+            ],
+            "[0, 0, 0]"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "readings = [0] * 3",
+        "readings[0] ___ 5",
+        "print(readings)"
+       ],
+       "goal_output": [
+        "[5, 0, 0]"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "+=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "==",
+         "correct": false,
+         "feedback": "== only compares; nothing changes: [0, 0, 0]."
+        },
+        {
+         "id": "c",
+         "label": "-=",
+         "correct": false,
+         "feedback": "That subtracts: [-5, 0, 0]."
+        },
+        {
+         "id": "d",
+         "label": "*=",
+         "correct": false,
+         "feedback": "0 times 5 is still 0: [0, 0, 0]."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(10, 0, -3) starts at 10 and steps down by 3, stopping before 0: 10, 7, 4, 1.",
+       "takeaway": null,
+       "next_bridge": "fix a grid.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A countdown.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Countdown",
+         "args": [
+          [
+           "1",
+           "2",
+           "3",
+           "4"
+          ],
+          [
+           [
+            10,
+            7,
+            4,
+            1
+           ],
+           "[10, 7, 4, 1]"
+          ],
+          {
+           "b": [
+            [
+             10,
+             7,
+             4,
+             0
+            ],
+            "[10, 7, 4]?"
+           ],
+           "c": [
+            [
+             9,
+             6,
+             3,
+             0
+            ],
+            "[9, 6, 3]?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 11
+         },
+         "correct_state": [
+          [
+           10,
+           7,
+           4,
+           1
+          ],
+          "[10, 7, 4, 1]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             10,
+             7,
+             4,
+             0
+            ],
+            "[10, 7, 4]?"
+           ],
+           "c": [
+            [
+             9,
+             6,
+             3,
+             0
+            ],
+            "[9, 6, 3]?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(list(range(10, 0, -3)))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "[10, 7, 4, 1]",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[10, 7, 4]",
+         "correct": false,
+         "feedback": "1 is still above 0, so it's included."
+        },
+        {
+         "id": "c",
+         "label": "[9, 6, 3]",
+         "correct": false,
+         "feedback": "range starts at its first number: 10."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Only the first row should change. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "[[0] * 2] * 2 repeats the same inner list twice, so changing one changes both. Writing two lists out makes two separate rows.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A grid that changes twice.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "First slot of each row",
+         "args": [
+          [
+           "row 1",
+           "row 2"
+          ],
+          [
+           [
+            1,
+            0
+           ],
+           "[[1, 0], [0, 0]]"
+          ],
+          {
+           "a": [
+            [
+             1,
+             1
+            ],
+            "[[1, 0], [1, 0]]?"
+           ],
+           "c": [
+            [
+             1,
+             1
+            ],
+            "row 2 hidden"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 1.2
+         },
+         "correct_state": [
+          [
+           1,
+           0
+          ],
+          "[[1, 0], [0, 0]]"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "a": [
+            [
+             1,
+             1
+            ],
+            "[[1, 0], [1, 0]]?"
+           ],
+           "c": [
+            [
+             1,
+             1
+            ],
+            "row 2 hidden"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "log_check.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "grid = [[0] * 2] * 2",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "grid[0][0] = 1",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "print(grid)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "a",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "f0",
+          "replacement": "grid = [[0, 0], [0, 0]]",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "grid = [[0, 0]] * 2",
+          "correct": false,
+          "feedback": "Still one inner list, repeated: [[1, 0], [1, 0]]."
+         },
+         {
+          "id": "f2",
+          "replacement": "grid = [0] * 4",
+          "correct": false,
+          "feedback": "A flat list has no rows: TypeError."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(grid[0])",
+          "correct": false,
+          "feedback": "That hides the second row, which changed too."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: [[1, 0], [0, 0]]"
+      }
+     ]
+    }
+   ]
   }
  ]
 }
