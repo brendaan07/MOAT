@@ -64,7 +64,6 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 | `URLSession` (`/lessons`, `/explain`) | `fetch` with the same timeouts (8s, 15s) | Yes |
 | Shapes, `Canvas`, `Path` | `react-native-svg` | Yes |
 | SwiftUI animations, `phaseAnimator`, `keyframeAnimator` | React Native `Animated`, same timings | Yes |
-| `UINotificationFeedbackGenerator`, `sensoryFeedback` | `expo-haptics` | Yes |
 | Horizon, Baloo 2 and Atkinson Hyperlegible fonts | `expo-font` (Baloo 2 and Atkinson are under the SIL Open Font License, included in `assets/fonts`) | Yes |
 | SF Symbols | `@expo/vector-icons` (Ionicons) | Yes |
 

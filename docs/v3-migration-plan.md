@@ -877,6 +877,5 @@ Each step adds here what it found or left for a later step (file, why, which ste
     Workshop forms and parts, and V1 lesson features.
   - Behaviour change: two V3 fill questions blank a whole line (`XpP4L4`, `EpP4L4` q2). They used to go through V2's
     build branch, which never showed the picked option in the line; now the line shows it like every other fill.
-  - Open question for the user: `expo-haptics` (in `package.json`) has no importer now. Only the deleted V1
-    `LessonScreen` and `TrackPlayer` buzzed on Check; the V3 player never has. Either add haptics to the V3 player or
-    remove the dependency (3.6).
+  - `expo-haptics` had no importer after 3.1 (only the deleted V1 `LessonScreen` and `TrackPlayer` buzzed on Check);
+    removed by the user's decision, with its README mapping row. The V1 "haptics on check" feature row goes in 3.6.
