@@ -1,18 +1,10 @@
-// The bolt counter at the top right of every track question, with its celebration when a right answer pays.
+// The bolt counter at the top right of every question.
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Text, View } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { BoltIcon, ZapIcon } from '../icons';
 import { BORDER, C, heading } from '../../utils/theme';
-import { TRACK_BOLTS_PER_QUESTION } from '../../utils/rewards';
 import { useCountUp } from '../../hooks/useCountUp';
 import { useReduceMotion } from '../../hooks/useReduceMotion';
-import { BoltIcon } from '../icons';
-
-const ZapIcon = ({ fill, rotate }: { fill: string; rotate: number }) => (
-  <Svg width={16} height={18} viewBox="0 0 16 18">
-    <Path d="M9.5 1 L3.5 9.5 H7.5 L5.5 17 L12.5 7.5 H8.5 Z" fill={fill} stroke={C.navy} strokeWidth={1.4} strokeLinejoin="round" transform={`rotate(${rotate} 8 9)`} />
-  </Svg>
-);
 
 const SPARKS = [
   { x: -34, y: -22, r: -25, c: C.sun, d: 150 },
@@ -22,10 +14,10 @@ const SPARKS = [
 ];
 const FLICKER = [1, 0.15, 1, 0.3, 1, 0];
 
-/** White "+N" while answering; after a right answer it turns lime, counts up by the question's bolts, glows, bounces and flickers four sparks twice. */
+/** White "+N" while answering; after a right answer it turns lime, counts up by 10, glows, bounces and flickers four sparks twice. */
 export function BoltPill({ base, earned }: { base: number; earned: boolean }) {
   const reduce = useReduceMotion();
-  const shown = useCountUp(earned ? base + TRACK_BOLTS_PER_QUESTION : base, { from: base, duration: 900, delay: 150, run: earned && !reduce });
+  const shown = useCountUp(earned ? base + 10 : base, { from: base, duration: 900, delay: 150, run: earned && !reduce });
   const glow = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
   const sparks = useRef(SPARKS.map(() => new Animated.Value(0))).current;
@@ -49,7 +41,7 @@ export function BoltPill({ base, earned }: { base: number; earned: boolean }) {
   return (
     <Animated.View
       accessible
-      accessibilityLabel={earned ? `${TRACK_BOLTS_PER_QUESTION} bolts earned. ${base + TRACK_BOLTS_PER_QUESTION} this lesson.` : `${base} bolts earned this lesson`}
+      accessibilityLabel={earned ? `10 bolts earned. ${base + 10} this lesson.` : `${base} bolts earned this lesson`}
       style={{ transform: [{ scale }] }}
     >
       <Animated.View

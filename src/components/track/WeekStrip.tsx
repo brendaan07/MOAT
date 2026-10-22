@@ -1,10 +1,10 @@
-// Monday to Sunday circles showing which days of this week the streak covers.
+// The week's seven days with the streak's days ticked and today's flame.
 import React from 'react';
 import { Text, View } from 'react-native';
-import { BORDER, C, body } from '../../utils/theme';
 import { CheckIcon, FlameIcon } from '../icons';
+import { BORDER, C, body } from '../../utils/theme';
 
-/** `streak` counts back from today, or from yesterday when today has no lesson yet. */
+/** Monday to Sunday, with the streak's days ticked and today's flame. */
 export function WeekStrip({ streak, activeToday, dark = true }: { streak: number; activeToday: boolean; dark?: boolean }) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);

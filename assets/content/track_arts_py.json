@@ -1,0 +1,173 @@
+{
+ "id": "arts_py",
+ "title": "Arts & humanities",
+ "language": "Python",
+ "phases": [
+  {
+   "number": 1,
+   "area": "Arts & humanities",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Theatre board",
+     "Say hello"
+    ],
+    [
+     "Counting chapters",
+     "Say hello"
+    ],
+    [
+     "Labelled notebooks",
+     "Say hello"
+    ],
+    [
+     "Writing day",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "arts_py_p1_l1",
+     "part": 1,
+     "title": "Theatre board"
+    },
+    {
+     "id": "arts_py_p1_l2",
+     "part": 2,
+     "title": "Counting chapters"
+    },
+    {
+     "id": "arts_py_p1_l3",
+     "part": 3,
+     "title": "Labelled notebooks"
+    },
+    {
+     "id": "arts_py_p1_l4",
+     "part": 4,
+     "title": "Writing day"
+    }
+   ],
+   "checkpoint": {
+    "id": "arts_py_cp1",
+    "name": "Say hello",
+    "unlock": []
+   }
+  },
+  {
+   "number": 2,
+   "area": "Arts & humanities",
+   "project": "Loops: repeat a step",
+   "picture": "",
+   "skill": "Repeat a scene chapter after chapter",
+   "parts": [
+    [
+     "Chapters pass",
+     "Loops: repeat a step"
+    ],
+    [
+     "Watch it grow",
+     "Loops: repeat a step"
+    ],
+    [
+     "Counting scenes",
+     "Loops: repeat a step"
+    ],
+    [
+     "Rehearsal routine",
+     "Loops: repeat a step"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "arts_py_p2_l1",
+     "part": 1,
+     "title": "Chapters pass"
+    },
+    {
+     "id": "arts_py_p2_l2",
+     "part": 2,
+     "title": "Watch it grow"
+    },
+    {
+     "id": "arts_py_p2_l3",
+     "part": 3,
+     "title": "Counting scenes"
+    },
+    {
+     "id": "arts_py_p2_l4",
+     "part": 4,
+     "title": "Rehearsal routine"
+    }
+   ],
+   "checkpoint": {
+    "id": "arts_py_cp2",
+    "name": "Loops: repeat a step",
+    "unlock": []
+   }
+  },
+  {
+   "number": 3,
+   "area": "Arts & humanities",
+   "project": "Decisions: if / else",
+   "picture": "",
+   "skill": "Curtain open or curtain closed",
+   "parts": [
+    [
+     "Open or closed",
+     "Decisions: if / else"
+    ],
+    [
+     "Loud or soft",
+     "Decisions: if / else"
+    ],
+    [
+     "Nightly check",
+     "Decisions: if / else"
+    ],
+    [
+     "Show review",
+     "Decisions: if / else"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "arts_py_p3_l1",
+     "part": 1,
+     "title": "Open or closed"
+    },
+    {
+     "id": "arts_py_p3_l2",
+     "part": 2,
+     "title": "Loud or soft"
+    },
+    {
+     "id": "arts_py_p3_l3",
+     "part": 3,
+     "title": "Nightly check"
+    },
+    {
+     "id": "arts_py_p3_l4",
+     "part": 4,
+     "title": "Show review"
+    }
+   ],
+   "checkpoint": {
+    "id": "arts_py_cp3",
+    "name": "Decisions: if / else",
+    "unlock": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "Arts & humanities",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

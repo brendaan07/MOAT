@@ -1,0 +1,76 @@
+{
+ "id": "fin_py",
+ "title": "Business & finance",
+ "language": "Python",
+ "phases": [
+  {
+   "number": 1,
+   "area": "Business & finance",
+   "project": "Values and operators",
+   "picture": "",
+   "skill": "Values and operators",
+   "parts": [
+    [
+     "Shop receipt",
+     "Values and operators"
+    ],
+    [
+     "Making change",
+     "Values and operators"
+    ],
+    [
+     "Profit margin",
+     "Values and operators"
+    ],
+    [
+     "Compound interest",
+     "Values and operators"
+    ],
+    [
+     "Order form",
+     "Values and operators"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "fin_py_p1_l1",
+     "part": 1,
+     "title": "Shop receipt"
+    },
+    {
+     "id": "fin_py_p1_l2",
+     "part": 2,
+     "title": "Making change"
+    },
+    {
+     "id": "fin_py_p1_l3",
+     "part": 3,
+     "title": "Profit margin"
+    },
+    {
+     "id": "fin_py_p1_l4",
+     "part": 4,
+     "title": "Compound interest"
+    },
+    {
+     "id": "fin_py_p1_l5",
+     "part": 5,
+     "title": "Order form"
+    }
+   ],
+   "checkpoint": {
+    "id": "fin_py_cp1",
+    "name": "Values and operators",
+    "unlock": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "Business & finance",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

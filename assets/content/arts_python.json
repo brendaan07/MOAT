@@ -1,0 +1,2995 @@
+{
+ "track": {
+  "id": "arts_py",
+  "name": "Arts & humanities Python",
+  "language": "Python",
+  "phases": 3,
+  "lessons_per_phase": 4,
+  "checkpoints": false,
+  "item_order_rule": "Each phase has four lessons in order and no checkpoint yet (restructured from the V1 general lessons)."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Say hello",
+   "coding_idea": "Show messages and store numbers",
+   "items": [
+    {
+     "id": "ArtsPyP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Theatre board",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Make the theatre board say hello",
+       "value": "\"Hello, audience!\""
+      },
+      {
+       "label": "What does the theatre board sho…",
+       "value": "Overture"
+      },
+      {
+       "label": "Build the line that shows: Curt…",
+       "value": "\"Curtain up!\""
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Overture, Finale"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Theatre board",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Make the theatre board say hello",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words go inside quote marks. Then print shows them on the theatre board.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "print() shows whatever is inside the brackets.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Hello, audience!\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Hello, audience!",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "(Hello, audience!)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "hello, audience!",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the theatre board show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "print shows the words between the quote marks. The quote marks themselves are not shown.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"Overture\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Overture",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"Overture\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "print",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows: Curtain up!",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with print, then brackets, and put the words inside quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Curtain up!\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Curtain up!",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words need quote marks. Fix: print(\"Bravo!\")",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "print(\"Overture\")",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "print(\"Finale\")",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(Bravo!)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "print(\"Overture\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "print(\"Finale\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "print(\"Bravo!\")",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "print(Bravo!)",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The computer runs the lines from top to bottom, so the first message shows first.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"Overture\")",
+        "print(\"Finale\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Overture, Finale",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Overture",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Finale, Overture",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Counting chapters",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "True or false: this shows 4 + 3.",
+       "value": "True"
+      },
+      {
+       "label": "There are 4 chapters, then 3 mo…",
+       "value": "print(4 + 3)"
+      },
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "Build a line that shows 2 times…",
+       "value": "*"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Counting chapters",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without quote marks, Python does the maths: 4 + 3 = 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Without quote marks, Python does the maths.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(4 + 3)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4 + 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "43",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 4 + 3.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make it a message. The words show, and no adding happens.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"4 + 3\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "There are 4 chapters, then 3 more come. Which line shows 7?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Leave off the quote marks so Python adds: 4 + 3 = 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "print(4 + 3)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "print(4 - 3)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "print(\"4 + 3\")",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "12 - 5 = 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(12 - 5)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "17",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "12 - 5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build a line that shows 2 times 8",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Python uses * for times. 2 * 8 = 16.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Python uses * for times.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(2 ___ 8)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "*",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "x",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Labelled notebooks",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Put 3 pages in the notebook lab…",
+       "value": "="
+      },
+      {
+       "label": "What shows?",
+       "value": "3"
+      },
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "True or false: this shows 4.",
+       "value": "False"
+      },
+      {
+       "label": "Which line does this: show what…",
+       "value": "print(pages)"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Labelled notebooks",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Put 3 pages in the notebook labelled pages",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "One = puts a value into the box. Two == would ask a question instead.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "A variable is a labelled box that holds a value.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages ___ 3"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "==",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "pages holds 3, so print(pages) shows 3.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages = 3",
+        "print(pages)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"pages\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "pages",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The newest value replaces the old one. The box now holds 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages = 3",
+        "pages = 7",
+        "print(pages)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "10",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 4.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make verses a word, so the word shows and not what the box holds.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "verses = 4",
+        "print(\"verses\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "False",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: show what the box holds?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "= stores a value. print(name) shows the value. Quote marks show the name itself.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "print(pages)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "pages = 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "pages = 7",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "print(\"pages\")",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Writing day",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "You write 10 more pages. Which…",
+       "value": "pages = pages + 10"
+      },
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "You cut 2 pages. Build the line.",
+       "value": "="
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: take away…",
+       "value": "lines = lines - 1"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Writing day",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "You write 10 more pages. Which line updates pages?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, add 10, and put it back in the same box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Take the old value, change it, and put it back in the same box.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages = 40"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "pages = pages + 10",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "pages = 10",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "pages + 10",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "9 - 2 = 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages = 9",
+        "pages = pages - 2",
+        "print(pages)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "11",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "9",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "You cut 2 pages. Build the line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, subtract 2, and put it back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages ___ pages - 2"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The + needs a number after it. Fix: words = words + 50",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "words = 100",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "words = words +",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(words)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "words = 100",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "words = words + 50",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "words = words +",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(words)",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: take away 1?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "+ adds, - takes away, and * multiplies. The new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "lines = lines - 1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "lines = lines + 1",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "lines = lines * 2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "lines = lines + 10",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "phase": 2,
+   "title": "Loops: repeat a step",
+   "coding_idea": "Repeat a scene chapter after chapter",
+   "items": [
+    {
+     "id": "ArtsPyP2L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Chapters pass",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a scene chapter after chapter.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "How many times does Read show?",
+       "value": "3"
+      },
+      {
+       "label": "The choir sings the chorus 4 ti…",
+       "value": "4"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Act, Act, Bow"
+      },
+      {
+       "label": "Build the first line of a loop…",
+       "value": "range(5)"
+      },
+      {
+       "label": "True or false: this shows Clap,…",
+       "value": "True"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Chapters pass",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many times does Read show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The indented line runs once each time round. range(3) means 3 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "The indented line repeats each time round.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(3):",
+        "    print(\"Read\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "The choir sings the chorus 4 times. Fill the blank.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(4) repeats 4 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(___):",
+        "    print(\"Reread\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Only the indented line repeats. The last line runs once, after the loop.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(2):",
+        "    print(\"Act\")",
+        "print(\"Bow\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Act, Act, Bow",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Act, Bow, Act, Bow",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Act, Bow",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the first line of a loop that runs 5 times",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "A loop starts with for, a name, in, range(5) and a colon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in ___:"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "range(5)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "range(6)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows Clap, Clap, Clap, Done.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Only the indented line repeats. Clap shows 3 times, then Done shows once.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(3):",
+        "    print(\"Clap\")",
+        "print(\"Done\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP2L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Watch it grow",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a scene chapter after chapter.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "A story gains 1 page every chap…",
+       "value": "5"
+      },
+      {
+       "label": "You have 9 pages left to read a…",
+       "value": "3"
+      },
+      {
+       "label": "A rumour doubles its listeners…",
+       "value": "8"
+      },
+      {
+       "label": "The story should gain 2 pages e…",
+       "value": "2"
+      },
+      {
+       "label": "True or false: this shows 5.",
+       "value": "False"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Watch it grow",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "A story gains 1 page every chapter, starting at 1 page. How long is it at the end?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round adds 1: 1 → 2 → 3 → 4 → 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Follow the loop one round at a time.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "length = 1",
+        "for chapter in range(4):",
+        "    length = length + 1",
+        "print(length)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "You have 9 pages left to read and read 2 every chapter. How many are left?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round takes away 2: 9 → 7 → 5 → 3.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "unread = 9",
+        "for chapter in range(3):",
+        "    unread = unread - 2",
+        "print(unread)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "9",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "7",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "A rumour doubles its listeners every chapter. What shows at the end?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round doubles it: 1 → 2 → 4 → 8.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "listeners = 1",
+        "for chapter in range(3):",
+        "    listeners = listeners * 2",
+        "print(listeners)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "8",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "6",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "The story should gain 2 pages every chapter. Fill the blank.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round adds the blank. To go up by 2, the blank must be 2.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "length = 1",
+        "for chapter in range(3):",
+        "    length = length + ___"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 5.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "total goes up by 1 each round, and the loop runs 4 times, so it ends at 4.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "total = 0",
+        "for chapter in range(4):",
+        "    total = total + 1",
+        "print(total)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "False",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP2L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Counting scenes",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a scene chapter after chapter.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What numbers show?",
+       "value": "0, 1, 2"
+      },
+      {
+       "label": "Which line does this: 0, 1, 2,…",
+       "value": "range(5)"
+      },
+      {
+       "label": "What numbers show?",
+       "value": "1, 2, 3"
+      },
+      {
+       "label": "What shows?",
+       "value": "6"
+      },
+      {
+       "label": "Show chapters 1 to 5. Build the…",
+       "value": "range(1, 6)"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Counting scenes",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What numbers show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(3) starts at 0 and stops before 3: 0, 1, 2.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "range(3) starts counting at 0, not 1.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(3):",
+        "    print(chapter)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "0, 1, 2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0, 1, 2, 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "1, 2, 3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: 0, 1, 2, 3, 4?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(n) starts at 0. range(a, b) starts at a and stops just before b.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "range(5)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "range(1, 5)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "range(3)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "range(4)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What numbers show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(1, 4) starts at 1 and stops before 4.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(1, 4):",
+        "    print(chapter)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1, 2, 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0, 1, 2, 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "1, 2, 3, 4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "1 + 2 + 3 = 6.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "total = 0",
+        "for chapter in range(1, 4):",
+        "    total = total + chapter",
+        "print(total)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "10",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show chapters 1 to 5. Build the first line of the loop.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(1, 6) starts at 1 and stops before 6, so it counts 1 to 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in ___:"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "range(1, 6)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "range(1, 5)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP2L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Rehearsal routine",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a scene chapter after chapter.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows, in order?",
+       "value": "Scene, Song, Scene, Song"
+      },
+      {
+       "label": "The book club reads 4 chapters…",
+       "value": "for chapter in range(4):"
+      },
+      {
+       "label": "What shows?",
+       "value": "70"
+      },
+      {
+       "label": "This should show Read 3 times.…",
+       "value": "fixed"
+      },
+      {
+       "label": "How many lines show in total?",
+       "value": "6"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Rehearsal routine",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Both indented lines repeat together, in order, every round.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(2):",
+        "    print(\"Scene\")",
+        "    print(\"Song\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Scene, Song, Scene, Song",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Scene, Song",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Scene, Scene, Song, Song",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The book club reads 4 chapters in a row. Which loop fits?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(4) repeats 4 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "for chapter in range(4):",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "for chapter in range(5):",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "for chapter in range(3):",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round adds 10: 40 → 50 → 60 → 70.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "tickets = 40",
+        "for chapter in range(3):",
+        "    tickets = tickets + 10",
+        "print(tickets)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "70",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "50",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "80",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "This should show Read 3 times. Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The first line of a loop must end with a colon. Fix: for chapter in range(3):",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "The first line of a loop ends with a colon.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "for chapter in range(3)",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "    print(\"Read\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "a",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "f0",
+          "replacement": "for chapter in range(3):",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "for chapter in range(3)",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "    print(\"Read\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many lines show in total?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3 rounds with 2 lines each is 6 lines.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(3):",
+        "    print(\"Scene\")",
+        "    print(\"Song\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "phase": 3,
+   "title": "Decisions: if / else",
+   "coding_idea": "Curtain open or curtain closed",
+   "items": [
+    {
+     "id": "ArtsPyP3L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Open or closed",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Curtain open or curtain closed.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "Show starts"
+      },
+      {
+       "label": "What shows?",
+       "value": "Wait"
+      },
+      {
+       "label": "True or false: == asks \"are the…",
+       "value": "True"
+      },
+      {
+       "label": "Build: if the curtain is open",
+       "value": "=="
+      },
+      {
+       "label": "Fill the blank so it checks the…",
+       "value": "=="
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Open or closed",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The curtain is open, so the indented line runs.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "The indented line runs only when the check is true.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "curtain = \"open\"",
+        "if curtain == \"open\":",
+        "    print(\"Show starts\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Show starts",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "open",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The curtain is not open, so the else line runs.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "curtain = \"closed\"",
+        "if curtain == \"open\":",
+        "    print(\"Show starts\")",
+        "else:",
+        "    print(\"Wait\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Wait",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Show starts",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "closed",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: == asks \"are these the same?\"",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "== asks a question: are these the same? A single = stores a value.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "if curtain == \"open\":"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build: if the curtain is open",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with if, then the name, ==, the word in quote marks, and a colon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "if curtain ___ \"open\":"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "==",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "=",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Fill the blank so it checks the curtain",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "== asks whether the two things are the same.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "curtain = \"open\"",
+        "if curtain ___ \"open\":",
+        "    print(\"Show starts\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "==",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "=",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP3L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Loud or soft",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Curtain open or curtain closed.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "Sold out"
+      },
+      {
+       "label": "What shows?",
+       "value": "Poor review"
+      },
+      {
+       "label": "Which line does this: is less t…",
+       "value": "<"
+      },
+      {
+       "label": "Show Long book when pages is ov…",
+       "value": ">"
+      },
+      {
+       "label": "What shows?",
+       "value": "Complete"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Loud or soft",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "300 is more than 200, so the message shows.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "> means more than. < means less than.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "crowd = 300",
+        "if crowd > 200:",
+        "    print(\"Sold out\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Sold out",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "300",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "2 is less than 3, so the first message runs.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "stars = 2",
+        "if stars < 3:",
+        "    print(\"Poor review\")",
+        "else:",
+        "    print(\"Good review\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Poor review",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Good review",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: is less than?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "> and < compare sizes. == checks for the same. >= also counts when they are equal.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "<",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": ">",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "==",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": ">=",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show Long book when pages is over 300. Fill the blank.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "> means more than.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "pages = 305",
+        "if pages ___ 300:",
+        "    print(\"Long book\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "=",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "<",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": ">= is also true when the two are equal, and 8 equals 8.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "verses = 8",
+        "if verses >= 8:",
+        "    print(\"Complete\")",
+        "else:",
+        "    print(\"Unfinished\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Complete",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Unfinished",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP3L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Nightly check",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Curtain open or curtain closed.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "1"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Rehearse, Perform, Rehearse"
+      },
+      {
+       "label": "Applause fades by 1 decibel eve…",
+       "value": "40"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows?",
+       "value": "3"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Nightly check",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "It goes up only while it is below 1: 0 → 1 → 1 → 1.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "ink = 0",
+        "for chapter in range(3):",
+        "    if ink < 1:",
+        "        ink = ink + 1",
+        "print(ink)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The loop counts 1, 2, 3. Only 2 matches, so Perform shows once.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(1, 4):",
+        "    if chapter == 2:",
+        "        print(\"Perform\")",
+        "    else:",
+        "        print(\"Rehearse\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Rehearse, Perform, Rehearse",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Perform, Rehearse, Perform",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Rehearse, Rehearse, Rehearse",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Applause fades by 1 decibel every second until the volume reaches 40. What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "It drops by 1 while it is above 40, then stops: 42 → 41 → 40.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "volume = 42",
+        "for step in range(3):",
+        "    if volume > 40:",
+        "        volume = volume - 1",
+        "print(volume)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "40",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "39",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "41",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "One = stores a value. To ask a question, use ==. Fix: if curtain == \"open\":",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Asking a question needs two equals signs.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "curtain = \"open\"",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "if curtain = \"open\":",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(\"Show starts\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "curtain = \"open\"",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if curtain == \"open\":",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if curtain = \"open\":",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(\"Show starts\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The loop counts 0 to 3. Only 1, 2, 3 are more than 0, so count is 3.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "count = 0",
+        "for chapter in range(4):",
+        "    if chapter > 0:",
+        "        count = count + 1",
+        "print(count)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "ArtsPyP3L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Show review",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Curtain open or curtain closed.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "Finale"
+      },
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "True or false: this shows Read,…",
+       "value": "True"
+      },
+      {
+       "label": "What shows?",
+       "value": "Wait"
+      },
+      {
+       "label": "Build a line that checks if cro…",
+       "value": ">"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Show review",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "print shows the words between the quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"Finale\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Finale",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "print",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "\"Finale\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "5 + 2 = 7, and the new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "audience = 5",
+        "audience = audience + 2",
+        "print(audience)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows Read, Read.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(2) repeats the line twice, so Read shows 2 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for chapter in range(2):",
+        "    print(\"Read\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The curtain is closed, so the first message shows.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "curtain = \"closed\"",
+        "if curtain == \"closed\":",
+        "    print(\"Wait\")",
+        "else:",
+        "    print(\"Show starts\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Wait",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "closed",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Show starts",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build a line that checks if crowd is more than 200",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with if, then the name, >, the number, and a colon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "if crowd ___ 200:"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

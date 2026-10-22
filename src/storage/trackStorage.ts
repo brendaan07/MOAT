@@ -1,20 +1,20 @@
-// Saved project-track progress (finished items, best stars, paid questions, time per day), kept apart from the main progress.
+// Saves and loads the learner's track progress (moat.track.v1).
 import { defaultTrackProgress, TrackProgress } from '../types/models';
 import { jsonStorage } from './jsonStorage';
 
 const KEY = 'moat.track.v1';
 
-/** Reads each field on its own so a missing one falls back to empty instead of dropping the rest. */
+/** Reads saved track progress field by field; anything missing or malformed starts empty. */
 function decode(raw: unknown): TrackProgress {
-  if (!raw || typeof raw !== 'object') return defaultTrackProgress();
-  const r = raw as Record<string, any>;
+  const saved = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const obj = <T,>(v: unknown, d: T): T => (v && typeof v === 'object' && !Array.isArray(v) ? (v as T) : d);
   return {
-    finished: Array.isArray(r.finished) ? r.finished : [],
-    bestStars: r.bestStars && typeof r.bestStars === 'object' ? r.bestStars : {},
-    paid: Array.isArray(r.paid) ? r.paid : [],
-    secondsByDay: r.secondsByDay && typeof r.secondsByDay === 'object' ? r.secondsByDay : {},
+    finished: Array.isArray(saved.finished) ? (saved.finished as string[]) : [],
+    bestStars: obj(saved.bestStars, {}),
+    paid: Array.isArray(saved.paid) ? (saved.paid as string[]) : [],
+    secondsByDay: obj(saved.secondsByDay, {}),
   };
 }
 
-/** Loads and saves the project-track progress. */
+/** Reads and writes the track progress in AsyncStorage. */
 export const TrackStorage = jsonStorage(KEY, decode, defaultTrackProgress);

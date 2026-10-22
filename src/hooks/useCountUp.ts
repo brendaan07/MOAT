@@ -1,9 +1,9 @@
-// Counts a number up (or down) so a reward visibly adds to the total.
+// A number that counts up to its target, for bolt and star totals.
 import { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
-import { EASE } from '../utils/motion';
+import { EASE_OUT } from '../utils/motion';
 
-/** Returns the number to show right now. With run=false (Reduce Motion) it jumps straight to the target. */
+/** The shown value while it counts from `from` to `target`; jumps straight there when `run` is false. */
 export function useCountUp(target: number, opts: { from?: number; duration?: number; delay?: number; run?: boolean } = {}) {
   const { from = target, duration = 900, delay = 0, run = true } = opts;
   const v = useRef(new Animated.Value(from)).current;
@@ -19,7 +19,7 @@ export function useCountUp(target: number, opts: { from?: number; duration?: num
       return;
     }
     v.setValue(from);
-    const a = Animated.timing(v, { toValue: target, duration, delay, easing: EASE, useNativeDriver: false });
+    const a = Animated.timing(v, { toValue: target, duration, delay, easing: EASE_OUT, useNativeDriver: false });
     a.start();
     return () => a.stop();
   }, [target, from, run]); // eslint-disable-line react-hooks/exhaustive-deps

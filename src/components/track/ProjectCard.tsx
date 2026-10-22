@@ -1,21 +1,30 @@
-// The project card on a track question: its four parts, which are done, and the live output of the part being worked on.
+// The phase's project card: its parts, ticked as the learner finishes them.
 import React from 'react';
 import { Text, View } from 'react-native';
-import { C, body, heading, monoBold } from '../../utils/theme';
-import { TrackPhase } from '../../types/models';
 import { Card } from '../ui';
-import { DoneTick } from '../icons';
+import { CheckIcon } from '../icons';
 import { PhasePicture } from './phasePictures';
+import { C, body, heading, monoBold } from '../../utils/theme';
+import type { TrackPhase } from '../../content/types';
 
-export interface LiveOutput {
+interface LiveOutput {
   label: string;
   text: string;
   color: string;
 }
 
+/** A lime circle with a tick, for a finished part. */
+export function DoneTick({ size = 20 }: { size?: number }) {
+  return (
+    <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: C.lime, borderWidth: 2, borderColor: C.navy, alignItems: 'center', justifyContent: 'center' }}>
+      <CheckIcon size={size * 0.55} />
+    </View>
+  );
+}
+
 const DashedDot = ({ size = 20 }: { size?: number }) => <View style={{ width: size, height: size, borderRadius: size / 2, borderWidth: 2, borderStyle: 'dashed', borderColor: C.grey }} />;
 
-/** `part` is the part being worked on (5 means the whole project is built). `live` shows its output on the current row. */
+/** The phase's project with its parts, done ones ticked up to `part`. */
 export function ProjectCard({ phase, part, live }: { phase: TrackPhase; part: number; live?: LiveOutput }) {
   return (
     <Card radius={20} shadow contentStyle={{ padding: 0 }}>

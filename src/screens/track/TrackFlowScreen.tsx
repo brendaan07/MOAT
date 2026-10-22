@@ -1,69 +1,61 @@
-// Runs the steps of a track item in order: goal screen, questions, recap, results, project built and checkpoint.
+// Runs one lesson or checkpoint from intro to results.
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTrackStore } from '../../hooks/useTrackStore';
-import { RunResult, TrackLesson } from '../../types/models';
-import TrackPlayer from './TrackPlayer';
-import { v2Lesson } from '../../components/lessonV2/content';
-import { LessonIntroV2 } from './v2/LessonIntroV2';
-import { LessonPlayerV2 } from './v2/LessonPlayerV2';
-import { LessonRecapV2 } from './v2/LessonRecapV2';
-import { CheckpointIntro } from './results/CheckpointIntro';
+import type { RunResult } from '../../types/models';
+import type { TrackLesson } from '../../content/types';
+import { lessonFor } from '../../services/contentLoader';
+import { LessonIntro } from './lesson/LessonIntro';
+import { LessonPlayer } from './lesson/LessonPlayer';
+import { LessonRecap } from './lesson/LessonRecap';
 import { CheckpointResult } from './results/CheckpointResult';
 import { ProjectBuilt } from './results/ProjectBuilt';
 import { TrackLessonComplete } from './results/TrackLessonComplete';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
 
 type Step =
-  | { kind: 'lesson'; lesson: TrackLesson }
-  | { kind: 'introV2'; lesson: TrackLesson }
-  | { kind: 'lessonV2'; lesson: TrackLesson }
-  | { kind: 'recapV2'; lesson: TrackLesson; result: RunResult }
+  | { kind: 'intro'; lesson: TrackLesson }
+  | { kind: 'player'; lesson: TrackLesson }
+  | { kind: 'recap'; lesson: TrackLesson; result: RunResult }
   | { kind: 'lessonDone'; lesson: TrackLesson; result: RunResult }
   | { kind: 'projectBuilt' }
   | { kind: 'checkpointIntro' }
   | { kind: 'checkpoint' }
+  | { kind: 'checkpointRecap'; result: RunResult }
   | { kind: 'checkpointDone'; result: RunResult };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'TrackFlow'>;
 
-/** Lesson, lesson complete, project built, checkpoint intro, checkpoint, result.
- *  Lessons with new-style content run goal screen, questions and recap first; the rest use TrackPlayer. */
+/** One lesson or checkpoint run: intro → player → recap → lesson done → (project built) → checkpoint intro →
+ *  checkpoint → checkpoint recap → checkpoint result. */
 export default function TrackFlowScreen({ route, navigation }: Props) {
   const track = useTrackStore();
   const phase = track.track?.phases.find((p) => p.number === route.params.phase);
   const startLesson = phase?.lessons.find((l) => l.id === route.params.lessonId) ?? null;
   // Checked once on open, since finishing a lesson here changes what is unlocked. A typed URL to a locked or unknown item closes the screen.
   const [allowed] = useState(() => !!phase && (startLesson ? track.lessonUnlocked(startLesson, phase) : !route.params.lessonId && track.checkpointUnlocked(phase)));
-  const lessonStep = (lesson: TrackLesson): Step => (v2Lesson(lesson.id) ? { kind: 'introV2', lesson } : { kind: 'lesson', lesson });
-  const [step, setStep] = useState<Step>(startLesson ? lessonStep(startLesson) : { kind: 'checkpointIntro' });
-  // Part of each player's React key: bumping it on every start or replay mounts a fresh player, so no answers carry over.
+  const [step, setStep] = useState<Step>(startLesson ? { kind: 'intro', lesson: startLesson } : { kind: 'checkpointIntro' });
+  const checkpoint = phase ? lessonFor(phase.checkpoint.id) : null;
   const [runID, setRunID] = useState(0);
   const close = () => navigation.goBack();
   const go = (s: Step) => {
-    if (s.kind === 'lesson' || s.kind === 'lessonV2' || s.kind === 'checkpoint') setRunID((r) => r + 1);
+    if (s.kind === 'player' || s.kind === 'checkpoint') setRunID((r) => r + 1);
     setStep(s);
   };
-  if (!phase || !allowed) {
+  const content = step.kind === 'intro' || step.kind === 'player' || step.kind === 'recap' ? lessonFor(step.lesson.id) : checkpoint;
+  if (!phase || !allowed || ((step.kind === 'intro' || step.kind === 'checkpointIntro') && !content)) {
     close();
     return <View />;
   }
   switch (step.kind) {
-    case 'lesson':
-      return <TrackPlayer key={`${step.lesson.id}-${runID}`} phase={phase} lesson={step.lesson} onFinish={(r) => go({ kind: 'lessonDone', lesson: step.lesson, result: r })} onQuit={close} />;
-    case 'introV2': {
-      const v2 = v2Lesson(step.lesson.id)!;
-      return <LessonIntroV2 lesson={v2} onStart={() => go({ kind: 'lessonV2', lesson: step.lesson })} onClose={close} />;
-    }
-    case 'lessonV2': {
-      const v2 = v2Lesson(step.lesson.id)!;
-      return <LessonPlayerV2 key={`${step.lesson.id}-v2-${runID}`} lesson={v2} onFinish={(r) => go({ kind: 'recapV2', lesson: step.lesson, result: r })} onQuit={close} />;
-    }
-    case 'recapV2': {
-      const v2 = v2Lesson(step.lesson.id)!;
+    case 'intro':
+      return <LessonIntro lesson={content!} onStart={() => go({ kind: 'player', lesson: step.lesson })} onClose={close} />;
+    case 'player':
+      return <LessonPlayer key={`${step.lesson.id}-${runID}`} lesson={content!} onFinish={(r) => go({ kind: 'recap', lesson: step.lesson, result: r })} onQuit={close} />;
+    case 'recap': {
       const { lesson, result } = step;
-      return <LessonRecapV2 lesson={v2} onContinue={() => go({ kind: 'lessonDone', lesson, result })} />;
+      return <LessonRecap lesson={content!} onContinue={() => go({ kind: 'lessonDone', lesson, result })} />;
     }
     case 'lessonDone': {
       const { lesson, result } = step;
@@ -74,20 +66,24 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
           result={result}
           onContinue={() => {
             const lastPart = lesson.part === phase.lessons.length;
-            // phases whose checkpoint is not designed yet go back to Learn instead of the checkpoint
-            if (lastPart && result.firstAttempt && phase.checkpoint.questions.length > 0 && phase.lessons.every((l) => track.isFinished(l.id))) go({ kind: 'projectBuilt' });
+            // phases without a checkpoint (the general tracks) go back to the path instead
+            if (lastPart && result.firstAttempt && phase.checkpoint.questions.length > 0 && phase.lessons.every((l) => track.isFinished(l.id))) go(phase.code.length ? { kind: 'projectBuilt' } : { kind: 'checkpointIntro' });
             else close();
           }}
-          onReplay={() => go(lessonStep(lesson))}
+          onReplay={() => go({ kind: 'intro', lesson })}
         />
       );
     }
     case 'projectBuilt':
       return <ProjectBuilt phase={phase} onCheckpoint={() => go({ kind: 'checkpointIntro' })} onBack={close} />;
     case 'checkpointIntro':
-      return <CheckpointIntro phase={phase} onStart={() => go({ kind: 'checkpoint' })} onClose={close} />;
+      return <LessonIntro lesson={checkpoint!} onStart={() => go({ kind: 'checkpoint' })} onClose={close} />;
     case 'checkpoint':
-      return <TrackPlayer key={`cp-${runID}`} phase={phase} lesson={null} onFinish={(r) => go({ kind: 'checkpointDone', result: r })} onQuit={close} />;
+      return <LessonPlayer key={`cp-${runID}`} lesson={checkpoint!} onFinish={(r) => go({ kind: 'checkpointRecap', result: r })} onQuit={close} />;
+    case 'checkpointRecap': {
+      const { result } = step;
+      return <LessonRecap lesson={checkpoint!} onContinue={() => go({ kind: 'checkpointDone', result })} />;
+    }
     case 'checkpointDone':
       return <CheckpointResult phase={phase} result={step.result} onReplay={() => go({ kind: 'checkpoint' })} onDone={close} />;
   }

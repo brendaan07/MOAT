@@ -1,0 +1,67 @@
+{
+ "id": "gen_java",
+ "title": "General",
+ "language": "Java",
+ "phases": [
+  {
+   "number": 1,
+   "area": "General",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Workshop screen",
+     "Say hello"
+    ],
+    [
+     "Numbers and text",
+     "Say hello"
+    ],
+    [
+     "Typed boxes",
+     "Say hello"
+    ],
+    [
+     "Robot maths",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_java_p1_l1",
+     "part": 1,
+     "title": "Workshop screen"
+    },
+    {
+     "id": "gen_java_p1_l2",
+     "part": 2,
+     "title": "Numbers and text"
+    },
+    {
+     "id": "gen_java_p1_l3",
+     "part": 3,
+     "title": "Typed boxes"
+    },
+    {
+     "id": "gen_java_p1_l4",
+     "part": 4,
+     "title": "Robot maths"
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_java_cp1",
+    "name": "Say hello",
+    "unlock": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "General",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

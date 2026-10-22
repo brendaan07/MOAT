@@ -1,12 +1,13 @@
-// The streak, bolts and daily-minutes chips at the top of the path screens; tapping one opens an explanation bubble.
+// The streak, bolts and minutes counters at the top of the path, each opening a bubble when tapped.
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, Text, View } from 'react-native';
 import Svg, { Circle } from 'react-native-svg';
-import { C, body, heading } from '../utils/theme';
-import { DAILY_GOAL_BONUS_BOLTS, DAILY_GOAL_MINUTES, TRACK_BOLTS_PER_QUESTION } from '../utils/rewards';
 import { Card } from './ui';
 import { BoltIcon, FlameIcon } from './icons';
+import { C, body, heading } from '../utils/theme';
+import { BOLTS_PER_QUESTION, DAILY_GOAL_BONUS_BOLTS, DAILY_GOAL_MINUTES } from '../utils/rewards';
 
+/** Streak, bolts and today's minutes; tapping one opens its explanation bubble. */
 export function StatChipsRow({ streak, bolts, minutes, goal = DAILY_GOAL_MINUTES }: { streak: number; bolts: number; minutes: number; goal?: number }) {
   const [open, setOpen] = useState<null | 'streak' | 'bolts' | 'time'>(null);
   const pop = useRef(new Animated.Value(0)).current;
@@ -22,7 +23,7 @@ export function StatChipsRow({ streak, bolts, minutes, goal = DAILY_GOAL_MINUTES
         ? { title: `${streak} day streak`, msg: `You've learned ${streak} days in a row. Do one lesson today to keep it going.` }
         : { title: 'No streak yet', msg: 'Finish a lesson today to start your streak.' }
       : open === 'bolts'
-        ? { title: `${bolts} bolts`, msg: bolts > 0 ? `Every right answer in a lesson earns ${TRACK_BOLTS_PER_QUESTION} bolts. Keep learning to collect more.` : `Every right answer in a lesson earns ${TRACK_BOLTS_PER_QUESTION} bolts. Start a lesson to earn your first ones.` }
+        ? { title: `${bolts} bolts`, msg: `Every right answer in a lesson earns ${BOLTS_PER_QUESTION} bolts. ${bolts > 0 ? 'Keep learning to collect more.' : 'Start a lesson to earn your first ones.'}` }
         : { title: `${minutes} of ${goal} minutes today`, msg: left > 0 ? `Learn ${left} more minutes to hit your daily goal and earn ${DAILY_GOAL_BONUS_BOLTS} bonus bolts.` : 'Daily goal reached. Nice work.' };
   const chip = (k: 'streak' | 'bolts' | 'time', label: string, content: React.ReactNode) => (
     <Pressable onPress={() => toggle(k)} accessibilityRole="button" accessibilityLabel={label} accessibilityHint="Shows more about this">

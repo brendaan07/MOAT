@@ -1,26 +1,33 @@
-// The checkpoint result: stars, the bonus, and either what it unlocked or which lessons still need five stars.
+// The screen after a checkpoint: its stars, then what it unlocked or what still needs full stars.
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
+import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Card, ChunkyButton, DottedBackground } from '../../../components/ui';
-import { BORDER, C, body, heading } from '../../../utils/theme';
-import { RunResult, TrackPhase, isPerfect } from '../../../types/models';
-import { useTrackStore } from '../../../hooks/useTrackStore';
 import { BoltIcon, StarIcon } from '../../../components/icons';
 import { StarsRow } from '../../../components/track/stars';
-import { TRACK_PERFECT_BONUS } from '../../../utils/rewards';
+import { useTrackStore } from '../../../hooks/useTrackStore';
+import { BORDER, C, body, heading } from '../../../utils/theme';
+import { RunResult, creditedBolts, isPerfect } from '../../../types/models';
+import { DAILY_GOAL_BONUS_BOLTS, PERFECT_BONUS } from '../../../utils/rewards';
+import type { TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
 import { CloseButton } from '../../../components/CloseButton';
 
+/** Shown after a checkpoint run; on the track's last phase it closes cycle 1 instead of opening a next phase. */
 export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: TrackPhase; result: RunResult; onReplay: () => void; onDone: () => void }) {
   const track = useTrackStore();
+  const last = phase.number >= (track.track?.phases.length ?? phase.number);
   const complete = track.phaseComplete(phase);
   const perfect = isPerfect(result);
-  const u = phase.checkpoint.unlock;
+  // What passing opened: the track file's text, else built from the next phase; a last phase without its
+  // own text opens nothing yet, so it shows no card.
+  const phases = track.track?.phases ?? [];
+  const next = phases[phases.findIndex((p) => p.number === phase.number) + 1];
+  const unlocked = phase.checkpoint.unlock.length ? phase.checkpoint.unlock : next ? [`Phase ${next.number} unlocked`, next.project, `New skill: ${next.skill}.`] : null;
   const weak = [
-    ...phase.lessons.filter((l) => track.stars(l.id) < l.questions.length).map((l) => [`Part ${l.part} · ${l.title}`, track.stars(l.id)] as [string, number]),
-    ...(track.stars(phase.checkpoint.id) < phase.checkpoint.questions.length ? [[`Checkpoint · ${phase.checkpoint.name}`, track.stars(phase.checkpoint.id)] as [string, number]] : []),
+    ...phase.lessons.filter((l) => track.stars(l.id) < l.questions.length).map((l) => [`Part ${l.part} · ${l.title}`, track.stars(l.id), l.questions.length] as [string, number, number]),
+    ...(track.stars(phase.checkpoint.id) < phase.checkpoint.questions.length ? [[`Checkpoint · ${phase.checkpoint.name}`, track.stars(phase.checkpoint.id), phase.checkpoint.questions.length] as [string, number, number]] : []),
   ];
   return (
     <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
@@ -29,13 +36,13 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
         <CloseButton onPress={onDone} label="Close" color={C.cream} />
         <View style={{ height: 36, flexDirection: 'row', alignItems: 'center', gap: 4, paddingLeft: 8, paddingRight: 12, borderRadius: 18, backgroundColor: C.lime, borderWidth: BORDER, borderColor: C.navy }}>
           <BoltIcon size={18} />
-          <Text style={heading(18)}>+{result.earned + result.bonus}</Text>
+          <Text style={heading(18)}>+{creditedBolts(result)}</Text>
         </View>
       </View>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }} showsVerticalScrollIndicator={false}>
         <Hero mood={perfect ? 'hearts' : 'wink'} size={100} dark />
         <Text style={[heading(34), { color: C.cream, textAlign: 'center' }]} accessibilityRole="header">
-          {complete && phase.number >= 5 ? 'Cycle 1 complete' : perfect ? 'Perfect checkpoint' : 'Checkpoint done'}
+          {complete && last ? 'Cycle 1 complete' : perfect ? 'Perfect checkpoint' : 'Checkpoint done'}
         </Text>
         <Text style={[body(16), { color: C.lavender, textAlign: 'center' }]}>Phase {phase.number} · {phase.checkpoint.name}{perfect && result.firstAttempt ? ' · first try' : ''}</Text>
         <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 14, gap: 8 }}>
@@ -43,33 +50,38 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
             <Text style={body(17, true)}>{result.stars} of {result.total} right first try</Text>
             {result.bonus > 0 && (
               <View style={{ paddingHorizontal: 9, paddingVertical: 2, borderRadius: 9, backgroundColor: C.sun, borderWidth: 2, borderColor: C.navy }}>
-                <Text style={body(13, true)}>+{TRACK_PERFECT_BONUS} perfect bonus</Text>
+                <Text style={body(13, true)}>+{PERFECT_BONUS} perfect bonus</Text>
               </View>
             )}
           </View>
           <StarsRow filled={result.stars} total={result.total} size={44} />
+          {result.goalBonus > 0 && (
+            <View style={{ alignSelf: 'flex-start', paddingHorizontal: 9, paddingVertical: 2, borderRadius: 9, backgroundColor: C.lime, borderWidth: 2, borderColor: C.navy }}>
+              <Text style={body(13, true)}>+{DAILY_GOAL_BONUS_BOLTS} daily goal reached</Text>
+            </View>
+          )}
         </Card>
         {complete ? (
-          <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
+          unlocked && <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="lock-open" size={18} color={C.navy} />
-              <View style={{ paddingHorizontal: 8, paddingVertical: 1, borderRadius: 8, backgroundColor: C.lime, borderWidth: 1.5, borderColor: C.navy }}><Text style={body(13, true)}>{u[0]}</Text></View>
+              <View style={{ paddingHorizontal: 8, paddingVertical: 1, borderRadius: 8, backgroundColor: C.lime, borderWidth: 1.5, borderColor: C.navy }}><Text style={body(13, true)}>{unlocked[0]}</Text></View>
             </View>
-            <Text style={heading(24)}>{u[1]}</Text>
-            <Text style={body(15)}>{u[2]}</Text>
+            <Text style={heading(24)}>{unlocked[1]}</Text>
+            <Text style={body(15)}>{unlocked[2]}</Text>
           </Card>
         ) : (
           <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="lock-closed" size={16} color={C.muted} />
-              <Text style={[body(14, true), { color: C.muted }]}>{phase.number >= 5 ? 'Cycle 2 is still locked' : `Phase ${phase.number + 1} is still locked`}</Text>
+              <Text style={[body(14, true), { color: C.muted }]}>{last ? 'Cycle 2 is still locked' : `Phase ${phase.number + 1} is still locked`}</Text>
             </View>
-            <Text style={body(15)}>Get 5 stars on every lesson in this phase to open it. Still to fix:</Text>
-            {weak.map(([t, s]) => (
+            <Text style={body(15)}>Get full stars on every lesson in this phase to open it. Still to fix:</Text>
+            {weak.map(([t, s, n]) => (
               <View key={t} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, minHeight: 30 }}>
                 <StarIcon />
                 <Text style={[body(15, true), { flex: 1 }]}>{t}</Text>
-                <Text style={body(14, true)}>{s}/5</Text>
+                <Text style={body(14, true)}>{s}/{n}</Text>
               </View>
             ))}
             <Text style={[body(13), { color: C.muted }]}>Replays only pay bolts for questions you missed the first time.</Text>
@@ -78,7 +90,7 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
       </ScrollView>
       {complete ? (
         <View style={{ padding: 16 }}>
-          <ChunkyButton title={phase.number >= 5 ? 'Start cycle 2' : `Start phase ${phase.number + 1}`} onPress={onDone} />
+          <ChunkyButton title={last ? 'Start cycle 2' : `Start phase ${phase.number + 1}`} onPress={onDone} />
         </View>
       ) : (
         <>

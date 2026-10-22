@@ -1,13 +1,12 @@
-// The small illustrations on a track phase (DNA helix, quality bars, well plate, growth curve, report, batch), full size or compact.
+// The small drawn picture on each phase card (helix, quality bars, plate, curve, report, batch).
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import Svg, { Circle, G, Line, Path, Polyline, Rect, Text as SvgText } from 'react-native-svg';
-import { C, body, heading, monoBold } from '../../utils/theme';
 import { Card } from '../ui';
+import { C, body, heading, monoBold } from '../../utils/theme';
 
 const baseColor = (b: string) => (b === 'A' ? C.orange : b === 'T' ? C.sun : b === 'G' ? C.lime : C.sky);
 
-/** A row of coloured base tiles for a short DNA sequence. */
 function DNAStrip({ sequence, size = 24 }: { sequence: string; size?: number }) {
   return (
     <View style={{ flexDirection: 'row', gap: 4 }} accessible accessibilityLabel={`DNA sample ${sequence}`}>
@@ -156,7 +155,7 @@ function BatchBars() {
   );
 }
 
-/** The picture for a phase by its `kind`; `compact` is the one-line version inside the project card. */
+/** The picture a phase names (helix, quality, plate, curve, report or batch). */
 export function PhasePicture({ kind, compact = false }: { kind: string; compact?: boolean }) {
   const [width, setWidth] = useState(300);
   return (

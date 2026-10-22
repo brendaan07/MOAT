@@ -1,59 +1,10 @@
-// The data types: saved progress, lessons and project tracks. Field names match the saved JSON, so changing one needs a migration.
+// The learner's saved progress and run results. Content types live in
+// content/types.ts.
 
-export type RobotForm = 'blob' | 'builder' | 'rover' | 'gardener' | 'orb' | 'cat';
-/** Every robot form, in the order they unlock. */
-export const ROBOT_FORMS: RobotForm[] = ['blob', 'builder', 'rover', 'gardener', 'orb', 'cat'];
-/** The name shown for each robot form. */
-export const ROBOT_NAMES: Record<RobotForm, string> = {
-  blob: 'Blob',
-  builder: 'Builder Bot',
-  rover: 'Rover',
-  gardener: 'Gardener',
-  orb: 'Orb',
-  cat: 'Cat Bot',
-};
-/** Only the blob and Builder Bot can be earned in version 1. */
-export const isInVersionOne = (form: RobotForm) => form === 'blob' || form === 'builder';
-
+/** Blob's expressions (one picture each). */
 export type RobotMood = 'neutral' | 'excited' | 'surprised' | 'wink' | 'closed' | 'hearts' | 'confused';
-/** The picture file for a form with a given expression, for example "blob_excited". */
-export const moodImage = (form: RobotForm, mood: RobotMood) => `${form}_${mood}`;
-
-// ---------- Course (lessons_*.json) ----------
-export type QuestionKind = 'choice' | 'build' | 'judge' | 'bug' | 'match';
-
-export interface Question {
-  id: string;
-  kind: QuestionKind;
-  prompt: string;
-  hint?: string | null;
-  code?: string | null;
-  picture?: string | null;
-  options: string[];
-  answer: string[];
-  right?: string[] | null;
-  explanation: string;
-}
-
-export interface Lesson {
-  id: string;
-  title: string;
-  questions: Question[];
-  game?: string | null;
-}
-
-export interface Phase {
-  id: string;
-  number: number;
-  title: string;
-  subtitle?: string | null;
-  unlocksForm?: RobotForm | null;
-  lessons: Lesson[];
-}
-
-export interface Course {
-  phases: Phase[];
-}
+/** The robot's picture with a given expression, for example "blob_excited". */
+export const robotImage = (mood: RobotMood) => `blob_${mood}`;
 
 // ---------- Progress (saved on the phone) ----------
 export interface UserProgress {
@@ -64,18 +15,15 @@ export interface UserProgress {
   education: string;
   studyArea: string;
   language: string;
-  completedLessons: string[];
   bolts: number;
   streak: number;
   lastActiveDay?: string | null;
   todayKey?: string | null;
   todayLessons: number;
   dailyGoalLessons: number;
-  unlockedForms: RobotForm[];
-  currentForm: RobotForm;
 }
 
-/** A new learner: nothing done, the Blob robot, a goal of three lessons a day. */
+/** A new learner's profile progress. */
 export const defaultProgress = (): UserProgress => ({
   hasOnboarded: false,
   name: '',
@@ -83,105 +31,15 @@ export const defaultProgress = (): UserProgress => ({
   education: 'Secondary school',
   studyArea: 'Health Sciences',
   language: 'Python',
-  completedLessons: [],
   bolts: 0,
   streak: 0,
   lastActiveDay: null,
   todayKey: null,
   todayLessons: 0,
   dailyGoalLessons: 3,
-  unlockedForms: ['blob'],
-  currentForm: 'blob',
 });
 
-// ---------- Biology research track (track_bio_r.json) ----------
-export type TrackKind = 'fill' | 'predict' | 'bug' | 'build' | 'order';
-export type CheckpointStyle = 'plan' | 'code' | 'predict' | 'debug' | 'build';
-
-export interface TrackOption {
-  id: string;
-  label: string;
-}
-
-export interface TrackScreen {
-  goal?: string;
-  done?: string;
-  err?: string;
-  idle?: string;
-  idleLabel?: string;
-}
-
-export interface TrackQuestion {
-  id: string;
-  kind: TrackKind;
-  prompt: string;
-  hint: string;
-  ok: string;
-  code?: string[];
-  opts?: TrackOption[];
-  lines?: TrackOption[];
-  correct?: string | string[];
-  screen?: TrackScreen;
-  fb?: Record<string, string>;
-  wrongBuild?: string;
-  answerLine?: string;
-  note?: string;
-  style?: CheckpointStyle;
-  task?: string;
-  steps?: Record<string, string>;
-  accept?: string[][];
-  start?: string[];
-  goal?: string;
-  wrong?: string;
-  report?: string[][];
-  reportTitle?: string;
-  slot?: string;
-}
-
-export interface TrackLesson {
-  id: string;
-  part: number;
-  title: string;
-  questions: TrackQuestion[];
-}
-
-export interface TrackCheckpoint {
-  id: string;
-  name: string;
-  filename: string;
-  problem: string;
-  unlock: string[];
-  questions: TrackQuestion[];
-}
-
-export interface TrackPhase {
-  number: number;
-  area: string;
-  project: string;
-  picture: string;
-  skill: string;
-  parts: string[][];
-  code: string[];
-  lessons: TrackLesson[];
-  checkpoint: TrackCheckpoint;
-}
-
-export interface TrackCycle2 {
-  area: string;
-  project: string;
-  picture: string;
-  titles: string[];
-  later: string[][];
-}
-
-export interface Track {
-  id: string;
-  title: string;
-  language: string;
-  phases: TrackPhase[];
-  cycle2: TrackCycle2;
-}
-
+// ---------- Track progress (saved on the phone) ----------
 export interface TrackProgress {
   finished: string[];
   bestStars: Record<string, number>;
@@ -189,25 +47,23 @@ export interface TrackProgress {
   secondsByDay: Record<string, number>;
 }
 
-/** Track progress with nothing finished. */
+/** A new learner's track progress. */
 export const defaultTrackProgress = (): TrackProgress => ({ finished: [], bestStars: {}, paid: [], secondsByDay: {} });
 
+/** What one lesson or checkpoint run earned. */
 export interface RunResult {
   itemID: string;
   stars: number;
   total: number;
   earned: number;
+  /** The perfect-first-attempt bonus. */
   bonus: number;
+  /** The daily-goal bonus, when this run took today's minutes up to the goal. */
+  goalBonus: number;
   firstAttempt: boolean;
   missedIndexes: number[];
 }
-/** True when every question was right on the first try. */
+/** Every bolt a run paid into the account. */
+export const creditedBolts = (r: RunResult) => r.earned + r.bonus + r.goalBonus;
+/** Whether every question was right first try. */
 export const isPerfect = (r: RunResult) => r.stars === r.total;
-
-// Reading a question's right answer and the label for an option id
-export const correctOne = (q: TrackQuestion) => (typeof q.correct === 'string' ? q.correct : undefined);
-/** The right answer of a question that needs several pieces, in order (empty for single-answer questions). */
-export const correctMany = (q: TrackQuestion) => (Array.isArray(q.correct) ? q.correct : []);
-/** The text for an option, line or step id. */
-export const labelOf = (q: TrackQuestion, id: string) =>
-  q.opts?.find((o) => o.id === id)?.label ?? q.lines?.find((o) => o.id === id)?.label ?? q.steps?.[id] ?? '';

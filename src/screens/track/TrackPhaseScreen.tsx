@@ -1,4 +1,4 @@
-// The phase page opened from the track path: the phase's picture, its four parts and the checkpoint.
+// A phase's page: its picture, parts and checkpoint, and what comes later.
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from '../../components/SafeAreaView';
@@ -8,14 +8,16 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../../hooks/useAppStore';
 import { useTrackStore } from '../../hooks/useTrackStore';
 import { Card, ChunkyButton, FullScreenPicture } from '../../components/ui';
-import { DoneTick, LockIcon, StarIcon } from '../../components/icons';
+import { LockIcon, StarIcon } from '../../components/icons';
+import { DoneTick } from '../../components/track/ProjectCard';
 import { PhasePicture } from '../../components/track/phasePictures';
 import { StatChipsRow } from '../../components/StatChipsRow';
 import { BORDER, C, body, heading } from '../../utils/theme';
-import { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../types/models';
+import type { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
+import { LessonsUnavailable } from '../../components/track/LessonsUnavailable';
 
-/** Lists the phase's lessons and checkpoint with the main button for what to do next. */
+/** The phase page (Option A design), opened from the play button on the Learn path. */
 export default function TrackPhaseScreen() {
   const app = useAppStore();
   const track = useTrackStore();
@@ -105,7 +107,7 @@ export default function TrackPhaseScreen() {
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2, marginBottom: 10 }}>
           <LockIcon color={C.muted} size={13} />
-          <Text style={[body(13), { color: C.muted }]}>{phase.number >= 5 ? 'Cycle 2 opens at 5 stars on every lesson.' : `Phase ${phase.number + 1} opens at 5 stars on every lesson.`}</Text>
+          <Text style={[body(13), { color: C.muted }]}>{phase.number >= (track.track?.phases.length ?? 5) ? 'Cycle 2 opens at 5 stars on every lesson.' : `Phase ${phase.number + 1} opens at 5 stars on every lesson.`}</Text>
         </View>
         <ChunkyButton title={cta.title} onPress={cta.go} />
       </Card>
@@ -176,9 +178,7 @@ export default function TrackPhaseScreen() {
         {track.track ? (
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 }}>{content(track.track)}</ScrollView>
         ) : (
-          <Card radius={20} style={{ marginTop: 40 }} contentStyle={{ padding: 20 }}>
-            <Text style={body(15)}>Your track's lessons didn't load. Check that its track file is in assets/content.</Text>
-          </Card>
+          <LessonsUnavailable style={{ marginTop: 40 }} />
         )}
       </SafeAreaView>
     </View>

@@ -1,0 +1,67 @@
+{
+ "id": "gen_js",
+ "title": "General",
+ "language": "JavaScript",
+ "phases": [
+  {
+   "number": 1,
+   "area": "General",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Game start",
+     "Say hello"
+    ],
+    [
+     "Coins and text",
+     "Say hello"
+    ],
+    [
+     "Named boxes",
+     "Say hello"
+    ],
+    [
+     "Level up",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_js_p1_l1",
+     "part": 1,
+     "title": "Game start"
+    },
+    {
+     "id": "gen_js_p1_l2",
+     "part": 2,
+     "title": "Coins and text"
+    },
+    {
+     "id": "gen_js_p1_l3",
+     "part": 3,
+     "title": "Named boxes"
+    },
+    {
+     "id": "gen_js_p1_l4",
+     "part": 4,
+     "title": "Level up"
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_js_cp1",
+    "name": "Say hello",
+    "unlock": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "General",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

@@ -1,4 +1,4 @@
-// One line of R on a dark editor panel, optionally with a blank that fills with the learner's pick.
+// One coloured line of track code, for the project-built screen.
 import React from 'react';
 import { Text, View } from 'react-native';
 import { C, monoBold } from '../../utils/theme';

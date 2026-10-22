@@ -1,41 +1,44 @@
-// The Learn home for a project track (Biology research, Engineering or Healthcare): the climbing path of lessons and checkpoints.
-// Tapping an open node opens that phase's page.
+// The Learn tab: the climbing path of the learner's track.
 import React, { useMemo } from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { SafeAreaView } from '../../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../../hooks/useAppStore';
-import { useScrollToCurrent } from '../../hooks/useScrollToCurrent';
 import { useTrackStore } from '../../hooks/useTrackStore';
-import { Card } from '../../components/ui';
-import { PathNode } from '../../components/path/PathNode';
-import { PathScreenLayout } from '../../components/path/PathScreenLayout';
-import { PhaseBanner } from '../../components/path/PhaseBanner';
-import { C, body, heading } from '../../utils/theme';
-import { TrackPhase, moodImage } from '../../types/models';
+import { useScrollToCurrent } from '../../hooks/useScrollToCurrent';
+import { BundleImage, Card, FullScreenPicture } from '../../components/ui';
+import { StatChipsRow } from '../../components/StatChipsRow';
+import { BORDER, C, body, heading } from '../../utils/theme';
+import { robotImage } from '../../types/models';
+import type { TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
+import { LessonsUnavailable } from '../../components/track/LessonsUnavailable';
 
 type Node = { id: string; kind: 'lesson' | 'checkpoint'; title: string; phase: TrackPhase; step: number };
 type Row = { id: string; banner: TrackPhase } | { id: string; node: Node };
 
+/** The Learn home for a project track (Biology research, Engineering or Healthcare): the climbing path of lessons and checkpoints.
+ *  Tapping the play button (or any open node) opens that phase's page. */
 export default function TrackPathScreen() {
+  const insets = useSafeAreaInsets();
   const app = useAppStore();
   const track = useTrackStore();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const trackData = track.track;
+  const t = track.track;
 
-  // The path is drawn bottom-up, so the rows are built in order and then reversed.
   const rows = useMemo(() => {
     const out: Row[] = [];
     let step = 0;
-    for (const phase of trackData?.phases ?? []) {
+    for (const phase of t?.phases ?? []) {
       out.push({ id: `banner-${phase.number}`, banner: phase });
       for (const l of phase.lessons) out.push({ id: l.id, node: { id: l.id, kind: 'lesson', title: `Part ${l.part} · ${l.title}`, phase, step: step++ } });
       if (phase.checkpoint.questions.length) out.push({ id: phase.checkpoint.id, node: { id: phase.checkpoint.id, kind: 'checkpoint', title: `Checkpoint · ${phase.checkpoint.name}`, phase, step: step++ } });
     }
     return out.reverse();
-  }, [trackData]);
+  }, [t]);
 
   /** The node the play button sits on: the next unfinished lesson, else the checkpoint, else the first lesson under 5 stars. */
   const currentID = useMemo(() => {
@@ -56,73 +59,94 @@ export default function TrackPathScreen() {
     const done = phase.lessons.filter((l) => track.isFinished(l.id)).length + (track.isFinished(phase.checkpoint.id) ? 1 : 0);
     const total = phase.lessons.length + (phase.checkpoint.questions.length ? 1 : 0);
     return (
-      <PhaseBanner
-        key={`banner-${phase.number}`}
-        unlocked={open}
-        eyebrow={`Phase ${phase.number} · ${phase.area}`}
-        title={phase.project}
-        progressLabel={`${done} of ${total}`}
-        lockedLabel="5 stars to open"
-        lockedIcon="lock-closed"
-        onPress={() => open && openPhase(phase)}
-        accessibilityLabel={`Phase ${phase.number}, ${phase.project}, ${open ? `${done} of ${total} done` : 'locked'}`}
-      />
+      <Pressable key={`banner-${phase.number}`} onPress={() => open && openPhase(phase)} accessibilityRole="button" accessibilityLabel={`Phase ${phase.number}, ${phase.project}, ${open ? `${done} of ${total} done` : 'locked'}`} style={{ paddingHorizontal: 16, paddingVertical: 14, backgroundColor: open ? 'transparent' : C.lockedOverlay }}>
+        <Card fill={open ? C.cream : C.lockedBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <View style={{ flex: 1 }}>
+            <Text style={[body(13, true), { color: open ? C.muted : C.lockedBandText }]}>Phase {phase.number} · {phase.area}</Text>
+            <Text style={[heading(20), { color: open ? C.navy : C.cream }]} numberOfLines={1}>{phase.project}</Text>
+          </View>
+          {open ? (
+            <View style={{ height: 30, paddingHorizontal: 12, borderRadius: 15, backgroundColor: C.sky, borderWidth: 2, borderColor: C.navy, justifyContent: 'center' }}>
+              <Text style={body(13, true)}>{done} of {total}</Text>
+            </View>
+          ) : (
+            <View style={{ height: 30, paddingHorizontal: 10, borderRadius: 15, backgroundColor: C.orange, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+              <Ionicons name="lock-closed" size={13} color={C.navy} />
+              <Text style={body(13, true)}>5 stars to open</Text>
+            </View>
+          )}
+        </Card>
+      </Pressable>
     );
   };
 
   const nodeRow = (n: Node) => {
+    const x = [0, 55, 0, -55][n.step % 4];
     const lesson = n.phase.lessons.find((l) => l.id === n.id);
     const finished = track.isFinished(n.id);
     const isCurrent = n.id === currentID;
     const open = lesson ? track.lessonUnlocked(lesson, n.phase) : track.checkpointUnlocked(n.phase);
+    const phaseLocked = !track.phaseUnlocked(n.phase);
     const stars = track.stars(n.id);
+    const size = isCurrent ? 88 : 64;
+    const icon: keyof typeof Ionicons.glyphMap = isCurrent ? 'play' : finished ? 'checkmark' : n.kind === 'checkpoint' ? 'star' : 'lock-closed';
+    const fill = isCurrent ? C.sky : finished ? C.lime : n.kind === 'checkpoint' && open ? C.sun : C.locked;
     const state = isCurrent ? 'start' : finished ? `done, ${stars} stars` : open ? 'open' : 'locked';
-    const form = app.progress.currentForm;
     return (
-      <PathNode
-        key={n.id}
-        step={n.step}
-        isCurrent={isCurrent}
-        fill={isCurrent ? C.sky : finished ? C.lime : n.kind === 'checkpoint' && open ? C.sun : C.locked}
-        icon={isCurrent ? 'play' : finished ? 'checkmark' : n.kind === 'checkpoint' ? 'star' : 'lock-closed'}
-        iconColor={open || finished ? C.navy : C.lockedText}
-        phaseLocked={!track.phaseUnlocked(n.phase)}
-        title={n.title}
-        accessibilityLabel={`${n.title}, ${state}`}
-        onPress={() => (open || finished) && openPhase(n.phase)}
-        robotName={moodImage(form, form === 'blob' ? 'excited' : 'closed')}
-        onCurrentLayout={onCurrentLayout}
-        badge={
-          finished && !isCurrent ? (
-            <View style={{ position: 'absolute', bottom: -10, paddingHorizontal: 7, height: 20, borderRadius: 10, backgroundColor: stars >= 5 ? C.sun : C.card, borderWidth: 2, borderColor: C.navy, flexDirection: 'row', alignItems: 'center', gap: 2 }}>
-              <Ionicons name="star" size={10} color={C.navy} />
-              <Text style={body(11, true)}>{stars}</Text>
+      <View key={n.id} onLayout={isCurrent ? (e) => onCurrentLayout(e.nativeEvent.layout.y) : undefined} style={{ height: isCurrent ? 170 : 96, alignItems: 'center', justifyContent: 'center' }}>
+        {phaseLocked && <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: C.lockedOverlay }} />}
+        <View style={{ alignItems: 'center', gap: 8, transform: [{ translateX: x }] }}>
+          <Pressable onPress={() => (open || finished) && openPhase(n.phase)} accessibilityRole="button" accessibilityLabel={`${n.title}, ${state}`}>
+            <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>
+              {isCurrent && <View style={{ position: 'absolute', width: size + 20, height: size + 20, borderRadius: (size + 20) / 2, borderWidth: 3, borderColor: C.cream }} />}
+              <View style={{ position: 'absolute', top: 4, width: size, height: size, borderRadius: size / 2, backgroundColor: C.navy }} />
+              <View style={{ width: size, height: size, borderRadius: size / 2, backgroundColor: fill, borderWidth: BORDER, borderColor: C.navy, alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name={icon} size={isCurrent ? 32 : 24} color={open || finished ? C.navy : C.lockedText} />
+              </View>
+              {finished && !isCurrent && (
+                <View style={{ position: 'absolute', bottom: -10, paddingHorizontal: 7, height: 20, borderRadius: 10, backgroundColor: stars >= 5 ? C.sun : C.card, borderWidth: 2, borderColor: C.navy, flexDirection: 'row', alignItems: 'center', gap: 2 }}>
+                  <Ionicons name="star" size={10} color={C.navy} />
+                  <Text style={body(11, true)}>{stars}</Text>
+                </View>
+              )}
             </View>
-          ) : undefined
-        }
-      />
+          </Pressable>
+          {isCurrent && (
+            <Card radius={16} shadow contentStyle={{ paddingHorizontal: 14, paddingVertical: 6 }}>
+              <Text style={heading(16)}>{n.title}</Text>
+            </Card>
+          )}
+        </View>
+        {isCurrent && (
+          <BundleImage name={robotImage('excited')} style={{ position: 'absolute', width: 96, height: 112, transform: [{ translateX: x > 0 ? -110 : 110 }] }} />
+        )}
+      </View>
     );
   };
 
-  const didNotLoad = !trackData && (
-    <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
-      <Card radius={20} contentStyle={{ padding: 20 }}>
-        <Text style={body(15)}>Your track's lessons didn't load. Check that its track file is in assets/content.</Text>
-      </Card>
-    </View>
-  );
-
   return (
-    <PathScreenLayout scrollRef={scrollRef} onContentSizeChange={() => scrollToCurrent(false)} streak={app.displayStreak} bolts={app.progress.bolts} minutes={track.minutesToday} emptyState={didNotLoad || undefined}>
-      {trackData && (
-        <View style={{ paddingHorizontal: 16, paddingVertical: 14 }}>
-          <Card fill={C.premiumBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, justifyContent: 'center' }}>
-            <Text style={[body(13, true), { color: C.premiumText }]}>Cycle 2 · {trackData.cycle2.area}</Text>
-            <Text style={[heading(20), { color: C.cream }]}>{trackData.cycle2.project}</Text>
-          </Card>
+    <View style={{ flex: 1 }}>
+      <FullScreenPicture name="world_backdrop.jpg" />
+      <SafeAreaView edges={['top']} style={{ flex: 1 }}>
+        {t ? (
+          <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 70, paddingBottom: 30 }} onContentSizeChange={() => scrollToCurrent(false)}>
+            <View style={{ paddingHorizontal: 16, paddingVertical: 14 }}>
+              <Card fill={C.lockedBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, justifyContent: 'center' }}>
+                <Text style={[body(13, true), { color: C.lockedBandText }]}>Cycle 2 · {t.cycle2.area}</Text>
+                <Text style={[heading(20), { color: C.cream }]}>{t.cycle2.project}</Text>
+              </Card>
+            </View>
+            {rows.map((r) => ('banner' in r ? banner(r.banner) : nodeRow(r.node)))}
+          </ScrollView>
+        ) : (
+          <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
+            <LessonsUnavailable />
+          </View>
+        )}
+        <View style={{ position: 'absolute', top: insets.top + 8, left: 16, right: 16, zIndex: 20 }}>
+          <StatChipsRow streak={app.displayStreak} bolts={app.progress.bolts} minutes={track.minutesToday} />
         </View>
-      )}
-      {rows.map((r) => ('banner' in r ? banner(r.banner) : nodeRow(r.node)))}
-    </PathScreenLayout>
+      </SafeAreaView>
+    </View>
   );
 }

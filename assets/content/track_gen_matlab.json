@@ -1,0 +1,67 @@
+{
+ "id": "gen_matlab",
+ "title": "General",
+ "language": "MATLAB",
+ "phases": [
+  {
+   "number": 1,
+   "area": "General",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Bench display",
+     "Say hello"
+    ],
+    [
+     "Numbers and text",
+     "Say hello"
+    ],
+    [
+     "Bench readings",
+     "Say hello"
+    ],
+    [
+     "Distance",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_matlab_p1_l1",
+     "part": 1,
+     "title": "Bench display"
+    },
+    {
+     "id": "gen_matlab_p1_l2",
+     "part": 2,
+     "title": "Numbers and text"
+    },
+    {
+     "id": "gen_matlab_p1_l3",
+     "part": 3,
+     "title": "Bench readings"
+    },
+    {
+     "id": "gen_matlab_p1_l4",
+     "part": 4,
+     "title": "Distance"
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_matlab_cp1",
+    "name": "Say hello",
+    "unlock": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "General",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

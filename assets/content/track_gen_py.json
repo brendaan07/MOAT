@@ -1,0 +1,173 @@
+{
+ "id": "gen_py",
+ "title": "General",
+ "language": "Python",
+ "phases": [
+  {
+   "number": 1,
+   "area": "General",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Screen",
+     "Say hello"
+    ],
+    [
+     "Counting things",
+     "Say hello"
+    ],
+    [
+     "Labelled boxes",
+     "Say hello"
+    ],
+    [
+     "Update day",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_py_p1_l1",
+     "part": 1,
+     "title": "Screen"
+    },
+    {
+     "id": "gen_py_p1_l2",
+     "part": 2,
+     "title": "Counting things"
+    },
+    {
+     "id": "gen_py_p1_l3",
+     "part": 3,
+     "title": "Labelled boxes"
+    },
+    {
+     "id": "gen_py_p1_l4",
+     "part": 4,
+     "title": "Update day"
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_py_cp1",
+    "name": "Say hello",
+    "unlock": []
+   }
+  },
+  {
+   "number": 2,
+   "area": "General",
+   "project": "Loops: repeat a step",
+   "picture": "",
+   "skill": "Repeat a step round after round",
+   "parts": [
+    [
+     "Rounds pass",
+     "Loops: repeat a step"
+    ],
+    [
+     "Watch it change",
+     "Loops: repeat a step"
+    ],
+    [
+     "Counting rounds",
+     "Loops: repeat a step"
+    ],
+    [
+     "Routine",
+     "Loops: repeat a step"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_py_p2_l1",
+     "part": 1,
+     "title": "Rounds pass"
+    },
+    {
+     "id": "gen_py_p2_l2",
+     "part": 2,
+     "title": "Watch it change"
+    },
+    {
+     "id": "gen_py_p2_l3",
+     "part": 3,
+     "title": "Counting rounds"
+    },
+    {
+     "id": "gen_py_p2_l4",
+     "part": 4,
+     "title": "Routine"
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_py_cp2",
+    "name": "Loops: repeat a step",
+    "unlock": []
+   }
+  },
+  {
+   "number": 3,
+   "area": "General",
+   "project": "Decisions: if / else",
+   "picture": "",
+   "skill": "Up or down",
+   "parts": [
+    [
+     "On or off",
+     "Decisions: if / else"
+    ],
+    [
+     "More or less",
+     "Decisions: if / else"
+    ],
+    [
+     "Round check",
+     "Decisions: if / else"
+    ],
+    [
+     "Review",
+     "Decisions: if / else"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_py_p3_l1",
+     "part": 1,
+     "title": "On or off"
+    },
+    {
+     "id": "gen_py_p3_l2",
+     "part": 2,
+     "title": "More or less"
+    },
+    {
+     "id": "gen_py_p3_l3",
+     "part": 3,
+     "title": "Round check"
+    },
+    {
+     "id": "gen_py_p3_l4",
+     "part": 4,
+     "title": "Review"
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_py_cp3",
+    "name": "Decisions: if / else",
+    "unlock": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "General",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

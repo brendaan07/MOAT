@@ -1,11 +1,11 @@
-// The project-track store: which items are finished, stars, which questions have paid bolts, and time spent.
+// The learner's track and its progress (stars, paid questions, minutes) as React context; the rules are in utils/progressRules.ts.
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { RunResult, Track, TrackLesson, TrackPhase, TrackProgress, TrackQuestion, defaultTrackProgress } from '../types/models';
+import { RunResult, TrackProgress, defaultTrackProgress } from '../types/models';
+import type { Track, TrackLesson, TrackPhase, TrackQuestion } from '../content/types';
 import { TrackStorage } from '../storage/trackStorage';
 import { loadTrack } from '../services/contentLoader';
 import { useAppStore } from './useAppStore';
-import { DayKey } from '../utils/dayKey';
-import { TRACK_BOLTS_PER_QUESTION, TRACK_PERFECT_BONUS } from '../utils/rewards';
+import * as rules from '../utils/progressRules';
 
 interface TrackStoreValue {
   track: Track | null;
@@ -23,18 +23,18 @@ interface TrackStoreValue {
   nextLesson: (phase: TrackPhase) => TrackLesson | null;
   pays: (q: TrackQuestion) => boolean;
   record: (itemID: string, questions: TrackQuestion[], firstTry: Set<string>) => RunResult;
-  addTime: (seconds: number) => void;
+  /** Adds learning time to today; returns today's seconds before and after. */
+  addTime: (seconds: number) => { before: number; after: number };
   minutesToday: number;
   reset: () => void;
 }
 
 const TrackStoreContext = createContext<TrackStoreValue | null>(null);
 
-/** Needs AppStoreProvider above it, because the track depends on the learner's field and language. */
+/** Loads the learner's track and its saved progress and provides them to the app. */
 export function TrackStoreProvider({ children }: { children: React.ReactNode }) {
   const app = useAppStore();
   const { studyArea, language } = app.progress;
-  /** Biology research, Engineering (Python) and Healthcare (Python or R) each have their own track. */
   const track = useMemo(() => loadTrack(studyArea, language), [studyArea, language]);
   const [progress, setState] = useState<TrackProgress>(defaultTrackProgress());
   const [hydrated, setHydrated] = useState(false);
@@ -52,74 +52,35 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
     });
   }, []);
 
-  const isFinished = useCallback((id: string) => progress.finished.includes(id), [progress.finished]);
-  const stars = useCallback((id: string) => progress.bestStars[id] ?? 0, [progress.bestStars]);
-  /** Every lesson in a phase, plus its checkpoint, needs 5 stars to open the next phase. */
-  const phaseComplete = useCallback(
-    (phase: TrackPhase) =>
-      phase.lessons.every((l) => stars(l.id) >= l.questions.length) && stars(phase.checkpoint.id) >= phase.checkpoint.questions.length, // a phase without a checkpoint yet needs only its lessons
-    [stars],
-  );
-  const phaseUnlocked = useCallback(
-    (phase: TrackPhase) => {
-      const phases = track?.phases ?? [];
-      const i = phases.findIndex((p) => p.number === phase.number);
-      return i === 0 || (i > 0 && phaseComplete(phases[i - 1]));
-    },
-    [track, phaseComplete],
-  );
-  /** The next lesson opens once the one before it is finished, with any number of stars. */
-  const lessonUnlocked = useCallback(
-    (lesson: TrackLesson, phase: TrackPhase) => {
-      if (!phaseUnlocked(phase)) return false;
-      const i = phase.lessons.findIndex((l) => l.id === lesson.id);
-      return i === 0 || (i > 0 && isFinished(phase.lessons[i - 1].id));
-    },
-    [phaseUnlocked, isFinished],
-  );
-  const checkpointUnlocked = useCallback(
-    (phase: TrackPhase) => phaseUnlocked(phase) && phase.lessons.every((l) => isFinished(l.id)),
-    [phaseUnlocked, isFinished],
-  );
-  const currentPhase = useMemo(() => {
-    const phases = track?.phases ?? [];
-    for (let i = phases.length - 1; i >= 0; i--) if (phaseUnlocked(phases[i])) return phases[i];
-    return null;
-  }, [track, phaseUnlocked]);
-  const cycleOneComplete = useMemo(() => !!track && track.phases.every((p) => phaseComplete(p)), [track, phaseComplete]);
-  const nextLesson = useCallback((phase: TrackPhase) => phase.lessons.find((l) => !isFinished(l.id)) ?? null, [isFinished]);
-  const pays = useCallback((q: TrackQuestion) => !ref.current.paid.includes(q.id), []);
-
-  /** Pays per question right on the first try (only if it never paid before), plus a bonus for a perfect first attempt. */
+  const phases = useMemo(() => track?.phases ?? [], [track]);
+  const isFinished = useCallback((id: string) => rules.isFinished(progress, id), [progress]);
+  const stars = useCallback((id: string) => rules.starsFor(progress, id), [progress]);
+  const phaseComplete = useCallback((phase: TrackPhase) => rules.phaseComplete(progress, phase), [progress]);
+  const phaseUnlocked = useCallback((phase: TrackPhase) => rules.phaseUnlocked(progress, phases, phase), [progress, phases]);
+  const lessonUnlocked = useCallback((lesson: TrackLesson, phase: TrackPhase) => rules.lessonUnlocked(progress, phases, lesson, phase), [progress, phases]);
+  const checkpointUnlocked = useCallback((phase: TrackPhase) => rules.checkpointUnlocked(progress, phases, phase), [progress, phases]);
+  /** The last open phase, where the learner is now. */
+  const currentPhase = useMemo(() => [...phases].reverse().find((p) => rules.phaseUnlocked(progress, phases, p)) ?? null, [progress, phases]);
+  const cycleOneComplete = useMemo(() => phases.length > 0 && phases.every((p) => rules.phaseComplete(progress, p)), [progress, phases]);
+  const nextLesson = useCallback((phase: TrackPhase) => phase.lessons.find((l) => !rules.isFinished(progress, l.id)) ?? null, [progress]);
+  const pays = useCallback((q: TrackQuestion) => rules.pays(ref.current, q), []);
   const record = useCallback(
     (itemID: string, questions: TrackQuestion[], firstTry: Set<string>): RunResult => {
-      const p = ref.current;
-      const firstAttempt = !p.finished.includes(itemID);
-      const newPaid = [...firstTry].filter((id) => !p.paid.includes(id));
-      const starCount = firstTry.size;
-      const bonus = firstAttempt && starCount === questions.length ? TRACK_PERFECT_BONUS : 0;
-      set({
-        ...p,
-        finished: p.finished.includes(itemID) ? p.finished : [...p.finished, itemID],
-        bestStars: { ...p.bestStars, [itemID]: Math.max(p.bestStars[itemID] ?? 0, starCount) },
-        paid: Array.from(new Set([...p.paid, ...firstTry])),
-      });
-      const missedIndexes = questions.map((q, i) => (firstTry.has(q.id) ? -1 : i)).filter((i) => i >= 0);
-      return { itemID, stars: starCount, total: questions.length, earned: newPaid.length * TRACK_BOLTS_PER_QUESTION, bonus, firstAttempt, missedIndexes };
+      const { next, result } = rules.withRun(ref.current, itemID, questions, firstTry);
+      set(next);
+      return result;
     },
     [set],
   );
-
   const addTime = useCallback(
     (seconds: number) => {
-      if (seconds <= 0) return;
-      const p = ref.current;
-      const key = DayKey.today();
-      set({ ...p, secondsByDay: { ...p.secondsByDay, [key]: (p.secondsByDay[key] ?? 0) + seconds } });
+      const before = rules.secondsToday(ref.current);
+      const next = rules.withTime(ref.current, seconds);
+      set(next);
+      return { before, after: rules.secondsToday(next) };
     },
     [set],
   );
-  const minutesToday = Math.floor((progress.secondsByDay[DayKey.today()] ?? 0) / 60);
 
   const value: TrackStoreValue = {
     track,
@@ -137,12 +98,13 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
     pays,
     record,
     addTime,
-    minutesToday,
+    minutesToday: rules.minutesToday(progress),
     reset: () => set(defaultTrackProgress()),
   };
   return <TrackStoreContext.Provider value={value}>{children}</TrackStoreContext.Provider>;
 }
 
+/** The learner's track, its progress and the unlock rules. */
 export function useTrackStore() {
   const v = useContext(TrackStoreContext);
   if (!v) throw new Error('useTrackStore must be used inside TrackStoreProvider');

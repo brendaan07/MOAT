@@ -1,32 +1,35 @@
-// Lesson complete: the bolt total counts up, "+N added" slides in, the stars pop and shimmer, and a perfect first try shows the bonus tag.
+// The screen after a lesson: bolts counting up, stars, the streak and Continue.
 import React, { useEffect, useRef } from 'react';
-import { Animated, Easing, Pressable, ScrollView, Text, View } from 'react-native';
+import { Animated, Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Card, ChunkyButton, DottedBackground } from '../../../components/ui';
-import { BORDER, C, body, heading } from '../../../utils/theme';
-import { RunResult, TrackLesson, TrackPhase } from '../../../types/models';
-import { useAppStore } from '../../../hooks/useAppStore';
 import { BoltIcon, FlameIcon } from '../../../components/icons';
-import { SegmentBar } from '../../../components/track/progressBars';
+import { Segments } from '../../../components/lesson/QuestionBar';
 import { StarsRow } from '../../../components/track/stars';
 import { WeekStrip } from '../../../components/track/WeekStrip';
+import { useAppStore } from '../../../hooks/useAppStore';
 import { useCountUp } from '../../../hooks/useCountUp';
 import { useReduceMotion } from '../../../hooks/useReduceMotion';
+import { BORDER, C, body, heading } from '../../../utils/theme';
+import { EASE_OUT } from '../../../utils/motion';
 import { DayKey } from '../../../utils/dayKey';
-import { TRACK_PERFECT_BONUS } from '../../../utils/rewards';
+import { DAILY_GOAL_BONUS_BOLTS, PERFECT_BONUS } from '../../../utils/rewards';
+import { RunResult, creditedBolts } from '../../../types/models';
+import type { TrackLesson, TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
 import { CloseButton } from '../../../components/CloseButton';
 
+/** Lesson complete: the total counts up, "+N added" slides in, stars pop and shimmer, and a perfect first try shows the perfect-bonus tag. */
 export function TrackLessonComplete({ phase, lesson, result, onContinue, onReplay }: { phase: TrackPhase; lesson: TrackLesson; result: RunResult; onContinue: () => void; onReplay: () => void }) {
   const app = useAppStore();
   const reduce = useReduceMotion();
-  const credited = result.earned + result.bonus;
+  const credited = creditedBolts(result);
   const total = useCountUp(app.progress.bolts, { from: app.progress.bolts - credited, duration: 1100, delay: 550, run: !reduce });
   const chip = useRef(new Animated.Value(reduce ? 1 : 0)).current;
   const bounce = useRef(new Animated.Value(1)).current;
   useEffect(() => {
     if (reduce) return;
-    Animated.timing(chip, { toValue: 1, duration: 400, delay: 250, easing: Easing.bezier(0.2, 0.8, 0.2, 1), useNativeDriver: true }).start();
+    Animated.timing(chip, { toValue: 1, duration: 400, delay: 250, easing: EASE_OUT, useNativeDriver: true }).start();
     Animated.sequence([Animated.delay(1600), Animated.timing(bounce, { toValue: 1.1, duration: 180, useNativeDriver: true }), Animated.timing(bounce, { toValue: 1, duration: 270, useNativeDriver: true })]).start();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
@@ -34,7 +37,7 @@ export function TrackLessonComplete({ phase, lesson, result, onContinue, onRepla
       <DottedBackground />
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 8, paddingRight: 16, marginTop: 8 }}>
         <CloseButton onPress={onContinue} label="Back to Learn" />
-        <SegmentBar total={5} index={5} currentCorrect />
+        <Segments done={result.total} total={result.total} />
         <Animated.View style={{ transform: [{ scale: bounce }] }} accessible accessibilityLabel={`Total bolts ${app.progress.bolts}. ${credited} added from this lesson.`}>
           <View style={{ position: 'absolute', left: 0, right: 0, top: 3, height: 40, borderRadius: 20, backgroundColor: C.navy }} />
           <View style={{ height: 40, flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 10, paddingRight: 14, borderRadius: 20, borderWidth: BORDER, borderColor: C.navy, backgroundColor: C.lime }}>
@@ -53,7 +56,7 @@ export function TrackLessonComplete({ phase, lesson, result, onContinue, onRepla
         <Hero mood="hearts" size={208} />
         <View style={{ alignItems: 'center', gap: 6 }}>
           <Text style={heading(38)} accessibilityRole="header">Lesson done</Text>
-          <Text style={[body(17), { color: C.muted }]}>Phase {phase.number} · part {lesson.part} of 4</Text>
+          <Text style={[body(17), { color: C.muted }]}>Phase {phase.number} · part {lesson.part} of {phase.lessons.length}</Text>
         </View>
         <View>
           <Card radius={20} shadow contentStyle={{ paddingHorizontal: 16, paddingVertical: 14, gap: 10 }}>
@@ -62,17 +65,24 @@ export function TrackLessonComplete({ phase, lesson, result, onContinue, onRepla
           </Card>
           {result.bonus > 0 && (
             <View style={{ position: 'absolute', right: 14, top: -16, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 10, backgroundColor: C.sun, borderWidth: BORDER, borderColor: C.navy }}>
-              <Text style={body(13, true)}>+{TRACK_PERFECT_BONUS} perfect first try</Text>
+              <Text style={body(13, true)}>+{PERFECT_BONUS} perfect first try</Text>
             </View>
           )}
         </View>
-        <Card fill={C.screen} radius={20} shadow contentStyle={{ paddingHorizontal: 16, paddingVertical: 14, gap: 12 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <FlameIcon size={24} />
-            <Text style={[heading(22), { color: C.cream }]}>{app.displayStreak} day streak</Text>
-          </View>
-          <WeekStrip streak={app.displayStreak} activeToday={app.progress.lastActiveDay === DayKey.today()} />
-        </Card>
+        <View>
+          <Card fill={C.screen} radius={20} shadow contentStyle={{ paddingHorizontal: 16, paddingVertical: 14, gap: 12 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <FlameIcon size={24} />
+              <Text style={[heading(22), { color: C.cream }]}>{app.displayStreak} day streak</Text>
+            </View>
+            <WeekStrip streak={app.displayStreak} activeToday={app.progress.lastActiveDay === DayKey.today()} />
+          </Card>
+          {result.goalBonus > 0 && (
+            <View style={{ position: 'absolute', right: 14, top: -16, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 10, backgroundColor: C.lime, borderWidth: BORDER, borderColor: C.navy }}>
+              <Text style={body(13, true)}>+{DAILY_GOAL_BONUS_BOLTS} daily goal reached</Text>
+            </View>
+          )}
+        </View>
       </ScrollView>
       <View style={{ paddingHorizontal: 16 }}>
         <ChunkyButton title="Continue" onPress={onContinue} />

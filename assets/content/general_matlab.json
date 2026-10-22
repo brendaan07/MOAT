@@ -1,0 +1,1083 @@
+{
+ "track": {
+  "id": "gen_matlab",
+  "name": "General MATLAB",
+  "language": "MATLAB",
+  "phases": 1,
+  "lessons_per_phase": 4,
+  "checkpoints": false,
+  "item_order_rule": "Each phase has four lessons in order and no checkpoint yet (restructured from the V1 general lessons)."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Say hello",
+   "coding_idea": "Show messages and store numbers",
+   "items": [
+    {
+     "id": "GenMatlabP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Bench display",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.m",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Make the bench say hello",
+       "value": "'Hello, sensor!'"
+      },
+      {
+       "label": "What does the bench display sho…",
+       "value": "Volt"
+      },
+      {
+       "label": "Build the line that shows: Ready",
+       "value": "'Ready'"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Warm up, then Measure"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Bench display",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Make the bench say hello",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Text goes inside single quote marks. Then disp shows it on the bench display.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "disp() shows whatever is inside the brackets.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp(___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "'Hello, sensor!'",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Hello, sensor!",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "'hello, sensor!'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "{Hello, sensor!}",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the bench display show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "disp shows the words between the quote marks. The quote marks themselves are not shown.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp('Volt')"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Volt",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "disp",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "'Volt'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows: Ready",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with disp, then brackets, and put the words inside single quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp(___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "'Ready'",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Ready",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words need quote marks. Fix: disp('Reset')",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.m",
+       "lines": [
+        {
+         "id": "a",
+         "code": "disp('Start')",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "disp('Stop')",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "disp(Reset)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "disp('Start')",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "disp('Stop')",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "disp('Reset')",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "disp(Reset)",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The computer runs the lines from top to bottom, so Warm up shows first.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp('Warm up')",
+        "disp('Measure')"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Warm up, then Measure",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Measure, then Warm up",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Warm up",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenMatlabP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Numbers and text",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.m",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "5"
+      },
+      {
+       "label": "True or false: this shows 6.",
+       "value": "False"
+      },
+      {
+       "label": "What does the bench show?",
+       "value": "3 + 2"
+      },
+      {
+       "label": "Build the line that shows the t…",
+       "value": "+"
+      },
+      {
+       "label": "What shows?",
+       "value": "6"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Numbers and text",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without quote marks, MATLAB does the maths: 3 + 2 = 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Without quote marks, MATLAB does the maths.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp(3 + 2)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3 + 2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "32",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 6.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make it text. The words 10 - 4 show, and no sum is worked out.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp('10 - 4')"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "False",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the bench show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The quotes make 3 + 2 plain text, so it shows exactly as written.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Quotes make text. Text is not worked out.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp('3 + 2')"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3 + 2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "'3 + 2'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "32",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows the total of 4 + 6.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Numbers without quote marks are added, so the bench shows 10.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp(4 ___ 6)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "+",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "'4 + 6'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "-",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "10 - 4 = 6.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "disp(10 - 4)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "14",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "10 - 4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenMatlabP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Bench readings",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.m",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Store a speed of 20 in the box…",
+       "value": "="
+      },
+      {
+       "label": "What shows?",
+       "value": "20"
+      },
+      {
+       "label": "What shows on the bench?",
+       "value": "time = 3"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: show what…",
+       "value": "disp(speed)"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Bench readings",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Store a speed of 20 in the box labelled speed",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "One = puts a value into the box. Two == would ask a question instead.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "A variable is a labelled box that holds a value.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed ___ 20;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "==",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "speed holds 20, so disp(speed) shows 20.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 20;",
+        "disp(speed)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "20",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "'speed'",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows on the bench?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "A semicolon hides the result. speed has one, so only time is shown.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "A semicolon at the end hides the result.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 20;",
+        "time = 3"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "time = 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed = 20 and time = 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "speed = 20",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "A name cannot start with a number. Fix: volts = 5;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.m",
+       "lines": [
+        {
+         "id": "a",
+         "code": "speed = 20;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "time = 3;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "2volts = 5;",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "speed = 20;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "time = 3;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "volts = 5;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "2volts = 5;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: show what the box holds?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "= stores a value. disp(speed) shows the value. Quote marks show the name itself.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "disp(speed)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed = 20;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "speed = 30;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "disp('speed')",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenMatlabP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Distance",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.m",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Add 5 to the speed. Which line…",
+       "value": "speed = speed + 5;"
+      },
+      {
+       "label": "What shows?",
+       "value": "2"
+      },
+      {
+       "label": "Find the distance. Build the li…",
+       "value": "time"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: take away…",
+       "value": "speed = speed - 1;"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Distance",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Add 5 to the speed. Which line updates it?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, add 5, and put it back in the same box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Take the old value, change it, and put it back in the same box.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 10;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "speed = speed + 5;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed + 5;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "speed = 5;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3 - 1 = 2.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 3;",
+        "speed = speed - 1;",
+        "disp(speed)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Find the distance. Build the line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "speed * time is 60, and disp shows it.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 20;",
+        "time = 3;",
+        "disp(speed * ___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "time",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "'time'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The + needs a number after it. Fix: time = time + 1;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.m",
+       "lines": [
+        {
+         "id": "a",
+         "code": "time = 2;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "time = time +;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "disp(time)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "time = 2;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "time = time + 1;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "time = time +;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "disp(time)",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: take away 1?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "+ adds, - takes away, and * multiplies. The new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "speed = speed - 1;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed = speed + 1;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "speed = speed * 2;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "speed = speed + 10;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

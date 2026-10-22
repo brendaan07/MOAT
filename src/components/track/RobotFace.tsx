@@ -1,12 +1,12 @@
-// The learner's robot with a mood, the mood rotation across questions, and the row that seats it beside a bubble.
+// Blob with a mood, and the moods each question uses.
 import React, { useEffect, useRef } from 'react';
-import { Animated, View } from 'react-native';
-import { RobotForm, RobotMood, moodImage } from '../../types/models';
-import { useReduceMotion } from '../../hooks/useReduceMotion';
+import { Animated } from 'react-native';
 import { BundleImage } from '../ui';
+import { RobotMood, robotImage } from '../../types/models';
+import { useReduceMotion } from '../../hooks/useReduceMotion';
 
-/** The learner's robot with a mood. Every new mood pops in, as on the canvas. */
-export function RobotFace({ form, mood, width, height }: { form: RobotForm; mood: RobotMood; width: number; height: number }) {
+/** The robot with a mood. Every new mood pops in, as on the canvas. */
+export function RobotFace({ mood, width, height }: { mood: RobotMood; width: number; height: number }) {
   const reduce = useReduceMotion();
   const scale = useRef(new Animated.Value(1)).current;
   const y = useRef(new Animated.Value(0)).current;
@@ -26,7 +26,7 @@ export function RobotFace({ form, mood, width, height }: { form: RobotForm; mood
   }, [mood]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <Animated.View style={{ width, height, transform: [{ scale }, { translateY: y }] }} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      <BundleImage name={moodImage(form, mood)} style={{ width, height }} />
+      <BundleImage name={robotImage(mood)} style={{ width, height }} />
     </Animated.View>
   );
 }
@@ -37,14 +37,4 @@ export function moodPlan(index: number): { ask: RobotMood; ok: RobotMood; bad: R
   const oks: RobotMood[] = ['excited', 'hearts', 'wink'];
   const ask = asks[index % 3];
   return { ask, ok: oks[(index + 1) % 3], bad: ask === 'surprised' ? 'confused' : 'surprised' };
-}
-
-/** The robot standing beside a speech bubble. */
-export function CoachRow({ form, mood, children }: { form: RobotForm; mood: RobotMood; children: React.ReactNode }) {
-  return (
-    <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 6, zIndex: 3 }}>
-      <RobotFace form={form} mood={mood} width={86} height={90} />
-      {children}
-    </View>
-  );
 }

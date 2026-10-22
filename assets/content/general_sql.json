@@ -1,0 +1,1076 @@
+{
+ "track": {
+  "id": "gen_sql",
+  "name": "General SQL",
+  "language": "SQL",
+  "phases": 1,
+  "lessons_per_phase": 4,
+  "checkpoints": false,
+  "item_order_rule": "Each phase has four lessons in order and no checkpoint yet (restructured from the V1 general lessons)."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Ask the data",
+   "coding_idea": "Read a table with SELECT",
+   "items": [
+    {
+     "id": "GenSqlP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Read the menu",
+     "person": "Your coding coach",
+     "intro": "Ask the data: Read a table with SELECT.",
+     "script_file": "lesson.sql",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Show the drink names",
+       "value": "name"
+      },
+      {
+       "label": "What shows?",
+       "value": "4.50, 5.00, 3.00"
+      },
+      {
+       "label": "Build the query that shows ever…",
+       "value": "SELECT"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line shows both name and…",
+       "value": "SELECT name, price FROM men…"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Read the menu",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show the drink names",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "SELECT picks a column. name is the column that holds the drink names.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "SELECT picks a column. FROM says which table.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu has name and price",
+        "SELECT ___ FROM menu;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "name",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "menu",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "'name'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "price",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "SELECT price shows the price column: one price for each drink.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT price FROM menu;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "4.50, 5.00, 3.00",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "price, price, price",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Latte, Mocha, Tea",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the query that shows every name.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "SELECT says what to show, FROM says which table, and the semicolon ends the query.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "___ name FROM menu;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "SELECT",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "price",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "WHERE",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "FROM is missing, so the database does not know which table to look in. Fix: SELECT name FROM menu;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.sql",
+       "lines": [
+        {
+         "id": "a",
+         "code": "SELECT name FROM menu;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "SELECT price FROM menu;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "SELECT name menu;",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "SELECT name FROM menu;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "SELECT price FROM menu;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "SELECT name FROM menu;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "SELECT name menu;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line shows both name and price?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "A comma separates the columns you want.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Columns are separated by commas.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "SELECT name, price FROM menu;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "SELECT name + price FROM menu;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "SELECT name price FROM menu;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenSqlP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Pick the rows",
+     "person": "Your coding coach",
+     "intro": "Ask the data: Read a table with SELECT.",
+     "script_file": "lesson.sql",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Which drinks show?",
+       "value": "Latte, Mocha"
+      },
+      {
+       "label": "True or false: Tea shows.",
+       "value": "True"
+      },
+      {
+       "label": "Show the price of the drink nam…",
+       "value": "= 'Tea'"
+      },
+      {
+       "label": "Build the condition: price is m…",
+       "value": "4"
+      },
+      {
+       "label": "What shows?",
+       "value": "Mocha"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Pick the rows",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which drinks show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "WHERE keeps only the rows that match. Latte (4.50) and Mocha (5.00) cost more than 4.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "WHERE keeps only the rows that match.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT name FROM menu",
+        "WHERE price > 4;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Latte, Mocha",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Mocha",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Latte, Mocha, Tea",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "Tea",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: Tea shows.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Tea costs 3.00, which is less than 4, so it matches.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT name FROM menu",
+        "WHERE price < 4;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show the price of the drink named Tea.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Text goes in single quotes. Without them, SQL looks for a column called Tea.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Text goes in single quotes.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "SELECT price FROM menu",
+        "WHERE name ___;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "= 'Tea'",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "== Tea",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "= Tea",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the condition: price is more than 4.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "WHERE starts the condition. Numbers do not need quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "SELECT name FROM menu",
+        "WHERE price > ___;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "\"4\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Only Mocha costs exactly 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT name FROM menu",
+        "WHERE price = 5;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Mocha",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Latte, Mocha",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenSqlP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Put in order",
+     "person": "Your coding coach",
+     "intro": "Ask the data: Read a table with SELECT.",
+     "script_file": "lesson.sql",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Sort the drinks from cheapest t…",
+       "value": "price"
+      },
+      {
+       "label": "What shows?",
+       "value": "Tea, Latte, Mocha"
+      },
+      {
+       "label": "What shows?",
+       "value": "Mocha, Latte, Tea"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Show only the two cheapest drin…",
+       "value": "LIMIT"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Put in order",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Sort the drinks from cheapest to most expensive.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "ORDER BY price sorts the rows by the price column.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "SELECT name FROM menu",
+        "ORDER BY ___;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "price",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "SELECT",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "menu",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Cheapest first: Tea 3.00, Latte 4.50, Mocha 5.00.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT name FROM menu",
+        "ORDER BY price;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Tea, Latte, Mocha",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Mocha, Latte, Tea",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Latte, Mocha, Tea",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "DESC flips the order: most expensive first.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT name FROM menu",
+        "ORDER BY price DESC;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Mocha, Latte, Tea",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Mocha, Tea, Latte",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Tea, Latte, Mocha",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Sorting needs ORDER BY. Fix: ORDER BY price",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.sql",
+       "lines": [
+        {
+         "id": "a",
+         "code": "SELECT name FROM menu;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "SELECT name FROM menu WHERE price > 4;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "SELECT name FROM menu ORDER price;",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "SELECT name FROM menu;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "SELECT name FROM menu WHERE price > 4;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "SELECT name FROM menu ORDER BY price;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "SELECT name FROM menu ORDER price;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show only the two cheapest drinks.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "LIMIT 2 stops after the first two rows.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "SELECT name FROM menu",
+        "ORDER BY price",
+        "___ 2;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "LIMIT",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "COUNT",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "WHERE",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenSqlP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Count and add",
+     "person": "Your coding coach",
+     "intro": "Ask the data: Read a table with SELECT.",
+     "script_file": "lesson.sql",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "How many drinks are on the menu?",
+       "value": "COUNT"
+      },
+      {
+       "label": "What shows?",
+       "value": "12.5"
+      },
+      {
+       "label": "Count the drinks. Build the que…",
+       "value": "COUNT(*)"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: add the p…",
+       "value": "SUM(price)"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Count and add",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "How many drinks are on the menu?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "COUNT(*) counts the rows.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "SELECT ___(*) FROM menu;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "COUNT",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "SUM",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "MAX",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "SUM adds the prices up: 4.50 + 5.00 + 3.00 = 12.50.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "-- menu: Latte 4.50, Mocha 5.00, Tea 3.00",
+        "SELECT SUM(price) FROM menu;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "12.5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4.5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Count the drinks. Build the query.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "COUNT(*) counts the rows in menu: 3 drinks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "SELECT ___ FROM menu;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "COUNT(*)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "SUM(*)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "WHERE",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "COUNT needs brackets. Fix: COUNT(*)",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.sql",
+       "lines": [
+        {
+         "id": "a",
+         "code": "SELECT COUNT(*) FROM menu;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "SELECT SUM(price) FROM menu;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "SELECT COUNT FROM menu;",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "SELECT COUNT(*) FROM menu;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "SELECT SUM(price) FROM menu;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "SELECT COUNT(*) FROM menu;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "SELECT COUNT FROM menu;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: add the prices up?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "COUNT counts rows, SUM adds, MAX finds the biggest, and MIN finds the smallest.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "SUM(price)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "COUNT(*)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "MAX(price)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "MIN(price)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

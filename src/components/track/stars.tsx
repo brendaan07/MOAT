@@ -1,16 +1,9 @@
-// The first-try stars on the results screen: each pops in, and the filled ones shimmer.
+// A row of stars that pop in and shimmer, for the results screens.
 import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, View } from 'react-native';
-import Svg, { Path } from 'react-native-svg';
+import { Sparkle, StarIcon } from '../icons';
 import { C } from '../../utils/theme';
 import { useReduceMotion } from '../../hooks/useReduceMotion';
-import { StarIcon } from '../icons';
-
-const Sparkle = ({ size }: { size: number }) => (
-  <Svg width={size} height={size} viewBox="0 0 24 24">
-    <Path d="M12 0 L15.4 8.6 L24 12 L15.4 15.4 L12 24 L8.6 15.4 L0 12 L8.6 8.6 Z" fill="#FFFFFF" />
-  </Svg>
-);
 
 function ShimmerStar({ on, index, size, reduce }: { on: boolean; index: number; size: number; reduce: boolean }) {
   const pop = useRef(new Animated.Value(reduce ? 1 : 0)).current;
@@ -41,7 +34,7 @@ function ShimmerStar({ on, index, size, reduce }: { on: boolean; index: number; 
   );
 }
 
-/** The row of stars for a result; the first `filled` are gold. */
+/** Stars for a result: `filled` of `total` pop in one by one and shimmer. */
 export function StarsRow({ filled, total = 5, size = 48 }: { filled: number; total?: number; size?: number }) {
   const reduce = useReduceMotion();
   return (
