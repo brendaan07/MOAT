@@ -1,18 +1,10 @@
 import { Course, Track, TrackQuestion } from '../types/models';
 import { CONTENT } from '../utils/content_updated';
 import { canonicalArea } from '../utils/studyAreas';
-import { addingGames } from './gameCatalog';
 
-/** "Physics & maths" becomes "lessons_physics_and_maths"; several areas share the life sciences file. */
+/** "Physics & maths" becomes "lessons_physics_and_maths". Unused since 2b.3 (every learner has a track); removed in 3.1. */
 export function fileName(studyArea: string): string {
-  const cleaned = canonicalArea(studyArea).toLowerCase().replace(/&/g, 'and').replace(/ /g, '_');
-  const map: Record<string, string> = {
-    health_sciences: 'life_sciences',
-    healthcare: 'life_sciences',
-    biology_research: 'life_sciences',
-    business_and_finance: 'business',
-  };
-  return `lessons_${map[cleaned] ?? cleaned}`;
+  return `lessons_${canonicalArea(studyArea).toLowerCase().replace(/&/g, 'and').replace(/ /g, '_')}`;
 }
 
 export function languageFileName(language: string): string | null {
@@ -28,7 +20,7 @@ function load(name: string): Course | null {
   return data;
 }
 
-/** ContentLoader.loadBundled: language files first, then the study-area file with its games, then the default. */
+/** ContentLoader.loadBundled: language files first, then the study-area file, then the default. Unused since 2b.3; removed in 3.1. */
 export function loadBundled(studyArea = 'Health Sciences', language = 'Python'): Course {
   const lang = languageFileName(language);
   if (lang) {
@@ -36,17 +28,17 @@ export function loadBundled(studyArea = 'Health Sciences', language = 'Python'):
     if (course) return course;
   }
   const course = load(fileName(studyArea));
-  if (course) return addingGames(course, studyArea);
+  if (course) return course;
   return load('lessons_general') ?? { phases: [] };
 }
 
-/** Which languages have project tracks for each field (onboarding shows these). */
+/** The languages each field has a track in. Onboarding offers only these (plan 2b.0), so every learner has a track. */
 export const TRACK_LANGUAGES: Record<string, string[]> = { 'Biology research': ['R'], Engineering: ['Python'], Healthcare: ['Python', 'R'], 'Business & finance': ['Python'], General: ['Python', 'R', 'SQL', 'JavaScript', 'MATLAB', 'Java'], 'Physics & maths': ['Python'], 'Arts & humanities': ['Python'] };
 
-/** The track file for a field and language, or null when that pair uses the general lessons. */
+/** The track file for a field and language, or null when that pair has no track (onboarding sends the learner back to pick). */
 export function trackFileFor(studyArea: string, language: string): string | null {
   const area = canonicalArea(studyArea);
-  if (area === 'Biology research') return 'track_bio_r_updated';
+  if (area === 'Biology research' && language === 'R') return 'track_bio_r_updated';
   if (area === 'Engineering' && language === 'Python') return 'track_eng_py';
   // Healthcare: phases 1 to 5, each lesson followed by its checkpoint
   if (area === 'Healthcare' && language === 'Python') return 'track_hx_py';

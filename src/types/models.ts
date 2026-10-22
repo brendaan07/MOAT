@@ -37,7 +37,6 @@ export interface Lesson {
   id: string;
   title: string;
   questions: Question[];
-  game?: string | null;
 }
 
 export interface Phase {

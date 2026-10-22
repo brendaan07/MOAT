@@ -54,7 +54,7 @@ export default function LearnScreen() {
     }, [store.pendingEvolution]), // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  const openLesson = (lesson: Lesson) => (lesson.game ? navigation.navigate('GameLesson', { lessonId: lesson.id }) : navigation.navigate('Lesson', { lessonId: lesson.id }));
+  const openLesson = (lesson: Lesson) => navigation.navigate('Lesson', { lessonId: lesson.id });
 
   const lessonRow = (lesson: Lesson, phase: Phase, step: number) => {
     const x = [0, 55, 0, -55][step % 4];

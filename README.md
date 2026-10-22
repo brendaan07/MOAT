@@ -81,8 +81,6 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 | Hints always shown under 13; haptics on check | `LessonView` | `LessonScreen.tsx` |
 | Explain more (hidden by `useAIExplanations = false`) | `LessonView` | `LessonScreen.tsx` |
 | Custom quit warning instead of the system pop-up | `QuitSheet` | `trackKit.tsx` |
-| Loop games (plant, wheel, fund) with step-by-step code playback | `LoopGames.swift` | `games/LoopGame.tsx` |
-| Stage labs (GC content, duty cycle, conversion), 5 parts each | `StageGames.swift` | `games/StageGame.tsx` |
 | Robot evolution when a phase unlocks a form | `EvolutionView` | `EvolutionScreen.tsx` |
 | Workshop: forms, parts, rotated antennas | `WorkshopView` | `WorkshopScreen.tsx` |
 | Profile v2: streak, stats, 9 badges, settings, reset | `ProfileView` | `ProfileScreen.tsx` |
@@ -91,10 +89,6 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 | Bolt counter: count-up, glow, sparks, bounce | `TrackKit` | `trackKit.tsx` (`BoltPill`) |
 | Lesson complete, project built, checkpoint results | `TrackScreens` | `track/TrackResults.tsx` |
 | Star rules, +30 perfect bonus, replay payouts, minutes per day | `TrackData` | `useTrackStore.tsx` |
-
-## Fixed during migration
-
-- **Mini-games for Healthcare and Business learners.** The Swift game catalog still checked the old area names ("Health sciences", "Business") after they were renamed, so these learners got no mini-games. `services/gameCatalog.ts` uses the current names.
 
 ## Known differences from the iOS app
 

@@ -1,21 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import { useAppStore } from '../hooks/useAppStore';
 import { C } from '../utils/theme';
-import LearnScreen from '../screens/LearnScreen';
 import TrackPathScreen from '../screens/track/TrackPathScreen_updated';
-import { hasTrack } from '../services/contentLoader_updated';
 import WorkshopScreen from '../screens/WorkshopScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 export type TabParamList = { Learn: undefined; Workshop: undefined; Profile: undefined };
 const Tab = createBottomTabNavigator<TabParamList>();
 
-/** The three tabs at the bottom (MainTabView_updated.swift). Learners whose field and language have a project track get the track home on Learn. */
+/** The three tabs at the bottom (MainTabView_updated.swift). Learn is the track path: every learner has a track (plan 2b.3). */
 export default function MainTabs() {
-  const store = useAppStore();
-  const learn = hasTrack(store.progress.studyArea, store.progress.language) ? TrackPathScreen : LearnScreen;
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -29,7 +24,7 @@ export default function MainTabs() {
         },
       })}
     >
-      <Tab.Screen name="Learn" component={learn} />
+      <Tab.Screen name="Learn" component={TrackPathScreen} />
       <Tab.Screen name="Workshop" component={WorkshopScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

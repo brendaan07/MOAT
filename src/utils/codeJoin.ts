@@ -8,6 +8,3 @@ export function codeJoin(pieces: string[]): string {
   }
   return result;
 }
-
-/** "$1,000" style money, as LoopGameConfig.money does with an en_US number formatter. */
-export const money = (value: number) => '$' + Math.round(value).toLocaleString('en-US');

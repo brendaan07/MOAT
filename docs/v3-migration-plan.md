@@ -836,3 +836,24 @@ Each step adds here what it found or left for a later step (file, why, which ste
   - Some answers keep V1's friendly format rather than the real output, for example R's "Check in, then Check out"
     for `[1] "Check in"` / `[1] "Check out"`, and SQL's `4.50` for sqlite's `4.5`.
   - General R is healthcare-themed (a ward), as decided in 2b.0 (keep the current themes).
+- (step 2b.3) Every learner has a track: onboarding offers only the languages in `TRACK_LANGUAGES` (the rest are greyed
+  out), `hasTrack` agrees with it (Biology research is now R only), and a saved pair without a track opens onboarding
+  at the language step with no language picked. The Learn tab is always `TrackPathScreen`. Deleted (user decisions 5
+  and 6): the mini-games (`GameLessonScreen`, `games/LoopGame`, `games/StageGame`, `gameCatalog.ts`, `money` in
+  `codeJoin.ts`, the `GameLesson` route, `Lesson.game`; backlog entry in `docs/backlog.md`) and
+  `lessons_engineering/business/life_sciences.json`. `useAppStore` no longer loads the V1 course (it stays empty).
+  Now unused, for 3.1:
+  - `src/screens/LearnScreen.tsx`, `src/screens/LessonScreen.tsx` (and its `Lesson` route and `lesson/:lessonId` link),
+    `src/utils/codeJoin.ts`.
+  - `loadBundled`, `languageFileName` and `fileName` in `contentLoader_updated.ts`.
+  - Every `lessons_*.json` (`general`, `physics_and_maths`, `arts_and_humanities`, `r`, `sql`, `javascript`, `matlab`,
+    `java`) and their `CONTENT` entries.
+  - The V1 types `Course`, `Phase`, `Lesson`, `Question` in `types/models.ts`.
+  - In `useAppStore`: `course`, `orderedLessons`, `currentLesson`, `isCompleted`, `isUnlocked`, `isPhaseStarted`,
+    `completedCount`, `completeLesson`. `completedLessons` is still read by the Profile's lesson count (always empty
+    for new learners); drop it from `UserProgress` and the Profile sum in 3.1.
+  - `APIClient.fetchCourse` and `AppConfig.useBackendLessons` in `services/apiClient.ts`.
+  - `LessonScreen`'s `useAIExplanations` "Explain more".
+  - The evolution trigger (`completeLesson` → `pendingEvolution` → `EvolutionScreen`), which only the general path
+    fired (see 3.1, "Robot forms").
+  - README rows for the Learn path and V1 lessons (3.6).

@@ -5,7 +5,7 @@ import { SafeAreaView } from '../components/SafeAreaView';
 import { useAppStore } from '../hooks/useAppStore';
 import { BundleImage, Card, ChunkyButton } from '../components/ui';
 import { BORDER, C, body, heading } from '../utils/theme';
-import { STUDY_AREAS } from '../utils/studyAreas';
+import { STUDY_AREAS, canonicalArea } from '../utils/studyAreas';
 import { TRACK_LANGUAGES } from '../services/contentLoader_updated';
 
 const EDUCATION = ['Primary school', 'Secondary school', 'Diploma or vocational', "Bachelor's degree", "Master's degree", 'Doctorate', 'Prefer not to say'];
@@ -17,7 +17,7 @@ const LANGUAGES = [
   { name: 'MATLAB', caption: 'Engineering · physics & maths' },
   { name: 'Java', caption: 'Engineering · enterprise software' },
 ];
-/** The Biology research track is written in R, so that area always uses R. */
+/** The first area shown selected for a new learner. */
 const BIO = 'Biology research';
 
 const StepLabel = ({ text }: { text: string }) => (
@@ -92,28 +92,28 @@ export default function OnboardingScreen() {
   const [step, setStep] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
   const ageLabel = age >= 70 ? '70+' : String(age);
-  const isBio = studyArea === BIO;
-  /** Languages with project lessons for this field, shown first and marked on step 2. */
+  /** The languages this field has a track in: shown first and selectable on step 2; the rest are greyed out. */
   const trackLangs = TRACK_LANGUAGES[studyArea] ?? [];
   /** "Python, R and SQL": the track languages as one phrase. */
   const langList = trackLangs.length > 1 ? `${trackLangs.slice(0, -1).join(', ')} and ${trackLangs[trackLangs.length - 1]}` : trackLangs.join('');
   const ordered = [...LANGUAGES].sort((a, b) => Number(trackLangs.includes(b.name)) - Number(trackLangs.includes(a.name)));
-  const fieldLine = trackLangs.length === 0
-    ? `${studyArea} uses general lessons in every language for now.`
-    : `${studyArea}: project lessons in ${langList}.`;
+  const fieldLine = `${studyArea}: project lessons in ${langList}.`;
 
   useEffect(() => {
     const p = store.progress;
     setName(p.name);
     setAge(p.age);
     setEducation(p.education);
-    setStudyArea(STUDY_AREAS.includes(p.studyArea) ? p.studyArea : BIO);
-    setLanguage(p.studyArea === BIO ? 'R' : p.language);
+    const area = canonicalArea(p.studyArea);
+    setStudyArea(STUDY_AREAS.includes(area) ? area : BIO);
+    // A learner whose saved pair has no track (RootNavigator sends them here) picks their language again.
+    const stale = p.hasOnboarded && !(TRACK_LANGUAGES[area] ?? []).includes(p.language);
+    setLanguage(stale ? '' : STUDY_AREAS.includes(area) ? p.language : 'R');
+    if (stale) setStep(2);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const goToLanguages = () => {
-    if (isBio) setLanguage('R');
-    else if (trackLangs.length && !trackLangs.includes(language)) setLanguage(trackLangs[0]);
+    if (!trackLangs.includes(language)) setLanguage(trackLangs[0] ?? '');
     setStep(2);
   };
 
@@ -133,26 +133,24 @@ export default function OnboardingScreen() {
             <View key={l.name} style={{ flexDirection: 'row' }}>
               <Choice
                 label={l.name}
-                caption={trackLangs.includes(l.name) ? `${studyArea} · project lessons` : isBio || !trackLangs.length ? l.caption : `${l.caption} · general lessons`}
+                caption={trackLangs.includes(l.name) ? `${studyArea} · project lessons` : `Not available for ${studyArea} yet`}
                 selected={language === l.name}
-                disabled={isBio && l.name !== 'R'}
+                disabled={!trackLangs.includes(l.name)}
                 onPress={() => setLanguage(l.name)}
                 minHeight={74}
               />
             </View>
           ))}
           <Text style={[body(13, true), { color: C.muted, textAlign: 'center', marginTop: 4 }]}>
-            {isBio
-              ? 'Biology research lessons are written in R. More languages are coming later.'
+            {trackLangs.length === 1
+              ? `${studyArea} lessons are written in ${langList}. More languages are coming later.`
               : trackLangs.includes(language)
                 ? `You'll build ${studyArea.toLowerCase()} projects in ${language}, one step at a time.`
-                : trackLangs.length
-                  ? `${language} uses the general lessons. Project lessons for ${studyArea} are in ${langList}.`
-                  : language !== 'Python' ? `${language} starts with Phase 1. More phases are coming soon.` : ''}
+                : 'Pick a language to start.'}
           </Text>
         </ScrollView>
         <View style={{ paddingHorizontal: 16, paddingBottom: 12 }}>
-          <ChunkyButton title="Let's go" onPress={() => store.finishOnboarding(name, age, education, studyArea, isBio ? 'R' : language)} />
+          <ChunkyButton title="Let's go" enabled={trackLangs.includes(language)} onPress={() => store.finishOnboarding(name, age, education, studyArea, language)} />
         </View>
       </SafeAreaView>
     );

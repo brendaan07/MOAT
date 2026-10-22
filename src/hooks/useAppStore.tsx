@@ -1,8 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Course, Lesson, Phase, RobotForm, UserProgress, defaultProgress } from '../types/models';
 import { ProgressStorage } from '../storage/progressStorage';
-import { loadBundled } from '../services/contentLoader_updated';
-import { APIClient, AppConfig } from '../services/apiClient';
 import { DayKey } from '../utils/dayKey';
 
 interface AppStoreValue {
@@ -35,7 +33,8 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgressState] = useState<UserProgress>(defaultProgress());
   const progressRef = useRef(progress);
-  const [course, setCourse] = useState<Course>({ phases: [] });
+  // The V1 general course. Every learner has a track now (plan 2b.3), so it stays empty; step 3.1 removes it.
+  const [course] = useState<Course>({ phases: [] });
   const [pendingEvolution, setPendingEvolution] = useState<RobotForm | null>(null);
 
   /** Every change is saved, like the didSet on AppStore.progress. */
@@ -52,14 +51,7 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
       if (!alive) return;
       progressRef.current = saved;
       setProgressState(saved);
-      setCourse(loadBundled(saved.studyArea, saved.language));
       setHydrated(true);
-      // Check for new lessons in the background so the splash never waits on the network.
-      if (AppConfig.useBackendLessons && saved.language === 'Python') {
-        APIClient.fetchCourse(saved.studyArea).then((remote) => {
-          if (alive && remote && remote.phases.length) setCourse(remote);
-        });
-      }
     });
     return () => {
       alive = false;
@@ -104,7 +96,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
         // Younger learners start with a lighter daily goal.
         dailyGoalLessons: age < 13 ? 2 : 3,
       });
-      setCourse(loadBundled(studyArea, language));
     },
     [setProgress],
   );
@@ -171,7 +162,6 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const resetProgress = useCallback(() => {
     const fresh = defaultProgress();
     setProgress(fresh);
-    setCourse(loadBundled(fresh.studyArea, fresh.language));
   }, [setProgress]);
 
   const value: AppStoreValue = {

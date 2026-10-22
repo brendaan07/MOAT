@@ -57,3 +57,26 @@ To build it later:
 - Gate the content in the TRACKS registry or path screen.
 - Recover the old `src/components/PaywallOverlay.tsx` and `src/services/purchases.ts` with
   `git show 5282c9b:<path>` (the commit before step 1b).
+
+## Mini-games (loop games and stage labs)
+**Decided:** 2026-10-22 (plan 2b.0). Deleted in step 2b.3; nobody could reach them, so nothing was lost.
+
+**What they were.** One loop game and one stage lab per field, added to the V1 general lessons by
+`addingGames` in `services/gameCatalog.ts`:
+
+| Field | Loop game (added to phase 2) | Stage lab (an extra phase at the end, 5 parts) |
+|---|---|---|
+| Healthcare | Water the plant (`loop_plant`) | GC content lab (`stage_gc`) |
+| Engineering | Spin the wheel (`loop_wheel`) | Duty cycle lab (`stage_duty`) |
+| Business & finance | Invest each cycle (`loop_fund`) | Conversion lab (`stage_conversion`) |
+
+The loop games played a loop back step by step; the stage labs built one small program over 5 parts. They only ran in
+`GameLessonScreen` on the V1 path, and only for those three fields with Python, which had tracks long before 2b.3, so no
+learner ever saw them.
+
+**To build it:** decide where a game sits in a V3 track (a lesson item type, or a bonus after a phase), add it to the
+track file and the TRACKS lookup, and play it inside `TrackFlowScreen` so stars and bolts use the track store. Recover
+the old code from commit `8c16fa1` (the last commit that has it):
+`src/screens/GameLessonScreen.tsx`, `src/screens/games/LoopGame.tsx`, `src/screens/games/StageGame.tsx`,
+`src/services/gameCatalog.ts`, and `money` in `src/utils/codeJoin.ts`, for example
+`git show 8c16fa1:src/screens/games/LoopGame.tsx`.

@@ -4,13 +4,13 @@ import { NavigationContainer, DefaultTheme, LinkingOptions } from '@react-naviga
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore_updated';
+import { hasTrack } from '../services/contentLoader_updated';
 import { C } from '../utils/theme';
 import { RobotForm } from '../types/models';
 import MainTabs from './MainTabs_updated';
 import SplashScreen from '../screens/SplashScreen';
 import OnboardingScreen from '../screens/OnboardingScreen_updated';
 import LessonScreen from '../screens/LessonScreen';
-import GameLessonScreen from '../screens/GameLessonScreen';
 import EvolutionScreen from '../screens/EvolutionScreen';
 import TrackFlowScreen from '../screens/track/TrackFlowScreen_updated';
 import TrackHomeScreen from '../screens/track/TrackHomeScreen_updated';
@@ -18,7 +18,6 @@ import TrackHomeScreen from '../screens/track/TrackHomeScreen_updated';
 export type RootStackParamList = {
   Main: undefined;
   Lesson: { lessonId: string };
-  GameLesson: { lessonId: string };
   /** No lessonId means the phase's checkpoint. */
   TrackFlow: { phase: number; lessonId?: string };
   TrackPhase: { phase: number };
@@ -37,7 +36,6 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       Main: { screens: { Learn: '', Workshop: 'workshop', Profile: 'profile' } },
       Lesson: 'lesson/:lessonId',
-      GameLesson: 'game/:lessonId',
       TrackPhase: { path: 'phase/:phase', parse: { phase: Number } },
       TrackFlow: { path: 'phase/:phase/play/:lessonId?', parse: { phase: Number } },
       Evolution: 'evolution/:form',
@@ -55,14 +53,14 @@ export default function RootNavigator() {
     return () => clearTimeout(t);
   }, []);
   if (!splashDone || !store.hydrated || !track.hydrated) return <SplashScreen />;
-  if (!store.progress.hasOnboarded) return <OnboardingScreen />;
+  // A saved field and language with no track (for example Engineering + R from an older version) picks again.
+  if (!store.progress.hasOnboarded || !hasTrack(store.progress.studyArea, store.progress.language)) return <OnboardingScreen />;
   return (
     <View style={{ flex: 1 }}>
       <NavigationContainer theme={theme} linking={linking} documentTitle={{ formatter: () => 'MOAT' }}>
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Main" component={MainTabs} />
           <Stack.Screen name="Lesson" component={LessonScreen} options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
-          <Stack.Screen name="GameLesson" component={GameLessonScreen} options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
           <Stack.Screen name="TrackPhase" component={TrackHomeScreen} />
           <Stack.Screen name="TrackFlow" component={TrackFlowScreen} options={{ presentation: 'fullScreenModal', gestureEnabled: false }} />
           <Stack.Screen name="Evolution" component={EvolutionScreen} options={{ presentation: 'modal' }} />
