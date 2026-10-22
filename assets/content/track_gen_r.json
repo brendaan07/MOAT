@@ -1,0 +1,74 @@
+{
+ "id": "gen_r",
+ "title": "General",
+ "language": "R",
+ "phases": [
+  {
+   "number": 1,
+   "area": "General",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Ward sign",
+     "Say hello"
+    ],
+    [
+     "Reading numbers",
+     "Say hello"
+    ],
+    [
+     "Patient labels",
+     "Say hello"
+    ],
+    [
+     "Dosing",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "gen_r_p1_l1",
+     "part": 1,
+     "title": "Ward sign",
+     "questions": []
+    },
+    {
+     "id": "gen_r_p1_l2",
+     "part": 2,
+     "title": "Reading numbers",
+     "questions": []
+    },
+    {
+     "id": "gen_r_p1_l3",
+     "part": 3,
+     "title": "Patient labels",
+     "questions": []
+    },
+    {
+     "id": "gen_r_p1_l4",
+     "part": 4,
+     "title": "Dosing",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "gen_r_cp1",
+    "name": "Say hello",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "General",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

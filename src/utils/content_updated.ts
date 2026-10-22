@@ -27,4 +27,6 @@ export const CONTENT: Record<string, unknown> = {
   "physics_python_v3": require('../../assets/content/physics_python_v3.json'),
   "track_arts_py": require('../../assets/content/track_arts_py.json'),
   "arts_python_v3": require('../../assets/content/arts_python_v3.json'),
+  "track_gen_r": require('../../assets/content/track_gen_r.json'),
+  "general_r_v3": require('../../assets/content/general_r_v3.json'),
 };
