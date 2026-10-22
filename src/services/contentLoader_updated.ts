@@ -41,7 +41,7 @@ export function loadBundled(studyArea = 'Health Sciences', language = 'Python'):
 }
 
 /** Which languages have project tracks for each field (onboarding shows these). */
-export const TRACK_LANGUAGES: Record<string, string[]> = { 'Biology research': ['R'], Engineering: ['Python'], Healthcare: ['Python', 'R'], 'Business & finance': ['Python'], General: ['Python'], 'Physics & maths': ['Python'] };
+export const TRACK_LANGUAGES: Record<string, string[]> = { 'Biology research': ['R'], Engineering: ['Python'], Healthcare: ['Python', 'R'], 'Business & finance': ['Python'], General: ['Python'], 'Physics & maths': ['Python'], 'Arts & humanities': ['Python'] };
 
 /** The track file for a field and language, or null when that pair uses the general lessons. */
 export function trackFileFor(studyArea: string, language: string): string | null {
@@ -55,6 +55,7 @@ export function trackFileFor(studyArea: string, language: string): string | null
   // The general tracks: the V1 lessons restructured into V3 (4 per phase, no checkpoint yet; plan 2b.0)
   if (area === 'General' && language === 'Python') return 'track_gen_py';
   if (area === 'Physics & maths' && language === 'Python') return 'track_phys_py';
+  if (area === 'Arts & humanities' && language === 'Python') return 'track_arts_py';
   return null;
 }
 
@@ -72,6 +73,7 @@ export function loadTrack(studyArea = 'Biology research', language = 'R'): Track
   if (name === 'track_eng_py') return withV3(t, 'engineering_python_v3', 'eng_py', (n) => `eng_py_cp${n}`);
   if (name === 'track_gen_py') return withV3(t, 'general_python_v3', 'gen_py', (n) => `gen_py_cp${n}`);
   if (name === 'track_phys_py') return withV3(t, 'physics_python_v3', 'phys_py', (n) => `phys_py_cp${n}`);
+  if (name === 'track_arts_py') return withV3(t, 'arts_python_v3', 'arts_py', (n) => `arts_py_cp${n}`);
   return t;
 }
 
