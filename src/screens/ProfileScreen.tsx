@@ -26,7 +26,7 @@ export default function ProfileScreen() {
   const concepts = track.track?.phases.filter((ph) => track.isFinished(ph.lessons[0]?.id ?? '')).length ?? 0;
   const anyPerfect = Object.values(track.progress.bestStars).some((s) => s >= 5);
   const loops = track.track?.phases.find((ph) => ph.number === 4)?.lessons.filter((l) => track.isFinished(l.id)).length ?? 0;
-  const bugIDs = new Set(track.track?.phases.flatMap((ph) => [...ph.lessons.flatMap((l) => l.questions), ...ph.checkpoint.questions]).filter((q) => q.kind === 'bug').map((q) => q.id) ?? []);
+  const bugIDs = new Set(track.track?.phases.flatMap((ph) => [...ph.lessons.flatMap((l) => l.questions), ...ph.checkpoint.questions]).filter((q) => q.kind === 'fix').map((q) => q.id) ?? []);
   const bugs = track.progress.paid.filter((id) => bugIDs.has(id)).length;
   const badges: { id: string; label: string; icon: keyof typeof Ionicons.glyphMap; color: string; done: boolean; progress: string }[] = [
     { id: 'hello', label: 'First hello', icon: 'checkmark', color: C.lime, done: lessonsDone > 0, progress: lessonsDone > 0 ? 'done' : '0 of 1' },

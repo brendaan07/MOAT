@@ -32,35 +32,28 @@
     {
      "id": "gen_matlab_p1_l1",
      "part": 1,
-     "title": "Bench display",
-     "questions": []
+     "title": "Bench display"
     },
     {
      "id": "gen_matlab_p1_l2",
      "part": 2,
-     "title": "Numbers and text",
-     "questions": []
+     "title": "Numbers and text"
     },
     {
      "id": "gen_matlab_p1_l3",
      "part": 3,
-     "title": "Bench readings",
-     "questions": []
+     "title": "Bench readings"
     },
     {
      "id": "gen_matlab_p1_l4",
      "part": 4,
-     "title": "Distance",
-     "questions": []
+     "title": "Distance"
     }
    ],
    "checkpoint": {
     "id": "gen_matlab_cp1",
     "name": "Say hello",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

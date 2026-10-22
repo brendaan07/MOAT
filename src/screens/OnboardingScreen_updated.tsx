@@ -6,7 +6,7 @@ import { useAppStore } from '../hooks/useAppStore';
 import { BundleImage, Card, ChunkyButton } from '../components/ui';
 import { BORDER, C, body, heading } from '../utils/theme';
 import { STUDY_AREAS, canonicalArea } from '../utils/studyAreas';
-import { TRACK_LANGUAGES } from '../services/contentLoader_updated';
+import { languagesFor } from '../content/tracks';
 
 const EDUCATION = ['Primary school', 'Secondary school', 'Diploma or vocational', "Bachelor's degree", "Master's degree", 'Doctorate', 'Prefer not to say'];
 const LANGUAGES = [
@@ -93,7 +93,7 @@ export default function OnboardingScreen() {
   const [menuOpen, setMenuOpen] = useState(false);
   const ageLabel = age >= 70 ? '70+' : String(age);
   /** The languages this field has a track in: shown first and selectable on step 2; the rest are greyed out. */
-  const trackLangs = TRACK_LANGUAGES[studyArea] ?? [];
+  const trackLangs = languagesFor(studyArea);
   /** "Python, R and SQL": the track languages as one phrase. */
   const langList = trackLangs.length > 1 ? `${trackLangs.slice(0, -1).join(', ')} and ${trackLangs[trackLangs.length - 1]}` : trackLangs.join('');
   const ordered = [...LANGUAGES].sort((a, b) => Number(trackLangs.includes(b.name)) - Number(trackLangs.includes(a.name)));
@@ -107,7 +107,7 @@ export default function OnboardingScreen() {
     const area = canonicalArea(p.studyArea);
     setStudyArea(STUDY_AREAS.includes(area) ? area : BIO);
     // A learner whose saved pair has no track (RootNavigator sends them here) picks their language again.
-    const stale = p.hasOnboarded && !(TRACK_LANGUAGES[area] ?? []).includes(p.language);
+    const stale = p.hasOnboarded && !languagesFor(area).includes(p.language);
     setLanguage(stale ? '' : STUDY_AREAS.includes(area) ? p.language : 'R');
     if (stale) setStep(2);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

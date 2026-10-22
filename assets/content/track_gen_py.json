@@ -32,35 +32,28 @@
     {
      "id": "gen_py_p1_l1",
      "part": 1,
-     "title": "Screen",
-     "questions": []
+     "title": "Screen"
     },
     {
      "id": "gen_py_p1_l2",
      "part": 2,
-     "title": "Counting things",
-     "questions": []
+     "title": "Counting things"
     },
     {
      "id": "gen_py_p1_l3",
      "part": 3,
-     "title": "Labelled boxes",
-     "questions": []
+     "title": "Labelled boxes"
     },
     {
      "id": "gen_py_p1_l4",
      "part": 4,
-     "title": "Update day",
-     "questions": []
+     "title": "Update day"
     }
    ],
    "checkpoint": {
     "id": "gen_py_cp1",
     "name": "Say hello",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -92,35 +85,28 @@
     {
      "id": "gen_py_p2_l1",
      "part": 1,
-     "title": "Rounds pass",
-     "questions": []
+     "title": "Rounds pass"
     },
     {
      "id": "gen_py_p2_l2",
      "part": 2,
-     "title": "Watch it change",
-     "questions": []
+     "title": "Watch it change"
     },
     {
      "id": "gen_py_p2_l3",
      "part": 3,
-     "title": "Counting rounds",
-     "questions": []
+     "title": "Counting rounds"
     },
     {
      "id": "gen_py_p2_l4",
      "part": 4,
-     "title": "Routine",
-     "questions": []
+     "title": "Routine"
     }
    ],
    "checkpoint": {
     "id": "gen_py_cp2",
     "name": "Loops: repeat a step",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -152,35 +138,28 @@
     {
      "id": "gen_py_p3_l1",
      "part": 1,
-     "title": "On or off",
-     "questions": []
+     "title": "On or off"
     },
     {
      "id": "gen_py_p3_l2",
      "part": 2,
-     "title": "More or less",
-     "questions": []
+     "title": "More or less"
     },
     {
      "id": "gen_py_p3_l3",
      "part": 3,
-     "title": "Round check",
-     "questions": []
+     "title": "Round check"
     },
     {
      "id": "gen_py_p3_l4",
      "part": 4,
-     "title": "Review",
-     "questions": []
+     "title": "Review"
     }
    ],
    "checkpoint": {
     "id": "gen_py_cp3",
     "name": "Decisions: if / else",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

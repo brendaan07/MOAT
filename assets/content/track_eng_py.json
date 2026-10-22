@@ -48,45 +48,37 @@
     {
      "id": "eng_py_p1_l1",
      "part": 1,
-     "title": "Label the circuit",
-     "questions": []
+     "title": "Label the circuit"
     },
     {
      "id": "eng_py_p1_l2",
      "part": 2,
-     "title": "Ohm's law",
-     "questions": []
+     "title": "Ohm's law"
     },
     {
      "id": "eng_py_p1_l3",
      "part": 3,
-     "title": "Battery life",
-     "questions": []
+     "title": "Battery life"
     },
     {
      "id": "eng_py_p1_l4",
      "part": 4,
-     "title": "Power budget",
-     "questions": []
+     "title": "Power budget"
     },
     {
      "id": "eng_py_p1_l5",
      "part": 5,
-     "title": "Fuse rating",
-     "questions": []
+     "title": "Fuse rating"
     }
    ],
    "checkpoint": {
     "id": "eng_py_cp1",
     "name": "Circuit calculator",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 2 unlocked",
      "Component labels & test reports",
      "New skill: text and formatting. You'll build a test report."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -130,45 +122,37 @@
     {
      "id": "eng_py_p2_l1",
      "part": 1,
-     "title": "Part numbers",
-     "questions": []
+     "title": "Part numbers"
     },
     {
      "id": "eng_py_p2_l2",
      "part": 2,
-     "title": "Multimeter readings",
-     "questions": []
+     "title": "Multimeter readings"
     },
     {
      "id": "eng_py_p2_l3",
      "part": 3,
-     "title": "Test report line",
-     "questions": []
+     "title": "Test report line"
     },
     {
      "id": "eng_py_p2_l4",
      "part": 4,
-     "title": "Motor codes",
-     "questions": []
+     "title": "Motor codes"
     },
     {
      "id": "eng_py_p2_l5",
      "part": 5,
-     "title": "Barcode scans",
-     "questions": []
+     "title": "Barcode scans"
     }
    ],
    "checkpoint": {
     "id": "eng_py_cp2",
     "name": "Component labels & test reports",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 3 unlocked",
      "Fruit sorting conveyor",
      "New skill: decisions. You'll build a fruit sorting conveyor."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -216,45 +200,37 @@
     {
      "id": "eng_py_p3_l1",
      "part": 1,
-     "title": "Sort the fruit",
-     "questions": []
+     "title": "Sort the fruit"
     },
     {
      "id": "eng_py_p3_l2",
      "part": 2,
-     "title": "Grading order",
-     "questions": []
+     "title": "Grading order"
     },
     {
      "id": "eng_py_p3_l3",
      "part": 3,
-     "title": "Weight check",
-     "questions": []
+     "title": "Weight check"
     },
     {
      "id": "eng_py_p3_l4",
      "part": 4,
-     "title": "Sensor count",
-     "questions": []
+     "title": "Sensor count"
     },
     {
      "id": "eng_py_p3_l5",
      "part": 5,
-     "title": "Shift report",
-     "questions": []
+     "title": "Shift report"
     }
    ],
    "checkpoint": {
     "id": "eng_py_cp3",
     "name": "Fruit sorting conveyor",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 4 unlocked",
      "Sensor log",
      "New skill: lists and loops. You'll build a sensor log."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -302,45 +278,37 @@
     {
      "id": "eng_py_p4_l1",
      "part": 1,
-     "title": "Temperature log",
-     "questions": []
+     "title": "Temperature log"
     },
     {
      "id": "eng_py_p4_l2",
      "part": 2,
-     "title": "Station check",
-     "questions": []
+     "title": "Station check"
     },
     {
      "id": "eng_py_p4_l3",
      "part": 3,
-     "title": "Energy meter",
-     "questions": []
+     "title": "Energy meter"
     },
     {
      "id": "eng_py_p4_l4",
      "part": 4,
-     "title": "Overheat alert",
-     "questions": []
+     "title": "Overheat alert"
     },
     {
      "id": "eng_py_p4_l5",
      "part": 5,
-     "title": "Sensor rack",
-     "questions": []
+     "title": "Sensor rack"
     }
    ],
    "checkpoint": {
     "id": "eng_py_cp4",
     "name": "Sensor log",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 5 unlocked",
      "Design checks",
      "New skill: applied calculations. You'll run design checks."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -385,41 +353,33 @@
     {
      "id": "eng_py_p5_l1",
      "part": 1,
-     "title": "Shelf load",
-     "questions": []
+     "title": "Shelf load"
     },
     {
      "id": "eng_py_p5_l2",
      "part": 2,
-     "title": "Pump flow",
-     "questions": []
+     "title": "Pump flow"
     },
     {
      "id": "eng_py_p5_l3",
      "part": 3,
-     "title": "Motor power",
-     "questions": []
+     "title": "Motor power"
     },
     {
      "id": "eng_py_p5_l4",
      "part": 4,
-     "title": "Maintenance clock",
-     "questions": []
+     "title": "Maintenance clock"
     },
     {
      "id": "eng_py_p5_l5",
      "part": 5,
-     "title": "Safety alarm",
-     "questions": []
+     "title": "Safety alarm"
     }
    ],
    "checkpoint": {
     "id": "eng_py_cp5",
     "name": "Design checks",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

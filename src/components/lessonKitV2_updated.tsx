@@ -14,152 +14,13 @@ import { BORDER, C, body, heading, monoBold } from '../utils/theme';
 import { useReduceMotion } from '../hooks/useReduceMotion';
 import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore_updated';
-import type { RunResult, TrackQuestion } from '../types/models';
-import { Confetti, PictureV3, V3Spec } from './picturesV3';
-import BIO_V3 from '../../assets/content/biology_r_v3.json';
-import HX_PY from '../../assets/content/healthcare_python_v3.json';
-import HX_R from '../../assets/content/healthcare_r_v3.json';
-import FIN_PY from '../../assets/content/finance_python_v3.json';
-import ENG_PY from '../../assets/content/engineering_python_v3.json';
-import GEN_PY from '../../assets/content/general_python_v3.json';
-import PHYS_PY from '../../assets/content/physics_python_v3.json';
-import ARTS_PY from '../../assets/content/arts_python_v3.json';
-import GEN_R from '../../assets/content/general_r_v3.json';
-import GEN_SQL from '../../assets/content/general_sql_v3.json';
-import GEN_JS from '../../assets/content/general_javascript_v3.json';
-import GEN_MATLAB from '../../assets/content/general_matlab_v3.json';
-import GEN_JAVA from '../../assets/content/general_java_v3.json';
+import type { RunResult } from '../types/models';
+import type { PlayerLesson, PlayerQuestion, TrackQuestion } from '../content/types';
+import { FIELDS } from '../content/tracks';
+import { Confetti, PictureV3 } from './picturesV3';
 
 // ---------------------------------------------------------------- content
-interface V2Option { id: string; label: string }
-interface V2Question {
-  id: string;
-  kind: 'predict' | 'fill' | 'fix';
-  word: string;
-  color: string;
-  okTitle: string;
-  ask: string;
-  hint: string;
-  ok: string;
-  fb: Record<string, string>;
-  bridge: string;
-  entry: string;
-  label: string;
-  science: { title: string; text: string };
-  codeNote: { title: string; text: string };
-  pics: V3Spec[];
-  eq: (string | { t: string; c: string })[];
-  goal: string[];
-  earlier: string | null;
-  code: string[];
-  opts?: V2Option[];
-  correct: string | string[];
-  file?: string;
-  after?: string;
-  /** Fix questions: every line of the script, which are given as correct, and each line's own replacements. */
-  fix?: { lines: { id: string; code: string; given: boolean }[]; byLine: Record<string, { id: string; label: string; correct: boolean; feedback: string | null }[]> };
-}
-interface V2Lesson {
-  id: string;
-  /** 'eng' and 'health' lessons use their own labels; Biology lessons leave it out. */
-  domain?: 'eng' | 'health' | 'fin' | 'gen';
-  lang?: CodeLang;
-  phase: number;
-  part: number;
-  title: string;
-  project: string;
-  person: string;
-  intro: string;
-  start: string;
-  doneTitle: string;
-  doneSub: string;
-  file: string;
-  notebook: [string, string][];
-  script: string[];
-  questions: V2Question[];
-  /** Checkpoints: navy page, coloured options, no hints or notes, green confetti recap. */
-  checkpoint?: boolean;
-  /** Lessons in this phase (4 for the older tracks). */
-  parts?: number;
-}
-const LESSONS: Record<string, V2Lesson> = {};
-const WORD_COLOUR: Record<string, string> = { predict: '#B5E04A', fill: '#FFC93C', fix: '#FF8A3D' };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-/** Code colouring uses Python's rules for 'py' and the R-style rules for the rest. */
-type CodeLang = 'py' | 'r' | 'sql' | 'js' | 'matlab' | 'java';
-type V3Track = { prefix: string; lang: CodeLang; domain?: 'health' | 'fin' | 'eng' | 'gen'; name: string; checkpointId?: (phase: number) => string };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track, parts: number): V2Lesson {
-  const cp = it.type === 'checkpoint';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const questions: V2Question[] = it.questions.map((q: any, i: number) => {
-    const nb = it.notebook[i];
-    const isFix = q.kind === 'fix';
-    const fb: Record<string, string> = {};
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    if (!isFix) for (const o of q.options) if (o.feedback) fb[o.id] = o.feedback;
-    else Object.assign(fb, q.wrong_line_feedback ?? {});
-    return {
-      id: `${it.id}_q${i + 1}`, kind: q.kind, word: q.label, color: WORD_COLOUR[q.kind] ?? C.lime, okTitle: isFix ? 'Fixed' : 'Correct',
-      ask: q.ask, hint: q.hint_before_check ?? '', ok: [q.explanation_after_check, q.takeaway].filter(Boolean).join(' '), fb,
-      bridge: q.next_bridge ?? 'carry on.', entry: nb ? `${nb.label}: ${nb.value}` : '', label: q.picture?.[0]?.label ?? '',
-      science: q.science_note ?? { title: '', text: '' }, codeNote: q.code_note ?? { title: '', text: '' },
-      pics: q.picture ?? [], eq: q.worked ?? [], goal: q.goal_output ?? [],
-      earlier: q.known_from_earlier?.length && !isFix ? `Known from earlier:  ${q.known_from_earlier.join('   ')}` : null,
-      code: isFix ? [] : q.code,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      opts: isFix ? undefined : q.options.map((o: any) => ({ id: o.id, label: o.label })),
-      correct: isFix ? q.buggy_line : 'a', file: q.script_file ?? it.script_file, after: q.output_after_fix ?? undefined,
-      fix: isFix ? {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        lines: q.lines.map((l: any) => ({ id: l.id, code: l.code, given: !!l.given_correct })),
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        byLine: Object.fromEntries(Object.entries(q.fixes_by_line).map(([k, v]: [string, any]) => [k, v.map((o: any) => ({ id: o.id, label: o.replacement, correct: !!o.correct, feedback: o.feedback }))])),
-      } : undefined,
-    } as V2Question;
-  });
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const last = it.questions[it.questions.length - 1] as any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const script: string[] = last?.kind === 'fix' ? last.lines.map((l: any) => l.code) : last?.code ?? [];
-  return {
-    id: `${tr.prefix}_p${phase}_${cp ? 'c' : 'l'}${it.part}`, lang: tr.lang, domain: tr.domain, phase, part: it.part, title: it.title, project: `${tr.name}, phase ${phase}: ${phaseTitle}`,
-    person: it.person, intro: it.intro, start: it.start_button ?? (cp ? 'Start the checkpoint' : 'Start'), doneTitle: it.recap?.title ?? 'Done',
-    doneSub: it.recap?.subtitle ?? '', file: it.script_file, notebook: it.notebook.map((n: { label: string; value: string }) => [n.label, n.value]),
-    script, questions, checkpoint: cp, parts,
-  };
-}
-/* Every V3 track, in this player's format. App ids: <prefix>_p{phase}_l{part}; checkpoints use _c{part}, or the track's
- * own phase checkpoint id when the track passes checkpointId (the same ids loadTrack uses). */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const addV3 = (data: any, tr: V3Track) => { for (const ph of data.phases) for (const it of ph.items) {
-  const l = fromV3(it, ph.phase, ph.title, tr, ph.items.filter((x: { type: string }) => x.type === 'lesson').length);
-  if (tr.checkpointId && l.checkpoint) l.id = tr.checkpointId(l.phase);
-  LESSONS[l.id] = l;
-} };
-addV3(BIO_V3, { prefix: 'bio', lang: 'r', name: 'Biology research R', checkpointId: (n) => `bio_p${n}_cp` });
-addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare Python', checkpointId: (n) => `hx_py_cp${n}` });
-addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', checkpointId: (n) => `hx_r_cp${n}` });
-addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python', checkpointId: (n) => `fin_py_cp${n}` });
-addV3(ENG_PY, { prefix: 'eng_py', lang: 'py', domain: 'eng', name: 'Engineering Python', checkpointId: (n) => `eng_py_cp${n}` });
-addV3(GEN_PY, { prefix: 'gen_py', lang: 'py', domain: 'gen', name: 'General Python', checkpointId: (n) => `gen_py_cp${n}` });
-addV3(PHYS_PY, { prefix: 'phys_py', lang: 'py', domain: 'gen', name: 'Physics & maths Python', checkpointId: (n) => `phys_py_cp${n}` });
-addV3(ARTS_PY, { prefix: 'arts_py', lang: 'py', domain: 'gen', name: 'Arts & humanities Python', checkpointId: (n) => `arts_py_cp${n}` });
-addV3(GEN_R, { prefix: 'gen_r', lang: 'r', domain: 'gen', name: 'General R', checkpointId: (n) => `gen_r_cp${n}` });
-addV3(GEN_SQL, { prefix: 'gen_sql', lang: 'sql', domain: 'gen', name: 'General SQL', checkpointId: (n) => `gen_sql_cp${n}` });
-addV3(GEN_JS, { prefix: 'gen_js', lang: 'js', domain: 'gen', name: 'General JavaScript', checkpointId: (n) => `gen_js_cp${n}` });
-addV3(GEN_MATLAB, { prefix: 'gen_matlab', lang: 'matlab', domain: 'gen', name: 'General MATLAB', checkpointId: (n) => `gen_matlab_cp${n}` });
-addV3(GEN_JAVA, { prefix: 'gen_java', lang: 'java', domain: 'gen', name: 'General Java', checkpointId: (n) => `gen_java_cp${n}` });
-
-/** The label, icon and science-note wording for each field. */
-const FIELD = {
-  bio: { chip: 'Biology', icon: 'flask-outline' as const, tap: 'Tap for the biology.', track: 'git-branch-outline' as const },
-  eng: { chip: 'Engineering', icon: 'flash-outline' as const, tap: 'Tap for the engineering.', track: 'flash' as const },
-  health: { chip: 'Healthcare', icon: 'heart-outline' as const, tap: 'Tap for the clinical context.', track: 'heart' as const },
-  fin: { chip: 'Finance', icon: 'cash-outline' as const, tap: 'Tap for the finance context.', track: 'cash' as const },
-  gen: { chip: 'Coding', icon: 'code-slash-outline' as const, tap: 'Tap for the context.', track: 'code-slash' as const },
-};
-const field = (l: V2Lesson) => FIELD[l.domain ?? 'bio'];
+const field = (l: PlayerLesson) => FIELDS[l.domain];
 
 /** Python colouring, in the same colours the app uses for R. */
 const PY_KW = new Set(['def', 'return', 'if', 'elif', 'else', 'for', 'in', 'while', 'and', 'or', 'not', 'True', 'False', 'None', 'import', 'from']);
@@ -175,11 +36,6 @@ function colorPy(line: string): { t: string; c: string }[] {
     else if (!/^\s+$/.test(t)) c = C.lavender;
     return { t, c };
   });
-}
-
-/** The lesson for an app lesson id, or null for an unknown id. */
-export function v2Lesson(id: string): V2Lesson | null {
-  return LESSONS[id] ?? null;
 }
 
 // ---------------------------------------------------------------- animations
@@ -353,10 +209,10 @@ function Tick({ ok }: { ok: boolean }) {
   return <Ionicons name={ok ? 'checkmark' : 'close'} size={16} color={C.navy} />;
 }
 
-function Answers({ q, looks, pick }: { q: V2Question; looks: Record<string, Look>; pick: (id: string) => void }) {
+function Answers({ q, looks, pick }: { q: PlayerQuestion; looks: Record<string, Look>; pick: (id: string) => void }) {
   const opts = q.opts ?? [];
   const labels = opts.map((o) => o.label);
-  const press = (o: V2Option, style: StyleProp<ViewStyle>, textSize: number, inner?: React.ReactNode) => {
+  const press = (o: { id: string; label: string }, style: StyleProp<ViewStyle>, textSize: number, inner?: React.ReactNode) => {
     const L = looks[o.id];
     return (
       <Pressable key={o.id} onPress={() => pick(o.id)} accessibilityRole="button" accessibilityState={{ selected: L.bg === C.lime && !L.ok }} style={(s) => [style, { backgroundColor: L.bg, opacity: L.op }, pressDown(s)]}>
@@ -406,7 +262,7 @@ function Answers({ q, looks, pick }: { q: V2Question; looks: Record<string, Look
 /** Tap the line with the bug (given lines are green and locked); the other lines fold away and that line's own
  *  replacements appear. Tapping the line again unfolds the script. Lines with nothing to change say so. */
 function FixPaper({ q, line, fix, setLine, setFix, checked, right, dark }: {
-  q: V2Question; line: string | null; fix: string | null; setLine: (id: string | null) => void; setFix: (id: string) => void; checked: boolean; right: boolean; dark: boolean;
+  q: PlayerQuestion; line: string | null; fix: string | null; setLine: (id: string | null) => void; setFix: (id: string) => void; checked: boolean; right: boolean; dark: boolean;
 }) {
   const F = q.fix!;
   const longest = Math.max(...F.lines.map((l) => l.code.length));
@@ -473,7 +329,7 @@ function FixPaper({ q, line, fix, setLine, setFix, checked, right, dark }: {
 
 // ---------------------------------------------------------------- feedback sheet
 function Sheet({ right, q, index, total = 5, line, onContinue, onRetry, mood, earned }: {
-  right: boolean; q: V2Question; index: number; total?: number; line: string; onContinue: () => void; onRetry: () => void; mood: Parameters<typeof RobotFace>[0]['mood']; earned: boolean;
+  right: boolean; q: PlayerQuestion; index: number; total?: number; line: string; onContinue: () => void; onRetry: () => void; mood: Parameters<typeof RobotFace>[0]['mood']; earned: boolean;
 }) {
   const anim = useSlideUp(true);
   return (
@@ -525,10 +381,10 @@ function Sheet({ right, q, index, total = 5, line, onContinue, onRetry, mood, ea
 }
 
 // ---------------------------------------------------------------- the player
-// Progress records score Fix questions as bug questions.
-const asTrackQuestion = (q: V2Question): TrackQuestion => ({ id: q.id, kind: q.kind === 'fix' ? 'bug' : q.kind, prompt: q.ask, hint: q.hint, ok: q.ok });
+/** The question as progress records it. */
+const asTrackQuestion = (q: PlayerQuestion): TrackQuestion => ({ id: q.id, kind: q.kind });
 
-export function LessonPlayerV2({ lesson, onFinish, onQuit }: { lesson: V2Lesson; onFinish: (r: RunResult) => void; onQuit: () => void }) {
+export function LessonPlayerV2({ lesson, onFinish, onQuit }: { lesson: PlayerLesson; onFinish: (r: RunResult) => void; onQuit: () => void }) {
   const app = useAppStore();
   const track = useTrackStore();
   const [idx, setIdx] = useState(0);
@@ -714,7 +570,7 @@ export function LessonPlayerV2({ lesson, onFinish, onQuit }: { lesson: V2Lesson;
 }
 
 // ---------------------------------------------------------------- goal and recap screens
-function Notebook({ lesson, filled }: { lesson: V2Lesson; filled: boolean }) {
+function Notebook({ lesson, filled }: { lesson: PlayerLesson; filled: boolean }) {
   return (
     <View style={{ borderRadius: 20, borderWidth: BORDER, borderColor: C.navy, backgroundColor: C.card, paddingHorizontal: 14, paddingTop: 10, paddingBottom: 4 }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 4 }}>
@@ -754,7 +610,7 @@ function Segments({ done, total = 5 }: { done: number; total?: number }) {
   );
 }
 
-export function LessonIntroV2({ lesson, onStart, onClose }: { lesson: V2Lesson; onStart: () => void; onClose: () => void }) {
+export function LessonIntroV2({ lesson, onStart, onClose }: { lesson: PlayerLesson; onStart: () => void; onClose: () => void }) {
   const cp = !!lesson.checkpoint;
   return (
     <View style={{ flex: 1, backgroundColor: cp ? C.screen : C.cream }}>
@@ -793,7 +649,7 @@ export function LessonIntroV2({ lesson, onStart, onClose }: { lesson: V2Lesson; 
   );
 }
 
-export function LessonRecapV2({ lesson, onContinue }: { lesson: V2Lesson; onContinue: () => void }) {
+export function LessonRecapV2({ lesson, onContinue }: { lesson: PlayerLesson; onContinue: () => void }) {
   const [open, setOpen] = useState(false);
   const cp = !!lesson.checkpoint;
   return (

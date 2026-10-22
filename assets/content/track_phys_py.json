@@ -32,35 +32,28 @@
     {
      "id": "phys_py_p1_l1",
      "part": 1,
-     "title": "Lab screen",
-     "questions": []
+     "title": "Lab screen"
     },
     {
      "id": "phys_py_p1_l2",
      "part": 2,
-     "title": "Counting readings",
-     "questions": []
+     "title": "Counting readings"
     },
     {
      "id": "phys_py_p1_l3",
      "part": 3,
-     "title": "Labelled meters",
-     "questions": []
+     "title": "Labelled meters"
     },
     {
      "id": "phys_py_p1_l4",
      "part": 4,
-     "title": "Speeding up",
-     "questions": []
+     "title": "Speeding up"
     }
    ],
    "checkpoint": {
     "id": "phys_py_cp1",
     "name": "Say hello",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -92,35 +85,28 @@
     {
      "id": "phys_py_p2_l1",
      "part": 1,
-     "title": "Ticks pass",
-     "questions": []
+     "title": "Ticks pass"
     },
     {
      "id": "phys_py_p2_l2",
      "part": 2,
-     "title": "Watch it move",
-     "questions": []
+     "title": "Watch it move"
     },
     {
      "id": "phys_py_p2_l3",
      "part": 3,
-     "title": "Counting seconds",
-     "questions": []
+     "title": "Counting seconds"
     },
     {
      "id": "phys_py_p2_l4",
      "part": 4,
-     "title": "Lab routine",
-     "questions": []
+     "title": "Lab routine"
     }
    ],
    "checkpoint": {
     "id": "phys_py_cp2",
     "name": "Loops: repeat a step",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -152,35 +138,28 @@
     {
      "id": "phys_py_p3_l1",
      "part": 1,
-     "title": "On or off",
-     "questions": []
+     "title": "On or off"
     },
     {
      "id": "phys_py_p3_l2",
      "part": 2,
-     "title": "Fast or slow",
-     "questions": []
+     "title": "Fast or slow"
     },
     {
      "id": "phys_py_p3_l3",
      "part": 3,
-     "title": "Sensor check",
-     "questions": []
+     "title": "Sensor check"
     },
     {
      "id": "phys_py_p3_l4",
      "part": 4,
-     "title": "Lab review",
-     "questions": []
+     "title": "Lab review"
     }
    ],
    "checkpoint": {
     "id": "phys_py_cp3",
     "name": "Decisions: if / else",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

@@ -9,7 +9,7 @@ import { useTrackStore } from '../../hooks/useTrackStore_updated';
 import { Card, ChunkyButton, FullScreenPicture } from '../../components/ui';
 import { DoneTick, LockIcon, PhasePicture, StarIcon, StatChipsRow } from '../../components/trackKit';
 import { BORDER, C, body, heading } from '../../utils/theme';
-import { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../types/models';
+import type { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
 
 /** The phase page (Option A design), opened from the play button on the Learn path. */

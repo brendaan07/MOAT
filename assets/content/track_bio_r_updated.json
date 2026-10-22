@@ -40,39 +40,32 @@
     {
      "id": "bio_p1_l1",
      "part": 1,
-     "title": "Print the sequence",
-     "questions": []
+     "title": "Print the sequence"
     },
     {
      "id": "bio_p1_l2",
      "part": 2,
-     "title": "GC content",
-     "questions": []
+     "title": "GC content"
     },
     {
      "id": "bio_p1_l3",
      "part": 3,
-     "title": "Count the AT bases",
-     "questions": []
+     "title": "Count the AT bases"
     },
     {
      "id": "bio_p1_l4",
      "part": 4,
-     "title": "Both strands",
-     "questions": []
+     "title": "Both strands"
     }
    ],
    "checkpoint": {
     "id": "bio_p1_cp",
     "name": "Primer check",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 2 unlocked",
      "Genomic processing",
      "New skill: functions. You'll build a read quality checker."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -112,39 +105,32 @@
     {
      "id": "bio_p2_l1",
      "part": 1,
-     "title": "Store the scores",
-     "questions": []
+     "title": "Store the scores"
     },
     {
      "id": "bio_p2_l2",
      "part": 2,
-     "title": "Average with mean()",
-     "questions": []
+     "title": "Average with mean()"
     },
     {
      "id": "bio_p2_l3",
      "part": 3,
-     "title": "Write avg_quality()",
-     "questions": []
+     "title": "Write avg_quality()"
     },
     {
      "id": "bio_p2_l4",
      "part": 4,
-     "title": "Check a second read",
-     "questions": []
+     "title": "Check a second read"
     }
    ],
    "checkpoint": {
     "id": "bio_p2_cp",
     "name": "Protein mass",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 3 unlocked",
      "Automation and lab efficiency",
      "New skill: decisions. You'll build a plate dilution planner."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -184,39 +170,32 @@
     {
      "id": "bio_p3_l1",
      "part": 1,
-     "title": "Too big for a well?",
-     "questions": []
+     "title": "Too big for a well?"
     },
     {
      "id": "bio_p3_l2",
      "part": 2,
-     "title": "Big or small sample",
-     "questions": []
+     "title": "Big or small sample"
     },
     {
      "id": "bio_p3_l3",
      "part": 3,
-     "title": "Fix the else line",
-     "questions": []
+     "title": "Fix the else line"
     },
     {
      "id": "bio_p3_l4",
      "part": 4,
-     "title": "Buffer to add",
-     "questions": []
+     "title": "Buffer to add"
     }
    ],
    "checkpoint": {
     "id": "bio_p3_cp",
     "name": "Disk test",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 4 unlocked",
      "Modelling and simulation",
      "New skill: loops. You'll build a bacterial growth simulator."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -256,39 +235,32 @@
     {
      "id": "bio_p4_l1",
      "part": 1,
-     "title": "Loop over hours",
-     "questions": []
+     "title": "Loop over hours"
     },
     {
      "id": "bio_p4_l2",
      "part": 2,
-     "title": "Double the cells",
-     "questions": []
+     "title": "Double the cells"
     },
     {
      "id": "bio_p4_l3",
      "part": 3,
-     "title": "Count the hours",
-     "questions": []
+     "title": "Count the hours"
     },
     {
      "id": "bio_p4_l4",
      "part": 4,
-     "title": "Last count",
-     "questions": []
+     "title": "Last count"
     }
    ],
    "checkpoint": {
     "id": "bio_p4_cp",
     "name": "Drug clearance",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Phase 5 unlocked",
      "Reproducibility",
      "New skill: lists and data. You'll build a reproducible analysis report."
-    ],
-    "questions": []
+    ]
    }
   },
   {
@@ -326,39 +298,32 @@
     {
      "id": "bio_p5_l1",
      "part": 1,
-     "title": "Set the seed",
-     "questions": []
+     "title": "Set the seed"
     },
     {
      "id": "bio_p5_l2",
      "part": 2,
-     "title": "Tally species",
-     "questions": []
+     "title": "Tally species"
     },
     {
      "id": "bio_p5_l3",
      "part": 3,
-     "title": "Seed goes first",
-     "questions": []
+     "title": "Seed goes first"
     },
     {
      "id": "bio_p5_l4",
      "part": 4,
-     "title": "Report list",
-     "questions": []
+     "title": "Report list"
     }
    ],
    "checkpoint": {
     "id": "bio_p5_cp",
     "name": "Blood bank sample",
-    "filename": "",
-    "problem": "",
     "unlock": [
      "Cycle 2 unlocked",
      "Bioinformatics, round 2",
      "You've been here before. Now build a batch GC report with everything you know."
-    ],
-    "questions": []
+    ]
    }
   }
  ],

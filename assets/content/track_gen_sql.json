@@ -32,35 +32,28 @@
     {
      "id": "gen_sql_p1_l1",
      "part": 1,
-     "title": "Read the menu",
-     "questions": []
+     "title": "Read the menu"
     },
     {
      "id": "gen_sql_p1_l2",
      "part": 2,
-     "title": "Pick the rows",
-     "questions": []
+     "title": "Pick the rows"
     },
     {
      "id": "gen_sql_p1_l3",
      "part": 3,
-     "title": "Put in order",
-     "questions": []
+     "title": "Put in order"
     },
     {
      "id": "gen_sql_p1_l4",
      "part": 4,
-     "title": "Count and add",
-     "questions": []
+     "title": "Count and add"
     }
    ],
    "checkpoint": {
     "id": "gen_sql_cp1",
     "name": "Ask the data",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

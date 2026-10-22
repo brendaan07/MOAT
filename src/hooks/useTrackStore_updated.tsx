@@ -1,7 +1,8 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { RunResult, Track, TrackLesson, TrackPhase, TrackProgress, TrackQuestion, defaultTrackProgress } from '../types/models';
+import { RunResult, TrackProgress, defaultTrackProgress } from '../types/models';
+import type { Track, TrackLesson, TrackPhase, TrackQuestion } from '../content/types';
 import { TrackStorage } from '../storage/trackStorage';
-import { loadTrack } from '../services/contentLoader_updated';
+import { loadTrack } from '../services/contentLoader';
 import { useAppStore } from './useAppStore';
 import { DayKey } from '../utils/dayKey';
 

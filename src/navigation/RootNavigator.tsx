@@ -4,7 +4,7 @@ import { NavigationContainer, DefaultTheme, LinkingOptions } from '@react-naviga
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore_updated';
-import { hasTrack } from '../services/contentLoader_updated';
+import { hasTrack } from '../content/tracks';
 import { C } from '../utils/theme';
 import MainTabs from './MainTabs_updated';
 import SplashScreen from '../screens/SplashScreen';

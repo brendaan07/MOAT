@@ -10,11 +10,13 @@ import { V3_IMAGES } from '../utils/imageMapV3';
 import Svg, { Path } from 'react-native-svg';
 import { C, body, monoBold } from '../utils/theme';
 import { useReduceMotion } from '../hooks/useReduceMotion';
+import type {
+  BatteryPicture, BeltPicture, BeltRoute, CardPicture, CardState, CircuitPicture, DevicePicture, DotsPicture, GaugePicture, Picture, PictureType,
+  RateBarsPicture, StepsPicture, StrandsPicture, ThermoPicture, TilesPicture,
+} from '../content/types';
 
+/** How far the picture has played: waiting for Check, the right answer, or the picked wrong option. */
 type V3State = 'idle' | 'go' | 'nope';
-// The JSON picture spec: { type, label, args, options, correct_state, states: { wrong_by_option } }
-/** One picture as a V3 content file describes it. */
-export type V3Spec = { type: string; label: string; args: any[]; options: Record<string, any>; correct_state: any; states?: { wrong_by_option?: Record<string, any> } }; // eslint-disable-line @typescript-eslint/no-explicit-any
 const EASE = Easing.bezier(0.3, 0.7, 0.3, 1);
 const BOUNCE = Easing.bezier(0.3, 1.5, 0.5, 1);
 const LIT = '#B5E04A';
@@ -22,9 +24,9 @@ const BAD = '#FFB37A';
 const PAL = ['#59B4FF', '#FFC93C', '#FF8A3D', '#B5E04A', '#F48FB1'];
 
 /** The state each option leads to: the right answer's, the picked wrong option's, or nothing yet. */
-function resolve(spec: V3Spec, state: V3State, pick: string | null) {
+function resolve<S>(spec: { correct_state: S; states?: { wrong_by_option?: Record<string, S> } }, state: V3State, pick: string | null): S | null {
   if (state === 'go') return spec.correct_state;
-  if (state === 'nope') return (pick && spec.states?.wrong_by_option?.[pick]) ?? null;
+  if (state === 'nope') return pick ? spec.states?.wrong_by_option?.[pick] ?? null : null;
   return null;
 }
 
@@ -103,7 +105,7 @@ function Tile({ ch, i, n, lit, state, k, w, base, neg }: { ch: string; i: number
     </View>
   );
 }
-function Tiles({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Tiles({ spec, state, pick }: { spec: TilesPicture; state: V3State; pick: string | null }) {
   const text: string = spec.args[0];
   const base: number = spec.options?.base ?? 0;
   const s = resolve(spec, state, pick);
@@ -134,7 +136,7 @@ function Bar({ h, colour, i, k, active, label, name }: { h: number; colour: stri
     </View>
   );
 }
-function RateBars({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function RateBars({ spec, state, pick }: { spec: RateBarsPicture; state: V3State; pick: string | null }) {
   const names: string[] = spec.args[0];
   const o = spec.options ?? {};
   const vmax: number = o.vmax ?? 3;
@@ -174,7 +176,7 @@ function Marker({ x, colour, label, k, top }: { x: number | null; colour: string
     </Animated.View>
   );
 }
-function Dots({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Dots({ spec, state, pick }: { spec: DotsPicture; state: V3State; pick: string | null }) {
   const values: number[] = spec.args[0];
   const vmax: number = spec.args[1];
   const s = resolve(spec, state, pick) ?? {};
@@ -207,7 +209,7 @@ function Dot({ x, y, lit, state, i, k }: { x: number; y: number; lit: boolean; s
 
 /* ------------------------------------------------------------------ a curve that draws itself */
 const APath = Animated.createAnimatedComponent(Path);
-function Steps({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Steps({ spec, state, pick }: { spec: StepsPicture; state: V3State; pick: string | null }) {
   const ymin: number = spec.options?.ymin ?? 0;
   const s = resolve(spec, state, pick);
   const vals: number[] = s ? s[0] : [];
@@ -264,7 +266,7 @@ function Base({ top, bottom, i, state, k }: { top: string; bottom: string; i: nu
     </View>
   );
 }
-function Strands({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Strands({ spec, state, pick }: { spec: StrandsPicture; state: V3State; pick: string | null }) {
   const top: string = spec.args[0];
   const s = resolve(spec, state, pick);
   const bottom: string = s ? s[0] : '';
@@ -280,7 +282,7 @@ function Strands({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: st
 }
 
 /* ------------------------------------------------------------------ thermometer */
-function Thermo({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Thermo({ spec, state, pick }: { spec: ThermoPicture; state: V3State; pick: string | null }) {
   const vmax: number = spec.options?.vmax ?? 60;
   const s = resolve(spec, state, pick);
   const k = `${state}-${pick}`;
@@ -307,7 +309,7 @@ function Thermo({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: str
 
 /* ------------------------------------------------------------------ Engineering: circuit, battery, gauge (ported from picturesV2) */
 /** A battery and its resistors in a loop. State: [current in A, text]; current flows round the wire, faster for more amps. */
-function Circuit({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Circuit({ spec, state, pick }: { spec: CircuitPicture; state: V3State; pick: string | null }) {
   const volts: number = spec.args[0];
   const res: number[] = spec.args[1] ?? [];
   const s = resolve(spec, state, pick);
@@ -351,7 +353,7 @@ function Circuit({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: st
 }
 
 /** A battery that drains on Check. State: [charge left at the end, 0 to 1, text]. */
-function Battery({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Battery({ spec, state, pick }: { spec: BatteryPicture; state: V3State; pick: string | null }) {
   const s = resolve(spec, state, pick);
   const left: number = s ? Math.max(0.04, Math.min(1, s[0])) : 1;
   const k = `${state}-${pick}`;
@@ -374,7 +376,7 @@ function Battery({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: st
 }
 
 /** A scale with coloured bands and a pointer that slides to the value. Options: bands [[lo, hi, colour, label]], vmin, vmax. State: [value, text]. */
-function Gauge({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Gauge({ spec, state, pick }: { spec: GaugePicture; state: V3State; pick: string | null }) {
   const o = spec.options ?? {};
   const bands: [number, number, string, string][] = o.bands ?? [];
   const vmin: number = o.vmin ?? 0, vmax: number = o.vmax ?? 1;
@@ -406,7 +408,6 @@ function Gauge({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: stri
 /** The fruit sorter: fruit passes a colour sensor, and each one takes its route (bin, stay, juice line or off the end).
  *  State: [[[sprite, route, badge], ...], text]; sprites are image paths. Options: juice (draws the juice line). */
 const BX = 112, BIN_L = 252, KEEP_X = 164, BELT_END = 198, GAP = 50, STEP = 1600;
-type BeltRoute = 'bin' | 'stay' | 'floor' | 'juice';
 const ROUTE_END: Record<BeltRoute, [number, number, string]> = { bin: [BIN_L + 6, 4, 'binned'], stay: [KEEP_X - 4, 84, 'kept'], floor: [BELT_END + 4, 104, 'off the end'], juice: [BX + 2, 92, 'juice'] };
 function routeFrames(route: BeltRoute, k: number): number[][] { // t (0 to 1), x, y, rotate, scale, opacity
   const S = BX - 16, dx = GAP * k;
@@ -430,7 +431,7 @@ function BeltFruit({ sprite, route, badge, k, play }: { sprite: string; route: B
     </Animated.View>
   );
 }
-function Belt({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+function Belt({ spec, state, pick }: { spec: BeltPicture; state: V3State; pick: string | null }) {
   const s = resolve(spec, state, pick);
   const items: [string, BeltRoute, string | null][] = s ? s[0] : (spec.correct_state?.[0] ?? []).map(([sprite, , badge]: [string, BeltRoute, string | null]) => [sprite, 'stay', badge]);
   const k = `${state}-${pick}`;
@@ -499,15 +500,8 @@ function Belt({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: strin
 }
 
 /* ------------------------------------------------------------------ Healthcare and Finance pictures */
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/** The value a picture shows for the current state: the right answer after a right Check, the picked option's own state after a wrong one. */
-function stateValue(spec: any, state: V3State, pick: string | null): any {
-  if (state === 'go') return spec.correct_state;
-  if (state === 'nope') return spec.states?.wrong_by_option?.[pick ?? ''] ?? null;
-  return null;
-}
 /** The caption inside a state: its text field, or the last piece of text in it. */
-function caption(v: any): string | null {
+function caption(v: CardState | undefined): string | null {
   if (v == null) return null;
   if (typeof v === 'string') return v;
   if (Array.isArray(v)) { for (let i = v.length - 1; i >= 0; i--) { const c = caption(v[i]); if (c) return c; } return null; }
@@ -542,8 +536,8 @@ function Caption({ text, state }: { text: string | null; state: V3State }) {
 }
 
 /** A device whose own screen counts up: the device stays still while its screen strip steps from the start value to the reading. */
-function DeviceV3({ spec, state, pick }: { spec: any; state: V3State; pick: string | null }) {
-  const dev = spec.assets?.device ?? spec.assets;
+function DeviceV3({ spec, state, pick }: { spec: DevicePicture; state: V3State; pick: string | null }) {
+  const dev = 'device' in spec.assets ? spec.assets.device : spec.assets;
   const size: number = dev.display_size_px ?? 150;
   const box = dev.screen_box_display_px;
   const key = state === 'go' ? 'correct' : state === 'nope' ? pick ?? '' : '';
@@ -569,14 +563,14 @@ function DeviceV3({ spec, state, pick }: { spec: any; state: V3State; pick: stri
           </View>
         ) : null}
       </View>
-      <Caption text={caption(stateValue(spec, state, pick))} state={state} />
+      <Caption text={caption(resolve(spec, state, pick))} state={state} />
     </View>
   );
 }
 
 /** The other Healthcare and Finance pictures: the picture's own icon, which pops on Check, and the result for the answer given.
  *  The canvas pages hold the full scene animation for these types (see docs/INTEGRATION_moat4new.md). */
-function StateCardV3({ spec, state, pick }: { spec: any; state: V3State; pick: string | null }) {
+function StateCardV3({ spec, state, pick }: { spec: CardPicture; state: V3State; pick: string | null }) {
   const a = spec.assets ?? {};
   const src = imageOf(spec.icon_asset ?? a.pig ?? a.pile ?? a.note ?? a.bag?.empty ?? a.face ?? a.device?.idle_frame ?? typeIcon(spec.type));
   const pop = useRef(new Animated.Value(0)).current;
@@ -593,17 +587,15 @@ function StateCardV3({ spec, state, pick }: { spec: any; state: V3State; pick: s
       ) : (
         <View style={{ width: 96, height: 96, borderRadius: 16, borderWidth: 2.5, borderColor: C.navy, backgroundColor: C.editor }} />
       )}
-      <Caption text={caption(stateValue(spec, state, pick))} state={state} />
+      <Caption text={caption(resolve(spec, state, pick))} state={state} />
     </View>
   );
 }
-/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /* ------------------------------------------------------------------ entry point */
 /** Every picture type the content may use, and what draws it. scripts/validate-content.mjs reads these keys and rejects
  *  any other type, so a new type needs an entry here (and its renderer) before content can use it. */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const RENDERERS: Record<string, React.ComponentType<{ spec: any; state: V3State; pick: string | null }>> = {
+const RENDERERS: { [T in PictureType]: React.ComponentType<{ spec: Extract<Picture, { type: T }>; state: V3State; pick: string | null }> } = {
   tiles: Tiles, ratebars: RateBars, dots: Dots, steps: Steps, strands: Strands, thermo: Thermo,
   circuit: Circuit, battery: Battery, gauge: Gauge, belt: Belt,
   // a device whose screen counts up through strip images
@@ -614,9 +606,10 @@ const RENDERERS: Record<string, React.ComponentType<{ spec: any; state: V3State;
   ward: StateCardV3, wards: StateCardV3,
 };
 
-export function PictureV3({ spec, state, pick }: { spec: V3Spec; state: V3State; pick: string | null }) {
+export function PictureV3({ spec, state, pick }: { spec: Picture; state: V3State; pick: string | null }) {
   // Unknown types still get the icon card, so a content mistake never blanks a lesson; the validator catches them first.
-  const P = RENDERERS[spec.type] ?? StateCardV3;
+  // Each renderer takes its own picture type; spec.type picked it, so it gets the matching spec.
+  const P = (RENDERERS[spec.type] ?? StateCardV3) as React.ComponentType<{ spec: Picture; state: V3State; pick: string | null }>;
   return (
     <View accessible accessibilityRole="image" accessibilityLabel={spec.label}>
       <Shake state={state} pick={pick}>

@@ -32,35 +32,28 @@
     {
      "id": "gen_js_p1_l1",
      "part": 1,
-     "title": "Game start",
-     "questions": []
+     "title": "Game start"
     },
     {
      "id": "gen_js_p1_l2",
      "part": 2,
-     "title": "Coins and text",
-     "questions": []
+     "title": "Coins and text"
     },
     {
      "id": "gen_js_p1_l3",
      "part": 3,
-     "title": "Named boxes",
-     "questions": []
+     "title": "Named boxes"
     },
     {
      "id": "gen_js_p1_l4",
      "part": 4,
-     "title": "Level up",
-     "questions": []
+     "title": "Level up"
     }
    ],
    "checkpoint": {
     "id": "gen_js_cp1",
     "name": "Say hello",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

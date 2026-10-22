@@ -10,13 +10,14 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (p) => readFileSync(join(root, p), 'utf8');
 
 // V3 files: every CONTENT entry whose name ends in _v3.
-const content = read('src/utils/content_updated.ts');
+const content = read('src/utils/content.ts');
 const files = Object.fromEntries([...content.matchAll(/"([^"]+)":\s*require\('\.\.\/\.\.\/(assets\/content\/[^']+)'\)/g)].map((m) => [m[1], m[2]]));
 const v3Files = Object.keys(files).filter((n) => n.endsWith('_v3'));
 
-// Which track file goes with which V3 file, as loadTrack wires them: if (name === 'track_x') return withV3(t, 'file', 'prefix', ...)
-const loader = read('src/services/contentLoader_updated.ts');
-const tracks = [...loader.matchAll(/name === '([^']+)'\) return withV3\(t, '([^']+)', '([^']+)'/g)].map((m) => ({ track: m[1], file: m[2], prefix: m[3] }));
+// Which track file goes with which V3 file: the TRACKS registry, one entry per line (trackFile, v3File, prefix in order).
+const trackRegistry = read('src/content/tracks.ts');
+const tracks = [...trackRegistry.matchAll(/trackFile: '([^']+)', v3File: '([^']+)', prefix: '([^']+)'/g)].map((m) => ({ track: m[1], file: m[2], prefix: m[3] }));
+if (!tracks.length) throw new Error('no TRACKS entries found in src/content/tracks.ts');
 
 // Every picture type the app can draw: the keys of RENDERERS in picturesV3.tsx.
 const registry = read('src/components/picturesV3.tsx').match(/const RENDERERS[^\n]*= \{\n([\s\S]*?)\n\};/);
@@ -71,6 +72,9 @@ function checkQuestion(where, q) {
   }
   for (const pic of q.picture ?? []) checkPicture(where, q, pic);
 }
+
+// Every file the registry names must be bundled.
+for (const t of tracks) for (const f of [t.track, t.file]) if (!files[f]) error(`TRACKS ${t.prefix}`, `${f} is not in src/utils/content.ts`);
 
 for (const name of v3Files) {
   const data = JSON.parse(read(files[name]));

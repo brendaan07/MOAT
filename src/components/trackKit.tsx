@@ -3,7 +3,8 @@ import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-nativ
 import Svg, { Circle, G, Line, Path, Polyline, Rect, Text as SvgText } from 'react-native-svg';
 import { BORDER, C, body, heading, monoBold } from '../utils/theme';
 import { BundleImage, Card, ChunkyButton } from './ui';
-import { RobotMood, TrackPhase, robotImage } from '../types/models';
+import { RobotMood, robotImage } from '../types/models';
+import type { TrackPhase } from '../content/types';
 import { useReduceMotion } from '../hooks/useReduceMotion';
 import { DAILY_GOAL_MINUTES } from '../hooks/useTrackStore_updated';
 

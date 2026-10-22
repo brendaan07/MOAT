@@ -32,35 +32,28 @@
     {
      "id": "arts_py_p1_l1",
      "part": 1,
-     "title": "Theatre board",
-     "questions": []
+     "title": "Theatre board"
     },
     {
      "id": "arts_py_p1_l2",
      "part": 2,
-     "title": "Counting chapters",
-     "questions": []
+     "title": "Counting chapters"
     },
     {
      "id": "arts_py_p1_l3",
      "part": 3,
-     "title": "Labelled notebooks",
-     "questions": []
+     "title": "Labelled notebooks"
     },
     {
      "id": "arts_py_p1_l4",
      "part": 4,
-     "title": "Writing day",
-     "questions": []
+     "title": "Writing day"
     }
    ],
    "checkpoint": {
     "id": "arts_py_cp1",
     "name": "Say hello",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -92,35 +85,28 @@
     {
      "id": "arts_py_p2_l1",
      "part": 1,
-     "title": "Chapters pass",
-     "questions": []
+     "title": "Chapters pass"
     },
     {
      "id": "arts_py_p2_l2",
      "part": 2,
-     "title": "Watch it grow",
-     "questions": []
+     "title": "Watch it grow"
     },
     {
      "id": "arts_py_p2_l3",
      "part": 3,
-     "title": "Counting scenes",
-     "questions": []
+     "title": "Counting scenes"
     },
     {
      "id": "arts_py_p2_l4",
      "part": 4,
-     "title": "Rehearsal routine",
-     "questions": []
+     "title": "Rehearsal routine"
     }
    ],
    "checkpoint": {
     "id": "arts_py_cp2",
     "name": "Loops: repeat a step",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -152,35 +138,28 @@
     {
      "id": "arts_py_p3_l1",
      "part": 1,
-     "title": "Open or closed",
-     "questions": []
+     "title": "Open or closed"
     },
     {
      "id": "arts_py_p3_l2",
      "part": 2,
-     "title": "Loud or soft",
-     "questions": []
+     "title": "Loud or soft"
     },
     {
      "id": "arts_py_p3_l3",
      "part": 3,
-     "title": "Nightly check",
-     "questions": []
+     "title": "Nightly check"
     },
     {
      "id": "arts_py_p3_l4",
      "part": 4,
-     "title": "Show review",
-     "questions": []
+     "title": "Show review"
     }
    ],
    "checkpoint": {
     "id": "arts_py_cp3",
     "name": "Decisions: if / else",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

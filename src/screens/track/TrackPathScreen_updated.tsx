@@ -10,7 +10,8 @@ import { useTrackStore } from '../../hooks/useTrackStore_updated';
 import { BundleImage, Card, FullScreenPicture } from '../../components/ui';
 import { StatChipsRow } from '../../components/trackKit';
 import { BORDER, C, body, heading } from '../../utils/theme';
-import { TrackPhase, robotImage } from '../../types/models';
+import { robotImage } from '../../types/models';
+import type { TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
 
 type Node = { id: string; kind: 'lesson' | 'checkpoint'; title: string; phase: TrackPhase; step: number };

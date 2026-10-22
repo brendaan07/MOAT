@@ -117,8 +117,8 @@ for (const ph of v1.phases) {
   trackPhases.push({
     number: n, area, project: ph.title, picture: '', skill: ph.subtitle ?? ph.title,
     parts: lessons.map((l) => [l.title, ph.title]), code: [],
-    lessons: lessons.map((l) => ({ id: `${appPrefix}_p${n}_l${l.part}`, part: l.part, title: l.title, questions: [] })),
-    checkpoint: { id: `${appPrefix}_cp${n}`, name: ph.title, filename: '', problem: '', unlock: [], questions: [] },
+    lessons: lessons.map((l) => ({ id: `${appPrefix}_p${n}_l${l.part}`, part: l.part, title: l.title })),
+    checkpoint: { id: `${appPrefix}_cp${n}`, name: ph.title, unlock: [] },
   });
 }
 

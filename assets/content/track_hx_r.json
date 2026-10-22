@@ -36,41 +36,33 @@
     {
      "id": "hx_r_p1_l1",
      "part": 1,
-     "title": "HbA1c trial",
-     "questions": []
+     "title": "HbA1c trial"
     },
     {
      "id": "hx_r_p1_l2",
      "part": 2,
-     "title": "Length of stay",
-     "questions": []
+     "title": "Length of stay"
     },
     {
      "id": "hx_r_p1_l3",
      "part": 3,
-     "title": "Vaccination coverage",
-     "questions": []
+     "title": "Vaccination coverage"
     },
     {
      "id": "hx_r_p1_l4",
      "part": 4,
-     "title": "Screening test",
-     "questions": []
+     "title": "Screening test"
     },
     {
      "id": "hx_r_p1_l5",
      "part": 5,
-     "title": "LDL on a statin",
-     "questions": []
+     "title": "LDL on a statin"
     }
    ],
    "checkpoint": {
     "id": "hx_r_cp1",
     "name": "Values and vectors",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -106,41 +98,33 @@
     {
      "id": "hx_r_p2_l1",
      "part": 1,
-     "title": "LDL spread",
-     "questions": []
+     "title": "LDL spread"
     },
     {
      "id": "hx_r_p2_l2",
      "part": 2,
-     "title": "Readmission audit",
-     "questions": []
+     "title": "Readmission audit"
     },
     {
      "id": "hx_r_p2_l3",
      "part": 3,
-     "title": "Typical stay",
-     "questions": []
+     "title": "Typical stay"
     },
     {
      "id": "hx_r_p2_l4",
      "part": 4,
-     "title": "Line infection rates",
-     "questions": []
+     "title": "Line infection rates"
     },
     {
      "id": "hx_r_p2_l5",
      "part": 5,
-     "title": "Survival after surgery",
-     "questions": []
+     "title": "Survival after surgery"
     }
    ],
    "checkpoint": {
     "id": "hx_r_cp2",
     "name": "Summaries and selection",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -176,41 +160,33 @@
     {
      "id": "hx_r_p3_l1",
      "part": 1,
-     "title": "Admissions table",
-     "questions": []
+     "title": "Admissions table"
     },
     {
      "id": "hx_r_p3_l2",
      "part": 2,
-     "title": "Falls risk list",
-     "questions": []
+     "title": "Falls risk list"
     },
     {
      "id": "hx_r_p3_l3",
      "part": 3,
-     "title": "New columns",
-     "questions": []
+     "title": "New columns"
     },
     {
      "id": "hx_r_p3_l4",
      "part": 4,
-     "title": "Waiting list",
-     "questions": []
+     "title": "Waiting list"
     },
     {
      "id": "hx_r_p3_l5",
      "part": 5,
-     "title": "Trial as a table",
-     "questions": []
+     "title": "Trial as a table"
     }
    ],
    "checkpoint": {
     "id": "hx_r_cp3",
     "name": "Data frames of patients",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -246,41 +222,33 @@
     {
      "id": "hx_r_p4_l1",
      "part": 1,
-     "title": "Infections by ward",
-     "questions": []
+     "title": "Infections by ward"
     },
     {
      "id": "hx_r_p4_l2",
      "part": 2,
-     "title": "Vaccination by age",
-     "questions": []
+     "title": "Vaccination by age"
     },
     {
      "id": "hx_r_p4_l3",
      "part": 3,
-     "title": "Readmissions by ward",
-     "questions": []
+     "title": "Readmissions by ward"
     },
     {
      "id": "hx_r_p4_l4",
      "part": 4,
-     "title": "Screening 2×2",
-     "questions": []
+     "title": "Screening 2×2"
     },
     {
      "id": "hx_r_p4_l5",
      "part": 5,
-     "title": "Monthly cases",
-     "questions": []
+     "title": "Monthly cases"
     }
    ],
    "checkpoint": {
     "id": "hx_r_cp4",
     "name": "Grouping, tables and dates",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   },
   {
@@ -316,41 +284,33 @@
     {
      "id": "hx_r_p5_l1",
      "part": 1,
-     "title": "Blood pressure log",
-     "questions": []
+     "title": "Blood pressure log"
     },
     {
      "id": "hx_r_p5_l2",
      "part": 2,
-     "title": "Mean arterial pressure",
-     "questions": []
+     "title": "Mean arterial pressure"
     },
     {
      "id": "hx_r_p5_l3",
      "part": 3,
-     "title": "Patient ID labels",
-     "questions": []
+     "title": "Patient ID labels"
     },
     {
      "id": "hx_r_p5_l4",
      "part": 4,
-     "title": "Glucose log",
-     "questions": []
+     "title": "Glucose log"
     },
     {
      "id": "hx_r_p5_l5",
      "part": 5,
-     "title": "Outbreak curve",
-     "questions": []
+     "title": "Outbreak curve"
     }
    ],
    "checkpoint": {
     "id": "hx_r_cp5",
     "name": "Clinic data",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

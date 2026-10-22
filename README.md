@@ -47,11 +47,24 @@ Some problems only show up in the production build: code behind `__DEV__`, minif
 | `src/components` | Shared UI: `ui.tsx` (cards, buttons, images), `trackKit.tsx` (track visuals and animations), `gameKit.tsx` (code playback). |
 | `src/navigation` | The root stack (modals for lessons, games, the track flow and evolution) and the bottom tabs. |
 | `src/hooks` | App state as React context (`useAppStore`, `useTrackStore`), plus `useReduceMotion`. |
-| `src/services` | The API client, the lesson loader, and the game catalog. |
+| `src/content` | The `TRACKS` registry (`tracks.ts`: which area and language open which track, its files and app ids) and the types for the lesson and track JSON (`types.ts`). |
+| `src/services` | `contentLoader.ts`, the only code that reads the JSON: the learner's track (`loadTrack`) and the player-ready lessons (`lessonFor`). |
 | `src/storage` | AsyncStorage persistence. |
-| `src/types` | The data models. |
-| `src/utils` | Theme, day keys, code joining, study areas, and the generated image and content registries. |
+| `src/types` | The saved progress models. |
+| `src/utils` | Theme, day keys, study areas, and the generated image and content (`content.ts`) registries. |
 | `assets` | Robot pictures, backgrounds, the Horizon font and every lesson file, copied from the Swift project. |
+
+### Tracks and ids
+
+- A track is one `TRACKS` entry in `src/content/tracks.ts`. It names its track file (`track_*.json`: the path's phases,
+  pictures and project code) and its V3 file (`*_v3.json`: the lessons and checkpoints). Adding a track means adding
+  both files to `src/utils/content.ts` and one `TRACKS` line.
+- Content ids stay in the JSON as written: items are `BioP1L1`, `XpP2C`, `GenPyP1L3`, … and questions are
+  `<itemId>_q<n>`. Stars and bolts are saved under the question ids.
+- App ids come only from the registry `prefix`: lesson `k` of phase `n` is `<prefix>_p<n>_l<k>` (`hx_py_p2_l3`), and a
+  phase checkpoint is the entry's `checkpointId(n)` (`hx_py_cp2`; Biology research uses `bio_p2_cp`). Lesson progress
+  and URLs (`/phase/<n>/play/<app id>`) use these.
+- `scripts/validate-content.mjs` checks every V3 file against these rules; run it after any content change.
 
 ## Swift to React Native mapping
 

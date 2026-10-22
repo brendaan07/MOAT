@@ -32,35 +32,28 @@
     {
      "id": "gen_java_p1_l1",
      "part": 1,
-     "title": "Workshop screen",
-     "questions": []
+     "title": "Workshop screen"
     },
     {
      "id": "gen_java_p1_l2",
      "part": 2,
-     "title": "Numbers and text",
-     "questions": []
+     "title": "Numbers and text"
     },
     {
      "id": "gen_java_p1_l3",
      "part": 3,
-     "title": "Typed boxes",
-     "questions": []
+     "title": "Typed boxes"
     },
     {
      "id": "gen_java_p1_l4",
      "part": 4,
-     "title": "Robot maths",
-     "questions": []
+     "title": "Robot maths"
     }
    ],
    "checkpoint": {
     "id": "gen_java_cp1",
     "name": "Say hello",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],

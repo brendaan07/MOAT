@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { View } from 'react-native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { useTrackStore } from '../../hooks/useTrackStore_updated';
-import { RunResult, TrackLesson } from '../../types/models';
-import { LessonIntroV2, LessonPlayerV2, LessonRecapV2, v2Lesson } from '../../components/lessonKitV2_updated';
+import type { RunResult } from '../../types/models';
+import type { TrackLesson } from '../../content/types';
+import { lessonFor } from '../../services/contentLoader';
+import { LessonIntroV2, LessonPlayerV2, LessonRecapV2 } from '../../components/lessonKitV2_updated';
 import { CheckpointResult, ProjectBuilt, TrackLessonComplete } from './TrackResults';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
 
@@ -28,14 +30,14 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
   // Checked once on open, since finishing a lesson here changes what is unlocked. A typed URL to a locked or unknown item closes the screen.
   const [allowed] = useState(() => !!phase && (startLesson ? track.lessonUnlocked(startLesson, phase) : !route.params.lessonId && track.checkpointUnlocked(phase)));
   const [step, setStep] = useState<Step>(startLesson ? { kind: 'intro', lesson: startLesson } : { kind: 'checkpointIntro' });
-  const checkpoint = phase ? v2Lesson(phase.checkpoint.id) : null;
+  const checkpoint = phase ? lessonFor(phase.checkpoint.id) : null;
   const [runID, setRunID] = useState(0);
   const close = () => navigation.goBack();
   const go = (s: Step) => {
     if (s.kind === 'player' || s.kind === 'checkpoint') setRunID((r) => r + 1);
     setStep(s);
   };
-  const content = step.kind === 'intro' || step.kind === 'player' || step.kind === 'recap' ? v2Lesson(step.lesson.id) : checkpoint;
+  const content = step.kind === 'intro' || step.kind === 'player' || step.kind === 'recap' ? lessonFor(step.lesson.id) : checkpoint;
   if (!phase || !allowed || ((step.kind === 'intro' || step.kind === 'checkpointIntro') && !content)) {
     close();
     return <View />;

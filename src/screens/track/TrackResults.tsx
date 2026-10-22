@@ -7,7 +7,8 @@ import { useTrackStore } from '../../hooks/useTrackStore_updated';
 import { Card, ChunkyButton, DottedBackground } from '../../components/ui';
 import { BoltIcon, FlameIcon, ProjectCard, RCodeLine, RobotFace, SegmentBar, StarIcon, StarsRow, WeekStrip, useCountUp } from '../../components/trackKit';
 import { BORDER, C, body, heading } from '../../utils/theme';
-import { RunResult, TrackLesson, TrackPhase, isPerfect } from '../../types/models';
+import { RunResult, isPerfect } from '../../types/models';
+import type { TrackLesson, TrackPhase } from '../../content/types';
 import { DayKey } from '../../utils/dayKey';
 import { useReduceMotion } from '../../hooks/useReduceMotion';
 

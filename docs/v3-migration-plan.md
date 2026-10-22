@@ -879,3 +879,19 @@ Each step adds here what it found or left for a later step (file, why, which ste
     build branch, which never showed the picked option in the line; now the line shows it like every other fill.
   - `expo-haptics` had no importer after 3.1 (only the deleted V1 `LessonScreen` and `TrackPlayer` buzzed on Check);
     removed by the user's decision, with its README mapping row. The V1 "haptics on check" feature row goes in 3.6.
+- (step 3.2) One content layer. `src/content/tracks.ts` holds `TRACKS` (13 entries: area, language, track file, V3
+  file, prefix, domain, name, `checkpointId`) and `FIELDS` (chip, icon, tap text per domain), with `trackFor`,
+  `hasTrack`, `languagesFor` and `codeLangOf`; it replaces `trackFileFor`, `TRACK_LANGUAGES`, the `loadTrack` name
+  checks, the 13 `addV3` calls and `FIELD`. `src/content/types.ts` types the V3 files (questions as a union on `kind`,
+  pictures as a union on `type`, one type per renderer group), the track files, and the screens' shapes (`Track*`,
+  `PlayerLesson`, `PlayerQuestion`, formerly `V2Lesson`/`V2Question`). `src/services/contentLoader.ts` (was
+  `contentLoader_updated.ts`) is the only code that reads `CONTENT`: `loadTrack(area, language)` and `lessonFor(id)`
+  (the old `fromV3` + `LESSONS`). `src/utils/content_updated.ts` is now `src/utils/content.ts`. No `any` is left in
+  the lesson kit, `picturesV3` or the loader; `RENDERERS` is typed per picture type. Track files no longer carry
+  `questions` (lessons and checkpoints) or the checkpoint `filename`/`problem`; `scripts/convert-v1.mjs` writes the same
+  shape. `TrackQuestion` is `{ id, kind }`, and fix questions count as `fix` (the Profile's "Bug hunter" reads that).
+  The validator reads `TRACKS` (and errors if a registry file isn't bundled). README: new "Tracks and ids" section and
+  the `src/content`, `src/services`, `src/types`, `src/utils` rows; the other stale rows wait for 3.6.
+  Left for later: `src/utils/imageMapV3.ts` still has one `any` (3.3/3.4); the lesson kit's component names
+  (`LessonPlayerV2`, `LessonIntroV2`, `LessonRecapV2`) and the `_updated` file names (3.5); the validator's and
+  `run-answers.mjs`'s `status` handling is dead (no item has `status` now).

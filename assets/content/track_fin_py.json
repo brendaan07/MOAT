@@ -36,41 +36,33 @@
     {
      "id": "fin_py_p1_l1",
      "part": 1,
-     "title": "Shop receipt",
-     "questions": []
+     "title": "Shop receipt"
     },
     {
      "id": "fin_py_p1_l2",
      "part": 2,
-     "title": "Making change",
-     "questions": []
+     "title": "Making change"
     },
     {
      "id": "fin_py_p1_l3",
      "part": 3,
-     "title": "Profit margin",
-     "questions": []
+     "title": "Profit margin"
     },
     {
      "id": "fin_py_p1_l4",
      "part": 4,
-     "title": "Compound interest",
-     "questions": []
+     "title": "Compound interest"
     },
     {
      "id": "fin_py_p1_l5",
      "part": 5,
-     "title": "Order form",
-     "questions": []
+     "title": "Order form"
     }
    ],
    "checkpoint": {
     "id": "fin_py_cp1",
     "name": "Values and operators",
-    "filename": "",
-    "problem": "",
-    "unlock": [],
-    "questions": []
+    "unlock": []
    }
   }
  ],
