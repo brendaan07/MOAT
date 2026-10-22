@@ -1,8 +1,10 @@
+// The launch screen shown while saved progress loads.
 import React from 'react';
 import { Dimensions, Text, View } from 'react-native';
 import { BundleImage, FullScreenPicture } from '../components/ui';
 import { C, wordmark } from '../utils/theme';
 
+/** The MOAT splash: background and logo. */
 export default function SplashScreen() {
   const h = Dimensions.get('window').height;
   return (

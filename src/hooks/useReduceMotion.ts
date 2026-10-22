@@ -1,3 +1,4 @@
+// Whether the system Reduce Motion setting is on.
 import { useEffect, useState } from 'react';
 import { AccessibilityInfo } from 'react-native';
 

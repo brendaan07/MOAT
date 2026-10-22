@@ -895,3 +895,31 @@ Each step adds here what it found or left for a later step (file, why, which ste
   Left for later: `src/utils/imageMapV3.ts` still has one `any` (3.3/3.4); the lesson kit's component names
   (`LessonPlayerV2`, `LessonIntroV2`, `LessonRecapV2`) and the `_updated` file names (3.5); the validator's and
   `run-answers.mjs`'s `status` handling is dead (no item has `status` now).
+- (step 3.3) Large files split the expo-web way; no file in `src` is over ~260 lines and every file starts with a
+  one-line header, every export with a doc line.
+  - `trackKit.tsx` → `components/icons.tsx`, `components/QuitSheet.tsx`, `components/StatChipsRow.tsx`,
+    `components/track/` (`BoltPill`, `ProjectCard`, `RCodeLine`, `RobotFace`, `WeekStrip`, `phasePictures`,
+    `progressBars`, `stars`), hooks `useCountUp`, `useSlideUp`, and `utils/codeColor.ts` (with the lesson kit's
+    `colorPy`). Not ported from expo-web: `CloseButton`, `FeedbackSheet`, `PromptBubble` (their V1/V2 users are gone).
+  - `lessonKitV2_updated.tsx` → `components/lesson/` (`animations`, `QuestionBar`, `notes`, `CodeBox`, `Answers`,
+    `FixPaper`, `FeedbackSheet`, `Notebook`, `Confetti`) and `screens/track/lesson/` (`LessonIntro`, `LessonPlayer`,
+    `LessonRecap`; the `V2` suffixes are gone).
+  - `picturesV3.tsx` → `components/lesson/pictures/` (`motion`, `charts`, `biology`, `engineering`, `Belt`, `cards`,
+    `index` with `RENDERERS` and `LessonPicture`); `imageMapV3.ts` → `utils/lessonImages.ts` (`LESSON_IMAGES`, typed,
+    plus `lessonImage(path)`). The validator reads both new paths. `TYPE_ICON` lost `trial`/`coverage`/`ldl` and is
+    typed by card type. The `steps` curve no longer logs the `collapsable` DOM warning (its animated path drops the
+    prop).
+  - `TrackResults.tsx` → `screens/track/results/` (`Hero`, `TrackLessonComplete`, `ProjectBuilt`,
+    `CheckpointResult`). Fixed there: "part N of 4" and the 5-segment bar (now the phase's lesson count and the run's
+    question count), "· R" on Project built (now the track's language), and the checkpoint result's last-phase wording
+    (now "Cycle 1 complete / Start cycle 2" on a track's last phase, not only after phase 5; "s/5" uses the real
+    count). `utils/motion.ts` holds the shared `EASE_OUT`.
+  - The path screen keeps its pieces (152 lines, under the ~200 the plan sets for moving them to `components/path/`);
+    its scroll logic is expo-web's `useScrollToCurrent` hook.
+  Found, not changed (for 3.4 or a content step, user's call):
+  - `TrackFlowScreen` goes from the checkpoint straight to `CheckpointResult`, so `LessonRecap`'s checkpoint look (green
+    page, confetti) is never shown. It was the same before 3.1.
+  - `CheckpointResult`'s unlocked card reads `checkpoint.unlock` ([badge, title, text]); tracks whose files leave it
+    empty (Finance, Healthcare, Engineering, the general tracks) show an empty card with only the lock icon.
+  - `useSlideUp` ignores Reduce Motion (the sheets always slide).
+  - Still open from 2a.1: whether fix-question lines with no replacements should be untappable (3.4).

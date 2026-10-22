@@ -1,3 +1,4 @@
+// Saves and loads the learner's profile progress (moat.progress.v1).
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { defaultProgress, UserProgress } from '../types/models';
 import { canonicalArea } from '../utils/studyAreas';
@@ -29,6 +30,7 @@ function decode(raw: unknown): UserProgress {
   };
 }
 
+/** Reads and writes the profile progress in AsyncStorage. */
 export const ProgressStorage = {
   async load(): Promise<UserProgress> {
     try {

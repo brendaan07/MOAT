@@ -1,3 +1,4 @@
+// Colours, fonts and text styles.
 import { Platform, TextStyle } from 'react-native';
 
 /** Colours from Theme.swift and TrackKit_updated.swift (they match the design canvas). */
@@ -42,6 +43,7 @@ export const C = {
   codeString: '#1F7A4D',
 };
 
+/** The outline width every card and button uses. */
 export const BORDER = 2.5;
 
 const mono = Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' });

@@ -56,6 +56,7 @@ export function trackFor(studyArea: string, language: string): TrackEntry | null
   const area = canonicalArea(studyArea);
   return TRACKS.find((t) => t.area === area && t.language === language) ?? null;
 }
+/** Whether a study area and language have a track (the root sends learners without one back to onboarding). */
 export const hasTrack = (studyArea: string, language: string) => trackFor(studyArea, language) !== null;
 
 /** The languages a study area has a track in. Onboarding offers only these, so every learner has a track. */

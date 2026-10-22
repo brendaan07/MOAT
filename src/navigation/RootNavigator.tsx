@@ -1,3 +1,4 @@
+// The root stack and its web URLs: splash, onboarding, then the tabs and the track screens.
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer, DefaultTheme, LinkingOptions } from '@react-navigation/native';

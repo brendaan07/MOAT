@@ -1,6 +1,5 @@
-/* Generated: every image named by the V3 content files, bundled with a static require. */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const V3_IMAGES: Record<string, any> = {
+// Generated: every image the V3 content files name, keyed by the path as written in the JSON, bundled with a static require.
+export const LESSON_IMAGES: Record<string, number> = {
   'assets/images/finance/devices/FpP1C1_Q1_p0_b.webp': require('../../assets/images/finance/devices/FpP1C1_Q1_p0_b.webp'),
   'assets/images/finance/devices/FpP1C1_Q1_p0_c.webp': require('../../assets/images/finance/devices/FpP1C1_Q1_p0_c.webp'),
   'assets/images/finance/devices/FpP1C1_Q1_p0_correct.webp': require('../../assets/images/finance/devices/FpP1C1_Q1_p0_correct.webp'),
@@ -179,3 +178,6 @@ export const V3_IMAGES: Record<string, any> = {
   'assets/images/fruits/spoilt_tomato.png': require('../../assets/images/fruits/spoilt_tomato.png'),
   'assets/images/fruits/spoilt_watermelon.png': require('../../assets/images/fruits/spoilt_watermelon.png'),
 };
+
+/** The bundled image for a content path, or undefined when the path isn't registered (the picture then draws without it). */
+export const lessonImage = (path?: string) => (path ? LESSON_IMAGES[path] : undefined);

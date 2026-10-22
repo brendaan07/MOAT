@@ -1,3 +1,4 @@
+// Onboarding: name, age, education and study area, then the language step.
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { FlatList, KeyboardAvoidingView, Modal, PanResponder, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -82,6 +83,7 @@ function Choice({ label, caption, selected, onPress, minHeight = 48, disabled = 
   );
 }
 
+/** Asks who the learner is and what they study, then which language (only those with a track). */
 export default function OnboardingScreen() {
   const store = useAppStore();
   const [name, setName] = useState('');

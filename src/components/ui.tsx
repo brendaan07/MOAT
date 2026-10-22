@@ -1,3 +1,4 @@
+// The basic building blocks: cards, the chunky button, bundled images and the dotted background.
 import React, { useState } from 'react';
 import { Image, ImageResizeMode, ImageStyle, Pressable, StyleProp, StyleSheet, Text, View, ViewStyle, useWindowDimensions } from 'react-native';
 import Svg, { Circle, Defs, Pattern, Rect } from 'react-native-svg';
@@ -95,6 +96,7 @@ function imageSource(name: string): number | undefined {
   return IMAGES[name + '_updated'] ?? IMAGES[name];
 }
 
+/** A bundled picture by name (the "_updated" version first); an empty box when the name is unknown. */
 export function BundleImage({ name, style, resizeMode = 'contain' }: { name: string; style?: StyleProp<ImageStyle>; resizeMode?: ImageResizeMode }) {
   const src = imageSource(name);
   if (!src) return <View style={style as StyleProp<ViewStyle>} />;

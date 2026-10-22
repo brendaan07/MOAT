@@ -5,6 +5,7 @@ const label = (d: Date) => {
   const day = String(d.getDate()).padStart(2, '0');
   return `${y}-${m}-${day}`;
 };
+/** Local calendar days as "yyyy-mm-dd" keys, for streaks and minutes. */
 export const DayKey = {
   today: () => label(new Date()),
   yesterday: () => {

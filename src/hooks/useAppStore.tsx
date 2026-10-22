@@ -1,3 +1,4 @@
+// The learner's profile, bolts and streak as React context, saved on every change.
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { UserProgress, defaultProgress } from '../types/models';
 import { ProgressStorage } from '../storage/progressStorage';
@@ -17,6 +18,7 @@ interface AppStoreValue {
 
 const Ctx = createContext<AppStoreValue | null>(null);
 
+/** Loads saved progress and provides it, with its actions, to the app. */
 export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
   const [progress, setProgressState] = useState<UserProgress>(defaultProgress());
@@ -110,6 +112,7 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 
+/** The learner's profile progress and its actions. */
 export function useAppStore() {
   const v = useContext(Ctx);
   if (!v) throw new Error('useAppStore must be used inside AppStoreProvider');

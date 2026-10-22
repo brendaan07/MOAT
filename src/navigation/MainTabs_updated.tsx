@@ -1,3 +1,4 @@
+// The bottom tabs: Learn, Workshop and Profile.
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';

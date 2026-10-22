@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
-import { Dimensions, Pressable, ScrollView, Text, View } from 'react-native';
+// The Learn tab: the climbing path of the learner's track.
+import React, { useMemo } from 'react';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SafeAreaView } from '../../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,8 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../../hooks/useAppStore';
 import { useTrackStore } from '../../hooks/useTrackStore_updated';
+import { useScrollToCurrent } from '../../hooks/useScrollToCurrent';
 import { BundleImage, Card, FullScreenPicture } from '../../components/ui';
-import { StatChipsRow } from '../../components/trackKit';
+import { StatChipsRow } from '../../components/StatChipsRow';
 import { BORDER, C, body, heading } from '../../utils/theme';
 import { robotImage } from '../../types/models';
 import type { TrackPhase } from '../../content/types';
@@ -24,8 +26,6 @@ export default function TrackPathScreen() {
   const app = useAppStore();
   const track = useTrackStore();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const scrollRef = useRef<ScrollView>(null);
-  const currentY = useRef<number | null>(null);
   const t = track.track;
 
   const rows = useMemo(() => {
@@ -49,14 +49,7 @@ export default function TrackPathScreen() {
     return phase.lessons.find((l) => track.stars(l.id) < l.questions.length)?.id ?? null;
   }, [track]);
 
-  const scrollToCurrent = useCallback((animated: boolean) => {
-    setTimeout(() => {
-      if (currentY.current == null) return scrollRef.current?.scrollToEnd({ animated });
-      const h = Dimensions.get('window').height;
-      scrollRef.current?.scrollTo({ y: Math.max(0, currentY.current - h / 2 + 85), animated });
-    }, 150);
-  }, []);
-  useEffect(() => scrollToCurrent(true), [currentID, scrollToCurrent]);
+  const { scrollRef, scrollToCurrent, onCurrentLayout } = useScrollToCurrent(currentID);
 
   const openPhase = (phase: TrackPhase) => navigation.navigate('TrackPhase', { phase: phase.number });
 
@@ -99,7 +92,7 @@ export default function TrackPathScreen() {
     const fill = isCurrent ? C.sky : finished ? C.lime : n.kind === 'checkpoint' && open ? C.sun : C.locked;
     const state = isCurrent ? 'start' : finished ? `done, ${stars} stars` : open ? 'open' : 'locked';
     return (
-      <View key={n.id} onLayout={isCurrent ? (e) => { currentY.current = e.nativeEvent.layout.y; } : undefined} style={{ height: isCurrent ? 170 : 96, alignItems: 'center', justifyContent: 'center' }}>
+      <View key={n.id} onLayout={isCurrent ? (e) => onCurrentLayout(e.nativeEvent.layout.y) : undefined} style={{ height: isCurrent ? 170 : 96, alignItems: 'center', justifyContent: 'center' }}>
         {phaseLocked && <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(27,36,114,0.55)' }} />}
         <View style={{ alignItems: 'center', gap: 8, transform: [{ translateX: x }] }}>
           <Pressable onPress={() => (open || finished) && openPhase(n.phase)} accessibilityRole="button" accessibilityLabel={`${n.title}, ${state}`}>

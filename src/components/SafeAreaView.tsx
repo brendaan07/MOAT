@@ -1,3 +1,4 @@
+// A safe-area wrapper that pads with the root insets, so lesson modals never slide under the status bar.
 import React from 'react';
 import { StyleProp, StyleSheet, View, ViewStyle } from 'react-native';
 import { Edge, useSafeAreaInsets } from 'react-native-safe-area-context';

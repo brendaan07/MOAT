@@ -1,3 +1,4 @@
+// A phase's page: its picture, parts and checkpoint, and what comes later.
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from '../../components/SafeAreaView';
@@ -7,7 +8,10 @@ import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppStore } from '../../hooks/useAppStore';
 import { useTrackStore } from '../../hooks/useTrackStore_updated';
 import { Card, ChunkyButton, FullScreenPicture } from '../../components/ui';
-import { DoneTick, LockIcon, PhasePicture, StarIcon, StatChipsRow } from '../../components/trackKit';
+import { LockIcon, StarIcon } from '../../components/icons';
+import { DoneTick } from '../../components/track/ProjectCard';
+import { PhasePicture } from '../../components/track/phasePictures';
+import { StatChipsRow } from '../../components/StatChipsRow';
 import { BORDER, C, body, heading } from '../../utils/theme';
 import type { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';

@@ -1,3 +1,4 @@
+// The Workshop tab.
 import React from 'react';
 import { ScrollView, Text } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';

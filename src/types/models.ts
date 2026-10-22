@@ -22,6 +22,7 @@ export interface UserProgress {
   dailyGoalLessons: number;
 }
 
+/** A new learner's profile progress. */
 export const defaultProgress = (): UserProgress => ({
   hasOnboarded: false,
   name: '',
@@ -45,6 +46,7 @@ export interface TrackProgress {
   secondsByDay: Record<string, number>;
 }
 
+/** A new learner's track progress. */
 export const defaultTrackProgress = (): TrackProgress => ({ finished: [], bestStars: {}, paid: [], secondsByDay: {} });
 
 export interface RunResult {
@@ -56,4 +58,5 @@ export interface RunResult {
   firstAttempt: boolean;
   missedIndexes: number[];
 }
+/** Whether every question was right first try. */
 export const isPerfect = (r: RunResult) => r.stars === r.total;

@@ -1,3 +1,4 @@
+// The app root: fonts, safe-area and store providers, then the navigator.
 import React from 'react';
 import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';

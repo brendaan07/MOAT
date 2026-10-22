@@ -1,8 +1,10 @@
+// Saves and loads the learner's track progress (moat.track.v1).
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { defaultTrackProgress, TrackProgress } from '../types/models';
 
 const KEY = 'moat.track.v1';
 
+/** Reads and writes the track progress in AsyncStorage. */
 export const TrackStorage = {
   async load(): Promise<TrackProgress> {
     try {

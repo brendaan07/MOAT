@@ -1,3 +1,4 @@
+// The learner's track and its progress (stars, paid questions, minutes) as React context, with the unlock rules.
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { RunResult, TrackProgress, defaultTrackProgress } from '../types/models';
 import type { Track, TrackLesson, TrackPhase, TrackQuestion } from '../content/types';
@@ -6,6 +7,7 @@ import { loadTrack } from '../services/contentLoader';
 import { useAppStore } from './useAppStore';
 import { DayKey } from '../utils/dayKey';
 
+/** Minutes of practice that meet the daily goal. */
 export const DAILY_GOAL_MINUTES = 10;
 
 interface TrackStoreValue {
@@ -31,6 +33,7 @@ interface TrackStoreValue {
 
 const Ctx = createContext<TrackStoreValue | null>(null);
 
+/** Loads the learner's track and its saved progress and provides them to the app. */
 export function TrackStoreProvider({ children }: { children: React.ReactNode }) {
   const app = useAppStore();
   const { studyArea, language } = app.progress;
@@ -143,6 +146,7 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 
+/** The learner's track, its progress and the unlock rules. */
 export function useTrackStore() {
   const v = useContext(Ctx);
   if (!v) throw new Error('useTrackStore must be used inside TrackStoreProvider');

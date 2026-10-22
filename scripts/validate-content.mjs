@@ -20,12 +20,12 @@ const tracks = [...trackRegistry.matchAll(/trackFile: '([^']+)', v3File: '([^']+
 if (!tracks.length) throw new Error('no TRACKS entries found in src/content/tracks.ts');
 
 // Every picture type the app can draw: the keys of RENDERERS in picturesV3.tsx.
-const registry = read('src/components/picturesV3.tsx').match(/const RENDERERS[^\n]*= \{\n([\s\S]*?)\n\};/);
-if (!registry) throw new Error('RENDERERS not found in src/components/picturesV3.tsx');
+const registry = read('src/components/lesson/pictures/index.tsx').match(/const RENDERERS[^\n]*= \{\n([\s\S]*?)\n\};/);
+if (!registry) throw new Error('RENDERERS not found in src/components/lesson/pictures/index.tsx');
 const renderers = new Set([...registry[1].replace(/\/\/.*$/gm, '').matchAll(/(\w+):/g)].map((m) => m[1]));
 
-// Every image the app can show: the keys of V3_IMAGES.
-const images = new Set([...read('src/utils/imageMapV3.ts').matchAll(/^\s*'([^']+)':\s*require\(/gm)].map((m) => m[1]));
+// Every image the app can show: the keys of LESSON_IMAGES.
+const images = new Set([...read('src/utils/lessonImages.ts').matchAll(/^\s*'([^']+)':\s*require\(/gm)].map((m) => m[1]));
 const IMAGE = /\.(png|webp|jpe?g|gif)$/i;
 
 let errors = 0;
@@ -43,7 +43,7 @@ function imagePaths(o, out = []) {
 
 function checkPicture(where, q, pic) {
   for (const k of ['type', 'label', 'correct_state']) if (missing(pic[k])) error(where, `picture has no ${k}`);
-  if (pic.type && !renderers.has(pic.type)) error(where, `picture type "${pic.type}" has no renderer in RENDERERS (src/components/picturesV3.tsx)`);
+  if (pic.type && !renderers.has(pic.type)) error(where, `picture type "${pic.type}" has no renderer in RENDERERS (src/components/lesson/pictures/index.tsx)`);
   const keys = new Set(Object.keys(pic.states?.wrong_by_option ?? {}));
   // Predict/fill: the player passes the picked option id. Fix: it passes the tapped line id, and Check needs a
   // replacement picked, so a wrong state shows for every line that offers a wrong replacement (the buggy line included).
@@ -104,7 +104,7 @@ for (const name of v3Files) {
       if (qs.length !== 5) error(where, `${qs.length} questions, needs 5`);
       if ((it.notebook ?? []).length !== qs.length) error(where, `notebook has ${(it.notebook ?? []).length} entries for ${qs.length} questions`);
       qs.forEach((q, i) => checkQuestion(`${where} q${i + 1}`, q));
-      for (const p of new Set(imagePaths(it))) if (!images.has(p)) error(where, `image ${p} is not in src/utils/imageMapV3.ts`);
+      for (const p of new Set(imagePaths(it))) if (!images.has(p)) error(where, `image ${p} is not in src/utils/lessonImages.ts`);
     }
   }
   // Every lesson the track file lists must be a V3 lesson item.

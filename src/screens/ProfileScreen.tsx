@@ -1,3 +1,4 @@
+// The Profile tab: streak, stats, badges and settings.
 import React, { useState } from 'react';
 import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';
@@ -5,7 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useAppStore } from '../hooks/useAppStore';
 import { DAILY_GOAL_MINUTES, useTrackStore } from '../hooks/useTrackStore_updated';
 import { BundleImage, Card, ChunkyButton, DottedBackground } from '../components/ui';
-import { FlameIcon, WeekStrip } from '../components/trackKit';
+import { FlameIcon } from '../components/icons';
+import { WeekStrip } from '../components/track/WeekStrip';
 import { C, body, heading } from '../utils/theme';
 import { robotImage } from '../types/models';
 import { DayKey } from '../utils/dayKey';
