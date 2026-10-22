@@ -41,11 +41,18 @@ export default function ProfileScreen() {
     { id: 'bolts', label: 'Bolt collector', icon: 'flash', color: C.sun, done: p.bolts >= 1000, progress: p.bolts >= 1000 ? 'done' : `${p.bolts} of 1000` },
     { id: 'l50', label: '50 lessons', icon: 'layers', color: C.lime, done: lessonsDone >= 50, progress: lessonsDone >= 50 ? 'done' : `${lessonsDone} of 50` },
   ];
-  const confirmReset = () =>
+  const doReset = () => { store.resetProgress(); track.reset(); };
+  // Alert.alert is a no-op on react-native-web, so web asks with the browser's own confirm.
+  const confirmReset = () => {
+    if (Platform.OS === 'web') {
+      if (window.confirm('Reset all progress?\n\nThis clears your lessons, stars, bolts, streak and answers on this device.')) doReset();
+      return;
+    }
     Alert.alert('Reset all progress?', 'This clears your lessons, stars, bolts, streak and answers on this phone.', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Reset progress', style: 'destructive', onPress: () => { store.resetProgress(); track.reset(); } },
+      { text: 'Reset progress', style: 'destructive', onPress: doReset },
     ]);
+  };
   const row = (label: string, value: string) => (
     <View key={label} style={{ height: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, borderTopWidth: 2, borderTopColor: C.locked }}>
       <Text style={body(16, true)}>{label}</Text>
