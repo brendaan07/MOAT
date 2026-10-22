@@ -435,6 +435,42 @@ Ask the user these questions. Write the answers into this file under 2b, then co
    `docs/backlog.md` instead of building them now.
 4. **Delete the unreachable `lessons_engineering/business/life_sciences.json`?** **Default:** yes, in 2b.3.
 
+#### 2b.0 decisions (user, 2026-10-22)
+These replace the defaults above where they differ. 2b.2 and 2b.3 follow them.
+
+1. **Shape: 8 V3 tracks, restructure only.** One track per reachable file: General Python (`lessons_general`),
+   Physics & maths Python (`lessons_physics_and_maths`) and Arts & humanities Python (`lessons_arts_and_humanities`),
+   3 phases each, plus R, SQL, JavaScript, MATLAB and Java (1 phase each). **Keep exactly the lessons that exist (4 per
+   phase); write no 5th lesson and no checkpoint for now.** The goal of this round is to restructure, not to write new
+   content; full lessons and phases come in a later round. Converting `build`/`choice`/`judge`/`bug`/`match` questions
+   to `predict`/`fill`/`fix` (D5) is still part of the conversion.
+2. **A language is selectable only if the area has its own track in it.** Onboarding greys out (and disables) every
+   other language. The language tracks belong only to the General area:
+
+   | Area | Selectable languages |
+   |---|---|
+   | Biology research | R |
+   | Healthcare | Python, R |
+   | Engineering | Python |
+   | Business & finance | Python |
+   | Physics & maths | Python |
+   | Arts & humanities | Python |
+   | General | Python, R, SQL, JavaScript, MATLAB, Java |
+
+   Every selectable pair then has a V3 track, so the old V1 code path (`LearnScreen`, `LessonScreen`, `loadBundled`,
+   the mini-games) has no users and goes in 2b.3. The General **area** stays; only the old player code goes.
+3. **Stories: keep the current themes** when converting (R stays healthcare-themed, SQL a café menu, JavaScript a game,
+   MATLAB a lab bench, Java a workshop).
+4. **Saved picks that are no longer selectable** (for example Engineering + R): send the learner back to onboarding
+   (clear the pick and show the language step).
+5. **Mini-games: delete them in 2b.3, and add a `docs/backlog.md` entry** describing them (loop and stage games, per
+   field) with the commit to recover them from.
+6. **Delete `lessons_engineering.json`, `lessons_business.json` and `lessons_life_sciences.json` in 2b.3.**
+7. **Validator:** general tracks declare their shape in their track block (`lessons_per_phase: 4`, no checkpoint), and
+   the validator checks them against that. Healthcare, Biology, Finance and Engineering keep the strict 5 lessons + 1
+   checkpoint rule. A phase with no checkpoint unlocks the next one once all its lessons have full stars (already how
+   the store works).
+
 ### 2b.1 (removed)
 This step used to port the Premium lock and evolution to the track path. Both were dropped by D6: Premium was removed in
 1b, and evolution is in `docs/backlog.md`. The number is kept so the other step numbers don't change.
