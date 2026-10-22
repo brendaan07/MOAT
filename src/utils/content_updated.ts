@@ -29,4 +29,6 @@ export const CONTENT: Record<string, unknown> = {
   "arts_python_v3": require('../../assets/content/arts_python_v3.json'),
   "track_gen_r": require('../../assets/content/track_gen_r.json'),
   "general_r_v3": require('../../assets/content/general_r_v3.json'),
+  "track_gen_sql": require('../../assets/content/track_gen_sql.json'),
+  "general_sql_v3": require('../../assets/content/general_sql_v3.json'),
 };

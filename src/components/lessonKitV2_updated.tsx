@@ -29,6 +29,7 @@ import GEN_PY from '../../assets/content/general_python_v3.json';
 import PHYS_PY from '../../assets/content/physics_python_v3.json';
 import ARTS_PY from '../../assets/content/arts_python_v3.json';
 import GEN_R from '../../assets/content/general_r_v3.json';
+import GEN_SQL from '../../assets/content/general_sql_v3.json';
 
 // ---------------------------------------------------------------- content
 export type V2Pic =
@@ -169,6 +170,7 @@ addV3(GEN_PY, { prefix: 'gen_py', lang: 'py', domain: 'gen', name: 'General Pyth
 addV3(PHYS_PY, { prefix: 'phys_py', lang: 'py', domain: 'gen', name: 'Physics & maths Python', checkpointId: (n) => `phys_py_cp${n}` });
 addV3(ARTS_PY, { prefix: 'arts_py', lang: 'py', domain: 'gen', name: 'Arts & humanities Python', checkpointId: (n) => `arts_py_cp${n}` });
 addV3(GEN_R, { prefix: 'gen_r', lang: 'r', domain: 'gen', name: 'General R', checkpointId: (n) => `gen_r_cp${n}` });
+addV3(GEN_SQL, { prefix: 'gen_sql', lang: 'sql', domain: 'gen', name: 'General SQL', checkpointId: (n) => `gen_sql_cp${n}` });
 
 /** The label, icon and science-note wording for each field. */
 const FIELD = {
