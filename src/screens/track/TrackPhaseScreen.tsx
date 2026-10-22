@@ -15,6 +15,7 @@ import { StatChipsRow } from '../../components/StatChipsRow';
 import { BORDER, C, body, heading } from '../../utils/theme';
 import type { Track, TrackCycle2, TrackLesson, TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
+import { LessonsUnavailable } from '../../components/track/LessonsUnavailable';
 
 /** The phase page (Option A design), opened from the play button on the Learn path. */
 export default function TrackPhaseScreen() {
@@ -177,9 +178,7 @@ export default function TrackPhaseScreen() {
         {track.track ? (
           <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 16 }}>{content(track.track)}</ScrollView>
         ) : (
-          <Card radius={20} style={{ marginTop: 40 }} contentStyle={{ padding: 20 }}>
-            <Text style={body(15)}>Your track's lessons didn't load. Check that its track file is in assets/content.</Text>
-          </Card>
+          <LessonsUnavailable style={{ marginTop: 40 }} />
         )}
       </SafeAreaView>
     </View>

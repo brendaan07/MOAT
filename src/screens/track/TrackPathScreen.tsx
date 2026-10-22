@@ -15,6 +15,7 @@ import { BORDER, C, body, heading } from '../../utils/theme';
 import { robotImage } from '../../types/models';
 import type { TrackPhase } from '../../content/types';
 import type { RootStackParamList } from '../../navigation/RootNavigator';
+import { LessonsUnavailable } from '../../components/track/LessonsUnavailable';
 
 type Node = { id: string; kind: 'lesson' | 'checkpoint'; title: string; phase: TrackPhase; step: number };
 type Row = { id: string; banner: TrackPhase } | { id: string; node: Node };
@@ -139,9 +140,7 @@ export default function TrackPathScreen() {
           </ScrollView>
         ) : (
           <View style={{ flex: 1, justifyContent: 'center', padding: 24 }}>
-            <Card radius={20} contentStyle={{ padding: 20 }}>
-              <Text style={body(15)}>Your track's lessons didn't load. Check that its track file is in assets/content.</Text>
-            </Card>
+            <LessonsUnavailable />
           </View>
         )}
         <View style={{ position: 'absolute', top: insets.top + 8, left: 16, right: 16, zIndex: 20 }}>

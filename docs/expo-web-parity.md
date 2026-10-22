@@ -120,8 +120,8 @@ mini-games, paywall, robot evolution and the V1/V2 players are gone and every le
 ## Principle checks (step 3.7)
 
 - **No UI file reads content or storage directly.** Only `services/contentLoader.ts` reads `CONTENT`
-  (`utils/content.ts`), and only `storage/jsonStorage.ts` imports AsyncStorage. (`TrackPathScreen` and
-  `TrackPhaseScreen` mention `assets/content` only in their "lessons didn't load" fallback text.)
+  (`utils/content.ts`), and only `storage/jsonStorage.ts` imports AsyncStorage. Their "lessons didn't
+  load" fallback is `components/track/LessonsUnavailable.tsx`, in learner wording.)
 - **No copied logic.** No block of 5 or more non-trivial lines appears in two places in `src/` (generated maps excluded).
 - **Small files.** The largest file is `screens/OnboardingScreen.tsx` at 255 lines; nothing is over ~300.
 - **No leftovers.** `rg "_updated|V2|picturesV2|TrackPlayer|lessonKit" src` finds nothing.

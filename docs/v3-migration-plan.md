@@ -989,5 +989,5 @@ Each step adds here what it found or left for a later step (file, why, which ste
   plan's leftover search finds nothing. Every track in the registry played its phase-1 lesson 1, and every track with
   a checkpoint its phase-1 checkpoint, to the end in the web preview (18 runs, 5 stars each, recap shown, no console
   errors), driven by a page script that answered from the content. No gaps needed code, so there is no parity-fixes
-  commit. Noted, not changed: the path and phase screens' "lessons didn't load" fallback names `assets/content`, which
-  is developer wording a learner would only see if a bundled track file were missing.
+  commit. The path and phase screens' "lessons didn't load" fallback used to name `assets/content`; it is now one shared
+  card (`components/track/LessonsUnavailable.tsx`) in learner wording that says what to try (user request, after 3.7).
