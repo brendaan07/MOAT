@@ -946,7 +946,10 @@ Each step adds here what it found or left for a later step (file, why, which ste
   (a last phase without its own text shows no card, since nothing opens yet), sheets respect Reduce Motion, and a fix
   line with nothing to change keeps every line in view.
   Not verified in the browser: the sheets with Reduce Motion on (the preview can't emulate it).
-  Open, for the user: the minutes bubble promises `DAILY_GOAL_BONUS_BOLTS` (20) for reaching the daily goal, but nothing
-  pays it. Either pay it (once a day, when today's minutes first reach the goal) or drop the promise.
+  Daily-goal bonus (user decision, after 3.4): the minutes bubble promised `DAILY_GOAL_BONUS_BOLTS` (20) but nothing
+  paid it. Now `useFinishRun` pays it when a run takes today's minutes from below `DAILY_GOAL_MINUTES` to at or above
+  it (`goalBonus` in `progressRules.ts`; minutes only grow within a day, so at most once a day, with no new saved
+  field). `RunResult.goalBonus` carries it, `creditedBolts(result)` is the run's total, and both results screens show
+  a "+20 daily goal reached" tag. Checked in the browser: 594 s + one lesson paid 50 + 30 + 20.
   On Healthcare and Finance the fallback reads "Text and formatting / New skill: Text and formatting." because those
   track files use the same text for `project` and `skill`.

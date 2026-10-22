@@ -54,9 +54,14 @@ export interface RunResult {
   stars: number;
   total: number;
   earned: number;
+  /** The perfect-first-attempt bonus. */
   bonus: number;
+  /** The daily-goal bonus, when this run took today's minutes up to the goal. */
+  goalBonus: number;
   firstAttempt: boolean;
   missedIndexes: number[];
 }
+/** Every bolt a run paid into the account. */
+export const creditedBolts = (r: RunResult) => r.earned + r.bonus + r.goalBonus;
 /** Whether every question was right first try. */
 export const isPerfect = (r: RunResult) => r.stars === r.total;

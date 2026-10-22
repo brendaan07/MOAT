@@ -2,7 +2,7 @@
 // Pure functions, so the stores only wire state and saving to them.
 import { RunResult, TrackProgress, UserProgress } from '../types/models';
 import type { TrackLesson, TrackPhase, TrackQuestion } from '../content/types';
-import { BOLTS_PER_QUESTION, PERFECT_BONUS } from './rewards';
+import { BOLTS_PER_QUESTION, DAILY_GOAL_BONUS_BOLTS, DAILY_GOAL_MINUTES, PERFECT_BONUS } from './rewards';
 import { DayKey } from './dayKey';
 
 // ---------- the learner's profile ----------
@@ -72,7 +72,7 @@ export function withRun(p: TrackProgress, itemID: string, questions: TrackQuesti
   };
   const missedIndexes = questions.map((q, i) => (firstTry.has(q.id) ? -1 : i)).filter((i) => i >= 0);
   const bonus = firstAttempt && stars === questions.length ? PERFECT_BONUS : 0;
-  return { next, result: { itemID, stars, total: questions.length, earned: newPaid.length * BOLTS_PER_QUESTION, bonus, firstAttempt, missedIndexes } };
+  return { next, result: { itemID, stars, total: questions.length, earned: newPaid.length * BOLTS_PER_QUESTION, bonus, goalBonus: 0, firstAttempt, missedIndexes } };
 }
 
 /** Progress with `seconds` of learning added to today. */
@@ -82,5 +82,13 @@ export function withTime(p: TrackProgress, seconds: number): TrackProgress {
   return { ...p, secondsByDay: { ...p.secondsByDay, [key]: (p.secondsByDay[key] ?? 0) + seconds } };
 }
 
+/** Today's learning in seconds. */
+export const secondsToday = (p: TrackProgress) => p.secondsByDay[DayKey.today()] ?? 0;
+
+/** The daily-goal bonus earned by going from `before` to `after` seconds today: paid when today's minutes first reach
+ *  the goal. Minutes only grow within a day, so this pays at most once a day. */
+export const goalBonus = (before: number, after: number) =>
+  Math.floor(before / 60) < DAILY_GOAL_MINUTES && Math.floor(after / 60) >= DAILY_GOAL_MINUTES ? DAILY_GOAL_BONUS_BOLTS : 0;
+
 /** Whole minutes learned today. */
-export const minutesToday = (p: TrackProgress) => Math.floor((p.secondsByDay[DayKey.today()] ?? 0) / 60);
+export const minutesToday = (p: TrackProgress) => Math.floor(secondsToday(p) / 60);

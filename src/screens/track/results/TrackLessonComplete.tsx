@@ -13,8 +13,8 @@ import { useReduceMotion } from '../../../hooks/useReduceMotion';
 import { BORDER, C, body, heading } from '../../../utils/theme';
 import { EASE_OUT } from '../../../utils/motion';
 import { DayKey } from '../../../utils/dayKey';
-import { PERFECT_BONUS } from '../../../utils/rewards';
-import type { RunResult } from '../../../types/models';
+import { DAILY_GOAL_BONUS_BOLTS, PERFECT_BONUS } from '../../../utils/rewards';
+import { RunResult, creditedBolts } from '../../../types/models';
 import type { TrackLesson, TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
 import { CloseButton } from '../../../components/CloseButton';
@@ -23,7 +23,7 @@ import { CloseButton } from '../../../components/CloseButton';
 export function TrackLessonComplete({ phase, lesson, result, onContinue, onReplay }: { phase: TrackPhase; lesson: TrackLesson; result: RunResult; onContinue: () => void; onReplay: () => void }) {
   const app = useAppStore();
   const reduce = useReduceMotion();
-  const credited = result.earned + result.bonus;
+  const credited = creditedBolts(result);
   const total = useCountUp(app.progress.bolts, { from: app.progress.bolts - credited, duration: 1100, delay: 550, run: !reduce });
   const chip = useRef(new Animated.Value(reduce ? 1 : 0)).current;
   const bounce = useRef(new Animated.Value(1)).current;
@@ -69,13 +69,20 @@ export function TrackLessonComplete({ phase, lesson, result, onContinue, onRepla
             </View>
           )}
         </View>
-        <Card fill={C.screen} radius={20} shadow contentStyle={{ paddingHorizontal: 16, paddingVertical: 14, gap: 12 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <FlameIcon size={24} />
-            <Text style={[heading(22), { color: C.cream }]}>{app.displayStreak} day streak</Text>
-          </View>
-          <WeekStrip streak={app.displayStreak} activeToday={app.progress.lastActiveDay === DayKey.today()} />
-        </Card>
+        <View>
+          <Card fill={C.screen} radius={20} shadow contentStyle={{ paddingHorizontal: 16, paddingVertical: 14, gap: 12 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <FlameIcon size={24} />
+              <Text style={[heading(22), { color: C.cream }]}>{app.displayStreak} day streak</Text>
+            </View>
+            <WeekStrip streak={app.displayStreak} activeToday={app.progress.lastActiveDay === DayKey.today()} />
+          </Card>
+          {result.goalBonus > 0 && (
+            <View style={{ position: 'absolute', right: 14, top: -16, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 10, backgroundColor: C.lime, borderWidth: BORDER, borderColor: C.navy }}>
+              <Text style={body(13, true)}>+{DAILY_GOAL_BONUS_BOLTS} daily goal reached</Text>
+            </View>
+          )}
+        </View>
       </ScrollView>
       <View style={{ paddingHorizontal: 16 }}>
         <ChunkyButton title="Continue" onPress={onContinue} />

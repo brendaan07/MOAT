@@ -23,7 +23,8 @@ interface TrackStoreValue {
   nextLesson: (phase: TrackPhase) => TrackLesson | null;
   pays: (q: TrackQuestion) => boolean;
   record: (itemID: string, questions: TrackQuestion[], firstTry: Set<string>) => RunResult;
-  addTime: (seconds: number) => void;
+  /** Adds learning time to today; returns today's seconds before and after. */
+  addTime: (seconds: number) => { before: number; after: number };
   minutesToday: number;
   reset: () => void;
 }
@@ -71,7 +72,15 @@ export function TrackStoreProvider({ children }: { children: React.ReactNode }) 
     },
     [set],
   );
-  const addTime = useCallback((seconds: number) => set(rules.withTime(ref.current, seconds)), [set]);
+  const addTime = useCallback(
+    (seconds: number) => {
+      const before = rules.secondsToday(ref.current);
+      const next = rules.withTime(ref.current, seconds);
+      set(next);
+      return { before, after: rules.secondsToday(next) };
+    },
+    [set],
+  );
 
   const value: TrackStoreValue = {
     track,

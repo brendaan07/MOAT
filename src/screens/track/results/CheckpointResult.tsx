@@ -8,8 +8,8 @@ import { BoltIcon, StarIcon } from '../../../components/icons';
 import { StarsRow } from '../../../components/track/stars';
 import { useTrackStore } from '../../../hooks/useTrackStore_updated';
 import { BORDER, C, body, heading } from '../../../utils/theme';
-import { RunResult, isPerfect } from '../../../types/models';
-import { PERFECT_BONUS } from '../../../utils/rewards';
+import { RunResult, creditedBolts, isPerfect } from '../../../types/models';
+import { DAILY_GOAL_BONUS_BOLTS, PERFECT_BONUS } from '../../../utils/rewards';
 import type { TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
 import { CloseButton } from '../../../components/CloseButton';
@@ -36,7 +36,7 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
         <CloseButton onPress={onDone} label="Close" color={C.cream} />
         <View style={{ height: 36, flexDirection: 'row', alignItems: 'center', gap: 4, paddingLeft: 8, paddingRight: 12, borderRadius: 18, backgroundColor: C.lime, borderWidth: BORDER, borderColor: C.navy }}>
           <BoltIcon size={18} />
-          <Text style={heading(18)}>+{result.earned + result.bonus}</Text>
+          <Text style={heading(18)}>+{creditedBolts(result)}</Text>
         </View>
       </View>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }} showsVerticalScrollIndicator={false}>
@@ -55,6 +55,11 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
             )}
           </View>
           <StarsRow filled={result.stars} total={result.total} size={44} />
+          {result.goalBonus > 0 && (
+            <View style={{ alignSelf: 'flex-start', paddingHorizontal: 9, paddingVertical: 2, borderRadius: 9, backgroundColor: C.lime, borderWidth: 2, borderColor: C.navy }}>
+              <Text style={body(13, true)}>+{DAILY_GOAL_BONUS_BOLTS} daily goal reached</Text>
+            </View>
+          )}
         </Card>
         {complete ? (
           u && <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
