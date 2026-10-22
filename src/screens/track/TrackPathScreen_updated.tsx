@@ -72,7 +72,7 @@ export default function TrackPathScreen() {
           </View>
           {open ? (
             <View style={{ height: 30, paddingHorizontal: 12, borderRadius: 15, backgroundColor: C.sky, borderWidth: 2, borderColor: C.navy, justifyContent: 'center' }}>
-              <Text style={body(13, true)}>{done} of 5</Text>
+              <Text style={body(13, true)}>{done} of {total}</Text>
             </View>
           ) : (
             <View style={{ height: 30, paddingHorizontal: 10, borderRadius: 15, backgroundColor: C.orange, flexDirection: 'row', alignItems: 'center', gap: 4 }}>

@@ -102,7 +102,7 @@ export default function TrackHomeScreen() {
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 2, marginBottom: 10 }}>
           <LockIcon color={C.muted} size={13} />
-          <Text style={[body(13), { color: C.muted }]}>{phase.number >= 5 ? 'Cycle 2 opens at 5 stars on every lesson.' : `Phase ${phase.number + 1} opens at 5 stars on every lesson.`}</Text>
+          <Text style={[body(13), { color: C.muted }]}>{phase.number >= (track.track?.phases.length ?? 5) ? 'Cycle 2 opens at 5 stars on every lesson.' : `Phase ${phase.number + 1} opens at 5 stars on every lesson.`}</Text>
         </View>
         <ChunkyButton title={cta.title} onPress={cta.go} />
       </Card>

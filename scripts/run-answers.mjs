@@ -14,25 +14,42 @@ if (!file) {
   process.exit(1);
 }
 const data = JSON.parse(readFileSync(file, 'utf8'));
-const isR = /^r$/i.test(data.track?.language ?? '');
+const language = (data.track?.language ?? 'Python').toLowerCase();
 
 const has = (cmd, args) => spawnSync(cmd, args, { stdio: 'ignore' }).status === 0;
+// [command, args before the file, file name, wrap(lines) -> file text]
+const plain = (lines) => lines.join('\n') + '\n';
 function runner() {
-  if (!isR) return has('python3', ['--version']) ? ['python3', [], '.py'] : null;
-  if (has('Rscript', ['--version'])) return ['Rscript', [], '.R'];
-  if (has('conda', ['run', '-n', 'moat-r', 'Rscript', '--version'])) return ['conda', ['run', '-n', 'moat-r', 'Rscript'], '.R'];
-  return null;
+  if (language === 'python') return has('python3', ['--version']) ? ['python3', [], 'q.py', plain] : null;
+  if (language === 'r') {
+    if (has('Rscript', ['--version'])) return ['Rscript', [], 'q.R', plain];
+    if (has('conda', ['run', '-n', 'moat-r', 'Rscript', '--version'])) return ['conda', ['run', '-n', 'moat-r', 'Rscript'], 'q.R', plain];
+    return null;
+  }
+  if (language === 'javascript') return has('node', ['--version']) ? ['node', [], 'q.js', plain] : null;
+  // SQL questions read the café menu table, loaded first from scripts/fixtures/sql_menu.sql.
+  if (language === 'sql') {
+    const fixture = readFileSync(new URL('./fixtures/sql_menu.sql', import.meta.url), 'utf8');
+    return has('sqlite3', ['-version']) ? ['sqlite3', ['-batch', ':memory:'], 'q.sql', (lines) => fixture + plain(lines), true] : null;
+  }
+  // Java snippets are statements: wrap them in a main method and run the file directly (Java 11+).
+  if (language === 'java') {
+    return has('java', ['-version']) ? ['java', [], 'Main.java', (lines) => `public class Main {\n  public static void main(String[] args) {\n${lines.map((l) => `    ${l}`).join('\n')}\n  }\n}\n`] : null;
+  }
+  return null; // MATLAB: no runtime here; answers are checked by reading.
 }
 const rt = runner();
-if (!rt) console.log(`No ${isR ? 'R (Rscript or the moat-r conda environment)' : 'python3'} found: printing the code and marked answers only.\n`);
+if (!rt) console.log(`No runtime for ${data.track?.language ?? 'Python'} found: printing the code and marked answers only.\n`);
 
 const dir = mkdtempSync(join(tmpdir(), 'moat-answers-'));
 function run(lines) {
   if (!rt) return '(not run)';
-  const path = join(dir, `q${rt[2]}`);
-  writeFileSync(path, lines.join('\n') + '\n');
+  const path = join(dir, rt[2]);
+  writeFileSync(path, rt[3](lines));
   try {
-    return execFileSync(rt[0], [...rt[1], path], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000 }).trimEnd();
+    // sqlite3 takes ".read <file>" as its SQL argument; the others take the file itself.
+    const args = rt[4] ? [...rt[1], `.read ${path}`] : [...rt[1], path];
+    return execFileSync(rt[0], args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30000 }).trimEnd();
   } catch (e) {
     // conda run adds its own lines after R's message; keep R's.
     const lines = (e.stderr || e.stdout || e.message).toString().trim().split('\n').filter((l) => !/^ERROR conda|Execution halted/.test(l));

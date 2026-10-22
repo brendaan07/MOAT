@@ -25,6 +25,7 @@ import HX_PY from '../../assets/content/healthcare_python_v3.json';
 import HX_R from '../../assets/content/healthcare_r_v3.json';
 import FIN_PY from '../../assets/content/finance_python_v3.json';
 import ENG_PY from '../../assets/content/engineering_python_v3.json';
+import GEN_PY from '../../assets/content/general_python_v3.json';
 
 // ---------------------------------------------------------------- content
 export type V2Pic =
@@ -73,8 +74,8 @@ export interface V2Question {
 export interface V2Lesson {
   id: string;
   /** 'eng' and 'health' lessons use their own labels; Biology lessons leave it out. */
-  domain?: 'eng' | 'health' | 'fin';
-  lang?: 'py' | 'r';
+  domain?: 'eng' | 'health' | 'fin' | 'gen';
+  lang?: CodeLang;
   phase: number;
   part: number;
   title: string;
@@ -101,9 +102,11 @@ for (const l of (MORE as unknown as { lessons: V2Lesson[] }).lessons) LESSONS[l.
  * App ids: bio_p{phase}_l{part} for lessons (legacy lessons keep their entry above); its checkpoint is the track's phase checkpoint. */
 const WORD_COLOUR: Record<string, string> = { predict: '#B5E04A', fill: '#FFC93C', fix: '#FF8A3D' };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type V3Track = { prefix: string; lang: 'py' | 'r'; domain?: 'health' | 'fin' | 'eng'; name: string; checkpointId?: (phase: number) => string };
+/** Code colouring uses Python's rules for 'py' and the R-style rules for the rest. */
+type CodeLang = 'py' | 'r' | 'sql' | 'js' | 'matlab' | 'java';
+type V3Track = { prefix: string; lang: CodeLang; domain?: 'health' | 'fin' | 'eng' | 'gen'; name: string; checkpointId?: (phase: number) => string };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track): V2Lesson {
+function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track, parts: number): V2Lesson {
   const cp = it.type === 'checkpoint';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const questions: V2Question[] = it.questions.map((q: any, i: number) => {
@@ -141,7 +144,7 @@ function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track): V2Less
     id: `${tr.prefix}_p${phase}_${cp ? 'c' : 'l'}${it.part}`, lang: tr.lang, domain: tr.domain, phase, part: it.part, title: it.title, project: `${tr.name}, phase ${phase}: ${phaseTitle}`,
     person: it.person, intro: it.intro, start: it.start_button ?? (cp ? 'Start the checkpoint' : 'Start'), doneTitle: it.recap?.title ?? 'Done',
     doneSub: it.recap?.subtitle ?? '', file: it.script_file, notebook: it.notebook.map((n: { label: string; value: string }) => [n.label, n.value]),
-    script, questions, checkpoint: cp, parts: 5,
+    script, questions, checkpoint: cp, parts,
   };
 }
 /* Every V3 track, in this player's format. App ids: <prefix>_p{phase}_l{part}; checkpoints use _c{part}, or the track's
@@ -150,7 +153,7 @@ function fromV3(it: any, phase: number, phaseTitle: string, tr: V3Track): V2Less
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const addV3 = (data: any, tr: V3Track) => { for (const ph of data.phases) for (const it of ph.items) {
   if (it.status) continue;
-  const l = fromV3(it, ph.phase, ph.title, tr);
+  const l = fromV3(it, ph.phase, ph.title, tr, ph.items.filter((x: { type: string }) => x.type === 'lesson').length);
   if (tr.checkpointId && l.checkpoint) l.id = tr.checkpointId(l.phase);
   LESSONS[l.id] = l;
 } };
@@ -159,6 +162,7 @@ addV3(HX_PY, { prefix: 'hx_py', lang: 'py', domain: 'health', name: 'Healthcare 
 addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R', checkpointId: (n) => `hx_r_cp${n}` });
 addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python', checkpointId: (n) => `fin_py_cp${n}` });
 addV3(ENG_PY, { prefix: 'eng_py', lang: 'py', domain: 'eng', name: 'Engineering Python', checkpointId: (n) => `eng_py_cp${n}` });
+addV3(GEN_PY, { prefix: 'gen_py', lang: 'py', domain: 'gen', name: 'General Python', checkpointId: (n) => `gen_py_cp${n}` });
 
 /** The label, icon and science-note wording for each field. */
 const FIELD = {
@@ -166,6 +170,7 @@ const FIELD = {
   eng: { chip: 'Engineering', icon: 'flash-outline' as const, tap: 'Tap for the engineering.', track: 'flash' as const },
   health: { chip: 'Healthcare', icon: 'heart-outline' as const, tap: 'Tap for the clinical context.', track: 'heart' as const },
   fin: { chip: 'Finance', icon: 'cash-outline' as const, tap: 'Tap for the finance context.', track: 'cash' as const },
+  gen: { chip: 'Coding', icon: 'code-slash-outline' as const, tap: 'Tap for the context.', track: 'code-slash' as const },
 };
 const field = (l: V2Lesson) => FIELD[l.domain ?? 'bio'];
 

@@ -21,4 +21,6 @@ export const CONTENT: Record<string, unknown> = {
   "healthcare_r_v3": require('../../assets/content/healthcare_r_v3.json'),
   "track_fin_py": require('../../assets/content/track_fin_py.json'),
   "finance_python_v3": require('../../assets/content/finance_python_v3.json'),
+  "track_gen_py": require('../../assets/content/track_gen_py.json'),
+  "general_python_v3": require('../../assets/content/general_python_v3.json'),
 };

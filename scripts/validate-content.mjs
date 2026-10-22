@@ -75,13 +75,18 @@ function checkQuestion(where, q) {
 for (const name of v3Files) {
   const data = JSON.parse(read(files[name]));
   const ids = new Set();
+  // A track may declare a smaller shape (the general tracks: 4 lessons, no checkpoint yet, plan 2b.0); the rest are 5 + 1.
+  const perPhase = data.track?.lessons_per_phase ?? 5;
+  const wantCheckpoint = data.track?.checkpoints !== false;
   for (const ph of data.phases ?? []) {
     const at = `${name} P${ph.phase}`;
     const items = ph.items ?? [];
     const lessons = items.filter((i) => i.type === 'lesson');
     const cps = items.filter((i) => i.type === 'checkpoint');
-    if (lessons.length !== 5) error(at, `${lessons.length} lessons, needs 5`);
-    if (cps.length !== 1) error(at, `${cps.length} checkpoints, needs exactly 1`);
+    if (lessons.length !== perPhase) error(at, `${lessons.length} lessons, needs ${perPhase}`);
+    if (!wantCheckpoint) {
+      if (cps.length) error(at, `${cps.length} checkpoints, but the track declares none`);
+    } else if (cps.length !== 1) error(at, `${cps.length} checkpoints, needs exactly 1`);
     else {
       if (cps[0].part !== 5) error(at, `checkpoint ${cps[0].id} has part ${cps[0].part}, needs 5`);
       if (items[items.length - 1] !== cps[0]) error(at, `checkpoint ${cps[0].id} is not the last item`);
