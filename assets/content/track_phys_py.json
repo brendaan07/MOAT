@@ -1,0 +1,194 @@
+{
+ "id": "phys_py",
+ "title": "Physics & maths",
+ "language": "Python",
+ "phases": [
+  {
+   "number": 1,
+   "area": "Physics & maths",
+   "project": "Say hello",
+   "picture": "",
+   "skill": "Show messages and store numbers",
+   "parts": [
+    [
+     "Lab screen",
+     "Say hello"
+    ],
+    [
+     "Counting readings",
+     "Say hello"
+    ],
+    [
+     "Labelled meters",
+     "Say hello"
+    ],
+    [
+     "Speeding up",
+     "Say hello"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "phys_py_p1_l1",
+     "part": 1,
+     "title": "Lab screen",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p1_l2",
+     "part": 2,
+     "title": "Counting readings",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p1_l3",
+     "part": 3,
+     "title": "Labelled meters",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p1_l4",
+     "part": 4,
+     "title": "Speeding up",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "phys_py_cp1",
+    "name": "Say hello",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 2,
+   "area": "Physics & maths",
+   "project": "Loops: repeat a step",
+   "picture": "",
+   "skill": "Repeat a step second after second",
+   "parts": [
+    [
+     "Ticks pass",
+     "Loops: repeat a step"
+    ],
+    [
+     "Watch it move",
+     "Loops: repeat a step"
+    ],
+    [
+     "Counting seconds",
+     "Loops: repeat a step"
+    ],
+    [
+     "Lab routine",
+     "Loops: repeat a step"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "phys_py_p2_l1",
+     "part": 1,
+     "title": "Ticks pass",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p2_l2",
+     "part": 2,
+     "title": "Watch it move",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p2_l3",
+     "part": 3,
+     "title": "Counting seconds",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p2_l4",
+     "part": 4,
+     "title": "Lab routine",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "phys_py_cp2",
+    "name": "Loops: repeat a step",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  },
+  {
+   "number": 3,
+   "area": "Physics & maths",
+   "project": "Decisions: if / else",
+   "picture": "",
+   "skill": "Light on or light off",
+   "parts": [
+    [
+     "On or off",
+     "Decisions: if / else"
+    ],
+    [
+     "Fast or slow",
+     "Decisions: if / else"
+    ],
+    [
+     "Sensor check",
+     "Decisions: if / else"
+    ],
+    [
+     "Lab review",
+     "Decisions: if / else"
+    ]
+   ],
+   "code": [],
+   "lessons": [
+    {
+     "id": "phys_py_p3_l1",
+     "part": 1,
+     "title": "On or off",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p3_l2",
+     "part": 2,
+     "title": "Fast or slow",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p3_l3",
+     "part": 3,
+     "title": "Sensor check",
+     "questions": []
+    },
+    {
+     "id": "phys_py_p3_l4",
+     "part": 4,
+     "title": "Lab review",
+     "questions": []
+    }
+   ],
+   "checkpoint": {
+    "id": "phys_py_cp3",
+    "name": "Decisions: if / else",
+    "filename": "",
+    "problem": "",
+    "unlock": [],
+    "questions": []
+   }
+  }
+ ],
+ "cycle2": {
+  "area": "Physics & maths",
+  "project": "More phases on the way",
+  "picture": "",
+  "titles": [],
+  "later": []
+ }
+}

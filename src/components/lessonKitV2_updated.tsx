@@ -26,6 +26,7 @@ import HX_R from '../../assets/content/healthcare_r_v3.json';
 import FIN_PY from '../../assets/content/finance_python_v3.json';
 import ENG_PY from '../../assets/content/engineering_python_v3.json';
 import GEN_PY from '../../assets/content/general_python_v3.json';
+import PHYS_PY from '../../assets/content/physics_python_v3.json';
 
 // ---------------------------------------------------------------- content
 export type V2Pic =
@@ -163,6 +164,7 @@ addV3(HX_R, { prefix: 'hx_r', lang: 'r', domain: 'health', name: 'Healthcare R',
 addV3(FIN_PY, { prefix: 'fin_py', lang: 'py', domain: 'fin', name: 'Finance Python', checkpointId: (n) => `fin_py_cp${n}` });
 addV3(ENG_PY, { prefix: 'eng_py', lang: 'py', domain: 'eng', name: 'Engineering Python', checkpointId: (n) => `eng_py_cp${n}` });
 addV3(GEN_PY, { prefix: 'gen_py', lang: 'py', domain: 'gen', name: 'General Python', checkpointId: (n) => `gen_py_cp${n}` });
+addV3(PHYS_PY, { prefix: 'phys_py', lang: 'py', domain: 'gen', name: 'Physics & maths Python', checkpointId: (n) => `phys_py_cp${n}` });
 
 /** The label, icon and science-note wording for each field. */
 const FIELD = {

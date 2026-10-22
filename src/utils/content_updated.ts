@@ -23,4 +23,6 @@ export const CONTENT: Record<string, unknown> = {
   "finance_python_v3": require('../../assets/content/finance_python_v3.json'),
   "track_gen_py": require('../../assets/content/track_gen_py.json'),
   "general_python_v3": require('../../assets/content/general_python_v3.json'),
+  "track_phys_py": require('../../assets/content/track_phys_py.json'),
+  "physics_python_v3": require('../../assets/content/physics_python_v3.json'),
 };

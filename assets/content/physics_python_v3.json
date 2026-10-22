@@ -1,0 +1,2995 @@
+{
+ "track": {
+  "id": "phys_py",
+  "name": "Physics & maths Python",
+  "language": "Python",
+  "phases": 3,
+  "lessons_per_phase": 4,
+  "checkpoints": false,
+  "item_order_rule": "Each phase has four lessons in order and no checkpoint yet (restructured from the V1 general lessons)."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Say hello",
+   "coding_idea": "Show messages and store numbers",
+   "items": [
+    {
+     "id": "PhysPyP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Lab screen",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Make the lab screen say hello",
+       "value": "\"Hello, lab!\""
+      },
+      {
+       "label": "What does the lab screen show?",
+       "value": "Drop"
+      },
+      {
+       "label": "Build the line that shows: Star…",
+       "value": "\"Start timer\""
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Drop, Land"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Lab screen",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Make the lab screen say hello",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words go inside quote marks. Then print shows them on the lab screen.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "print() shows whatever is inside the brackets.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Hello, lab!\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Hello, lab!",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "(Hello, lab!)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "hello, lab!",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the lab screen show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "print shows the words between the quote marks. The quote marks themselves are not shown.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"Drop\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Drop",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"Drop\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "print",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows: Start timer",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with print, then brackets, and put the words inside quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(___)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Start timer\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Start timer",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words need quote marks. Fix: print(\"Go!\")",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "print(\"Drop\")",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "print(\"Land\")",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(Go!)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "print(\"Drop\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "print(\"Land\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "print(\"Go!\")",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "print(Go!)",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The computer runs the lines from top to bottom, so the first message shows first.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"Drop\")",
+        "print(\"Land\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Drop, Land",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Drop",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Land, Drop",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Counting readings",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "12"
+      },
+      {
+       "label": "True or false: this shows 7 + 5.",
+       "value": "True"
+      },
+      {
+       "label": "There are 7 readings, then 5 mo…",
+       "value": "print(7 + 5)"
+      },
+      {
+       "label": "What shows?",
+       "value": "12"
+      },
+      {
+       "label": "Build a line that shows 6 times…",
+       "value": "*"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Counting readings",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without quote marks, Python does the maths: 7 + 5 = 12.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Without quote marks, Python does the maths.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(7 + 5)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "12",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "7 + 5",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "75",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 7 + 5.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make it a message. The words show, and no adding happens.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"7 + 5\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "There are 7 readings, then 5 more come. Which line shows 12?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Leave off the quote marks so Python adds: 7 + 5 = 12.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "print(7 + 5)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "print(7 - 5)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "print(\"7 + 5\")",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "20 - 8 = 12.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(20 - 8)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "12",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "28",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "20 - 8",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build a line that shows 6 times 7",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Python uses * for times. 6 * 7 = 42.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Python uses * for times.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(6 ___ 7)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "*",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "x",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Labelled meters",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Put 30 metres per second in the…",
+       "value": "="
+      },
+      {
+       "label": "What shows?",
+       "value": "30"
+      },
+      {
+       "label": "What shows?",
+       "value": "45"
+      },
+      {
+       "label": "True or false: this shows mass.",
+       "value": "True"
+      },
+      {
+       "label": "Which line does this: show what…",
+       "value": "print(speed)"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Labelled meters",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Put 30 metres per second in the box labelled speed",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "One = puts a value into the box. Two == would ask a question instead.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "A variable is a labelled box that holds a value.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed ___ 30"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "==",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "speed holds 30, so print(speed) shows 30.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 30",
+        "print(speed)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "30",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"speed\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "speed",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The newest value replaces the old one. The box now holds 45.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 30",
+        "speed = 45",
+        "print(speed)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "45",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "30",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "75",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows mass.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make mass a word, so the word shows and not what the box holds.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "mass = 5",
+        "print(\"mass\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: show what the box holds?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "= stores a value. print(name) shows the value. Quote marks show the name itself.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "print(speed)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed = 30",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "speed = 45",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "print(\"speed\")",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Speeding up",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "The rocket gains 10 m/s. Which…",
+       "value": "speed = speed + 10"
+      },
+      {
+       "label": "What shows?",
+       "value": "45"
+      },
+      {
+       "label": "Friction takes away 15 m/s. Bui…",
+       "value": "="
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: take away…",
+       "value": "energy = energy - 1"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Speeding up",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The rocket gains 10 m/s. Which line updates speed?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, add 10, and put it back in the same box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Take the old value, change it, and put it back in the same box.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 50"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "speed = speed + 10",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "speed = 10",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "speed + 10",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "60 - 15 = 45.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 60",
+        "speed = speed - 15",
+        "print(speed)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "45",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "75",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "60",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Friction takes away 15 m/s. Build the line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, subtract 15, and put it back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed ___ speed - 15"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "=",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The + needs a number after it. Fix: distance = distance + 4",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "distance = 3",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "distance = distance +",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(distance)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "distance = 3",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "distance = distance + 4",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "distance = distance +",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(distance)",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: take away 1?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "+ adds, - takes away, and * multiplies. The new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "energy = energy - 1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "energy = energy + 1",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "energy = energy * 2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "energy = energy + 10",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "phase": 2,
+   "title": "Loops: repeat a step",
+   "coding_idea": "Repeat a step second after second",
+   "items": [
+    {
+     "id": "PhysPyP2L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Ticks pass",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a step second after second.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "How many times does Tick show?",
+       "value": "5"
+      },
+      {
+       "label": "The timer must tick 4 times. Fi…",
+       "value": "4"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Spin, Spin, Stop"
+      },
+      {
+       "label": "Build the first line of a loop…",
+       "value": "range(6)"
+      },
+      {
+       "label": "True or false: this shows Beep,…",
+       "value": "False"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Ticks pass",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many times does Tick show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The indented line runs once each time round. range(5) means 5 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "The indented line repeats each time round.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(5):",
+        "    print(\"Tick\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "6",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "The timer must tick 4 times. Fill the blank.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(4) repeats 4 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(___):",
+        "    print(\"Fall\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Only the indented line repeats. The last line runs once, after the loop.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(2):",
+        "    print(\"Spin\")",
+        "print(\"Stop\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Spin, Spin, Stop",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Spin, Stop, Spin, Stop",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Spin, Stop",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the first line of a loop that runs 6 times",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "A loop starts with for, a name, in, range(6) and a colon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in ___:"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "range(6)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "range(7)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows Beep, Done, Beep, Done, Beep, Done.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Only the indented line repeats. Beep shows 3 times, then Done shows once.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(3):",
+        "    print(\"Beep\")",
+        "print(\"Done\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "False",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP2L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Watch it move",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a step second after second.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "A ball rolls 5 m every second,…",
+       "value": "25"
+      },
+      {
+       "label": "A battery loses 10 units every…",
+       "value": "20"
+      },
+      {
+       "label": "Each step doubles the number. W…",
+       "value": "16"
+      },
+      {
+       "label": "The ball should roll 4 m every…",
+       "value": "4"
+      },
+      {
+       "label": "True or false: this shows 3.",
+       "value": "True"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Watch it move",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "A ball rolls 5 m every second, starting at 10 m. How far is it at the end?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round adds 5: 10 → 15 → 20 → 25.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Follow the loop one round at a time.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "distance = 10",
+        "for second in range(3):",
+        "    distance = distance + 5",
+        "print(distance)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "25",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "20",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "15",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "A battery loses 10 units every second, starting with 50. How much is left?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round takes away 10: 50 → 40 → 30 → 20.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "charge = 50",
+        "for second in range(3):",
+        "    charge = charge - 10",
+        "print(charge)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "20",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "50",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "40",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Each step doubles the number. What shows at the end?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round doubles it: 2 → 4 → 8 → 16.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "number = 2",
+        "for second in range(3):",
+        "    number = number * 2",
+        "print(number)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "16",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "8",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "12",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "The ball should roll 4 m every second. Fill the blank.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round adds the blank. To go up by 4, the blank must be 4.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "distance = 1",
+        "for second in range(3):",
+        "    distance = distance + ___"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 3.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "total goes up by 1 each round, and the loop runs 3 times, so it ends at 3.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "total = 0",
+        "for second in range(3):",
+        "    total = total + 1",
+        "print(total)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP2L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Counting seconds",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a step second after second.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What numbers show?",
+       "value": "0, 1, 2"
+      },
+      {
+       "label": "Which line does this: 2, 3, 4?",
+       "value": "range(2, 5)"
+      },
+      {
+       "label": "What numbers show?",
+       "value": "1, 2, 3"
+      },
+      {
+       "label": "What shows?",
+       "value": "15"
+      },
+      {
+       "label": "Show seconds 1 to 6. Build the…",
+       "value": "range(1, 7)"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Counting seconds",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What numbers show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(3) starts at 0 and stops before 3: 0, 1, 2.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "range(3) starts counting at 0, not 1.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(3):",
+        "    print(second)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "0, 1, 2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0, 1, 2, 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "1, 2, 3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: 2, 3, 4?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(n) starts at 0. range(a, b) starts at a and stops just before b.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "range(2, 5)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "range(1, 4)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "range(1, 5)",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "range(5)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What numbers show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(1, 4) starts at 1 and stops before 4.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(1, 4):",
+        "    print(second)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1, 2, 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "0, 1, 2, 3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "1, 2, 3, 4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "1 + 2 + 3 + 4 + 5 = 15.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "total = 0",
+        "for second in range(1, 6):",
+        "    total = total + second",
+        "print(total)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "15",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "21",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show seconds 1 to 6. Build the first line of the loop.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(1, 7) starts at 1 and stops before 7, so it counts 1 to 6.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in ___:"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "range(1, 7)",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "range(1, 6)",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP2L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Lab routine",
+     "person": "Your coding coach",
+     "intro": "Loops: repeat a step: Repeat a step second after second.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows, in order?",
+       "value": "Charge, Release, Charge, Re…"
+      },
+      {
+       "label": "The experiment must run for 6 s…",
+       "value": "for second in range(6):"
+      },
+      {
+       "label": "What shows?",
+       "value": "80"
+      },
+      {
+       "label": "This should show Tick 3 times.…",
+       "value": "fixed"
+      },
+      {
+       "label": "How many lines show in total?",
+       "value": "6"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Lab routine",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Both indented lines repeat together, in order, every round.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(2):",
+        "    print(\"Charge\")",
+        "    print(\"Release\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Charge, Release, Charge, Release",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Charge, Release",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Charge, Charge, Release, Release",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The experiment must run for 6 seconds. Which loop fits?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(6) repeats 6 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "for second in range(6):",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "for second in range(7):",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "for second in range(5):",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Each round adds 10: 40 → 50 → 60 → 70 → 80.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "energy = 40",
+        "for second in range(4):",
+        "    energy = energy + 10",
+        "print(energy)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "80",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "50",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "90",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "This should show Tick 3 times. Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The first line of a loop must end with a colon. Fix: for second in range(3):",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "The first line of a loop ends with a colon.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "for second in range(3)",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "    print(\"Tick\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "a",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "f0",
+          "replacement": "for second in range(3):",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "for second in range(3)",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "    print(\"Tick\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many lines show in total?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3 rounds with 2 lines each is 6 lines.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(3):",
+        "    print(\"Charge\")",
+        "    print(\"Release\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "phase": 3,
+   "title": "Decisions: if / else",
+   "coding_idea": "Light on or light off",
+   "items": [
+    {
+     "id": "PhysPyP3L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "On or off",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Light on or light off.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "Bright"
+      },
+      {
+       "label": "What shows?",
+       "value": "Dark"
+      },
+      {
+       "label": "True or false: == asks \"are the…",
+       "value": "True"
+      },
+      {
+       "label": "Build: if the light is on",
+       "value": "=="
+      },
+      {
+       "label": "Fill the blank so it checks the…",
+       "value": "=="
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "On or off",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The light is on, so the indented line runs.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "The indented line runs only when the check is true.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "light = \"on\"",
+        "if light == \"on\":",
+        "    print(\"Bright\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Bright",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "on",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The light is not on, so the else line runs.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "light = \"off\"",
+        "if light == \"on\":",
+        "    print(\"Bright\")",
+        "else:",
+        "    print(\"Dark\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Dark",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Bright",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "off",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: == asks \"are these the same?\"",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "== asks a question: are these the same? A single = stores a value.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "if light == \"on\":"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build: if the light is on",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with if, then the name, ==, the word in quote marks, and a colon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "if light ___ \"on\":"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "==",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "=",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Fill the blank so it checks the light",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "== asks whether the two things are the same.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "light = \"on\"",
+        "if light ___ \"on\":",
+        "    print(\"Bright\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "==",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "+",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "=",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP3L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Fast or slow",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Light on or light off.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "Fast"
+      },
+      {
+       "label": "What shows?",
+       "value": "Low power"
+      },
+      {
+       "label": "Which line does this: is less t…",
+       "value": "<"
+      },
+      {
+       "label": "Show Boiling when temp is over…",
+       "value": ">"
+      },
+      {
+       "label": "What shows?",
+       "value": "Right angle"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Fast or slow",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "30 is more than 20, so the message shows.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "> means more than. < means less than.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "speed = 30",
+        "if speed > 20:",
+        "    print(\"Fast\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Fast",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "30",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3 is less than 5, so the first message runs.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "voltage = 3",
+        "if voltage < 5:",
+        "    print(\"Low power\")",
+        "else:",
+        "    print(\"Powered\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Low power",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Powered",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: is less than?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "> and < compare sizes. == checks for the same. >= also counts when they are equal.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "<",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": ">",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "==",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": ">=",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Show Boiling when temp is over 100. Fill the blank.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "> means more than.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "temp = 105",
+        "if temp ___ 100:",
+        "    print(\"Boiling\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "=",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "<",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": ">= is also true when the two are equal, and 90 equals 90.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "angle = 90",
+        "if angle >= 90:",
+        "    print(\"Right angle\")",
+        "else:",
+        "    print(\"Not right\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Right angle",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Not right",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP3L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Sensor check",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Light on or light off.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "4"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Move, Bounce, Move"
+      },
+      {
+       "label": "A cup of tea cools 1 degree a m…",
+       "value": "100"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows?",
+       "value": "3"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Sensor check",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "It goes up only while it is below 4: 0 → 1 → 2 → 3 → 4 → 4 → 4.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "charge = 0",
+        "for second in range(6):",
+        "    if charge < 4:",
+        "        charge = charge + 1",
+        "print(charge)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "6",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The loop counts 1, 2, 3. Only 2 matches, so Bounce shows once.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(1, 4):",
+        "    if second == 2:",
+        "        print(\"Bounce\")",
+        "    else:",
+        "        print(\"Move\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Move, Bounce, Move",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Bounce, Move, Bounce",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Move, Move, Move",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "A cup of tea cools 1 degree a minute until it reaches 100. What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "It drops by 1 while it is above 100, then stops: 102 → 101 → 100.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "temp = 102",
+        "for step in range(3):",
+        "    if temp > 100:",
+        "        temp = temp - 1",
+        "print(temp)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "100",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "99",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "101",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "One = stores a value. To ask a question, use ==. Fix: if light == \"on\":",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Asking a question needs two equals signs.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "light = \"on\"",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "if light = \"on\":",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(\"Bright\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "light = \"on\"",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if light == \"on\":",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if light = \"on\":",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(\"Bright\")",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The loop counts 0 to 5. Only 3, 4, 5 are more than 2, so count is 3.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "count = 0",
+        "for second in range(6):",
+        "    if second > 2:",
+        "        count = count + 1",
+        "print(count)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "6",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "PhysPyP3L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Lab review",
+     "person": "Your coding coach",
+     "intro": "Decisions: if / else: Light on or light off.",
+     "script_file": "lesson.py",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "Land"
+      },
+      {
+       "label": "What shows?",
+       "value": "8"
+      },
+      {
+       "label": "True or false: this shows Tick.",
+       "value": "False"
+      },
+      {
+       "label": "What shows?",
+       "value": "Dark"
+      },
+      {
+       "label": "Build a line that checks if spe…",
+       "value": ">"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Lab review",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "print shows the words between the quote marks.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "print(\"Land\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Land",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "print",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "\"Land\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "6 + 2 = 8, and the new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "charge = 6",
+        "charge = charge + 2",
+        "print(charge)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "8",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "6",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows Tick.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "range(2) repeats the line twice, so Tick shows 2 times.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "for second in range(2):",
+        "    print(\"Tick\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "False",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "True",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The light is off, so the first message shows.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "light = \"off\"",
+        "if light == \"off\":",
+        "    print(\"Dark\")",
+        "else:",
+        "    print(\"Bright\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Dark",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "off",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Bright",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build a line that checks if speed is more than 20",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with if, then the name, >, the number, and a colon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "if speed ___ 20:"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": ">",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "<",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
