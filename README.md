@@ -17,8 +17,9 @@ The project targets Expo SDK 57. If your Expo Go app supports a different SDK, r
 first. If the phone can't reach your computer over Wi-Fi or a hotspot, `npx expo start --tunnel` works through
 `@expo/ngrok`.
 
-More notes are in `docs/`: the backlog of features decided but not built, the Playwright testing notes, and the
-handover notes for the Healthcare and Finance content.
+More notes are in `docs/`: the backlog of features decided but not built, the Playwright testing notes, the handover
+notes for the Healthcare and Finance content, the migration plan that produced this layout (`v3-migration-plan.md`)
+and its final review against the `expo-web` branch (`expo-web-parity.md`).
 
 ## Web version and Vercel
 

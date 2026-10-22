@@ -2,8 +2,8 @@
 
 Written 2026-10-21, from an audit of branch `v3` at commit `d19aad1`.
 
-> **Status (2026-10-22): steps 1 to 3.6 are done** on branch `v3-cleanup`; only 3.7 (the parity review against
-> expo-web) remains. This file is now a record: the README describes the app as it is, `docs/backlog.md` holds what was
+> **Status (2026-10-22): done.** Every step, 1 to 3.7, is complete on branch `v3-cleanup`; `docs/expo-web-parity.md`
+> is the final review against expo-web. This file is now a record: the README describes the app as it is, `docs/backlog.md` holds what was
 > decided but not built, and §8 logs what each step found. File and function names in §1 to §7 are as they were before
 > the cleanup.
 
@@ -983,3 +983,11 @@ Each step adds here what it found or left for a later step (file, why, which ste
   README rewritten along expo-web's: structure, tracks and content (ids, adding a track, the three scripts), web build
   and Vercel, where each feature lives; the October 2026 notes, the "not verified" section and everything about the
   general path, mini-games, paywall, evolution and the API client are gone. The handover docs are kept as written.
+- (step 3.7) Parity review: `docs/expo-web-parity.md` accounts for all 106 files in expo-web's `src/` (63 direct
+  equivalents, 6 folded, merged or replaced, 37 moot) and records the principle checks: only the loader reads content
+  and only `jsonStorage` touches AsyncStorage, no 5-line block is repeated, the largest file is 255 lines, and the
+  plan's leftover search finds nothing. Every track in the registry played its phase-1 lesson 1, and every track with
+  a checkpoint its phase-1 checkpoint, to the end in the web preview (18 runs, 5 stars each, recap shown, no console
+  errors), driven by a page script that answered from the content. No gaps needed code, so there is no parity-fixes
+  commit. Noted, not changed: the path and phase screens' "lessons didn't load" fallback names `assets/content`, which
+  is developer wording a learner would only see if a bundled track file were missing.
