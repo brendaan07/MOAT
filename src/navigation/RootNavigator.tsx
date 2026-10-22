@@ -13,6 +13,7 @@ import OnboardingScreen from '../screens/OnboardingScreen';
 import TrackFlowScreen from '../screens/track/TrackFlowScreen';
 import TrackPhaseScreen from '../screens/track/TrackPhaseScreen';
 
+/** The root stack's screens and their params. */
 export type RootStackParamList = {
   Main: undefined;
   /** No lessonId means the phase's checkpoint. */
@@ -37,7 +38,7 @@ const linking: LinkingOptions<RootStackParamList> = {
   },
 };
 
-/** RootView in MOATApp.swift: splash for 1.5 seconds, then onboarding or the main app. */
+/** The splash for at least 1.5 seconds, then onboarding (also for a saved pair with no track) or the main app. */
 export default function RootNavigator() {
   const store = useAppStore();
   const track = useTrackStore();

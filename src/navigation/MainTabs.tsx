@@ -10,7 +10,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 type TabParamList = { Learn: undefined; Workshop: undefined; Profile: undefined };
 const Tab = createBottomTabNavigator<TabParamList>();
 
-/** The three tabs at the bottom (MainTabView_updated.swift). Learn is the track path: every learner has a track (plan 2b.3). */
+/** The three tabs at the bottom. Learn is the track path: every learner has a track. */
 export default function MainTabs() {
   return (
     <Tab.Navigator

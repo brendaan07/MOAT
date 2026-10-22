@@ -7,7 +7,7 @@ import { Enter } from './animations';
 import { CloseButton } from '../CloseButton';
 
 /** Text with `code` between backticks shown as dark code chips. */
-export function NoteText({ text, size = 15, bold = false }: { text: string; size?: number; bold?: boolean }) {
+function NoteText({ text, size = 15, bold = false }: { text: string; size?: number; bold?: boolean }) {
   const parts = text.split('`');
   return (
     <Text style={[body(size, bold), { lineHeight: size * 1.42 }]}>

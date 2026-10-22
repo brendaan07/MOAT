@@ -1,7 +1,7 @@
 // The study areas onboarding offers, and the names older versions saved.
 export const STUDY_AREAS = ['Healthcare', 'Biology research', 'Engineering', 'Business & finance', 'Physics & maths', 'Arts & humanities', 'General'];
 
-/** Turns a study area saved by an older version into today's name (StudyAreas_updated.swift). */
+/** Turns a study area saved by an older version into today's name. */
 export function canonicalArea(name: string): string {
   switch (name) {
     case 'Life sciences':

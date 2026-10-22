@@ -1,7 +1,7 @@
 // Colours, fonts and text styles.
 import { Platform, TextStyle } from 'react-native';
 
-/** Colours from Theme.swift and TrackKit_updated.swift (they match the design canvas). */
+/** The app's colours (they match the design canvas). */
 export const C = {
   cream: '#FBF4E4',
   card: '#FFFDF6',
@@ -62,7 +62,7 @@ const FONTS = {
 export const heading = (size: number): TextStyle => ({ fontSize: size, fontFamily: FONTS.heading, color: C.navy });
 /** Body text: Atkinson Hyperlegible, regular or bold. */
 export const body = (size: number, bold = false): TextStyle => ({ fontSize: size, fontFamily: bold ? FONTS.bodyBold : FONTS.body, color: C.navy });
-/** Bold monospaced code text (TK.mono). */
+/** Bold monospaced code text. */
 export const monoBold = (size: number): TextStyle => ({ fontSize: size, fontFamily: mono, fontWeight: '700', color: C.navy });
-/** The MOAT wordmark font, registered as "Horizon-Bold" like FontLoader in the Swift app. */
+/** The MOAT wordmark font, registered as "Horizon-Bold" in App.tsx. */
 export const wordmark = (size: number): TextStyle => ({ fontSize: size, fontFamily: 'Horizon-Bold' });

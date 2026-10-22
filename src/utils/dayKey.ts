@@ -1,4 +1,4 @@
-/** Day labels like "2026-09-21" for streaks and daily goals (DayKey in UserProgress.swift). */
+/** Day labels like "2026-09-21" in local time, for streaks and daily goals. */
 const label = (d: Date) => {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, '0');

@@ -3,7 +3,6 @@ import { defaultProgress, UserProgress } from '../types/models';
 import { canonicalArea } from '../utils/studyAreas';
 import { jsonStorage } from './jsonStorage';
 
-// Same key and the same JSON shape as UserDefaults in the Swift app.
 const KEY = 'moat.progress.v1';
 
 /** Reads saved data field by field, so a new field in a later version never wipes progress. Fields older versions

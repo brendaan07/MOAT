@@ -9,8 +9,9 @@ import { TrackStoreProvider } from './src/hooks/useTrackStore';
 import RootNavigator from './src/navigation/RootNavigator';
 import { C } from './src/utils/theme';
 
+/** Loads the fonts, then shows the app inside its providers. */
 export default function App() {
-  // The MOAT wordmark font (FontLoader.registerFonts in the Swift app).
+  // The MOAT wordmark font.
   // Baloo 2 and Atkinson Hyperlegible are the canvas fonts (both SIL Open Font License, see assets/fonts).
   const [fontsLoaded] = useFonts({
     'Horizon-Bold': require('./assets/fonts/Horizon.otf'),

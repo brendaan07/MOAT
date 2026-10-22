@@ -28,7 +28,7 @@ type Step =
 type Props = NativeStackScreenProps<RootStackParamList, 'TrackFlow'>;
 
 /** One lesson or checkpoint run: intro → player → recap → lesson done → (project built) → checkpoint intro →
- *  checkpoint → checkpoint recap → checkpoint result (TrackFlowView). */
+ *  checkpoint → checkpoint recap → checkpoint result. */
 export default function TrackFlowScreen({ route, navigation }: Props) {
   const track = useTrackStore();
   const phase = track.track?.phases.find((p) => p.number === route.params.phase);

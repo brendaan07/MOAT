@@ -5,7 +5,7 @@ import Svg, { Circle, Defs, Pattern, Rect } from 'react-native-svg';
 import { BORDER, C, heading } from '../utils/theme';
 import { IMAGES } from '../utils/images';
 
-/** Card look: fill, navy outline, optional hard shadow 3pt below (CardStyle in Theme.swift). */
+/** Card look: fill, navy outline, optional hard shadow 3pt below. */
 export function Card({
   fill = C.card,
   radius = 16,

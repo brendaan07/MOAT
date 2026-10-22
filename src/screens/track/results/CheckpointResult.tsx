@@ -20,7 +20,7 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
   const last = phase.number >= (track.track?.phases.length ?? phase.number);
   const complete = track.phaseComplete(phase);
   const perfect = isPerfect(result);
-  // What passing opened: the track file's text, else built from the next phase (plan 3.4); a last phase without its
+  // What passing opened: the track file's text, else built from the next phase; a last phase without its
   // own text opens nothing yet, so it shows no card.
   const phases = track.track?.phases ?? [];
   const next = phases[phases.findIndex((p) => p.number === phase.number) + 1];

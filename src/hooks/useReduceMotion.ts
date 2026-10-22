@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { AccessibilityInfo } from 'react-native';
 
-/** The Reduce Motion setting (accessibilityReduceMotion in SwiftUI). */
+/** The system Reduce Motion setting, kept up to date while the app runs. */
 export function useReduceMotion() {
   const [reduce, setReduce] = useState(false);
   useEffect(() => {

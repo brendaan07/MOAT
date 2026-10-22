@@ -4,6 +4,7 @@ import type { Ionicons } from '@expo/vector-icons';
 import { canonicalArea } from '../utils/studyAreas';
 import type { CodeLang, Domain } from './types';
 
+/** One track in the registry. */
 export interface TrackEntry {
   /** The study area and language that open this track. */
   area: string;
@@ -27,7 +28,7 @@ export const TRACKS: TrackEntry[] = [
   { area: 'Healthcare', language: 'R', trackFile: 'track_hx_r', lessonFile: 'healthcare_r', prefix: 'hx_r', domain: 'health', name: 'Healthcare R', checkpointId: (n) => `hx_r_cp${n}` },
   { area: 'Engineering', language: 'Python', trackFile: 'track_eng_py', lessonFile: 'engineering_python', prefix: 'eng_py', domain: 'eng', name: 'Engineering Python', checkpointId: (n) => `eng_py_cp${n}` },
   { area: 'Business & finance', language: 'Python', trackFile: 'track_fin_py', lessonFile: 'finance_python', prefix: 'fin_py', domain: 'fin', name: 'Finance Python', checkpointId: (n) => `fin_py_cp${n}` },
-  // The general tracks: the first general lessons, restructured (4 lessons per phase, no checkpoint yet; plan 2b.0)
+  // The general tracks: 4 lessons per phase and no checkpoint yet (each declares that shape in its lesson file)
   { area: 'Physics & maths', language: 'Python', trackFile: 'track_phys_py', lessonFile: 'physics_python', prefix: 'phys_py', domain: 'gen', name: 'Physics & maths Python', checkpointId: (n) => `phys_py_cp${n}` },
   { area: 'Arts & humanities', language: 'Python', trackFile: 'track_arts_py', lessonFile: 'arts_python', prefix: 'arts_py', domain: 'gen', name: 'Arts & humanities Python', checkpointId: (n) => `arts_py_cp${n}` },
   { area: 'General', language: 'Python', trackFile: 'track_gen_py', lessonFile: 'general_python', prefix: 'gen_py', domain: 'gen', name: 'General Python', checkpointId: (n) => `gen_py_cp${n}` },

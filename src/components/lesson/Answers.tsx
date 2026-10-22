@@ -6,6 +6,7 @@ import { BORDER, C, monoBold } from '../../utils/theme';
 import type { PlayerQuestion } from '../../content/types';
 import { pressDown } from './animations';
 
+/** How an option looks right now: its fill, opacity, and whether it shows a tick or a cross. */
 export type Look = { bg: string; op: number; ok: boolean; x: boolean };
 
 /** A tick or a cross on a checked option. */

@@ -29,6 +29,7 @@ export const displayStreak = (p: UserProgress) =>
 
 // ---------- track progress ----------
 
+/** Whether a lesson or checkpoint has been finished at least once. */
 export const isFinished = (p: TrackProgress, id: string) => p.finished.includes(id);
 /** The best stars ever earned on a lesson or checkpoint. */
 export const starsFor = (p: TrackProgress, id: string) => p.bestStars[id] ?? 0;

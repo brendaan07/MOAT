@@ -1,6 +1,7 @@
-// The learner's saved progress and run results (UserProgress.swift, TrackData_updated.swift). Content types live in
+// The learner's saved progress and run results. Content types live in
 // content/types.ts.
 
+/** Blob's expressions (one picture each). */
 export type RobotMood = 'neutral' | 'excited' | 'surprised' | 'wink' | 'closed' | 'hearts' | 'confused';
 /** The robot's picture with a given expression, for example "blob_excited". */
 export const robotImage = (mood: RobotMood) => `blob_${mood}`;
@@ -49,6 +50,7 @@ export interface TrackProgress {
 /** A new learner's track progress. */
 export const defaultTrackProgress = (): TrackProgress => ({ finished: [], bestStars: {}, paid: [], secondsByDay: {} });
 
+/** What one lesson or checkpoint run earned. */
 export interface RunResult {
   itemID: string;
   stars: number;

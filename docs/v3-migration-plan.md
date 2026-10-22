@@ -2,6 +2,11 @@
 
 Written 2026-10-21, from an audit of branch `v3` at commit `d19aad1`.
 
+> **Status (2026-10-22): steps 1 to 3.6 are done** on branch `v3-cleanup`; only 3.7 (the parity review against
+> expo-web) remains. This file is now a record: the README describes the app as it is, `docs/backlog.md` holds what was
+> decided but not built, and §8 logs what each step found. File and function names in §1 to §7 are as they were before
+> the cleanup.
+
 Each step below is meant for **one agent session, run in order**, with a check after every step. An agent doing a step
 should read **§0 (rules)**, **§1 (how the app works today)** and **its own step**, and touch nothing that belongs to
 another step. If a step finds work that belongs to a later step, it writes it under "Notes for later steps" (§8) and leaves
@@ -968,3 +973,13 @@ Each step adds here what it found or left for a later step (file, why, which ste
   them would drop saved progress). Left for 3.6: Swift file names in comments, the README's older sections, and
   `docs/HANDOFF_healthcare_v3.md`/`docs/INTEGRATION_moat4new.md`, which name files as they were then (kept unedited per
   the step 1 decision). Still bundled but unused: `robot_logo_filled_<mood>.png` (kept as the app logo set, per 3.1).
+- (step 3.6) Config and docs. `package.json` has `expo` `~57.0.28` as expo-web (57.0.31 installed; `expo install
+  --fix` reports everything up to date). No comment in `src` names Swift files, Swift types or plan steps any more,
+  and every file has a header and every export a doc line. knip (run once with `npx --yes knip`): `NoteText`,
+  `LESSON_IMAGES` and 13 content types were only used in their own files and are now file-local; `scripts/convert-v1.mjs`
+  is deleted (its V1 inputs went in 3.1; recover with `git show e5c2edf:scripts/convert-v1.mjs`). Kept on purpose: the
+  three scripts knip lists as unused files (command-line tools), `@expo/ngrok` (loaded by `expo start --tunnel`, as in
+  expo-web), and knip's "unlisted" `expo-updates`/`expo-system-ui` (a guess from `app.json`; nothing imports them).
+  README rewritten along expo-web's: structure, tracks and content (ids, adding a track, the three scripts), web build
+  and Vercel, where each feature lives; the October 2026 notes, the "not verified" section and everything about the
+  general path, mini-games, paywall, evolution and the API client are gone. The handover docs are kept as written.
