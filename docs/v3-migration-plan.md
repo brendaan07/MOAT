@@ -761,3 +761,16 @@ Each step adds here what it found or left for a later step (file, why, which ste
   sprites in `assets/images/fruits/` are now registered in `imageMapV3.ts` and stay in use, so step 3 must not delete
   them. Now unused: V2 `EngP3L1` in `track_lessons_v2_more.json`, and V2's `Belt` and its `SPRITES` map in
   `picturesV2.tsx`. Delete those in 3.1.
+- (step 2a.4.5, after the last Engineering phase) Every lesson and phase checkpoint in all five tracks (Biology R,
+  Healthcare Python and R, Finance Python, Engineering Python) now has a V3 item, so no track reaches V2 content or the
+  V1 track player. Unused but still referenced, for 3.1:
+  - `src/screens/track/TrackPlayer.tsx`, and the two `TrackPlayer` branches plus `CheckpointIntro` in
+    `TrackFlowScreen_updated.tsx`.
+  - `assets/content/track_bio_r_lessons_v2.json` and `assets/content/track_lessons_v2_more.json` (imported as `RAW`
+    and `MORE` in `lessonKitV2_updated.tsx`).
+  - `src/components/picturesV2.tsx` (`PictureV2`, plus the V2-only picture cases in `lessonKitV2_updated.tsx`'s
+    `Picture`: strip, readout, rows, bars, tubes, ph, machine, msg).
+  - The V1 `questions` still stored in `track_bio_r_updated.json` lessons (the loader replaces them from V3).
+  Keep `assets/images/fruits/` (used by the V3 belt).
+- (step 2a.4.5) On a 5-phase track the final checkpoint reads "Cycle 1 complete / Start cycle 2", which is right. The
+  "Start phase 2" wording noted for 2a.1 only affects tracks shorter than 5 phases (Finance).

@@ -15716,6 +15716,3407 @@
      ]
     }
    ]
+  },
+  {
+   "phase": 5,
+   "title": "Design checks",
+   "coding_idea": "Applied calculations",
+   "items": [
+    {
+     "id": "EpP5L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Shelf load",
+     "person": "Structural engineer",
+     "intro": "A steel shelf is rated for 500 kg. Each crate weighs 42 kg; check the load before anyone stacks it.",
+     "script_file": "shelf.py",
+     "start_button": "Check the shelf",
+     "notebook": [
+      {
+       "label": "11 crates",
+       "value": "462"
+      },
+      {
+       "label": "Typed weight × 12",
+       "value": "510.0"
+      },
+      {
+       "label": "Capped load",
+       "value": "fixed: min()"
+      },
+      {
+       "label": "462 / 42",
+       "value": "11.0"
+      },
+      {
+       "label": "More crates",
+       "value": "fixed: //"
+      }
+     ],
+     "recap": {
+      "title": "Shelf checked",
+      "subtitle": "Multiplying, float() on typed values, min() as a cap, and // for whole items.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What load do 11 crates put on the shelf?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "11 × 42 = 462. Two whole numbers multiply to a whole number, so there's no .0.",
+       "takeaway": "So: int times int stays an int.",
+       "next_bridge": "read a typed weight.",
+       "hint_before_check": "Both numbers are whole.",
+       "code_note": {
+        "title": "Whole numbers",
+        "text": "* on two ints gives an int; / always gives a float."
+       },
+       "science_note": {
+        "title": "Rated loads",
+        "text": "A shelf's rating is the most it may safely carry; engineers check every load against it."
+       },
+       "scene_label": "Crates on the shelf.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          462,
+          "462 kg"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            53,
+            "53?"
+           ],
+           "c": [
+            462,
+            "462.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "11 × 42",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "462",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "crates = 11",
+        "load = crates * 42",
+        "print(load)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "462",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "53",
+         "correct": false,
+         "feedback": "That adds instead of multiplying."
+        },
+        {
+         "id": "c",
+         "label": "462.0",
+         "correct": false,
+         "feedback": "Two ints multiply to an int: 462."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "A crate's weight is typed in as \"42.5\". Work out 12 crates.",
+       "xp": 10,
+       "known_from_earlier": [
+        "text = \"42.5\""
+       ],
+       "explanation_after_check": "float() turns \"42.5\" into 42.5, so 12 crates weigh 510.0 kg: over the rating.",
+       "takeaway": "So: convert typed numbers before the maths.",
+       "next_bridge": "cap the load.",
+       "hint_before_check": "The weight has a decimal point.",
+       "code_note": {
+        "title": "Typed input",
+        "text": "Anything typed arrives as text."
+       },
+       "science_note": {
+        "title": "Measured weights",
+        "text": "Real crates vary; engineers use the weighed value, not the label."
+       },
+       "scene_label": "A weighed crate.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          510,
+          "510.0 kg"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0,
+            "ValueError"
+           ],
+           "c": [
+            0,
+            "text repeated"
+           ],
+           "d": [
+            48,
+            "48?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "weight = ___(text)",
+        "print(weight * 12)"
+       ],
+       "goal_output": [
+        "510.0"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "float",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "int",
+         "correct": false,
+         "feedback": "int() can't read a decimal point: ValueError."
+        },
+        {
+         "id": "c",
+         "label": "str",
+         "correct": false,
+         "feedback": "Text times 12 repeats it: 42.542.542.5…"
+        },
+        {
+         "id": "d",
+         "label": "len",
+         "correct": false,
+         "feedback": "len() counts the 4 characters: 48."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The shelf may carry at most 500 kg. Cap the load.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "max() picks the larger value, so 620 stays 620. min() picks the smaller: the cap, 500.",
+       "takeaway": "So: min(x, limit) caps x at the limit.",
+       "next_bridge": "count crates exactly.",
+       "hint_before_check": "Which function picks the smaller value?",
+       "code_note": {
+        "title": "Caps",
+        "text": "min(value, cap) never goes above cap."
+       },
+       "science_note": {
+        "title": "Load limits",
+        "text": "Software that plans loads caps them at the rating; anything over goes to another shelf."
+       },
+       "scene_label": "Too much on one shelf.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          500,
+          "500 kg"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            620,
+            "620?"
+           ],
+           "c": [
+            500,
+            "500, by luck"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "shelf.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "load = 620",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "capped = max(load, 500)",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(capped)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "capped = min(load, 500)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "capped = max(load, 0)",
+          "correct": false,
+          "feedback": "Still the larger value: 620."
+         },
+         {
+          "id": "f2",
+          "replacement": "capped = load - 500",
+          "correct": false,
+          "feedback": "That's the excess, not the cap: 120."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(500)",
+          "correct": false,
+          "feedback": "500 here, but a 300 kg load would print 500 too."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 500"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many crates make 462 kg?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "462 / 42 is exactly 11, but / always gives a float: 11.0.",
+       "takeaway": "So: / gives a float even when it divides exactly.",
+       "next_bridge": "fix the crate count.",
+       "hint_before_check": "/ always gives a float.",
+       "code_note": {
+        "title": "Division",
+        "text": "/ gives a float; // gives a whole number."
+       },
+       "science_note": {
+        "title": "Checking back",
+        "text": "Dividing the load by one crate's weight is a quick check on the count."
+       },
+       "scene_label": "The load on the shelf.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          462,
+          "11.0"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            462,
+            "11?"
+           ],
+           "c": [
+            462,
+            "11.1?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(462 / 42)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "11.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "11",
+         "correct": false,
+         "feedback": "/ always gives a float: 11.0."
+        },
+        {
+         "id": "c",
+         "label": "11.1",
+         "correct": false,
+         "feedback": "462 / 42 is exactly 11."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "How many more 42 kg crates fit? It prints 0.7142857142857143. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Part of a crate can't go on the shelf, and rounding up would overload it. // keeps whole crates: 0.",
+       "takeaway": "So: // when only whole items count.",
+       "next_bridge": "see your load check.",
+       "hint_before_check": "Only whole crates go on a shelf.",
+       "code_note": {
+        "title": "Whole items",
+        "text": "// rounds down to whole items."
+       },
+       "science_note": {
+        "title": "Rounding the safe way",
+        "text": "Rounding a crate count up adds weight the shelf wasn't rated for."
+       },
+       "scene_label": "30 kg of space left.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          470,
+          "0 more"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            512,
+            "1 more: overloaded"
+           ],
+           "d": [
+            512,
+            "1 more: overloaded"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "shelf.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "load = 470",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "free = 500 - load",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "more = free / 42",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(more)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "more = free // 42",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "more = round(free / 42)",
+          "correct": false,
+          "feedback": "That rounds 0.71 up to 1: 512 kg, overloaded."
+         },
+         {
+          "id": "f2",
+          "replacement": "more = free % 42",
+          "correct": false,
+          "feedback": "That's the leftover kilograms: 30."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(int(more + 1))",
+          "correct": false,
+          "feedback": "That adds a crate the shelf can't take: 1."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 0"
+      }
+     ]
+    },
+    {
+     "id": "EpP5L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Pump flow",
+     "person": "Water engineer",
+     "intro": "A pump moves 3600 litres an hour. Work out the flow per minute and per second for the spec sheet.",
+     "script_file": "pump.py",
+     "start_button": "Size the flow",
+     "notebook": [
+      {
+       "label": "Per minute",
+       "value": "60.0"
+      },
+      {
+       "label": "Per second",
+       "value": "1.0"
+      },
+      {
+       "label": "Conversion",
+       "value": "fixed: / 60"
+      },
+      {
+       "label": "round(2.5), round(3.5)",
+       "value": "2 4"
+      },
+      {
+       "label": "Tanks per hour",
+       "value": "fixed: :.0f"
+      }
+     ],
+     "recap": {
+      "title": "Flow sized",
+      "subtitle": "Unit conversions, round() on halves, and :.0f for a clean spec line.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "How many litres a minute?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3600 / 60 = 60.0 litres a minute; / gives a float.",
+       "takeaway": "So: divide to go to a smaller time unit.",
+       "next_bridge": "convert to seconds.",
+       "hint_before_check": "An hour has 60 minutes.",
+       "code_note": {
+        "title": "Converting units",
+        "text": "Per hour to per minute divides by 60."
+       },
+       "science_note": {
+        "title": "Flow rates",
+        "text": "Spec sheets list flow in more than one unit, because buyers compare pumps differently."
+       },
+       "scene_label": "The pump's rated flow.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Flow in litres per minute",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            40,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            40,
+            80,
+            "#E4F5B8",
+            "spec"
+           ],
+           [
+            80,
+            120,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 120
+         },
+         "correct_state": [
+          60,
+          "60.0 L/min"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            60,
+            "60?"
+           ],
+           "c": [
+            120,
+            "216000?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "per_hour = 3600",
+        "print(per_hour / 60)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "60.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "60",
+         "correct": false,
+         "feedback": "/ always gives a float: 60.0."
+        },
+        {
+         "id": "c",
+         "label": "216000",
+         "correct": false,
+         "feedback": "That multiplies; per minute is smaller than per hour."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Convert to litres a second.",
+       "xp": 10,
+       "known_from_earlier": [
+        "per_min = 60.0"
+       ],
+       "explanation_after_check": "60.0 / 60 = 1.0 litre a second.",
+       "takeaway": "So: each smaller unit divides again.",
+       "next_bridge": "fix a conversion.",
+       "hint_before_check": "A minute has 60 seconds.",
+       "code_note": {
+        "title": "Chained conversions",
+        "text": "Hour to minute to second divides by 60 twice."
+       },
+       "science_note": {
+        "title": "Per second",
+        "text": "Pipe sizing uses litres per second."
+       },
+       "scene_label": "The flow each second.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Flow in litres per second",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.5,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            0.5,
+            1.5,
+            "#E4F5B8",
+            "spec"
+           ],
+           [
+            1.5,
+            3,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 3
+         },
+         "correct_state": [
+          1,
+          "1.0 L/s"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            0.02,
+            "0.0167?"
+           ],
+           "c": [
+            0.06,
+            "0.06?"
+           ],
+           "d": [
+            2.5,
+            "2.5?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "per_sec = per_min / ___",
+        "print(per_sec)"
+       ],
+       "goal_output": [
+        "1.0"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "60",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3600",
+         "correct": false,
+         "feedback": "That divides by an hour's seconds: 0.016666666666666666."
+        },
+        {
+         "id": "c",
+         "label": "1000",
+         "correct": false,
+         "feedback": "1000 converts litres to m³, not minutes: 0.06."
+        },
+        {
+         "id": "d",
+         "label": "24",
+         "correct": false,
+         "feedback": "24 is hours in a day: 2.5."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The spec says 3600.0 litres a second. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Multiplying by 60 goes the wrong way. A second is shorter than a minute, so the flow per second is smaller: / 60.",
+       "takeaway": "So: check a conversion's direction with common sense.",
+       "next_bridge": "round some halves.",
+       "hint_before_check": "Should per second be bigger or smaller than per minute?",
+       "code_note": {
+        "title": "Sanity checks",
+        "text": "If a smaller time unit gives a bigger number, the conversion is upside down."
+       },
+       "science_note": {
+        "title": "Spec errors",
+        "text": "A flow 3600 times too high would size every pipe wrong."
+       },
+       "scene_label": "A spec that can't be right.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Flow in litres per second",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.5,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            0.5,
+            1.5,
+            "#E4F5B8",
+            "spec"
+           ],
+           [
+            1.5,
+            3,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 3
+         },
+         "correct_state": [
+          1,
+          "1.0 L/s"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "3600.0?"
+           ],
+           "c": [
+            3,
+            "60.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "pump.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "per_min = 60.0",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "per_sec = per_min * 60",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(per_sec)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "per_sec = per_min / 60",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "per_sec = per_min * 60 / 60",
+          "correct": false,
+          "feedback": "That undoes itself: 60.0."
+         },
+         {
+          "id": "f2",
+          "replacement": "per_sec = per_min - 60",
+          "correct": false,
+          "feedback": "Subtracting isn't converting: 0.0."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(per_sec // 60)",
+          "correct": false,
+          "feedback": "That divides the wrong value: 60.0."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 1.0"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Python rounds an exact .5 to the even whole number: 2.5 → 2 and 3.5 → 4.",
+       "takeaway": "So: round() sends halves to the even number.",
+       "next_bridge": "tidy the spec line.",
+       "hint_before_check": "An exact half rounds to the even neighbour.",
+       "code_note": {
+        "title": "Banker's rounding",
+        "text": "Rounding halves to even keeps big tables of rounded numbers from drifting up."
+       },
+       "science_note": {
+        "title": "Rounding in specs",
+        "text": "Spec values are rounded once, at the end, so these small shifts don't add up."
+       },
+       "scene_label": "Two rounded flows.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Flow in litres per second",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.5,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            0.5,
+            1.5,
+            "#E4F5B8",
+            "spec"
+           ],
+           [
+            1.5,
+            3,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 3
+         },
+         "correct_state": [
+          2,
+          "2 4"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            2.5,
+            "3 4?"
+           ],
+           "c": [
+            2,
+            "2 3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(round(2.5), round(3.5))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2 4",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3 4",
+         "correct": false,
+         "feedback": "An exact half goes to the even number: 2."
+        },
+        {
+         "id": "c",
+         "label": "2 3",
+         "correct": false,
+         "feedback": "3.5 is a half too, and 4 is even."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The spec sheet should say 3 tanks per hour. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3600 / 1200 is the float 3.0. :.0f shows it with no decimals: 3.",
+       "takeaway": "So: :.0f shows a whole number.",
+       "next_bridge": "see your spec sheet.",
+       "hint_before_check": "Which format shows no decimals?",
+       "code_note": {
+        "title": "Formatting floats",
+        "text": "A format spec changes how a value looks, not the value."
+       },
+       "science_note": {
+        "title": "Clean specs",
+        "text": "\"3.0 tanks\" reads like a measurement; \"3 tanks\" reads like a count."
+       },
+       "scene_label": "The spec line.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Tanks per hour",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            2,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            2,
+            4,
+            "#E4F5B8",
+            "spec"
+           ],
+           [
+            4,
+            6,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 6
+         },
+         "correct_state": [
+          3,
+          "3 tanks"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "3.0 tanks?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "pump.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "tanks = 3600 / 1200",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "print(f\"{tanks} tanks per hour\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "print(f\"{tanks:.0f} tanks per hour\")",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "print(f\"{tanks:.1f} tanks per hour\")",
+          "correct": false,
+          "feedback": "One decimal: 3.0 tanks."
+         },
+         {
+          "id": "f2",
+          "replacement": "print(f\"{tanks}0 tanks per hour\")",
+          "correct": false,
+          "feedback": "That adds a 0 after it: 3.00 tanks."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 3 tanks per hour"
+      }
+     ]
+    },
+    {
+     "id": "EpP5L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Motor power",
+     "person": "Electrical engineer",
+     "intro": "Heat in a motor's winding follows P = I² × R. Check it stays inside the motor's limit.",
+     "script_file": "motor_power.py",
+     "start_button": "Check the winding",
+     "notebook": [
+      {
+       "label": "Heat at 4 A",
+       "value": "40.0 W"
+      },
+      {
+       "label": "4000 mA",
+       "value": "4.0 A"
+      },
+      {
+       "label": "Formula",
+       "value": "fixed: I ** 2 * R"
+      },
+      {
+       "label": "Rounded",
+       "value": "40.5 2.67"
+      },
+      {
+       "label": "90% limit",
+       "value": "fixed: * 0.9"
+      }
+     ],
+     "recap": {
+      "title": "Winding checked",
+      "subtitle": "** before *, unit conversion, round() surprises, and a margin as a multiplier.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "I ** 2 is 16, then 16 × 2.5 = 40.0 W.",
+       "takeaway": "So: ** runs before * and /.",
+       "next_bridge": "convert milliamps.",
+       "hint_before_check": "** comes before *.",
+       "code_note": {
+        "title": "Powers",
+        "text": "** raises to a power and runs first."
+       },
+       "science_note": {
+        "title": "Copper losses",
+        "text": "Current through a winding heats it; doubling the current makes four times the heat."
+       },
+       "scene_label": "The motor winding.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 10 V supply and 2.5 Ω",
+         "args": [
+          10,
+          [
+           2.5
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          4,
+          "40.0 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            4,
+            "20.0?"
+           ],
+           "c": [
+            4,
+            "100.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [
+        {
+         "t": "4² × 2.5",
+         "c": "#FFFDF6"
+        },
+        "=",
+        {
+         "t": "40.0",
+         "c": "#B5E04A"
+        }
+       ],
+       "code": [
+        "I = 4",
+        "R = 2.5",
+        "print(I ** 2 * R)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "40.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "20.0",
+         "correct": false,
+         "feedback": "That's I × 2 × R, doubling instead of squaring."
+        },
+        {
+         "id": "c",
+         "label": "100.0",
+         "correct": false,
+         "feedback": "That squares I × R together."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "The meter reads 4000 mA. Convert to amps.",
+       "xp": 10,
+       "known_from_earlier": [
+        "I_mA = 4000"
+       ],
+       "explanation_after_check": "4000 / 1000 = 4.0 A.",
+       "takeaway": "So: milli means divide by 1000.",
+       "next_bridge": "fix the formula.",
+       "hint_before_check": "1 A is 1000 mA.",
+       "code_note": {
+        "title": "Prefixes",
+        "text": "milli (m) is a thousandth; kilo (k) is a thousand."
+       },
+       "science_note": {
+        "title": "Meter ranges",
+        "text": "Bench meters often read small currents in mA."
+       },
+       "scene_label": "The meter reading.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 10 V supply and 2.5 Ω",
+         "args": [
+          10,
+          [
+           2.5
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          4,
+          "4.0 A"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            4,
+            "4?"
+           ],
+           "c": [
+            40,
+            "4000000?"
+           ],
+           "d": [
+            30,
+            "3000?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "I = I_mA ___ 1000",
+        "print(I)"
+       ],
+       "goal_output": [
+        "4.0"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "/",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "//",
+         "correct": false,
+         "feedback": "// gives a whole number: 4."
+        },
+        {
+         "id": "c",
+         "label": "*",
+         "correct": false,
+         "feedback": "That multiplies: 4000000."
+        },
+        {
+         "id": "d",
+         "label": "-",
+         "correct": false,
+         "feedback": "Subtracting isn't converting: 3000."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The heat should be 40.0 W, not 25.0. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "** applies only to R here: 4 × 2.5² = 25.0. The current is squared: I ** 2 * R = 40.0.",
+       "takeaway": "So: put ** right after what it squares.",
+       "next_bridge": "round two values.",
+       "hint_before_check": "Which value is squared in P = I² × R?",
+       "code_note": {
+        "title": "What ** applies to",
+        "text": "** binds to the value just before it."
+       },
+       "science_note": {
+        "title": "Underestimating heat",
+        "text": "A heat figure that's too low lets a motor run hotter than its insulation allows."
+       },
+       "scene_label": "A heat figure that's too low.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 10 V supply and 2.5 Ω",
+         "args": [
+          10,
+          [
+           2.5
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          4,
+          "40.0 W"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            4,
+            "100.0?"
+           ],
+           "d": [
+            4,
+            "25?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "motor_power.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "I = 4",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "R = 2.5",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "P = I * R ** 2",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(P)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "P = I ** 2 * R",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "P = (I * R) ** 2",
+          "correct": false,
+          "feedback": "That squares both: 100.0."
+         },
+         {
+          "id": "f2",
+          "replacement": "P = I * 2 * R",
+          "correct": false,
+          "feedback": "That doubles instead of squaring: 20.0."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(round(P))",
+          "correct": false,
+          "feedback": "That rounds the wrong answer: 25."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 40.0"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "40.456 rounds to 40.5. 2.675 is stored as a hair under 2.675, so it rounds down: 2.67.",
+       "takeaway": "So: round() works on the stored value, not the typed one.",
+       "next_bridge": "check the margin.",
+       "hint_before_check": "Some decimals can't be stored exactly.",
+       "code_note": {
+        "title": "Stored floats",
+        "text": "2.675 is really 2.67499999… in binary."
+       },
+       "science_note": {
+        "title": "Reported values",
+        "text": "Engineers report to a sensible precision and accept that the last digit can wobble."
+       },
+       "scene_label": "Two readings to round.",
+       "picture": [
+        {
+         "type": "circuit",
+         "description": "A supply and resistors in a loop; current dots flow round the wire, faster for more amps; the result pill shows the reading.",
+         "label": "Circuit: a 10 V supply and 2.5 Ω",
+         "args": [
+          10,
+          [
+           2.5
+          ]
+         ],
+         "options": {},
+         "correct_state": [
+          4,
+          "40.5 2.67"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            4,
+            "2.68?"
+           ],
+           "c": [
+            4,
+            "40.4?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(round(40.456, 1), round(2.675, 2))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "40.5 2.67",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "40.5 2.68",
+         "correct": false,
+         "feedback": "2.675 is stored just under 2.675, so it rounds down."
+        },
+        {
+         "id": "c",
+         "label": "40.4 2.67",
+         "correct": false,
+         "feedback": "40.456 rounds up to 40.5."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "The motor must stay under 90% of its 45 W limit. 42 W passes. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "limit − 0.9 is 44.1, almost the full limit. 90% is limit × 0.9 = 40.5, and 42 isn't under it.",
+       "takeaway": "So: a percentage margin multiplies.",
+       "next_bridge": "see your winding check.",
+       "hint_before_check": "90% of a value is the value times 0.9.",
+       "code_note": {
+        "title": "Margins",
+        "text": "Keeping 10% spare means staying under 0.9 × the limit."
+       },
+       "science_note": {
+        "title": "Thermal margin",
+        "text": "Motors are run below their limit so a hot day or a dusty fan doesn't push them over."
+       },
+       "scene_label": "A motor near its limit.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Winding heat in W",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            40.5,
+            "#E4F5B8",
+            "under 90%"
+           ],
+           [
+            40.5,
+            45,
+            "#FFF1C9",
+            "margin"
+           ],
+           [
+            45,
+            55,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 55
+         },
+         "correct_state": [
+          42,
+          "False"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            42,
+            "True?"
+           ],
+           "d": [
+            42,
+            "False, by luck"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "motor_power.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "P = 42.0",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "limit = 45",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "ok = P < limit - 0.9",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(ok)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "ok = P < limit * 0.9",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "ok = P < limit",
+          "correct": false,
+          "feedback": "That has no margin at all: True."
+         },
+         {
+          "id": "f2",
+          "replacement": "ok = P * 0.9 < limit",
+          "correct": false,
+          "feedback": "That shrinks the heat instead of the limit: True."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(not ok)",
+          "correct": false,
+          "feedback": "False here, but every safe motor would print False too."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: False"
+      }
+     ]
+    },
+    {
+     "id": "EpP5L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Maintenance clock",
+     "person": "Maintenance planner",
+     "intro": "The press runs around the clock. It needs a service every 7 hours, and the planner works in 24-hour time.",
+     "script_file": "service.py",
+     "start_button": "Plan the services",
+     "notebook": [
+      {
+       "label": "20:00 + 7 h",
+       "value": "27"
+      },
+      {
+       "label": "Next service",
+       "value": "3"
+      },
+      {
+       "label": "Clock label",
+       "value": "fixed: :02"
+      },
+      {
+       "label": "Per day",
+       "value": "3 3"
+      },
+      {
+       "label": "Enough services",
+       "value": "fixed: math.ceil()"
+      }
+     ],
+     "recap": {
+      "title": "Services planned",
+      "subtitle": "% to wrap the clock, :02 to pad, and rounding up for a count.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The last service was at 20:00. What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "20 + 7 is just 27: Python adds numbers, and 27 isn't a time of day yet.",
+       "takeaway": "So: plain + doesn't wrap a clock.",
+       "next_bridge": "wrap the hour.",
+       "hint_before_check": "Python doesn't know about clocks.",
+       "code_note": {
+        "title": "Clock maths",
+        "text": "A clock needs an extra step after adding."
+       },
+       "science_note": {
+        "title": "24-hour time",
+        "text": "Plants use 24-hour time so a 3 o'clock service can't be mixed up with 15:00."
+       },
+       "scene_label": "The service log.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Time of day, 0 to 24 h",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            6,
+            "#DCEEFF",
+            "night"
+           ],
+           [
+            6,
+            18,
+            "#E4F5B8",
+            "day"
+           ],
+           [
+            18,
+            24,
+            "#DCEEFF",
+            "night"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 24
+         },
+         "correct_state": [
+          24,
+          "27?"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "3?"
+           ],
+           "c": [
+            24,
+            "27:00?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "last = 20",
+        "print(last + 7)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "27",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": "Python doesn't wrap numbers on its own."
+        },
+        {
+         "id": "c",
+         "label": "27:00",
+         "correct": false,
+         "feedback": "print() shows the number, with no colon."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Wrap the time onto the 24-hour clock.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "27 % 24 is the remainder after a whole day: 3, so the next service is at 03:00.",
+       "takeaway": "So: % 24 wraps hours.",
+       "next_bridge": "format the time.",
+       "hint_before_check": "The remainder after whole days.",
+       "code_note": {
+        "title": "Remainders",
+        "text": "% gives what's left after dividing."
+       },
+       "science_note": {
+        "title": "Overnight work",
+        "text": "Services that cross midnight belong to the next day's plan."
+       },
+       "scene_label": "Past midnight.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Time of day, 0 to 24 h",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            6,
+            "#DCEEFF",
+            "night"
+           ],
+           [
+            6,
+            18,
+            "#E4F5B8",
+            "day"
+           ],
+           [
+            18,
+            24,
+            "#DCEEFF",
+            "night"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 24
+         },
+         "correct_state": [
+          3,
+          "3"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            1,
+            "1?"
+           ],
+           "c": [
+            1.1,
+            "1.125?"
+           ],
+           "d": [
+            24,
+            "648?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "next_service = (20 + 7) ___ 24",
+        "print(next_service)"
+       ],
+       "goal_output": [
+        "3"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "%",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "//",
+         "correct": false,
+         "feedback": "// counts whole days: 1."
+        },
+        {
+         "id": "c",
+         "label": "/",
+         "correct": false,
+         "feedback": "/ gives days as a decimal: 1.125."
+        },
+        {
+         "id": "d",
+         "label": "*",
+         "correct": false,
+         "feedback": "That multiplies: 648."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Times should show two digits: 03:00. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": ":02 pads the number with zeros to 2 digits, so 3 shows as 03.",
+       "takeaway": "So: :02 pads with zeros.",
+       "next_bridge": "count services in a day.",
+       "hint_before_check": "Pad with zeros to width 2.",
+       "code_note": {
+        "title": "Padding",
+        "text": "In a format spec, 0 means pad with zeros; 2 is the width."
+       },
+       "science_note": {
+        "title": "Readable rotas",
+        "text": "Two-digit hours line up in a column and sort correctly."
+       },
+       "scene_label": "The rota board.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Time of day, 0 to 24 h",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            6,
+            "#DCEEFF",
+            "night"
+           ],
+           [
+            6,
+            18,
+            "#E4F5B8",
+            "day"
+           ],
+           [
+            18,
+            24,
+            "#DCEEFF",
+            "night"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 24
+         },
+         "correct_state": [
+          3,
+          "Service at 03:00"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            3,
+            "Service at 3:00?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "service.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "h = 3",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "print(f\"Service at {h}:00\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "print(f\"Service at {h:02}:00\")",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "print(f\"Service at {h:2}:00\")",
+          "correct": false,
+          "feedback": "Width 2 pads with a space: \" 3:00\"."
+         },
+         {
+          "id": "f2",
+          "replacement": "print(f\"Service at {h:.2f}:00\")",
+          "correct": false,
+          "feedback": "That's 2 decimals: 3.00:00."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: Service at 03:00"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "7 goes into 24 three whole times (21), leaving 3.",
+       "takeaway": "So: // and % split a number into wholes and a remainder.",
+       "next_bridge": "make sure the day is covered.",
+       "hint_before_check": "// counts whole sevens; % is what's left.",
+       "code_note": {
+        "title": "divmod",
+        "text": "// and % together give the whole part and the rest."
+       },
+       "science_note": {
+        "title": "Service cycles",
+        "text": "Three 7-hour cycles leave 3 hours of the day without a planned service."
+       },
+       "scene_label": "One day of services.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Time of day, 0 to 24 h",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            6,
+            "#DCEEFF",
+            "night"
+           ],
+           [
+            6,
+            18,
+            "#E4F5B8",
+            "day"
+           ],
+           [
+            18,
+            24,
+            "#DCEEFF",
+            "night"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 24
+         },
+         "correct_state": [
+          21,
+          "3 3"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            21,
+            "3.43 3?"
+           ],
+           "c": [
+            21,
+            "3 0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(24 // 7, 24 % 7)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "3 3",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3.4285714285714284 3",
+         "correct": false,
+         "feedback": "// gives a whole number: 3."
+        },
+        {
+         "id": "c",
+         "label": "3 0",
+         "correct": false,
+         "feedback": "24 isn't a multiple of 7: 3 hours are left."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Do the services cover a full day? It says False. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "24 // 7 rounds down to 3, which covers only 21 hours. math.ceil() rounds 3.43 up to 4: 28 hours.",
+       "takeaway": "So: round up when a part still needs a whole one.",
+       "next_bridge": "see your plan.",
+       "hint_before_check": "Part of a cycle still needs a service.",
+       "code_note": {
+        "title": "Rounding up",
+        "text": "math.ceil() gives the next whole number up."
+       },
+       "science_note": {
+        "title": "Gaps in cover",
+        "text": "A day with 3 hours unserviced is when breakdowns happen."
+       },
+       "scene_label": "A gap in the plan.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Time of day, 0 to 24 h",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            6,
+            "#DCEEFF",
+            "night"
+           ],
+           [
+            6,
+            18,
+            "#E4F5B8",
+            "day"
+           ],
+           [
+            18,
+            24,
+            "#DCEEFF",
+            "night"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 24
+         },
+         "correct_state": [
+          24,
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "c": [
+            21,
+            "False?"
+           ],
+           "d": [
+            21,
+            "False?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "service.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "import math",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "interval = 7",
+         "given_correct": true
+        },
+        {
+         "id": "c",
+         "code": "services = 24 // interval",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "print(services * interval >= 24)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "services = math.ceil(24 / interval)",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "services = round(24 / interval)",
+          "correct": false,
+          "feedback": "3.43 rounds down to 3: False."
+         },
+         {
+          "id": "f2",
+          "replacement": "services = 24 % interval",
+          "correct": false,
+          "feedback": "That's the leftover hours, 3: False."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "print(services * interval > 24)",
+          "correct": false,
+          "feedback": "21 isn't over 24 either: False."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: True"
+      }
+     ]
+    },
+    {
+     "id": "EpP5L5",
+     "type": "lesson",
+     "part": 5,
+     "title": "Safety alarm",
+     "person": "Safety officer",
+     "intro": "The press scores its own state: 3 for dangerous pressure, 2 for high, 0 for normal. Two warnings together sound the alarm.",
+     "script_file": "alarm.py",
+     "start_button": "Test the alarm",
+     "notebook": [
+      {
+       "label": "185 bar",
+       "value": "score 3"
+      },
+      {
+       "label": "165 bar",
+       "value": "2"
+      },
+      {
+       "label": "180 bar",
+       "value": "fixed: >="
+      },
+      {
+       "label": "Either danger",
+       "value": "True"
+      },
+      {
+       "label": "Two warnings",
+       "value": "fixed: and"
+      }
+     ],
+     "recap": {
+      "title": "Alarm tested",
+      "subtitle": "Thresholds, elif scores, edges, and and against or.",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "The press reads 185 bar. What happens?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "185 >= 180 is True, so the stop message prints.",
+       "takeaway": "So: >= includes the limit.",
+       "next_bridge": "score the high band.",
+       "hint_before_check": "Compare 185 with the limit.",
+       "code_note": {
+        "title": "Thresholds",
+        "text": "A threshold turns a reading into an action."
+       },
+       "science_note": {
+        "title": "Pressure limits",
+        "text": "Hydraulic presses have a rated pressure; above it, seals and hoses can burst."
+       },
+       "scene_label": "The pressure gauge.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Press pressure in bar",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#E4F5B8",
+            "normal"
+           ],
+           [
+            150,
+            180,
+            "#FFF1C9",
+            "high"
+           ],
+           [
+            180,
+            220,
+            "#FFE3CF",
+            "danger"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 220
+         },
+         "correct_state": [
+          185,
+          "stop the press"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            185,
+            "nothing printed?"
+           ],
+           "c": [
+            185,
+            "True?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "bar = 185",
+        "if bar >= 180:",
+        "    print(\"score 3: stop the press\")"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "score 3: stop the press",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Nothing prints",
+         "correct": false,
+         "feedback": "185 >= 180 is True."
+        },
+        {
+         "id": "c",
+         "label": "True",
+         "correct": false,
+         "feedback": "if decides; it doesn't print the test."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Score the pressure: 3 at 180 or more, 2 at 150 or more.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "165 >= 180 is False, then 165 >= 150 is True, so score is 2.",
+       "takeaway": "So: elif adds the next band down.",
+       "next_bridge": "fix the edge.",
+       "hint_before_check": "The second test belongs to the same chain.",
+       "code_note": {
+        "title": "Bands",
+        "text": "Check the highest band first, then work down."
+       },
+       "science_note": {
+        "title": "Graded alarms",
+        "text": "A score says how bad things are, not just whether they're bad."
+       },
+       "scene_label": "A high reading.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Press pressure in bar",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#E4F5B8",
+            "normal"
+           ],
+           [
+            150,
+            180,
+            "#FFF1C9",
+            "high"
+           ],
+           [
+            180,
+            220,
+            "#FFE3CF",
+            "danger"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 220
+         },
+         "correct_state": [
+          165,
+          "2"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            165,
+            "SyntaxError"
+           ],
+           "c": [
+            165,
+            "SyntaxError"
+           ],
+           "d": [
+            165,
+            "SyntaxError"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "bar = 165",
+        "if bar >= 180:",
+        "    score = 3",
+        "___ bar >= 150:",
+        "    score = 2",
+        "else:",
+        "    score = 0",
+        "print(score)"
+       ],
+       "goal_output": [
+        "2"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "elif",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "else",
+         "correct": false,
+         "feedback": "else takes no test: SyntaxError."
+        },
+        {
+         "id": "c",
+         "label": "or",
+         "correct": false,
+         "feedback": "or can't start a line: SyntaxError."
+        },
+        {
+         "id": "d",
+         "label": "and",
+         "correct": false,
+         "feedback": "and can't start a line: SyntaxError."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "At exactly 180 bar the score should be 3. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "180 > 180 is False, so it fell to the next band. >= includes the limit itself.",
+       "takeaway": "So: test the limit value itself.",
+       "next_bridge": "combine two scores.",
+       "hint_before_check": "Does > include 180?",
+       "code_note": {
+        "title": "Edges",
+        "text": "Off-by-one errors live at the limit."
+       },
+       "science_note": {
+        "title": "Rated pressure",
+        "text": "\"180 bar or more\" includes 180; the alarm must fire there."
+       },
+       "scene_label": "A reading right on the limit.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Press pressure in bar",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#E4F5B8",
+            "normal"
+           ],
+           [
+            150,
+            180,
+            "#FFF1C9",
+            "high"
+           ],
+           [
+            180,
+            220,
+            "#FFE3CF",
+            "danger"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 220
+         },
+         "correct_state": [
+          180,
+          "3"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            180,
+            "2?"
+           ],
+           "d": [
+            180,
+            "2?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "alarm.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "bar = 180",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if bar > 180:",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    score = 3",
+         "given_correct": false
+        },
+        {
+         "id": "d",
+         "code": "elif bar >= 150:",
+         "given_correct": false
+        },
+        {
+         "id": "e",
+         "code": "    score = 2",
+         "given_correct": false
+        },
+        {
+         "id": "f",
+         "code": "print(score)",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if bar >= 180:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if bar < 180:",
+          "correct": false,
+          "feedback": "That's backwards: 180 isn't less, so it falls through: 2."
+         },
+         {
+          "id": "f2",
+          "replacement": "if bar == 181:",
+          "correct": false,
+          "feedback": "Only exactly 181: 2."
+         }
+        ],
+        "d": [
+         {
+          "id": "d0",
+          "replacement": "elif bar > 150:",
+          "correct": false,
+          "feedback": "The first test still misses 180: 2."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: 3"
+      },
+      {
+       "number": 4,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "score == 3 is True, so or is True without checking the temperature.",
+       "takeaway": "So: or is True if either side is.",
+       "next_bridge": "fix the alarm rule.",
+       "hint_before_check": "or needs only one side.",
+       "code_note": {
+        "title": "Short-circuit",
+        "text": "or stops as soon as one side is True."
+       },
+       "science_note": {
+        "title": "Either danger",
+        "text": "A stop rule fires on any single danger."
+       },
+       "scene_label": "A pressure danger, normal temperature.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Press pressure in bar",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#E4F5B8",
+            "normal"
+           ],
+           [
+            150,
+            180,
+            "#FFF1C9",
+            "high"
+           ],
+           [
+            180,
+            220,
+            "#FFE3CF",
+            "danger"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 220
+         },
+         "correct_state": [
+          185,
+          "True"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            185,
+            "False?"
+           ],
+           "c": [
+            185,
+            "3?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "score, temp_score = 3, 0",
+        "print(score == 3 or temp_score >= 2)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": "One side is True, so or is True."
+        },
+        {
+         "id": "c",
+         "label": "3",
+         "correct": false,
+         "feedback": "A comparison gives True or False."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "One warning alone sounded the alarm. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "or fires on either warning. The rule says two together, so both tests must pass: and.",
+       "takeaway": "So: \"both\" means and.",
+       "next_bridge": "see your alarm.",
+       "hint_before_check": "The alarm needs both warnings.",
+       "code_note": {
+        "title": "and or or",
+        "text": "and needs both; or needs one."
+       },
+       "science_note": {
+        "title": "Nuisance alarms",
+        "text": "An alarm that fires too often gets ignored, which is worse than no alarm."
+       },
+       "scene_label": "A false alarm.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Press pressure in bar",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            100,
+            150,
+            "#E4F5B8",
+            "normal"
+           ],
+           [
+            150,
+            180,
+            "#FFF1C9",
+            "high"
+           ],
+           [
+            180,
+            220,
+            "#FFE3CF",
+            "danger"
+           ]
+          ],
+          "vmin": 100,
+          "vmax": 220
+         },
+         "correct_state": [
+          165,
+          "nothing printed"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            165,
+            "alarm?"
+           ],
+           "c": [
+            165,
+            "warning?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "alarm.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "score, temp_score = 2, 0",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "if score >= 2 or temp_score >= 2:",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "    print(\"alarm\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "if score >= 2 and temp_score >= 2:",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "if score >= 2 or not temp_score >= 2:",
+          "correct": false,
+          "feedback": "Still fires on one warning: alarm."
+         },
+         {
+          "id": "f2",
+          "replacement": "if not (score >= 2 and temp_score >= 2):",
+          "correct": false,
+          "feedback": "That's the opposite rule: alarm."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "    print(\"warning\")",
+          "correct": false,
+          "feedback": "The test still passes on one warning: warning."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: nothing prints"
+      }
+     ]
+    },
+    {
+     "id": "EpP5C",
+     "type": "checkpoint",
+     "part": 5,
+     "parts_in_phase": 5,
+     "title": "Checkpoint: Design checks",
+     "person": "Chief engineer",
+     "intro": "One question from each part. No hints, no notes: read every line.",
+     "script_file": "design_check.py",
+     "start_button": "Start the checkpoint",
+     "title_size_px": 28,
+     "notebook": [
+      {
+       "label": "min and max",
+       "value": "462.0 500"
+      },
+      {
+       "label": "Flow",
+       "value": "1000.0"
+      },
+      {
+       "label": "-3 ** 2 + 10",
+       "value": "1"
+      },
+      {
+       "label": "Both times",
+       "value": "3 19"
+      },
+      {
+       "label": "Load status",
+       "value": "fixed: >"
+      }
+     ],
+     "recap": {
+      "title": "Checkpoint done",
+      "subtitle": "Phase 5 checked.",
+      "celebration": "green page (#D9F2A6) with confetti, \"Checkpoint complete\" announced"
+     },
+     "page_style": "checkpoint_navy",
+     "track": "engineering_python",
+     "phase": 5,
+     "language": "Python",
+     "hints_and_notes": false,
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "min() gives the smaller value as it is: 462.0. With a tie, max() keeps the first: 500.",
+       "takeaway": null,
+       "next_bridge": "convert a flow.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A load and a cap.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          462,
+          "462.0 500"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            462,
+            "462 500.0?"
+           ],
+           "c": [
+            462,
+            "462.0 500.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(min(500, 462.0), max(500, 500.0))"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "462.0 500",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "462 500.0",
+         "correct": false,
+         "feedback": "Each value keeps its own type."
+        },
+        {
+         "id": "c",
+         "label": "462.0 500.0",
+         "correct": false,
+         "feedback": "With a tie, max() returns the first value: the int 500."
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Left to right: 3600 / 60 / 60 is 1.0, times 1000 is 1000.0.",
+       "takeaway": null,
+       "next_bridge": "power with a minus sign.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A flow conversion.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Flow in litres per second",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            0.5,
+            "#FFE3CF",
+            "low"
+           ],
+           [
+            0.5,
+            1.5,
+            "#E4F5B8",
+            "spec"
+           ],
+           [
+            1.5,
+            3,
+            "#FFE3CF",
+            "high"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 3
+         },
+         "correct_state": [
+          1,
+          "1000.0"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            1,
+            "1000?"
+           ],
+           "c": [
+            3,
+            "1000000.0?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(3600 / 60 / 60 * 1000)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1000.0",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "1000",
+         "correct": false,
+         "feedback": "/ makes a float, and it stays a float: 1000.0."
+        },
+        {
+         "id": "c",
+         "label": "1000000.0",
+         "correct": false,
+         "feedback": "Same-rank operators run left to right."
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does Python print?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "** runs before the minus sign: -(3 ** 2) + 10 = -9 + 10 = 1.",
+       "takeaway": null,
+       "next_bridge": "wrap two times.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "A sign and a power.",
+       "picture": [
+        {
+         "type": "ratebars",
+         "description": "Bars grow one after another against an optional reference line; value labels and a result note.",
+         "label": "Result",
+         "args": [
+          [
+           "result"
+          ],
+          [
+           [
+            1
+           ],
+           "1"
+          ],
+          {
+           "b": [
+            [
+             19
+            ],
+            "19?"
+           ],
+           "c": [
+            [
+             0
+            ],
+            "-19?"
+           ]
+          }
+         ],
+         "options": {
+          "vmax": 20
+         },
+         "correct_state": [
+          [
+           1
+          ],
+          "1"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            [
+             19
+            ],
+            "19?"
+           ],
+           "c": [
+            [
+             0
+            ],
+            "-19?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print(-3 ** 2 + 10)"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "1",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "19",
+         "correct": false,
+         "feedback": "That squares -3; ** runs before the minus."
+        },
+        {
+         "id": "c",
+         "label": "-19",
+         "correct": false,
+         "feedback": "+ 10 adds to -9: 1."
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Wrap both times onto the clock.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "% 24 wraps both ways: 27 → 3, and −5 → 19 (7 pm the day before).",
+       "takeaway": null,
+       "next_bridge": "fix the load status.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "Times either side of midnight.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Time of day, 0 to 24 h",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            6,
+            "#DCEEFF",
+            "night"
+           ],
+           [
+            6,
+            18,
+            "#E4F5B8",
+            "day"
+           ],
+           [
+            18,
+            24,
+            "#DCEEFF",
+            "night"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 24
+         },
+         "correct_state": [
+          19,
+          "3 19"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            1,
+            "3 -1?"
+           ],
+           "c": [
+            1,
+            "3 -0.21?"
+           ],
+           "d": [
+            1,
+            "3 -29?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "code": [
+        "print((20 + 7) % 24, (2 - 7) ___ 24)"
+       ],
+       "goal_output": [
+        "3 19"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "%",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "//",
+         "correct": false,
+         "feedback": "// counts days: -1."
+        },
+        {
+         "id": "c",
+         "label": "/",
+         "correct": false,
+         "feedback": "/ gives a fraction: -0.20833333333333334."
+        },
+        {
+         "id": "d",
+         "label": "-",
+         "correct": false,
+         "feedback": "That subtracts: -29."
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "A 520 kg load reports ok. Fix it.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "load < 500 is False for 520, so status is False and prints ok. load > 500 gives back the message.",
+       "takeaway": null,
+       "next_bridge": "finish the checkpoint.",
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": "An overloaded shelf.",
+       "picture": [
+        {
+         "type": "gauge",
+         "description": "A scale with coloured bands; the pointer slides to the value on Check.",
+         "label": "Shelf load in kg",
+         "args": [],
+         "options": {
+          "bands": [
+           [
+            0,
+            500,
+            "#E4F5B8",
+            "safe"
+           ],
+           [
+            500,
+            700,
+            "#FFE3CF",
+            "over"
+           ]
+          ],
+          "vmin": 0,
+          "vmax": 700
+         },
+         "correct_state": [
+          520,
+          "over limit"
+         ],
+         "states": {
+          "idle": "before Check: resting animation",
+          "correct": "go state from the right answer",
+          "wrong_by_option": {
+           "b": [
+            520,
+            "ok?"
+           ],
+           "c": [
+            520,
+            "False?"
+           ]
+          }
+         }
+        }
+       ],
+       "worked": [],
+       "script_file": "design_check.py",
+       "lines": [
+        {
+         "id": "a",
+         "code": "load = 520",
+         "given_correct": true
+        },
+        {
+         "id": "b",
+         "code": "status = load < 500 and \"over limit\"",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "print(status or \"ok\")",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "status = load > 500 and \"over limit\"",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "status = load == 500 and \"over limit\"",
+          "correct": false,
+          "feedback": "Only exactly 500: ok."
+         },
+         {
+          "id": "f2",
+          "replacement": "status = load > 500 or \"over limit\"",
+          "correct": false,
+          "feedback": "or gives back True first: True."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "print(status and \"ok\")",
+          "correct": false,
+          "feedback": "status is False, so it prints False."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": "After the fix: over limit"
+      }
+     ]
+    }
+   ]
   }
  ]
 }
