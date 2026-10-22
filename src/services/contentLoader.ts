@@ -2,7 +2,7 @@
 // track files and V3 files the TRACKS registry names.
 import { CONTENT } from '../utils/content';
 import { TRACKS, TrackEntry, codeLangOf, trackFor } from '../content/tracks';
-import type { ContentFile, Item, PlayerLesson, PlayerQuestion, QuestionKind, Track, TrackFile, TrackQuestion } from '../content/types';
+import type { ContentFile, Item, PlayerLesson, PlayerQuestion, Track, TrackFile, TrackQuestion } from '../content/types';
 
 const contentFile = (name: string) => CONTENT[name] as ContentFile | undefined;
 
@@ -31,16 +31,13 @@ export function loadTrack(studyArea: string, language: string): Track | null {
   };
 }
 
-/** The colour under each question's kind word. */
-const WORD_COLOUR: Record<QuestionKind, string> = { predict: '#B5E04A', fill: '#FFC93C', fix: '#FF8A3D' };
-
 /** A V3 lesson or checkpoint in the lesson player's shape. */
 function playerLesson(it: Item, phase: number, phaseTitle: string, tr: TrackEntry, parts: number): PlayerLesson {
   const cp = it.type === 'checkpoint';
   const questions = it.questions.map((q, i): PlayerQuestion => {
     const nb = it.notebook[i];
     const base = {
-      id: `${it.id}_q${i + 1}`, kind: q.kind, word: q.label, color: WORD_COLOUR[q.kind],
+      id: `${it.id}_q${i + 1}`, kind: q.kind, word: q.label,
       ask: q.ask, hint: q.hint_before_check ?? '', ok: [q.explanation_after_check, q.takeaway].filter(Boolean).join(' '),
       bridge: q.next_bridge ?? 'carry on.', entry: nb ? `${nb.label}: ${nb.value}` : '', label: q.picture?.[0]?.label ?? '',
       science: q.science_note ?? { title: '', text: '' }, codeNote: q.code_note ?? { title: '', text: '' },

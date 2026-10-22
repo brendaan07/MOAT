@@ -654,6 +654,15 @@ Target (names from expo-web; adjust to V3):
 - Shared small components expo-web extracted: `CloseButton` (the ✕ on every lesson and checkpoint screen),
   `QuitSheet`, `StatChipsRow`, `icons.tsx`. Each is defined once and imported everywhere it's used.
 
+#### 3.4 decisions (user, 2026-10-22)
+1. **Checkpoint recap:** show it. A checkpoint run goes checkpoint → recap (green page, confetti, filled notebook) →
+   checkpoint result, the same order lessons use.
+2. **Empty unlock card:** when a track file's `checkpoint.unlock` is empty, build the card from the next phase:
+   "Phase N+1 unlocked", that phase's `project`, and "New skill: <skill>". No content changes.
+3. **Bottom sheets:** respect Reduce Motion (appear in place, no slide).
+4. **Fix-question lines:** tapping a line with no replacements shows "Line N looks right. Tap another line." and keeps
+   every line visible and tappable (no fold-away for those lines).
+
 ### 3.5 Names
 - Drop every `_updated` suffix: files, imports and the content key.
   - `useTrackStore_updated` → `useTrackStore`
@@ -923,3 +932,21 @@ Each step adds here what it found or left for a later step (file, why, which ste
     empty (Finance, Healthcare, Engineering, the general tracks) show an empty card with only the lock icon.
   - `useSlideUp` ignores Reduce Motion (the sheets always slide).
   - Still open from 2a.1: whether fix-question lines with no replacements should be untappable (3.4).
+- (step 3.4) Shared logic. `utils/progressRules.ts` holds the progress rules as pure functions (`withTrackBolts`,
+  `displayStreak`, `phaseComplete`, `phaseUnlocked`, `lessonUnlocked`, `checkpointUnlocked`, `pays`, `withRun` (stars,
+  bolts, bonus), `withTime`, `minutesToday`); both stores only wire state and saving to them. `utils/rewards.ts` holds
+  `BOLTS_PER_QUESTION`, `PERFECT_BONUS`, `DAILY_GOAL_MINUTES` and `DAILY_GOAL_BONUS_BOLTS`, and every screen text that
+  quoted 10, 30 or 20 reads them. `hooks/useFinishRun.ts` (from expo-web) finishes a run; time is rounded to whole
+  seconds. `storage/jsonStorage.ts` (from expo-web) backs `progressStorage` and `trackStorage`. `utils/motion.ts` holds
+  all three easing curves. Theme tokens replace colour literals used in more than one file (`highlight`, `pink`,
+  `chipLight`, `red`, `green`, `greenText`, `brownText`, `scrim`, `lockedOverlay`, plus existing tokens where a literal
+  matched one); unused tokens are gone, and the question-kind colours moved from the loader to the player.
+  `components/CloseButton.tsx` replaces seven hand-built ✕/back buttons; the results screen's `SegmentBar` merged into
+  `Segments`. The four 3.4 decisions are in: the checkpoint recap shows, the unlock card falls back to the next phase
+  (a last phase without its own text shows no card, since nothing opens yet), sheets respect Reduce Motion, and a fix
+  line with nothing to change keeps every line in view.
+  Not verified in the browser: the sheets with Reduce Motion on (the preview can't emulate it).
+  Open, for the user: the minutes bubble promises `DAILY_GOAL_BONUS_BOLTS` (20) for reaching the daily goal, but nothing
+  pays it. Either pay it (once a day, when today's minutes first reach the goal) or drop the promise.
+  On Healthcare and Finance the fallback reads "Text and formatting / New skill: Text and formatting." because those
+  track files use the same text for `project` and `skill`.

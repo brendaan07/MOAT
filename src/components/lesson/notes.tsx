@@ -1,9 +1,10 @@
 // The lesson's note panels, chips and the person's message.
 import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { BORDER, C, body, monoBold } from '../../utils/theme';
 import { Enter } from './animations';
+import { CloseButton } from '../CloseButton';
 
 /** Text with `code` between backticks shown as dark code chips. */
 export function NoteText({ text, size = 15, bold = false }: { text: string; size?: number; bold?: boolean }) {
@@ -37,9 +38,7 @@ export function Panel({ title, text, icon, fill, onClose }: { title: string; tex
           <View style={{ flex: 1 }}>
             <NoteText text={title} size={17} bold />
           </View>
-          <Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
-            <Ionicons name="close" size={22} color={C.navy} />
-          </Pressable>
+          <CloseButton onPress={onClose} label="Close" size={22} style={{ marginRight: -8 }} />
         </View>
         <NoteText text={text} />
       </View>
@@ -50,7 +49,7 @@ export function Panel({ title, text, icon, fill, onClose }: { title: string; tex
 /** A small label chip on the picture or code box. */
 export function Chip({ label, dark = false, icon = 'flask-outline' }: { label: string; dark?: boolean; icon?: keyof typeof Ionicons.glyphMap }) {
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 8, paddingVertical: 2, borderRadius: 9, backgroundColor: dark ? '#E9ECFF' : C.hintBlue, borderWidth: dark ? 0 : 2, borderColor: C.navy }}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 8, paddingVertical: 2, borderRadius: 9, backgroundColor: dark ? C.chipLight : C.hintBlue, borderWidth: dark ? 0 : 2, borderColor: C.navy }}>
       <Ionicons name={dark ? 'code-slash' : icon} size={13} color={C.navy} />
       <Text style={body(12, true)}>{label}</Text>
     </View>

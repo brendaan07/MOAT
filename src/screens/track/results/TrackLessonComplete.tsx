@@ -1,11 +1,10 @@
 // The screen after a lesson: bolts counting up, stars, the streak and Continue.
 import React, { useEffect, useRef } from 'react';
 import { Animated, Pressable, ScrollView, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Card, ChunkyButton, DottedBackground } from '../../../components/ui';
 import { BoltIcon, FlameIcon } from '../../../components/icons';
-import { SegmentBar } from '../../../components/track/progressBars';
+import { Segments } from '../../../components/lesson/QuestionBar';
 import { StarsRow } from '../../../components/track/stars';
 import { WeekStrip } from '../../../components/track/WeekStrip';
 import { useAppStore } from '../../../hooks/useAppStore';
@@ -14,11 +13,13 @@ import { useReduceMotion } from '../../../hooks/useReduceMotion';
 import { BORDER, C, body, heading } from '../../../utils/theme';
 import { EASE_OUT } from '../../../utils/motion';
 import { DayKey } from '../../../utils/dayKey';
+import { PERFECT_BONUS } from '../../../utils/rewards';
 import type { RunResult } from '../../../types/models';
 import type { TrackLesson, TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
+import { CloseButton } from '../../../components/CloseButton';
 
-/** Lesson complete: the total counts up, "+N added" slides in, stars pop and shimmer, and a perfect first try shows the +30 tag. */
+/** Lesson complete: the total counts up, "+N added" slides in, stars pop and shimmer, and a perfect first try shows the perfect-bonus tag. */
 export function TrackLessonComplete({ phase, lesson, result, onContinue, onReplay }: { phase: TrackPhase; lesson: TrackLesson; result: RunResult; onContinue: () => void; onReplay: () => void }) {
   const app = useAppStore();
   const reduce = useReduceMotion();
@@ -35,10 +36,8 @@ export function TrackLessonComplete({ phase, lesson, result, onContinue, onRepla
     <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
       <DottedBackground />
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 8, paddingRight: 16, marginTop: 8 }}>
-        <Pressable onPress={onContinue} accessibilityRole="button" accessibilityLabel="Back to Learn" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="close" size={24} color={C.navy} />
-        </Pressable>
-        <SegmentBar total={result.total} index={result.total} currentCorrect />
+        <CloseButton onPress={onContinue} label="Back to Learn" />
+        <Segments done={result.total} total={result.total} />
         <Animated.View style={{ transform: [{ scale: bounce }] }} accessible accessibilityLabel={`Total bolts ${app.progress.bolts}. ${credited} added from this lesson.`}>
           <View style={{ position: 'absolute', left: 0, right: 0, top: 3, height: 40, borderRadius: 20, backgroundColor: C.navy }} />
           <View style={{ height: 40, flexDirection: 'row', alignItems: 'center', gap: 6, paddingLeft: 10, paddingRight: 14, borderRadius: 20, borderWidth: BORDER, borderColor: C.navy, backgroundColor: C.lime }}>
@@ -66,7 +65,7 @@ export function TrackLessonComplete({ phase, lesson, result, onContinue, onRepla
           </Card>
           {result.bonus > 0 && (
             <View style={{ position: 'absolute', right: 14, top: -16, paddingHorizontal: 10, paddingVertical: 3, borderRadius: 10, backgroundColor: C.sun, borderWidth: BORDER, borderColor: C.navy }}>
-              <Text style={body(13, true)}>+30 perfect first try</Text>
+              <Text style={body(13, true)}>+{PERFECT_BONUS} perfect first try</Text>
             </View>
           )}
         </View>

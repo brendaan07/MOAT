@@ -1,7 +1,6 @@
 // A lesson's goal screen: who needs it, the notebook to fill and the script it builds.
 import React from 'react';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from '../../../components/SafeAreaView';
 import { ChunkyButton, DottedBackground } from '../../../components/ui';
 import { RobotFace } from '../../../components/track/RobotFace';
@@ -11,6 +10,7 @@ import { Message } from '../../../components/lesson/notes';
 import { Notebook } from '../../../components/lesson/Notebook';
 import { C, body, heading, monoBold } from '../../../utils/theme';
 import type { PlayerLesson } from '../../../content/types';
+import { CloseButton } from '../../../components/CloseButton';
 
 /** A lesson's or checkpoint's goal screen before the first question. */
 export function LessonIntro({ lesson, onStart, onClose }: { lesson: PlayerLesson; onStart: () => void; onClose: () => void }) {
@@ -20,9 +20,7 @@ export function LessonIntro({ lesson, onStart, onClose }: { lesson: PlayerLesson
       {!cp && <DottedBackground />}
       <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 8, paddingRight: 16, height: 44 }}>
-          <Pressable onPress={onClose} accessibilityRole="button" accessibilityLabel="Back to Learn" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="close" size={26} color={cp ? C.cream : C.navy} />
-          </Pressable>
+          <CloseButton onPress={onClose} label="Back to Learn" size={26} color={cp ? C.cream : C.navy} />
           <Segments done={0} total={lesson.questions.length} />
         </View>
         <ScrollView contentContainerStyle={{ padding: 16, gap: 16, paddingBottom: 110 }}>

@@ -4,7 +4,8 @@ import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Te
 import { SafeAreaView } from '../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
 import { useAppStore } from '../hooks/useAppStore';
-import { DAILY_GOAL_MINUTES, useTrackStore } from '../hooks/useTrackStore_updated';
+import { useTrackStore } from '../hooks/useTrackStore_updated';
+import { DAILY_GOAL_MINUTES } from '../utils/rewards';
 import { BundleImage, Card, ChunkyButton, DottedBackground } from '../components/ui';
 import { FlameIcon } from '../components/icons';
 import { WeekStrip } from '../components/track/WeekStrip';
@@ -117,7 +118,7 @@ export default function ProfileScreen() {
         <Text style={[body(14), { color: C.muted }]}>Sign in and account deletion come in a later build. Progress is saved on this phone only.</Text>
       </ScrollView>
       <Modal visible={editing} transparent animationType="fade" onRequestClose={() => setEditing(false)}>
-        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: 'rgba(27,36,114,0.35)', justifyContent: 'center', padding: 24 }}>
+        <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: C.scrim, justifyContent: 'center', padding: 24 }}>
           <Card radius={20} shadow contentStyle={{ padding: 20, gap: 14 }}>
             <Text style={heading(22)} accessibilityRole="header">Your name</Text>
             <Card radius={14} contentStyle={{ minHeight: 52, justifyContent: 'center', paddingHorizontal: 14 }}>

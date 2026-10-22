@@ -31,7 +31,7 @@ export function QuitSheet({ questionsDone, total, bolts, onKeep, onLeave }: { qu
         <Pressable onPress={onLeave} accessibilityRole="button" style={{ marginTop: 12, height: 60 }}>
           <View style={{ position: 'absolute', left: 0, right: 0, top: 4, height: 56, borderRadius: 18, backgroundColor: C.deepOrange }} />
           <View style={{ height: 56, borderRadius: 18, borderWidth: BORDER, borderColor: C.deepOrange, backgroundColor: C.card, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={[heading(20), { color: '#9A3F0A' }]}>Leave and lose progress</Text>
+            <Text style={[heading(20), { color: C.brownText }]}>Leave and lose progress</Text>
           </View>
         </Pressable>
       </Animated.View>

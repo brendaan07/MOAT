@@ -7,6 +7,7 @@ import { RobotFace } from '../track/RobotFace';
 import { BORDER, C, body, heading, monoBold } from '../../utils/theme';
 import { useSlideUp } from '../../hooks/useSlideUp';
 import type { PlayerQuestion } from '../../content/types';
+import { BOLTS_PER_QUESTION } from '../../utils/rewards';
 import { Enter } from './animations';
 
 /** Right or not quite after Check: the explanation, and on a right answer the worked line, notebook entry and next step. */
@@ -24,7 +25,7 @@ export function FeedbackSheet({ right, q, index, total = 5, line, onContinue, on
         {right && earned && (
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, paddingHorizontal: 10, paddingVertical: 2, borderRadius: 12, backgroundColor: C.navy }}>
             <Ionicons name="flash" size={13} color={C.sky} />
-            <Text style={[body(14, true), { color: C.cream }]}>+10</Text>
+            <Text style={[body(14, true), { color: C.cream }]}>+{BOLTS_PER_QUESTION}</Text>
           </View>
         )}
       </View>

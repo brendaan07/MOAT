@@ -22,12 +22,13 @@ type Step =
   | { kind: 'projectBuilt' }
   | { kind: 'checkpointIntro' }
   | { kind: 'checkpoint' }
+  | { kind: 'checkpointRecap'; result: RunResult }
   | { kind: 'checkpointDone'; result: RunResult };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'TrackFlow'>;
 
 /** One lesson or checkpoint run: intro → player → recap → lesson done → (project built) → checkpoint intro →
- *  checkpoint → checkpoint result (TrackFlowView). */
+ *  checkpoint → checkpoint recap → checkpoint result (TrackFlowView). */
 export default function TrackFlowScreen({ route, navigation }: Props) {
   const track = useTrackStore();
   const phase = track.track?.phases.find((p) => p.number === route.params.phase);
@@ -78,7 +79,11 @@ export default function TrackFlowScreen({ route, navigation }: Props) {
     case 'checkpointIntro':
       return <LessonIntro lesson={checkpoint!} onStart={() => go({ kind: 'checkpoint' })} onClose={close} />;
     case 'checkpoint':
-      return <LessonPlayer key={`cp-${runID}`} lesson={checkpoint!} onFinish={(r) => go({ kind: 'checkpointDone', result: r })} onQuit={close} />;
+      return <LessonPlayer key={`cp-${runID}`} lesson={checkpoint!} onFinish={(r) => go({ kind: 'checkpointRecap', result: r })} onQuit={close} />;
+    case 'checkpointRecap': {
+      const { result } = step;
+      return <LessonRecap lesson={checkpoint!} onContinue={() => go({ kind: 'checkpointDone', result })} />;
+    }
     case 'checkpointDone':
       return <CheckpointResult phase={phase} result={step.result} onReplay={() => go({ kind: 'checkpoint' })} onDone={close} />;
   }

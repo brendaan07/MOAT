@@ -16,20 +16,25 @@ import { Answers, Look } from '../../../components/lesson/Answers';
 import { FixPaper } from '../../../components/lesson/FixPaper';
 import { FeedbackSheet } from '../../../components/lesson/FeedbackSheet';
 import { BORDER, C, body, heading, monoBold } from '../../../utils/theme';
-import { useAppStore } from '../../../hooks/useAppStore';
+import { useFinishRun } from '../../../hooks/useFinishRun';
 import { useTrackStore } from '../../../hooks/useTrackStore_updated';
 import type { RunResult } from '../../../types/models';
-import type { PlayerLesson, PlayerQuestion, TrackQuestion } from '../../../content/types';
+import { BOLTS_PER_QUESTION } from '../../../utils/rewards';
+import type { PlayerLesson, PlayerQuestion, QuestionKind, TrackQuestion } from '../../../content/types';
 import { FIELDS } from '../../../content/tracks';
+import { CloseButton } from '../../../components/CloseButton';
 
 const field = (l: PlayerLesson) => FIELDS[l.domain];
+
+/** The colour under each question's kind word. */
+const WORD_COLOUR: Record<QuestionKind, string> = { predict: C.lime, fill: C.sun, fix: C.orange };
 
 /** The question as progress records it. */
 const asTrackQuestion = (q: PlayerQuestion): TrackQuestion => ({ id: q.id, kind: q.kind });
 
 /** Plays a lesson's or checkpoint's questions, then records stars and bolts and reports the result. */
 export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesson; onFinish: (r: RunResult) => void; onQuit: () => void }) {
-  const app = useAppStore();
+  const finishRun = useFinishRun();
   const track = useTrackStore();
   const [idx, setIdx] = useState(0);
   const [pick, setPick] = useState<string | null>(null);
@@ -59,7 +64,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
   const looks = useMemo(() => {
     const out: Record<string, Look> = {};
     for (const o of all) {
-      let L: Look = { bg: cp ? ['#DCEEFF', '#FFF1C9', '#FFE3CF', '#FFD6E0'][all.findIndex((x) => x.id === o.id) % 4] : C.card, op: 1, ok: false, x: false };
+      let L: Look = { bg: cp ? [C.hintBlue, C.highlight, C.peach, C.pink][all.findIndex((x) => x.id === o.id) % 4] : C.card, op: 1, ok: false, x: false };
       if (checked) {
         if (o.id === q.correct) L = { ...L, bg: C.lime, ok: true };
         else if (o.id === pick) L = { ...L, bg: C.peach, x: true };
@@ -89,9 +94,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
       setOpen(null);
       return;
     }
-    const result = track.record(lesson.id, lesson.questions.map(asTrackQuestion), firstTry);
-    app.creditTrack(result.earned + result.bonus);
-    track.addTime(Math.round((Date.now() - started.current) / 1000));
+    const result = finishRun(lesson.id, lesson.questions.map(asTrackQuestion), firstTry, started.current);
     onFinish(result);
   };
   const line = right
@@ -101,7 +104,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
       : q.fb[pick ?? ''] ?? 'Have another look.';
   const toggle = (k: 'why' | 'code' | 'hint') => { if (!cp) setOpen((o) => (o === k ? null : k)); }; // checkpoints: no hints or notes
   const blank = q.kind === 'fill' && pick ? lab(pick) : null;
-  const bolts = firstTry.size * 10 - (right && earned ? 10 : 0);
+  const bolts = (firstTry.size - (right && earned ? 1 : 0)) * BOLTS_PER_QUESTION;
 
   return (
     <View style={{ flex: 1, backgroundColor: cp ? C.screen : C.cream }}>
@@ -109,9 +112,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
       <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
         {/* top bar */}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingLeft: 8, paddingRight: 16, height: 44 }}>
-          <Pressable onPress={() => setQuitting(true)} accessibilityRole="button" accessibilityLabel="Quit lesson" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="close" size={26} color={cp ? C.cream : C.navy} />
-          </Pressable>
+          <CloseButton onPress={() => setQuitting(true)} label="Quit lesson" size={26} color={cp ? C.cream : C.navy} />
           <Ionicons name={field(lesson).track} size={20} color={cp ? C.cream : C.navy} />
           <QuestionBar total={lesson.questions.length} index={idx} right={right} />
           <BoltPill base={Math.max(0, bolts)} earned={right && earned} />
@@ -123,7 +124,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
             <Enter key={`h${idx}`} kind="head" delay={80} style={{ alignSelf: 'flex-start' }}>
               <View>
                 {/* Baloo's ascenders rise ~8px above a 32px line box, which iOS Safari clips; 40 keeps them inside. */}
-                <View style={{ position: 'absolute', left: 0, right: 0, bottom: 6, height: 9, backgroundColor: q.color }} />
+                <View style={{ position: 'absolute', left: 0, right: 0, bottom: 6, height: 9, backgroundColor: WORD_COLOUR[q.kind] }} />
                 <Text style={[heading(30), { lineHeight: 40, paddingHorizontal: 2 }]} accessibilityRole="header">{q.word}</Text>
               </View>
             </Enter>
@@ -148,7 +149,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
             {/* the picture: tap for the science */}
             <View>
               <Pressable onPress={() => toggle('why')} accessibilityRole="button" accessibilityLabel={`${q.label} ${field(lesson).tap}`} accessibilityState={{ expanded: open === 'why' }}
-                style={(s) => [{ borderRadius: 20, borderWidth: BORDER, borderColor: C.navy, backgroundColor: q.kind === 'fill' && !cp ? '#FFF1C9' : C.card, padding: 12, paddingTop: 8, gap: 4 }, pressDown(s)]}>
+                style={(s) => [{ borderRadius: 20, borderWidth: BORDER, borderColor: C.navy, backgroundColor: q.kind === 'fill' && !cp ? C.highlight : C.card, padding: 12, paddingTop: 8, gap: 4 }, pressDown(s)]}>
                 {!cp && (
                   <View style={{ position: 'absolute', right: 10, top: 10, zIndex: 2 }}>
                     <Chip label={field(lesson).chip} icon={field(lesson).icon} />
@@ -208,7 +209,7 @@ export function LessonPlayer({ lesson, onFinish, onQuit }: { lesson: PlayerLesso
       {checked && (
         <FeedbackSheet key={`sheet-${idx}-${right}`} right={right} q={q} index={idx} total={lesson.notebook.length} line={line} onContinue={next} onRetry={retry} mood={right ? mood.ok : mood.bad} earned={earned} />
       )}
-      {quitting && <QuitSheet questionsDone={idx} total={lesson.questions.length} bolts={firstTry.size * 10} onKeep={() => setQuitting(false)} onLeave={onQuit} />}
+      {quitting && <QuitSheet questionsDone={idx} total={lesson.questions.length} bolts={firstTry.size * BOLTS_PER_QUESTION} onKeep={() => setQuitting(false)} onLeave={onQuit} />}
     </View>
   );
 }

@@ -40,7 +40,7 @@ export function LessonRecap({ lesson, onContinue }: { lesson: PlayerLesson; onCo
             <Pressable onPress={() => setOpen(!open)} accessibilityRole="button" accessibilityState={{ expanded: open }} style={{ minHeight: 52, paddingHorizontal: 14, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <Text style={[monoBold(14), { color: C.lavender }]}>{lesson.file}</Text>
               <Text style={[body(15, true), { color: C.cream, flex: 1 }]}>{lesson.script.length} lines you wrote</Text>
-              <Text style={[body(13, true), { backgroundColor: '#E9ECFF', borderRadius: 9, paddingHorizontal: 9, paddingVertical: 2, overflow: 'hidden' }]}>{open ? 'Hide' : 'Show'}</Text>
+              <Text style={[body(13, true), { backgroundColor: C.chipLight, borderRadius: 9, paddingHorizontal: 9, paddingVertical: 2, overflow: 'hidden' }]}>{open ? 'Hide' : 'Show'}</Text>
             </Pressable>
             {open && (
               <Enter kind="drop" style={{ paddingHorizontal: 14, paddingBottom: 12, borderTopWidth: 1.5, borderTopColor: 'rgba(255,255,255,0.14)' }}>

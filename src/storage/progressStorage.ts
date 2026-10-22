@@ -1,7 +1,7 @@
 // Saves and loads the learner's profile progress (moat.progress.v1).
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { defaultProgress, UserProgress } from '../types/models';
 import { canonicalArea } from '../utils/studyAreas';
+import { jsonStorage } from './jsonStorage';
 
 // Same key and the same JSON shape as UserDefaults in the Swift app.
 const KEY = 'moat.progress.v1';
@@ -31,20 +31,4 @@ function decode(raw: unknown): UserProgress {
 }
 
 /** Reads and writes the profile progress in AsyncStorage. */
-export const ProgressStorage = {
-  async load(): Promise<UserProgress> {
-    try {
-      const json = await AsyncStorage.getItem(KEY);
-      return decode(json ? JSON.parse(json) : null);
-    } catch {
-      return defaultProgress();
-    }
-  },
-  async save(progress: UserProgress) {
-    try {
-      await AsyncStorage.setItem(KEY, JSON.stringify(progress));
-    } catch {
-      // Saving is best effort, as in the Swift app.
-    }
-  },
-};
+export const ProgressStorage = jsonStorage(KEY, decode, defaultProgress);

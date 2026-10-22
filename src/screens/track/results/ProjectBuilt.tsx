@@ -1,7 +1,6 @@
 // The screen after a phase's last lesson: the finished project and its code, then on to the checkpoint.
 import React from 'react';
 import { Pressable, ScrollView, Text, View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from '../../../components/SafeAreaView';
 import { Card, ChunkyButton, DottedBackground } from '../../../components/ui';
 import { ProjectCard } from '../../../components/track/ProjectCard';
@@ -10,6 +9,7 @@ import { useTrackStore } from '../../../hooks/useTrackStore_updated';
 import { C, body, heading } from '../../../utils/theme';
 import type { TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
+import { CloseButton } from '../../../components/CloseButton';
 
 /** Shown after a phase's last lesson when the phase has project code; leads to the checkpoint. */
 export function ProjectBuilt({ phase, onCheckpoint, onBack }: { phase: TrackPhase; onCheckpoint: () => void; onBack: () => void }) {
@@ -17,9 +17,7 @@ export function ProjectBuilt({ phase, onCheckpoint, onBack }: { phase: TrackPhas
   return (
     <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
       <DottedBackground />
-      <Pressable onPress={onBack} accessibilityRole="button" accessibilityLabel="Back to Learn" style={{ width: 44, height: 44, marginLeft: 8, alignItems: 'center', justifyContent: 'center' }}>
-        <Ionicons name="chevron-back" size={24} color={C.navy} />
-      </Pressable>
+      <CloseButton onPress={onBack} label="Back to Learn" icon="chevron-back" style={{ marginLeft: 8 }} />
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, gap: 10 }} showsVerticalScrollIndicator={false}>
         <Hero mood="hearts" size={100} />
         <Text style={[heading(32), { textAlign: 'center' }]} accessibilityRole="header">Project built</Text>

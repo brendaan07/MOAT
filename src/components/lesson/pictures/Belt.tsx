@@ -77,7 +77,7 @@ export function Belt({ spec, state, pick }: { spec: BeltPicture; state: PictureS
           transform: [{ translateX: push.interpolate({ inputRange: [0, 1], outputRange: [0, 14] }) }] }} />
         {spec.options?.juice ? (
           <>
-            <View style={{ position: 'absolute', left: S + 10, top: 78, width: 58, height: 28, borderWidth: 2, borderTopWidth: 0, borderColor: C.navy, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, backgroundColor: '#FFF1C9' }} />
+            <View style={{ position: 'absolute', left: S + 10, top: 78, width: 58, height: 28, borderWidth: 2, borderTopWidth: 0, borderColor: C.navy, borderBottomLeftRadius: 8, borderBottomRightRadius: 8, backgroundColor: C.highlight }} />
             <Text style={[body(10, true), { position: 'absolute', left: S + 16, top: 108, color: C.muted }]}>juice line</Text>
           </>
         ) : null}

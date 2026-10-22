@@ -9,8 +9,10 @@ import { StarsRow } from '../../../components/track/stars';
 import { useTrackStore } from '../../../hooks/useTrackStore_updated';
 import { BORDER, C, body, heading } from '../../../utils/theme';
 import { RunResult, isPerfect } from '../../../types/models';
+import { PERFECT_BONUS } from '../../../utils/rewards';
 import type { TrackPhase } from '../../../content/types';
 import { Hero } from './Hero';
+import { CloseButton } from '../../../components/CloseButton';
 
 /** Shown after a checkpoint run; on the track's last phase it closes cycle 1 instead of opening a next phase. */
 export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: TrackPhase; result: RunResult; onReplay: () => void; onDone: () => void }) {
@@ -18,7 +20,11 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
   const last = phase.number >= (track.track?.phases.length ?? phase.number);
   const complete = track.phaseComplete(phase);
   const perfect = isPerfect(result);
-  const u = phase.checkpoint.unlock;
+  // What passing opened: the track file's text, else built from the next phase (plan 3.4); a last phase without its
+  // own text opens nothing yet, so it shows no card.
+  const phases = track.track?.phases ?? [];
+  const next = phases[phases.findIndex((p) => p.number === phase.number) + 1];
+  const u = phase.checkpoint.unlock.length ? phase.checkpoint.unlock : next ? [`Phase ${next.number} unlocked`, next.project, `New skill: ${next.skill}.`] : null;
   const weak = [
     ...phase.lessons.filter((l) => track.stars(l.id) < l.questions.length).map((l) => [`Part ${l.part} · ${l.title}`, track.stars(l.id), l.questions.length] as [string, number, number]),
     ...(track.stars(phase.checkpoint.id) < phase.checkpoint.questions.length ? [[`Checkpoint · ${phase.checkpoint.name}`, track.stars(phase.checkpoint.id), phase.checkpoint.questions.length] as [string, number, number]] : []),
@@ -27,9 +33,7 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
     <SafeAreaView edges={['top', 'bottom']} style={{ flex: 1 }}>
       <DottedBackground navy />
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 12 }}>
-        <Pressable onPress={onDone} accessibilityRole="button" accessibilityLabel="Close" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name="close" size={24} color={C.cream} />
-        </Pressable>
+        <CloseButton onPress={onDone} label="Close" color={C.cream} />
         <View style={{ height: 36, flexDirection: 'row', alignItems: 'center', gap: 4, paddingLeft: 8, paddingRight: 12, borderRadius: 18, backgroundColor: C.lime, borderWidth: BORDER, borderColor: C.navy }}>
           <BoltIcon size={18} />
           <Text style={heading(18)}>+{result.earned + result.bonus}</Text>
@@ -46,14 +50,14 @@ export function CheckpointResult({ phase, result, onReplay, onDone }: { phase: T
             <Text style={body(17, true)}>{result.stars} of {result.total} right first try</Text>
             {result.bonus > 0 && (
               <View style={{ paddingHorizontal: 9, paddingVertical: 2, borderRadius: 9, backgroundColor: C.sun, borderWidth: 2, borderColor: C.navy }}>
-                <Text style={body(13, true)}>+30 perfect bonus</Text>
+                <Text style={body(13, true)}>+{PERFECT_BONUS} perfect bonus</Text>
               </View>
             )}
           </View>
           <StarsRow filled={result.stars} total={result.total} size={44} />
         </Card>
         {complete ? (
-          <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
+          u && <Card radius={20} shadow shadowColor="#050828" contentStyle={{ padding: 16, gap: 6 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Ionicons name="lock-open" size={18} color={C.navy} />
               <View style={{ paddingHorizontal: 8, paddingVertical: 1, borderRadius: 8, backgroundColor: C.lime, borderWidth: 1.5, borderColor: C.navy }}><Text style={body(13, true)}>{u[0]}</Text></View>

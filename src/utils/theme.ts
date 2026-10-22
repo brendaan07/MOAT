@@ -19,12 +19,10 @@ export const C = {
   hintBlue: '#DCEEFF',
   lockedBand: '#2E3A9E',
   lockedBandText: '#B8C4FF',
-  wrongChip: '#FFD3B0',
   // Track kit
   navyDeep: '#141A5C',
   screen: '#171E63',
   editor: '#0B0F3D',
-  shadowDark: '#0A0E3A',
   sun: '#FFC93C',
   peach: '#FFE3CF',
   lavender: '#B8C4FF',
@@ -32,15 +30,20 @@ export const C = {
   deepOrange: '#E0762A',
   grey: '#8F8873',
   paper: '#F1EADB',
-  errBg: '#3B1030',
   errText: '#FFB4A2',
   number: '#FFA866',
   fn: '#7CC4FF',
   keyword: '#FF9B63',
-  // Game code colours (GameKit.swift)
-  codeKeyword: '#3B4BD8',
-  codeNumber: '#B5471B',
-  codeString: '#1F7A4D',
+  // Lesson screens
+  highlight: '#FFF1C9',
+  pink: '#FFD6E0',
+  chipLight: '#E9ECFF',
+  red: '#E5484D',
+  green: '#2F8F4E',
+  greenText: '#2F6B0F',
+  brownText: '#9A3F0A',
+  scrim: 'rgba(27,36,114,0.35)',
+  lockedOverlay: 'rgba(27,36,114,0.55)',
 };
 
 /** The outline width every card and button uses. */

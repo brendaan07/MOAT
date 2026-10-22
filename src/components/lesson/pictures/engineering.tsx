@@ -98,7 +98,7 @@ export function Gauge({ spec, state, pick }: { spec: GaugePicture; state: Pictur
         ))}
         <View style={{ position: 'absolute', left: 0, top: 18, width: W, height: 18, borderWidth: 2, borderColor: C.navy, borderRadius: 4 }} />
         <Animated.View style={{ position: 'absolute', left: -7, top: 2, width: 0, height: 0, borderLeftWidth: 7, borderRightWidth: 7, borderTopWidth: 14,
-          borderLeftColor: 'transparent', borderRightColor: 'transparent', borderTopColor: state === 'nope' ? '#E0762A' : C.navy, transform: [{ translateX: tx }] }} />
+          borderLeftColor: 'transparent', borderRightColor: 'transparent', borderTopColor: state === 'nope' ? C.deepOrange : C.navy, transform: [{ translateX: tx }] }} />
       </View>
       <Result text={s ? s[1] : ''} state={state} k={k} delay={1300} />
     </View>

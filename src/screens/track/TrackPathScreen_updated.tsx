@@ -58,7 +58,7 @@ export default function TrackPathScreen() {
     const done = phase.lessons.filter((l) => track.isFinished(l.id)).length + (track.isFinished(phase.checkpoint.id) ? 1 : 0);
     const total = phase.lessons.length + (phase.checkpoint.questions.length ? 1 : 0);
     return (
-      <Pressable key={`banner-${phase.number}`} onPress={() => open && openPhase(phase)} accessibilityRole="button" accessibilityLabel={`Phase ${phase.number}, ${phase.project}, ${open ? `${done} of ${total} done` : 'locked'}`} style={{ paddingHorizontal: 16, paddingVertical: 14, backgroundColor: open ? 'transparent' : 'rgba(27,36,114,0.55)' }}>
+      <Pressable key={`banner-${phase.number}`} onPress={() => open && openPhase(phase)} accessibilityRole="button" accessibilityLabel={`Phase ${phase.number}, ${phase.project}, ${open ? `${done} of ${total} done` : 'locked'}`} style={{ paddingHorizontal: 16, paddingVertical: 14, backgroundColor: open ? 'transparent' : C.lockedOverlay }}>
         <Card fill={open ? C.cream : C.lockedBand} radius={20} shadow contentStyle={{ minHeight: 64, paddingHorizontal: 16, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <View style={{ flex: 1 }}>
             <Text style={[body(13, true), { color: open ? C.muted : C.lockedBandText }]}>Phase {phase.number} · {phase.area}</Text>
@@ -93,7 +93,7 @@ export default function TrackPathScreen() {
     const state = isCurrent ? 'start' : finished ? `done, ${stars} stars` : open ? 'open' : 'locked';
     return (
       <View key={n.id} onLayout={isCurrent ? (e) => onCurrentLayout(e.nativeEvent.layout.y) : undefined} style={{ height: isCurrent ? 170 : 96, alignItems: 'center', justifyContent: 'center' }}>
-        {phaseLocked && <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(27,36,114,0.55)' }} />}
+        {phaseLocked && <View pointerEvents="none" style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: C.lockedOverlay }} />}
         <View style={{ alignItems: 'center', gap: 8, transform: [{ translateX: x }] }}>
           <Pressable onPress={() => (open || finished) && openPhase(n.phase)} accessibilityRole="button" accessibilityLabel={`${n.title}, ${state}`}>
             <View style={{ width: size, height: size, alignItems: 'center', justifyContent: 'center' }}>

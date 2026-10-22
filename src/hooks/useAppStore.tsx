@@ -3,6 +3,7 @@ import React, { createContext, useCallback, useContext, useEffect, useRef, useSt
 import { UserProgress, defaultProgress } from '../types/models';
 import { ProgressStorage } from '../storage/progressStorage';
 import { DayKey } from '../utils/dayKey';
+import { displayStreak as streakShown, withTrackBolts } from '../utils/progressRules';
 
 interface AppStoreValue {
   hydrated: boolean;
@@ -45,9 +46,7 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  /** The streak only counts if the learner practised today or yesterday. */
-  const displayStreak =
-    progress.lastActiveDay === DayKey.today() || progress.lastActiveDay === DayKey.yesterday() ? progress.streak : 0;
+  const displayStreak = streakShown(progress);
   const lessonsToday = progress.todayKey === DayKey.today() ? progress.todayLessons : 0;
 
   const finishOnboarding = useCallback(
@@ -67,29 +66,8 @@ export function AppStoreProvider({ children }: { children: React.ReactNode }) {
     [setProgress],
   );
 
-  const bumpDay = (u: UserProgress) => {
-    const today = DayKey.today();
-    if (u.lastActiveDay !== today) {
-      u.streak = u.lastActiveDay === DayKey.yesterday() ? u.streak + 1 : 1;
-      u.lastActiveDay = today;
-    }
-    if (u.todayKey !== today) {
-      u.todayKey = today;
-      u.todayLessons = 0;
-    }
-    u.todayLessons += 1;
-  };
-
   /** Bolts from a track lesson go to the account only when it is finished; streak and daily count update. */
-  const creditTrack = useCallback(
-    (bolts: number) => {
-      const u = { ...progressRef.current };
-      bumpDay(u);
-      u.bolts += bolts;
-      setProgress(u);
-    },
-    [setProgress],
-  );
+  const creditTrack = useCallback((bolts: number) => setProgress(withTrackBolts(progressRef.current, bolts)), [setProgress]);
 
   const setName = useCallback((name: string) => setProgress({ ...progressRef.current, name: name.trim() }), [setProgress]);
   const editAnswers = useCallback(() => setProgress({ ...progressRef.current, hasOnboarded: false }), [setProgress]);

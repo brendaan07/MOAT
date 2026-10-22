@@ -3,20 +3,21 @@ import React from 'react';
 import { Animated, Text, View } from 'react-native';
 import { C, body, monoBold } from '../../../utils/theme';
 import type { StrandsPicture, ThermoPicture } from '../../../content/types';
-import { BAD, BOUNCE, EASE, LIT, PictureState, Result, resolve, useIdle, usePlay } from './motion';
+import { EASE_BOUNCE, EASE_PICTURE } from '../../../utils/motion';
+import { BAD, LIT, PictureState, Result, resolve, useIdle, usePlay } from './motion';
 
 /* ------------------------------------------------------------------ paired DNA strands */
 const PAIR: Record<string, string> = { A: 'T', T: 'A', G: 'C', C: 'G' };
 const BASE: Record<string, string> = { A: LIT, T: BAD, G: C.sky, C: C.sun };
 function Base({ top, bottom, i, state, k }: { top: string; bottom: string; i: number; state: PictureState; k: string }) {
-  const drop = usePlay(k, !!bottom, 320, 80 * i, BOUNCE);
+  const drop = usePlay(k, !!bottom, 320, 80 * i, EASE_BOUNCE);
   const ok = bottom !== '' && PAIR[top] === bottom;
   return (
     <View style={{ alignItems: 'center' }}>
       <View style={{ width: 30, height: 28, borderRadius: 7, borderWidth: 2, borderColor: C.navy, backgroundColor: BASE[top] ?? C.card, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={monoBold(14)}>{top}</Text>
       </View>
-      <Animated.View style={{ width: 5, height: 16, marginVertical: 3, borderRadius: 3, backgroundColor: bottom ? (ok ? '#2F8F4E' : '#E0762A') : C.lockedEdge,
+      <Animated.View style={{ width: 5, height: 16, marginVertical: 3, borderRadius: 3, backgroundColor: bottom ? (ok ? C.green : C.deepOrange) : C.lockedEdge,
         transform: [{ scaleY: bottom ? drop : 0.4 }] }} />
       <Animated.View style={{ width: 30, height: 28, borderRadius: 7, borderWidth: 2, borderColor: C.navy, backgroundColor: bottom ? BASE[bottom] ?? C.card : C.card,
         opacity: bottom ? drop : 0.35, transform: [{ translateY: drop.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }], alignItems: 'center', justifyContent: 'center' }}>
@@ -48,20 +49,20 @@ export function Thermo({ spec, state, pick }: { spec: ThermoPicture; state: Pict
   const k = `${state}-${pick}`;
   const H = 72;
   const level = s ? Math.max(4, Math.min(1.15, s[0] / vmax) * H) : 8;
-  const rise = usePlay(k, !!s, 900, 0, EASE, false);
+  const rise = usePlay(k, !!s, 900, 0, EASE_PICTURE, false);
   const idle = useIdle(!s, 900);
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 22, height: 104 }}>
       <View style={{ alignItems: 'center' }}>
         <View style={{ width: 18, height: H + 8, borderWidth: 2.5, borderColor: C.navy, borderTopLeftRadius: 9, borderTopRightRadius: 9, backgroundColor: C.card, justifyContent: 'flex-end', overflow: 'hidden' }}>
-          <Animated.View style={{ height: s ? rise.interpolate({ inputRange: [0, 1], outputRange: [8, level] }) : 8, backgroundColor: state === 'nope' ? '#E0762A' : '#E5484D' }} />
+          <Animated.View style={{ height: s ? rise.interpolate({ inputRange: [0, 1], outputRange: [8, level] }) : 8, backgroundColor: state === 'nope' ? C.deepOrange : C.red }} />
         </View>
-        <Animated.View style={{ width: 30, height: 30, marginTop: -4, borderRadius: 15, borderWidth: 2.5, borderColor: C.navy, backgroundColor: state === 'nope' ? '#E0762A' : '#E5484D',
+        <Animated.View style={{ width: 30, height: 30, marginTop: -4, borderRadius: 15, borderWidth: 2.5, borderColor: C.navy, backgroundColor: state === 'nope' ? C.deepOrange : C.red,
           transform: [{ scale: idle.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] }) }] }} />
       </View>
       <View style={{ width: 140, height: 62, borderRadius: 14, borderWidth: 2.5, borderColor: C.navy, backgroundColor: C.editor, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={[body(11, true), { color: C.lavender }]}>melting temp</Text>
-        <Text style={[monoBold(20), { color: state === 'nope' ? '#FFB4A2' : LIT }]}>{s ? s[1] : '--'}</Text>
+        <Text style={[monoBold(20), { color: state === 'nope' ? C.errText : LIT }]}>{s ? s[1] : '--'}</Text>
       </View>
     </View>
   );

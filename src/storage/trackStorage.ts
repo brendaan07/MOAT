@@ -1,31 +1,20 @@
 // Saves and loads the learner's track progress (moat.track.v1).
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { defaultTrackProgress, TrackProgress } from '../types/models';
+import { jsonStorage } from './jsonStorage';
 
 const KEY = 'moat.track.v1';
 
+/** Reads saved track progress field by field; anything missing or malformed starts empty. */
+function decode(raw: unknown): TrackProgress {
+  const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const obj = <T,>(v: unknown, d: T): T => (v && typeof v === 'object' && !Array.isArray(v) ? (v as T) : d);
+  return {
+    finished: Array.isArray(r.finished) ? (r.finished as string[]) : [],
+    bestStars: obj(r.bestStars, {}),
+    paid: Array.isArray(r.paid) ? (r.paid as string[]) : [],
+    secondsByDay: obj(r.secondsByDay, {}),
+  };
+}
+
 /** Reads and writes the track progress in AsyncStorage. */
-export const TrackStorage = {
-  async load(): Promise<TrackProgress> {
-    try {
-      const json = await AsyncStorage.getItem(KEY);
-      if (!json) return defaultTrackProgress();
-      const r = JSON.parse(json);
-      return {
-        finished: Array.isArray(r.finished) ? r.finished : [],
-        bestStars: r.bestStars && typeof r.bestStars === 'object' ? r.bestStars : {},
-        paid: Array.isArray(r.paid) ? r.paid : [],
-        secondsByDay: r.secondsByDay && typeof r.secondsByDay === 'object' ? r.secondsByDay : {},
-      };
-    } catch {
-      return defaultTrackProgress();
-    }
-  },
-  async save(p: TrackProgress) {
-    try {
-      await AsyncStorage.setItem(KEY, JSON.stringify(p));
-    } catch {
-      // best effort
-    }
-  },
-};
+export const TrackStorage = jsonStorage(KEY, decode, defaultTrackProgress);

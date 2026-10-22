@@ -8,6 +8,7 @@ import { BundleImage, Card, ChunkyButton } from '../components/ui';
 import { BORDER, C, body, heading } from '../utils/theme';
 import { STUDY_AREAS, canonicalArea } from '../utils/studyAreas';
 import { languagesFor } from '../content/tracks';
+import { CloseButton } from '../components/CloseButton';
 
 const EDUCATION = ['Primary school', 'Secondary school', 'Diploma or vocational', "Bachelor's degree", "Master's degree", 'Doctorate', 'Prefer not to say'];
 const LANGUAGES = [
@@ -123,9 +124,7 @@ export default function OnboardingScreen() {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: C.cream }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 8 }}>
-          <Pressable onPress={() => setStep(1)} accessibilityRole="button" accessibilityLabel="Back" style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="chevron-back" size={24} color={C.navy} />
-          </Pressable>
+          <CloseButton onPress={() => setStep(1)} label="Back" icon="chevron-back" />
         </View>
         <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 24, gap: 12 }}>
           <StepLabel text="STEP 2 OF 2" />
@@ -236,7 +235,7 @@ export default function OnboardingScreen() {
       </KeyboardAvoidingView>
 
       <Modal visible={menuOpen} transparent animationType="fade" onRequestClose={() => setMenuOpen(false)}>
-        <Pressable style={{ flex: 1, backgroundColor: 'rgba(27,36,114,0.35)', justifyContent: 'center', padding: 32 }} onPress={() => setMenuOpen(false)}>
+        <Pressable style={{ flex: 1, backgroundColor: C.scrim, justifyContent: 'center', padding: 32 }} onPress={() => setMenuOpen(false)}>
           <Card radius={16} shadow contentStyle={{ paddingVertical: 6 }}>
             <FlatList
               data={EDUCATION}

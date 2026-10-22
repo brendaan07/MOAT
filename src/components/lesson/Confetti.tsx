@@ -2,9 +2,10 @@
 import React, { useEffect, useMemo } from 'react';
 import { AccessibilityInfo, Animated, Easing, View } from 'react-native';
 import { useReduceMotion } from '../../hooks/useReduceMotion';
+import { C } from '../../utils/theme';
 
 /* ------------------------------------------------------------------ checkpoint confetti */
-const CONFETTI_COLOURS = ['#B5E04A', '#59B4FF', '#FFC93C', '#FF8A3D', '#FFD6E0', '#1B2472'];
+const CONFETTI_COLOURS = [C.lime, C.sky, C.sun, C.orange, C.pink, C.navy];
 /** 30 pieces fall once over the green checkpoint recap (2.0 to 2.6 s, staggered); Reduce Motion shows none. */
 export function Confetti() {
   const reduce = useReduceMotion();

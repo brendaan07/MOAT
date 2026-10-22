@@ -4,11 +4,12 @@ import { Animated, Easing, Text, View } from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { C, body, monoBold } from '../../../utils/theme';
 import type { DotsPicture, RateBarsPicture, StepsPicture, TilesPicture } from '../../../content/types';
-import { BAD, BOUNCE, EASE, LIT, PAL, PictureState, Result, resolve, useIdle, usePlay } from './motion';
+import { EASE_BOUNCE, EASE_PICTURE } from '../../../utils/motion';
+import { BAD, LIT, PAL, PictureState, Result, resolve, useIdle, usePlay } from './motion';
 
 /* ------------------------------------------------------------------ character tiles */
 function Tile({ ch, i, n, lit, state, k, w, base, neg }: { ch: string; i: number; n: number; lit: boolean; state: PictureState; k: string; w: number; base: number; neg: boolean }) {
-  const pop = usePlay(k, lit && state !== 'idle', 320, 60 * i, BOUNCE);
+  const pop = usePlay(k, lit && state !== 'idle', 320, 60 * i, EASE_BOUNCE);
   const idle = useIdle(state === 'idle', 900, 90 * i);
   const dim = state !== 'idle' && !lit;
   return (
@@ -20,7 +21,7 @@ function Tile({ ch, i, n, lit, state, k, w, base, neg }: { ch: string; i: number
         <Text style={monoBold(w >= 22 ? 16 : 13)}>{ch === ' ' ? '·' : ch}</Text>
       </Animated.View>
       <Text style={[monoBold(10), { color: C.muted, marginTop: 2 }]}>{i + base}</Text>
-      {neg ? <Text style={[monoBold(9.5), { color: '#9A3F0A' }]}>{i - n}</Text> : null}
+      {neg ? <Text style={[monoBold(9.5), { color: C.brownText }]}>{i - n}</Text> : null}
     </View>
   );
 }
@@ -44,7 +45,7 @@ export function Tiles({ spec, state, pick }: { spec: TilesPicture; state: Pictur
 
 /* ------------------------------------------------------------------ bars against a line */
 function Bar({ h, colour, i, k, active, label, name }: { h: number; colour: string; i: number; k: string; active: boolean; label: string; name: string }) {
-  const grow = usePlay(k, active, 650, 140 * i, EASE, false);
+  const grow = usePlay(k, active, 650, 140 * i, EASE_PICTURE, false);
   return (
     <View style={{ alignItems: 'center', width: 56 }}>
       <View style={{ height: 76, justifyContent: 'flex-end' }}>
@@ -68,13 +69,13 @@ export function RateBars({ spec, state, pick }: { spec: RateBarsPicture; state: 
   const H = 70;
   const h = (v: number) => Math.min(1.1, Math.max(0, v) / vmax) * H;
   const colour = (v: number, i: number) =>
-    state === 'nope' ? BAD : o.good_high && line != null ? (v >= line ? '#2F8F4E' : '#E0762A') : line != null && v > line ? '#E5484D' : PAL[i % 5];
+    state === 'nope' ? BAD : o.good_high && line != null ? (v >= line ? C.green : C.deepOrange) : line != null && v > line ? C.red : PAL[i % 5];
   return (
     <View>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingHorizontal: 8 }}>
         {line != null && (
-          <View pointerEvents="none" style={{ position: 'absolute', left: 4, right: 4, top: 76 - (line / vmax) * H, borderTopWidth: 2.5, borderStyle: 'dashed', borderColor: '#E0762A' }}>
-            <Text style={[body(10, true), { position: 'absolute', right: 0, top: -16, color: '#9A3F0A' }]}>{o.line_label}</Text>
+          <View pointerEvents="none" style={{ position: 'absolute', left: 4, right: 4, top: 76 - (line / vmax) * H, borderTopWidth: 2.5, borderStyle: 'dashed', borderColor: C.deepOrange }}>
+            <Text style={[body(10, true), { position: 'absolute', right: 0, top: -16, color: C.brownText }]}>{o.line_label}</Text>
           </View>
         )}
         {names.map((n, i) => (
@@ -120,7 +121,7 @@ export function Dots({ spec, state, pick }: { spec: DotsPicture; state: PictureS
   );
 }
 function Dot({ x, y, lit, state, i, k }: { x: number; y: number; lit: boolean; state: PictureState; i: number; k: string }) {
-  const pop = usePlay(k, lit && state !== 'idle', 300, 50 * i, BOUNCE);
+  const pop = usePlay(k, lit && state !== 'idle', 300, 50 * i, EASE_BOUNCE);
   const idle = useIdle(state === 'idle', 1100, 120 * i);
   return (
     <Animated.View style={{ position: 'absolute', left: x - 8, top: y, width: 16, height: 16, borderRadius: 8, borderWidth: 2, borderColor: C.navy,
@@ -160,7 +161,7 @@ export function Steps({ spec, state, pick }: { spec: StepsPicture; state: Pictur
         <Svg width={320} height={100}>
           <Path d={`M${X0} ${Y0}V${Y0 + H}H${X0 + W}`} stroke={C.navy} strokeWidth={2} fill="none" />
           {vals.length > 0 && (
-            <APath d={d} stroke={state === 'nope' ? (over ? '#E5484D' : C.orange) : '#2F8F4E'} strokeWidth={3.5} fill="none" strokeLinejoin="round"
+            <APath d={d} stroke={state === 'nope' ? (over ? C.red : C.orange) : C.green} strokeWidth={3.5} fill="none" strokeLinejoin="round"
               strokeDasharray="700" strokeDashoffset={draw.interpolate({ inputRange: [0, 1], outputRange: [700, 0] })} />
           )}
         </Svg>

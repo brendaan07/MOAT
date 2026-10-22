@@ -37,7 +37,7 @@ function Caption({ text, state }: { text: string | null; state: PictureState }) 
   return (
     <Animated.View style={{ flex: 1, opacity: fade, transform: [{ translateY: fade.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
       <Text style={[body(11, true), { color: '#4A527F' }]}>result</Text>
-      <Text style={[monoBold(13), { color: state === 'nope' ? '#B3470E' : '#2F6B0F' }]}>{text}</Text>
+      <Text style={[monoBold(13), { color: state === 'nope' ? '#B3470E' : C.greenText }]}>{text}</Text>
     </Animated.View>
   );
 }

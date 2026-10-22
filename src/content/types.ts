@@ -170,7 +170,6 @@ export interface PlayerQuestion {
   id: string;
   kind: QuestionKind;
   word: string;
-  color: string;
   okTitle: string;
   ask: string;
   hint: string;

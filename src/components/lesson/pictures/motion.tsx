@@ -3,19 +3,16 @@ import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Text, View } from 'react-native';
 import { C, body, monoBold } from '../../../utils/theme';
 import { useReduceMotion } from '../../../hooks/useReduceMotion';
+import { EASE_BOUNCE, EASE_PICTURE } from '../../../utils/motion';
 
 /** How far the picture has played: waiting for Check, the right answer, or the picked wrong option. */
 export type PictureState = 'idle' | 'go' | 'nope';
-/** Ease for the pictures' own motion. */
-export const EASE = Easing.bezier(0.3, 0.7, 0.3, 1);
-/** An overshooting ease for pops. */
-export const BOUNCE = Easing.bezier(0.3, 1.5, 0.5, 1);
 /** Fill for something the right answer lights up. */
-export const LIT = '#B5E04A';
+export const LIT = C.lime;
 /** Fill for what a wrong answer lights up. */
 export const BAD = '#FFB37A';
 /** Series colours, in order. */
-export const PAL = ['#59B4FF', '#FFC93C', '#FF8A3D', '#B5E04A', '#F48FB1'];
+export const PAL = [C.sky, C.sun, C.orange, C.lime, '#F48FB1'];
 
 /** The state each option leads to: the right answer's, the picked wrong option's, or nothing yet. */
 export function resolve<S>(spec: { correct_state: S; states?: { wrong_by_option?: Record<string, S> } }, state: PictureState, pick: string | null): S | null {
@@ -25,7 +22,7 @@ export function resolve<S>(spec: { correct_state: S; states?: { wrong_by_option?
 }
 
 /** Runs 0 -> 1 each time the picture acts something out (go or nope); instant with Reduce Motion. */
-export function usePlay(key: string, active: boolean, duration: number, delay = 0, easing = EASE, native = true) {
+export function usePlay(key: string, active: boolean, duration: number, delay = 0, easing = EASE_PICTURE, native = true) {
   const reduce = useReduceMotion();
   const v = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -70,13 +67,13 @@ export function Shake({ state, pick, children }: { state: PictureState; pick: st
 
 /** The dark result pill that pops in after the picture has acted out the answer. */
 export function Result({ text, state, k, delay = 450 }: { text: string; state: PictureState; k: string; delay?: number }) {
-  const v = usePlay(k, state !== 'idle' && !!text, 260, delay, BOUNCE);
+  const v = usePlay(k, state !== 'idle' && !!text, 260, delay, EASE_BOUNCE);
   if (state === 'idle' || !text) return <View style={{ height: 30 }} />;
   return (
     <Animated.View style={{ alignSelf: 'center', marginTop: 8, opacity: v, transform: [{ scale: v.interpolate({ inputRange: [0, 1], outputRange: [0.6, 1] }) }],
       flexDirection: 'row', alignItems: 'center', gap: 8, paddingHorizontal: 12, paddingVertical: 4, borderRadius: 12, backgroundColor: C.editor }}>
       <Text style={[body(12, true), { color: C.lavender }]}>result</Text>
-      <Text style={[monoBold(15), { color: state === 'nope' ? '#FFB4A2' : LIT }]}>{text}</Text>
+      <Text style={[monoBold(15), { color: state === 'nope' ? C.errText : LIT }]}>{text}</Text>
     </Animated.View>
   );
 }
