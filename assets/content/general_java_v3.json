@@ -1,0 +1,1078 @@
+{
+ "track": {
+  "id": "gen_java",
+  "name": "General Java",
+  "language": "Java",
+  "phases": 1,
+  "lessons_per_phase": 4,
+  "checkpoints": false,
+  "item_order_rule": "Each phase has four lessons in order and no checkpoint yet (restructured from the V1 general lessons)."
+ },
+ "phases": [
+  {
+   "phase": 1,
+   "title": "Say hello",
+   "coding_idea": "Show messages and store numbers",
+   "items": [
+    {
+     "id": "GenJavaP1L1",
+     "type": "lesson",
+     "part": 1,
+     "title": "Workshop screen",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.java",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Make the robot say hello",
+       "value": "\"Hello, robot!\""
+      },
+      {
+       "label": "What does the workshop screen s…",
+       "value": "Gear"
+      },
+      {
+       "label": "Build the line that shows: Powe…",
+       "value": "\"Power on\""
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "What shows, in order?",
+       "value": "Ready, Go"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Workshop screen",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Make the robot say hello",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Text goes in double quotes. Then println shows it on the workshop screen.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "System.out.println() shows whatever is inside the brackets.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(___);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Hello, robot!\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "'Hello, robot!'",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Hello, robot!",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "\"hello, robot!\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the workshop screen show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "println shows the words between the quote marks. The quote marks themselves are not shown.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(\"Gear\");"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Gear",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"Gear\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Nothing",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "println",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows: Power on",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Start with System.out.println, then brackets, put the words in double quotes, and end with a semicolon.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(___);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "\"Power on\"",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "[",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Power on",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Words need double quote marks. Fix: System.out.println(\"Stop\");",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.java",
+       "lines": [
+        {
+         "id": "a",
+         "code": "System.out.println(\"Start\");",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "System.out.println(\"Spin\");",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "System.out.println(Stop);",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "System.out.println(\"Start\");",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "System.out.println(\"Spin\");",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "System.out.println(\"Stop\");",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "System.out.println(Stop);",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows, in order?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The computer runs the lines from top to bottom, so Ready shows first.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(\"Ready\");",
+        "System.out.println(\"Go\");"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "Ready, Go",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Go, Ready",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "Ready",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenJavaP1L2",
+     "type": "lesson",
+     "part": 2,
+     "title": "Numbers and text",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.java",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "What shows?",
+       "value": "5"
+      },
+      {
+       "label": "True or false: this shows 3 + 2.",
+       "value": "True"
+      },
+      {
+       "label": "What does the screen show?",
+       "value": "32"
+      },
+      {
+       "label": "Build the line that shows the t…",
+       "value": "+"
+      },
+      {
+       "label": "What shows?",
+       "value": "6"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Numbers and text",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Without quote marks, Java does the maths: 3 + 2 = 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Without quote marks, Java does the maths.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(3 + 2);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "32",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3 + 2",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "True or false: this shows 3 + 2.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Quote marks make it a message. The words show, and no adding happens.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(\"3 + 2\");"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "True",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "False",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What does the screen show?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "\"3\" is in quotes, so it is text. With text, + joins instead of adding.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Numbers add. Text joins.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(\"3\" + 2);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "32",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "Error",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "3 + 2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "5",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Build the line that shows the total of 4 + 6.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Numbers without quote marks are added, so the screen shows 10.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(4 ___ 6);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "+",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"4 + 6\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "-",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "10 - 4 = 6.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "System.out.println(10 - 4);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "6",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "14",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "10 - 4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenJavaP1L3",
+     "type": "lesson",
+     "part": 3,
+     "title": "Typed boxes",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.java",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Make a whole-number box labelle…",
+       "value": "int"
+      },
+      {
+       "label": "What shows?",
+       "value": "5"
+      },
+      {
+       "label": "What shows?",
+       "value": "7"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: swap in 5?",
+       "value": "gears = 5;"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Typed boxes",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Make a whole-number box labelled lives that holds 3",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "int holds whole numbers, so it fits 3. String holds text.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Java boxes have a type. The type comes first.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "___ lives = 3;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "int",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "print",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "String",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "coins holds 5, so println(coins) shows 5.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "int coins = 5;",
+        "System.out.println(coins);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "5",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "coins",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "\"coins\"",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The newest value replaces the old one. The box now holds 7.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "int gears = 2;",
+        "gears = 7;",
+        "System.out.println(gears);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "7",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "2",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "9",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "An int holds a whole number, not text. Fix: int coins = 5;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.java",
+       "lines": [
+        {
+         "id": "a",
+         "code": "int lives = 3;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "String name = \"Robo\";",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "int coins = \"5\";",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "c",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "int lives = 3;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "b0",
+          "replacement": "String name = \"Robo\";",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "c": [
+         {
+          "id": "f0",
+          "replacement": "int coins = 5;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "int coins = \"5\";",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: swap in 5?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "int makes a whole-number box, String makes a text box, = stores a value, and println shows it.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "gears = 5;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "int gears = 2;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "System.out.println(gears);",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "String name = \"Robo\";",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "id": "GenJavaP1L4",
+     "type": "lesson",
+     "part": 4,
+     "title": "Robot maths",
+     "person": "Your coding coach",
+     "intro": "Say hello: Show messages and store numbers.",
+     "script_file": "lesson.java",
+     "start_button": "Start",
+     "notebook": [
+      {
+       "label": "Add 5 to the coins. Which line…",
+       "value": "coins = coins + 5;"
+      },
+      {
+       "label": "What shows?",
+       "value": "2"
+      },
+      {
+       "label": "Add the numbers. Build the line.",
+       "value": "a"
+      },
+      {
+       "label": "Tap the line with the mistake.",
+       "value": "fixed"
+      },
+      {
+       "label": "Which line does this: take away…",
+       "value": "coins = coins - 1;"
+      }
+     ],
+     "recap": {
+      "title": "Lesson done",
+      "subtitle": "Robot maths",
+      "celebration": "standard recap"
+     },
+     "page_style": "lesson_cream",
+     "questions": [
+      {
+       "number": 1,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Add 5 to the coins. Which line updates them?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "Take the old value, add 5, and put it back in the same box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": "Take the old value, change it, and put it back in the same box.",
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "int coins = 10;"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "coins = coins + 5;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "coins = 5;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "coins + 5;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 2,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "What shows?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "3 - 1 = 2.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "int lives = 3;",
+        "lives = lives - 1;",
+        "System.out.println(lives);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "2",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "3",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "4",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 3,
+       "kind": "fill",
+       "label": "Fill",
+       "ask": "Add the numbers. Build the line.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "a + b is 7, and println shows it.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [
+        "int a = 3;",
+        "int b = 4;",
+        "System.out.println(___ + b);"
+       ],
+       "options": [
+        {
+         "id": "a",
+         "label": "a",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "\"a\"",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "-",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      },
+      {
+       "number": 4,
+       "kind": "fix",
+       "label": "Fix",
+       "ask": "Tap the line with the mistake.",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "The + needs a number after it. Fix: lives = lives + 1;",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "script_file": "lesson.java",
+       "lines": [
+        {
+         "id": "a",
+         "code": "int lives = 2;",
+         "given_correct": false
+        },
+        {
+         "id": "b",
+         "code": "lives = lives +;",
+         "given_correct": false
+        },
+        {
+         "id": "c",
+         "code": "System.out.println(lives);",
+         "given_correct": false
+        }
+       ],
+       "buggy_line": "b",
+       "fixes_by_line": {
+        "a": [
+         {
+          "id": "a0",
+          "replacement": "int lives = 2;",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ],
+        "b": [
+         {
+          "id": "f0",
+          "replacement": "lives = lives + 1;",
+          "correct": true,
+          "feedback": null
+         },
+         {
+          "id": "f1",
+          "replacement": "lives = lives +;",
+          "correct": false,
+          "feedback": "That leaves the mistake in place."
+         }
+        ],
+        "c": [
+         {
+          "id": "c0",
+          "replacement": "System.out.println(lives);",
+          "correct": false,
+          "feedback": "This line was already right."
+         }
+        ]
+       },
+       "wrong_line_feedback": {},
+       "output_after_fix": null
+      },
+      {
+       "number": 5,
+       "kind": "predict",
+       "label": "Predict",
+       "ask": "Which line does this: take away 1?",
+       "xp": 10,
+       "known_from_earlier": [],
+       "explanation_after_check": "+ adds, - takes away, and * multiplies. The new value goes back in the box.",
+       "takeaway": null,
+       "next_bridge": null,
+       "hint_before_check": null,
+       "code_note": null,
+       "science_note": null,
+       "scene_label": null,
+       "worked": [],
+       "code": [],
+       "options": [
+        {
+         "id": "a",
+         "label": "coins = coins - 1;",
+         "correct": true,
+         "feedback": null
+        },
+        {
+         "id": "b",
+         "label": "coins = coins + 1;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "c",
+         "label": "coins = coins * 2;",
+         "correct": false,
+         "feedback": null
+        },
+        {
+         "id": "d",
+         "label": "coins = coins + 10;",
+         "correct": false,
+         "feedback": null
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

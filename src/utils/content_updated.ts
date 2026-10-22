@@ -35,4 +35,6 @@ export const CONTENT: Record<string, unknown> = {
   "general_javascript_v3": require('../../assets/content/general_javascript_v3.json'),
   "track_gen_matlab": require('../../assets/content/track_gen_matlab.json'),
   "general_matlab_v3": require('../../assets/content/general_matlab_v3.json'),
+  "track_gen_java": require('../../assets/content/track_gen_java.json'),
+  "general_java_v3": require('../../assets/content/general_java_v3.json'),
 };
