@@ -1,14 +1,16 @@
-// The root stack and its web URLs: splash, onboarding, then the tabs and the track screens.
+// The root stack and its web URLs: splash, login, onboarding, then the tabs and the track screens.
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer, DefaultTheme, LinkingOptions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useAuth } from '../hooks/useAuth';
 import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore';
 import { hasTrack } from '../content/tracks';
 import { C } from '../utils/theme';
 import MainTabs from './MainTabs';
 import SplashScreen from '../screens/SplashScreen';
+import AuthScreen from '../screens/AuthScreen';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import TrackFlowScreen from '../screens/track/TrackFlowScreen';
 import TrackPhaseScreen from '../screens/track/TrackPhaseScreen';
@@ -38,8 +40,9 @@ const linking: LinkingOptions<RootStackParamList> = {
   },
 };
 
-/** The splash for at least 1.5 seconds, then onboarding (also for a saved pair with no track) or the main app. */
+/** The splash for at least 1.5 seconds, then login (no saved session), onboarding (also for a saved pair with no track) or the main app. */
 export default function RootNavigator() {
+  const auth = useAuth();
   const store = useAppStore();
   const track = useTrackStore();
   const [splashDone, setSplashDone] = useState(false);
@@ -47,7 +50,9 @@ export default function RootNavigator() {
     const t = setTimeout(() => setSplashDone(true), 1500);
     return () => clearTimeout(t);
   }, []);
-  if (!splashDone || !store.hydrated || !track.hydrated) return <SplashScreen />;
+  if (!splashDone || !auth.hydrated || !store.hydrated || !track.hydrated) return <SplashScreen />;
+  // Logging out clears the session, which brings this screen back.
+  if (!auth.session) return <AuthScreen />;
   // A saved field and language with no track (for example Engineering + R from an older version) picks again.
   if (!store.progress.hasOnboarded || !hasTrack(store.progress.studyArea, store.progress.language)) return <OnboardingScreen />;
   return (

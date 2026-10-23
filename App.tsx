@@ -1,9 +1,10 @@
-// The app root: fonts, safe-area and store providers, then the navigator.
+// The app root: fonts, safe-area, auth and store providers, then the navigator.
 import React from 'react';
 import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { AuthProvider } from './src/hooks/useAuth';
 import { AppStoreProvider } from './src/hooks/useAppStore';
 import { TrackStoreProvider } from './src/hooks/useTrackStore';
 import RootNavigator from './src/navigation/RootNavigator';
@@ -22,12 +23,14 @@ export default function App() {
   if (!fontsLoaded) return <View style={{ flex: 1, backgroundColor: C.cream }} />;
   return (
     <SafeAreaProvider>
-      <AppStoreProvider>
-        <TrackStoreProvider>
-          <StatusBar style="dark" />
-          <RootNavigator />
-        </TrackStoreProvider>
-      </AppStoreProvider>
+      <AuthProvider>
+        <AppStoreProvider>
+          <TrackStoreProvider>
+            <StatusBar style="dark" />
+            <RootNavigator />
+          </TrackStoreProvider>
+        </AppStoreProvider>
+      </AuthProvider>
     </SafeAreaProvider>
   );
 }

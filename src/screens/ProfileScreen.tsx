@@ -1,8 +1,9 @@
 // The Profile tab: streak, stats, badges and settings.
 import React, { useState } from 'react';
-import { Alert, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from '../components/SafeAreaView';
 import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '../hooks/useAuth';
 import { useAppStore } from '../hooks/useAppStore';
 import { useTrackStore } from '../hooks/useTrackStore';
 import { DAILY_GOAL_MINUTES } from '../utils/rewards';
@@ -12,9 +13,11 @@ import { WeekStrip } from '../components/track/WeekStrip';
 import { C, body, heading } from '../utils/theme';
 import { robotImage } from '../types/models';
 import { DayKey } from '../utils/dayKey';
+import { confirmAction } from '../utils/confirm';
 
 /** The Profile tab: streak hero, stats row, 3 by 3 badges, then every setting from the old Profile. */
 export default function ProfileScreen() {
+  const auth = useAuth();
   const store = useAppStore();
   const track = useTrackStore();
   const p = store.progress;
@@ -42,21 +45,12 @@ export default function ProfileScreen() {
     { id: 'l50', label: '50 lessons', icon: 'layers', color: C.lime, done: lessonsDone >= 50, progress: lessonsDone >= 50 ? 'done' : `${lessonsDone} of 50` },
   ];
   const doReset = () => { store.resetProgress(); track.reset(); };
-  // Alert.alert is a no-op on react-native-web, so web asks with the browser's own confirm.
-  const confirmReset = () => {
-    if (Platform.OS === 'web') {
-      if (window.confirm('Reset all progress?\n\nThis clears your lessons, stars, bolts, streak and answers on this device.')) doReset();
-      return;
-    }
-    Alert.alert('Reset all progress?', 'This clears your lessons, stars, bolts, streak and answers on this phone.', [
-      { text: 'Cancel', style: 'cancel' },
-      { text: 'Reset progress', style: 'destructive', onPress: doReset },
-    ]);
-  };
+  const confirmReset = () => confirmAction('Reset all progress?', 'This clears your lessons, stars, bolts, streak and answers on this device.', 'Reset progress', doReset);
+  const confirmLogout = () => confirmAction('Log out?', 'You can log back in any time with your email and password.', 'Log out', auth.signOut);
   const row = (label: string, value: string) => (
     <View key={label} style={{ height: 46, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, borderTopWidth: 2, borderTopColor: C.locked }}>
       <Text style={body(16, true)}>{label}</Text>
-      <Text style={[body(16), { color: C.muted }]}>{value}</Text>
+      <Text style={[body(16), { color: C.muted, flexShrink: 1, marginLeft: 12 }]} numberOfLines={1}>{value}</Text>
     </View>
   );
   const stat = (value: string, label: string) => (
@@ -114,6 +108,7 @@ export default function ProfileScreen() {
         </View>
         <Card radius={20}>
           <Text style={[heading(20), { paddingHorizontal: 16, paddingVertical: 10 }]}>Settings</Text>
+          {row('Account', auth.session?.user.email ?? '')}
           {row('Daily goal', `${DAILY_GOAL_MINUTES} min`)}
           {row('Age', p.age >= 70 ? '70+' : String(p.age))}
           {row('Education', p.education)}
@@ -121,8 +116,9 @@ export default function ProfileScreen() {
           {row('Language', language)}
         </Card>
         <ChunkyButton title="Edit my answers" fill={C.card} onPress={store.editAnswers} />
+        <ChunkyButton title="Log out" fill={C.card} onPress={confirmLogout} />
         <ChunkyButton title="Reset all progress" fill={C.missSheet} onPress={confirmReset} />
-        <Text style={[body(14), { color: C.muted }]}>Sign in and account deletion come in a later build. Progress is saved on this phone only.</Text>
+        <Text style={[body(14), { color: C.muted }]}>Progress is saved on this device only. Account deletion comes in a later build.</Text>
       </ScrollView>
       <Modal visible={editing} transparent animationType="fade" onRequestClose={() => setEditing(false)}>
         <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1, backgroundColor: C.scrim, justifyContent: 'center', padding: 24 }}>
